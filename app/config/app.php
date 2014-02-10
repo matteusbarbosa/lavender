@@ -107,7 +107,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		'Lavender\Core\CoreServiceProvider'
+		'Lavender\Core\CoreServiceProvider',
+		'Lavender\Cms\CmsServiceProvider'
 
 	),
 
