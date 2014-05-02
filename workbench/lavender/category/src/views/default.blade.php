@@ -1,6 +1,6 @@
 @extends('core::layouts.master')
 
 @section('content')
-<h1>Product: {{ $product }}</h1>
+<h1>Category: {{ $category }}</h1>
 
 @stop

@@ -3,7 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductTable extends Migration {
+class CreateCategoryTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -12,9 +13,8 @@ class CreateProductTable extends Migration {
 	 */
 	public function up()
 	{
-        Schema::create('product', function($table) {
+        Schema::create('category', function($table) {
             $table->increments('id');
-            $table->string('sku', 50);
             $table->string('name', 50);
             $table->timestamps();
         });
@@ -27,7 +27,7 @@ class CreateProductTable extends Migration {
 	 */
 	public function down()
 	{
-        Schema::drop('product');
+        Schema::drop('category');
 	}
 
 }

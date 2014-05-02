@@ -12,6 +12,7 @@ class DatabaseSeeder extends Seeder {
 		Eloquent::unguard();
 
 		$this->call('Lavender\Product\ProductSeeder');
+		$this->call('Lavender\Category\CategorySeeder');
 	}
 
 }
