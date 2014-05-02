@@ -111,7 +111,7 @@ return array(
 		
 		'Lavender\Backend\BackendServiceProvider',
 		'Lavender\Cart\CartServiceProvider',
-		'Lavender\Catalog\CatalogServiceProvider',
+		'Lavender\Product\ProductServiceProvider',
 		'Lavender\Checkout\CheckoutServiceProvider',
 		'Lavender\Cms\CmsServiceProvider',
 		'Lavender\Customer\CustomerServiceProvider',

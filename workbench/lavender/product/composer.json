@@ -1,5 +1,5 @@
 {
-    "name": "lavender/catalog",
+    "name": "lavender/product",
     "description": "",
     "authors": [
         {
@@ -13,10 +13,11 @@
     },
     "autoload": {
         "classmap": [
-            "src/migrations"
+            "src/migrations",
+            "src/controllers"
         ],
         "psr-0": {
-            "Lavender\\Catalog\\": "src/"
+            "Lavender\\Product\\": "src/"
         }
     },
     "minimum-stability": "stable"

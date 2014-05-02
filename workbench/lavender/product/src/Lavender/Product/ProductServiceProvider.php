@@ -1,8 +1,8 @@
-<?php namespace Lavender\Catalog;
+<?php namespace Lavender\Product;
 
 use Illuminate\Support\ServiceProvider;
 
-class CatalogServiceProvider extends ServiceProvider {
+class ProductServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -18,7 +18,8 @@ class CatalogServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('lavender/catalog');
+		$this->package('lavender/product');
+        include __DIR__ . '/../../routes.php';
 	}
 
 	/**

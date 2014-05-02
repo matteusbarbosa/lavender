@@ -12,6 +12,7 @@ class Repository extends \Illuminate\Config\Repository
      */
     public function get($key, $default = null)
     {
+        //do cache
         return parent::get($key, $default);
     }
 

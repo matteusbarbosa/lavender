@@ -1,5 +1,6 @@
 @extends('core::layouts.master')
 
 @section('content')
-    <h1>Welcome to Lavender.</h1>
+<h1>Catalog: {{ $taxonomy }}</h1>
+
 @stop

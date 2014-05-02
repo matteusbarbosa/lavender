@@ -9,7 +9,8 @@ class CoreServiceProvider extends ServiceProvider {
 	 *
 	 * @var bool
 	 */
-	protected $defer = false;
+    protected $defer = false;
+
 
 	/**
 	 * Bootstrap the application events.
@@ -19,6 +20,7 @@ class CoreServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('lavender/core');
+        include __DIR__ . '/../../routes.php';
 	}
 
 	/**

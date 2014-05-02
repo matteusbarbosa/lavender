@@ -1,10 +1,11 @@
 <?php
-
 /**
- * Route default CMS actions.
+ * CMS routes.
+ * @var $this Lavender\Cms\CmsServiceProvider
  */
-Route::controller('/', 'Lavender\Cms\DefaultController');
 
-Route::get('cms/{type}/{id}', array(
-    'uses' => 'Lavender\Cms\DefaultController@Cms'
-));
+Route::group(['namespace' => 'Lavender\Cms'], function(){
+
+    Route::get('/', 'DefaultController@getIndex');
+
+});

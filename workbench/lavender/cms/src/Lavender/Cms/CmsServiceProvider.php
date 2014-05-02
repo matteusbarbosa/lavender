@@ -19,8 +19,7 @@ class CmsServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('lavender/cms');
-		
-		include __DIR__ . '/../../routes.php';
+        include __DIR__ . '/../../routes.php';
 	}
 
 	/**
