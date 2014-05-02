@@ -18,11 +18,12 @@ Set up your database connection:
 
     app/config/database.php
 
-Install product table:
+Install product/category tables:
 
     php artisan migrate --path=workbench/lavender/product/src/migrations
+    php artisan migrate --path=workbench/lavender/category/src/migrations
 
-Seed the product table with sample data:
+Seed the product/category tables with sample data:
 
     php artisan db:seed
 
