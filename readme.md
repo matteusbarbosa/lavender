@@ -14,6 +14,10 @@ Run Composer:
 
     find workbench/lavender -maxdepth 1 -exec composer install -d {} \;
 
+Set up your database connection:
+
+    app/config/database.php
+
 Install product table:
 
     php artisan migrate --path=workbench/lavender/product/src/migrations
