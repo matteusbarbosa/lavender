@@ -27,3 +27,13 @@ Seed the product/category tables with sample data:
 
     php artisan db:seed
 
+
+### Current routes:
+
+    +---------------------------+--------------------------------------------------+
+    | URI                       | Action                                           |
+    +---------------------------+--------------------------------------------------+
+    | GET|HEAD product/id/{id}  | Lavender\Product\ProductController@getProduct    |
+    | GET|HEAD category/id/{id} | Lavender\Category\CategoryController@getCategory |
+    | GET|HEAD /                | Lavender\Cms\DefaultController@getIndex          |
+    +---------------------------+--------------------------------------------------+
