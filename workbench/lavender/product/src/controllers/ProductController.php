@@ -10,7 +10,7 @@ class ProductController extends BaseController
 
     public function getProduct($id)
     {
-        return $this->layout->with('product', $id);
+        return $this->layout->with('product', Product::find($id));
     }
 
 }

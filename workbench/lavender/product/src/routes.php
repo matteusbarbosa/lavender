@@ -2,6 +2,6 @@
 
 Route::group(['prefix' => 'product', 'namespace' => 'Lavender\Product'], function(){
 
-    Route::get('{id}', 'ProductController@getProduct');
+    Route::get('id/{id}', 'ProductController@getProduct');
 
 });

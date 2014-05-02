@@ -10,7 +10,7 @@ class CategoryController extends BaseController
 
     public function getCategory($id)
     {
-        return $this->layout->with('category', $id);
+        return $this->layout->with('category', Category::find($id));
     }
 
 }
