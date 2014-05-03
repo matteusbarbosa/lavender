@@ -9,6 +9,8 @@ class AttributeSeeder extends Seeder
 
     public function run()
     {
+        $this->command->info(PHP_EOL.'Create attributes: "brand", "qty", "price"');
+
         Attribute::truncate();
         Attribute::create([
             'code' => 'price',
@@ -24,6 +26,8 @@ class AttributeSeeder extends Seeder
             'code' => 'brand',
             'label' => 'Brand',
         ]);
+
+
     }
 
 }

@@ -12,6 +12,7 @@ class ProductAttributeSeeder extends Seeder
 
     public function run()
     {
+        $this->command->info(PHP_EOL.'Assign brand, qty, and price to all products.');
         ProductAttribute::truncate();
         $attributes = ['price' => [6,3,5], 'qty' => [99], 'brand' => ['acme','generic','commercial']];
         foreach (Product::all() as $product) {
