@@ -108,10 +108,10 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Lavender\Core\CoreServiceProvider',        // environment, website, locale
-        'Lavender\Catalog\CatalogServiceProvider',  // store, category, product
-        'Lavender\Cms\CmsServiceProvider',          // home, page, post
-        'Lavender\Pos\PosServiceProvider',          // buylist, cart, order
-        'Lavender\Crm\CrmServiceProvider',          // reports, customer, integrations
+		'Lavender\Catalog\CatalogServiceProvider',  // store, category, product
+		'Lavender\Cms\CmsServiceProvider',          // home, page, post
+		'Lavender\Pos\PosServiceProvider',          // buylist, cart, order
+		'Lavender\Crm\CrmServiceProvider',          // reports, customer, integrations
 
 	),
 
