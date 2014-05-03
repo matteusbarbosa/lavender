@@ -16,6 +16,8 @@ class CreateCategoryProductTable extends Migration
             $table->increments('id');
             $table->integer('category_id');
             $table->integer('product_id');
+        });
+        Schema::table('category_product', function($table) {
             $table->foreign('category_id')->references('id')->on('category')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
         });

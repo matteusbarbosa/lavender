@@ -17,6 +17,8 @@ class CreateAttributeProductTable extends Migration {
             $table->integer('product_id');
             $table->integer('attribute_id');
             $table->string('value', 50);
+        });
+        Schema::table('attribute_product', function($table) {
             $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
             $table->foreign('attribute_id')->references('id')->on('attribute')->onDelete('cascade');
         });
