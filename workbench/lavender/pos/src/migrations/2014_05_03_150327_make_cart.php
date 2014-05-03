@@ -14,8 +14,10 @@ class MakeCart extends Migration {
 	{
         Schema::create('cart', function($table) {
             $table->increments('id');
-            $table->integer('user_id');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+        });
+        Schema::table('cart', function($table) {
             // cascade on delete to wipe out cart when user is deleted
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
         });

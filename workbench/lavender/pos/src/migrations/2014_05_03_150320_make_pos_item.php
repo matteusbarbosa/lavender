@@ -14,9 +14,11 @@ class MakePosItem extends Migration {
     {
         Schema::create('item', function($table) {
             $table->increments('id');
-            $table->integer('product_id');
-            $table->integer('user_id');
+            $table->integer('product_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
+        });
+        Schema::table('item', function($table) {
             // cascade on delete to wipe out item when product is deleted
             $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('user')->onDelete('cascade');
