@@ -14,8 +14,8 @@ class CreateAttributeProductTable extends Migration {
 	{
         Schema::create('attribute_product', function($table) {
             $table->increments('id');
-            $table->integer('product_id');
-            $table->integer('attribute_id');
+            $table->integer('product_id')->unsigned();
+            $table->integer('attribute_id')->unsigned();
             $table->string('value', 50);
         });
         Schema::table('attribute_product', function($table) {
