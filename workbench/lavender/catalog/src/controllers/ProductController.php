@@ -1,4 +1,6 @@
-<?php namespace Lavender\Catalog;
+<?php
+
+namespace Lavender\Catalog;
 
 use Lavender\Core\Controller\BaseController;
 

@@ -1,4 +1,6 @@
-<?php namespace Lavender\Catalog;
+<?php
+
+namespace Lavender\Catalog;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
