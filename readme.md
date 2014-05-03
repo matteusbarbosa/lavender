@@ -33,10 +33,11 @@ Seed the product/category tables with sample data:
     +---------------------------+--------------------------------------------------+
     | URI                       | Action                                           |
     +---------------------------+--------------------------------------------------+
-    | GET|HEAD product/id/{id}  | Lavender\Product\ProductController@getProduct    |
-    | GET|HEAD category/id/{id} | Lavender\Category\CategoryController@getCategory |
+    | GET|HEAD product/id/{id}  | Lavender\Catalog\ProductController@getProduct    |
+    | GET|HEAD category/id/{id} | Lavender\Catalog\CategoryController@getCategory |
     | GET|HEAD /                | Lavender\Cms\DefaultController@getIndex          |
     | GET|HEAD pos/cart         | Lavender\Pos\CartController@getCart              |
+    | POST pos/cart/add/{id}    | Lavender\Pos\CartController@addToCart            |
     +---------------------------+--------------------------------------------------+
 
 ### Current tables:
