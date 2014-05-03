@@ -20,8 +20,7 @@ Set up your database connection:
 
 Install product/category tables:
 
-    php artisan migrate --path=workbench/lavender/product/src/migrations
-    php artisan migrate --path=workbench/lavender/category/src/migrations
+    php artisan migrate --path=workbench/lavender/catalog/src/migrations
 
 Seed the product/category tables with sample data:
 
