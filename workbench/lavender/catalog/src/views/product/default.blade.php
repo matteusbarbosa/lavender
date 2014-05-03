@@ -13,4 +13,21 @@
     </li>
     @endforeach
 </ul>
+
+
+<ul class="form-list">
+    <li>
+        {{ Form::open(array('id' => 'purchase-form', 'files' => true, 'method' => 'post', 'url' => URL::to('pos/cart/add/'.$product->id))) }}
+        {{ Form::token() }}
+        <div class="options-container">
+
+        </div>
+        <div class="buttons-container">
+            {{ Form::submit("Add to Cart", array('onclick' => 'alert("Added '.$product->name.' to your cart.")')) }}
+        </div>
+        {{ Form::close() }}
+    </li>
+</ul>
+
+
 @stop

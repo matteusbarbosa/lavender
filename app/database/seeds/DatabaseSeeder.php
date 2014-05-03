@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder {
         $this->call('Lavender\Catalog\CategoryProductSeeder');
         $this->call('Lavender\Catalog\Product\AttributeSeeder');
         $this->call('Lavender\Catalog\Product\ProductAttributeSeeder');
+        $this->call('Lavender\Crm\UserSeeder');
+        $this->call('Lavender\Pos\CartSeeder');
+        $this->call('Lavender\Pos\Cart\ItemSeeder');
 	}
 
 }

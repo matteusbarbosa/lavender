@@ -15,7 +15,8 @@
         "classmap": [
             "src/models",
             "src/controllers",
-            "src/migrations"
+            "src/migrations",
+            "src/database/seeds"
         ],
         "psr-0": {
             "Lavender\\Pos\\": "src/"

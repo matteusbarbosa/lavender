@@ -21,6 +21,7 @@ Set up your database connection:
 Install product/category tables:
 
     php artisan migrate --path=workbench/lavender/catalog/src/migrations
+    php artisan migrate --path=workbench/lavender/pos/src/migrations
 
 Seed the product/category tables with sample data:
 
@@ -35,4 +36,22 @@ Seed the product/category tables with sample data:
     | GET|HEAD product/id/{id}  | Lavender\Product\ProductController@getProduct    |
     | GET|HEAD category/id/{id} | Lavender\Category\CategoryController@getCategory |
     | GET|HEAD /                | Lavender\Cms\DefaultController@getIndex          |
+    | GET|HEAD pos/cart         | Lavender\Pos\CartController@getCart              |
     +---------------------------+--------------------------------------------------+
+
+### Current tables:
+
+    +-----------------------+
+    | Tables_in_lavender_db |
+    +-----------------------+
+    | attribute             |
+    | attribute_product     |
+    | cart                  |
+    | cart_item             |
+    | category              |
+    | category_product      |
+    | item                  |
+    | migrations            |
+    | product               |
+    | user                  |
+    +-----------------------+
