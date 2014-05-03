@@ -7,7 +7,6 @@ class CategoryController extends BaseController
 
     protected $layout = 'category::default';
 
-
     public function getCategory($id)
     {
         return $this->layout->with('category', Category::find($id));

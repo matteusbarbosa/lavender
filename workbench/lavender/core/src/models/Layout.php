@@ -1,6 +1,8 @@
-<?php namespace Lavender\Core;
+<?php
+
+namespace Lavender\Core;
 
 class Layout
 {
-
+    
 }

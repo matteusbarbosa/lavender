@@ -3,7 +3,7 @@
     <head>
         <title>@yield('head.title') | Lavender eCommerce</title>
     </head>
-	<body>
+    <body>
         <div class="header" style="padding:10px 0;">
             @yield('header')
         </div>
@@ -13,5 +13,5 @@
         <div class="footer" style="padding:10px 0;">
             @yield('footer')
         </div>
-	</body>
+    </body>
 </html>
