@@ -1,9 +1,0 @@
-<?php
-
-return [
-
-    //'group' => 'product',
-
-
-
-];
