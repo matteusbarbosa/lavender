@@ -1,4 +1,4 @@
-@extends('core::layouts.master')
+@extends('cms::default')
 
 @section('content')
 <h1>{{ $category->name }}</h1>

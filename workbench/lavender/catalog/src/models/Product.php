@@ -14,4 +14,9 @@ class Product extends Eloquent
         return $this->belongsToMany('Lavender\Catalog\Category');
     }
 
+    public function attributes()
+    {
+        return $this->belongsToMany('Lavender\Catalog\Product\Attribute');
+    }
+
 }

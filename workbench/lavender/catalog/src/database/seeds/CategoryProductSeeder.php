@@ -9,6 +9,7 @@ class CategoryProductSeeder extends Seeder
 
     public function run()
     {
+        CategoryProduct::truncate();
         foreach (Category::all() as $category) {
             foreach (Product::all()->random(5) as $product) {
                 CategoryProduct::create([
