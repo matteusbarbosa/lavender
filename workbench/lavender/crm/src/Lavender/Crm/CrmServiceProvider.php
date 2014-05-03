@@ -1,10 +1,10 @@
 <?php
 
-namespace Lavender\Backend;
+namespace Lavender\Crm;
 
 use Illuminate\Support\ServiceProvider;
 
-class BackendServiceProvider extends ServiceProvider
+class CrmServiceProvider extends ServiceProvider
 {
 
     /**
@@ -21,7 +21,7 @@ class BackendServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('lavender/backend');
+        $this->package('lavender/crm');
     }
 
     /**

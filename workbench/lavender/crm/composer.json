@@ -1,5 +1,5 @@
 {
-    "name": "lavender/customer",
+    "name": "lavender/crm",
     "description": "",
     "authors": [
         {
@@ -13,10 +13,12 @@
     },
     "autoload": {
         "classmap": [
+            "src/models",
+            "src/controllers",
             "src/migrations"
         ],
         "psr-0": {
-            "Lavender\\Customer\\": "src/"
+            "Lavender\\Crm\\": "src/"
         }
     },
     "minimum-stability": "stable"
