@@ -1,10 +1,10 @@
 <?php
 
-namespace Lavender\Checkout;
+namespace Lavender\Pos;
 
 use Illuminate\Support\ServiceProvider;
 
-class CheckoutServiceProvider extends ServiceProvider
+class PosServiceProvider extends ServiceProvider
 {
 
     /**
@@ -21,7 +21,8 @@ class CheckoutServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('lavender/checkout');
+        $this->package('lavender/pos');
+        include __DIR__ . '/../../routes.php';
     }
 
     /**

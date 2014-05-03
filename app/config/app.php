@@ -108,12 +108,11 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Lavender\Core\CoreServiceProvider',
-		
-		'Lavender\Backend\BackendServiceProvider',
-		'Lavender\Cart\CartServiceProvider',
+        'Lavender\Cms\CmsServiceProvider',
 		'Lavender\Catalog\CatalogServiceProvider',
-		'Lavender\Checkout\CheckoutServiceProvider',
-		'Lavender\Cms\CmsServiceProvider',
+		'Lavender\Pos\PosServiceProvider',
+
+        'Lavender\Backend\BackendServiceProvider',
 		'Lavender\Customer\CustomerServiceProvider',
 		'Lavender\Promotions\PromotionsServiceProvider',
 

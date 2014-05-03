@@ -1,5 +1,5 @@
 {
-    "name": "lavender/cart",
+    "name": "lavender/pos",
     "description": "",
     "authors": [
         {
@@ -13,10 +13,12 @@
     },
     "autoload": {
         "classmap": [
+            "src/models",
+            "src/controllers",
             "src/migrations"
         ],
         "psr-0": {
-            "Lavender\\Cart\\": "src/"
+            "Lavender\\Pos\\": "src/"
         }
     },
     "minimum-stability": "stable"
