@@ -16,8 +16,8 @@ class ItemSeeder extends Seeder
     public function run()
     {
         $this->command->info(PHP_EOL.'Add up to 5 random products to each cart.');
-        Item::truncate();
-        Cart_Item::truncate(); // @todo how to get cart_item to delete when item is deleted?
+        Item::whereNotNull('id')->delete();
+        Cart_Item::whereNotNull('id')->delete(); // @todo how to get cart_item to delete when item is deleted?
         foreach (User::all() as $user) {
             $cart = $user->cart;
             foreach (Product::all()->random(5) as $product) {

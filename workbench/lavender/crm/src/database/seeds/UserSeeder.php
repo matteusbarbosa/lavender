@@ -11,13 +11,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         $this->command->info(PHP_EOL.'Make a user table and create 10 users.');
-
-        Schema::dropIfExists('user');
-        Schema::create('user', function($table) {
-            $table->increments('id');
-            $table->timestamps();
-        });
-        User::truncate();
+        User::whereNotNull('id')->delete();
         for ($i = 1; $i < 11; $i++) {
             User::create([]);
         }
