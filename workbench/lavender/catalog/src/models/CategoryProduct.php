@@ -6,7 +6,6 @@ class CategoryProduct extends Eloquent
 {
 
     protected $table = 'category_product';
-    
     public $timestamps = false;
 
 }

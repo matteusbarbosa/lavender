@@ -7,7 +7,6 @@ class Product extends Eloquent
 
     protected $table = 'product';
 
-
     public function categories()
     {
         return $this->belongsToMany('Lavender\Catalog\Category');

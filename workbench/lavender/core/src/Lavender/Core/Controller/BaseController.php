@@ -1,17 +1,20 @@
-<?php namespace Lavender\Core\Controller;
+<?php
 
-class BaseController extends \Illuminate\Routing\Controller {
+namespace Lavender\Core\Controller;
 
-	/**
-	 * Set up the layout.
-	 * 
-	 * @return void
-	 */
-	protected function setupLayout()
-	{
-		if (!is_null($this->layout)) {
-			$this->layout = \View::make($this->layout);
-		}
-	}
+class BaseController extends \Illuminate\Routing\Controller
+{
+
+    /**
+     * Set up the layout.
+     * 
+     * @return void
+     */
+    protected function setupLayout()
+    {
+        if (!is_null($this->layout)) {
+            $this->layout = \View::make($this->layout);
+        }
+    }
 
 }

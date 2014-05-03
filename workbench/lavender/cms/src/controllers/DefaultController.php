@@ -1,11 +1,13 @@
-<?php namespace Lavender\Cms;
+<?php
+
+namespace Lavender\Cms;
 
 use Lavender\Core\Controller\BaseController;
 
 class DefaultController extends BaseController
 {
-	
-	protected $layout = 'cms::default';
+
+    protected $layout = 'cms::default';
 
     /**
      * Main entry point.

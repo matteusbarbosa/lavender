@@ -1,4 +1,6 @@
-<?php namespace Lavender\Core\Config;
+<?php
+
+namespace Lavender\Core\Config;
 
 class Repository extends \Illuminate\Config\Repository
 {
@@ -15,6 +17,5 @@ class Repository extends \Illuminate\Config\Repository
         //do cache
         return parent::get($key, $default);
     }
-
 
 }
