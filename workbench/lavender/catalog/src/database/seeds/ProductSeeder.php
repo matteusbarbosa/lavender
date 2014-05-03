@@ -1,6 +1,6 @@
 <?php
 
-namespace Lavender\Product;
+namespace Lavender\Catalog;
 
 use Illuminate\Database\Seeder;
 
