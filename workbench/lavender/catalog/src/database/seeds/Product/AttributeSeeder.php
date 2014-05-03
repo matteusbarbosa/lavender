@@ -11,7 +11,7 @@ class AttributeSeeder extends Seeder
     {
         $this->command->info(PHP_EOL.'Create attributes: "brand", "qty", "price"');
 
-        Attribute::truncate();
+        Attribute::whereNotNull('id')->delete();
         Attribute::create([
             'code' => 'price',
             'label' => 'Price',
