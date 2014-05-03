@@ -3,6 +3,7 @@
 namespace Lavender\Catalog;
 
 use Illuminate\Database\Eloquent\Model as Eloquent;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Eloquent
 {
@@ -16,7 +17,12 @@ class Product extends Eloquent
 
     public function attributes()
     {
-        return $this->belongsToMany('Lavender\Catalog\Product\Attribute');
+        return DB::table('product')
+            ->join('attribute_product', 'attribute_product.product_id', '=', 'product.id')
+            ->join('attribute', 'attribute.id', '=', 'attribute_product.attribute_id')
+            ->select('attribute_product.value', 'attribute.label')
+            ->where('product.id', '=', $this->id)
+            ->get();
     }
 
 }

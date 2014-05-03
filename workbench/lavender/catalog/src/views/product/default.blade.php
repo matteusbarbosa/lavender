@@ -7,10 +7,9 @@
     <li>
         Sku: {{ $product->sku }}
     </li>
-    @foreach($product->attributes as $attribute)
+    @foreach($product->attributes() as $attribute)
     <li>
-        <?php $product_attribute = Lavender\Catalog\Product\ProductAttribute::where("attribute_id", "=", $attribute->id)->where("product_id", "=", $product->id)->firstOrFail(); ?>
-        {{ $attribute->label }}: {{ $product_attribute->value }}
+        {{ $attribute->label }}: {{ $attribute->value }}
     </li>
     @endforeach
 </ul>
