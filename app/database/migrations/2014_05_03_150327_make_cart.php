@@ -14,7 +14,7 @@ class MakeCart extends Migration {
 	{
         Schema::create('cart', function($table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->unique();
             $table->timestamps();
         });
         Schema::table('cart', function($table) {

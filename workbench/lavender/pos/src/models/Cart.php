@@ -8,6 +8,7 @@ class Cart extends Eloquent
 {
 
     protected $table = 'cart';
+    protected $fillable = array('user_id');
 
 
     public function items()

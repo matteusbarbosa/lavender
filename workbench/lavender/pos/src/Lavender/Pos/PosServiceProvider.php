@@ -22,6 +22,7 @@ class PosServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->package('lavender/pos');
+        include __DIR__ . '/../../observers.php';
         include __DIR__ . '/../../routes.php';
     }
 

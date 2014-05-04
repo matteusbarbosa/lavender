@@ -17,7 +17,7 @@
 
 <ul class="form-list">
     <li>
-        {{ Form::open(array('id' => 'purchase-form', 'files' => true, 'method' => 'post', 'url' => URL::to('pos/cart/add/'.$product->id))) }}
+        {{ Form::open(array('id' => 'purchase-form', 'files' => true, 'method' => 'post', 'url' => 'pos/cart/add/'.$product->id)) }}
         {{ Form::token() }}
         <div class="options-container">
 

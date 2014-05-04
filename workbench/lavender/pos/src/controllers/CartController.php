@@ -2,6 +2,7 @@
 
 namespace Lavender\Pos;
 
+use Illuminate\Support\Facades\Auth;
 use Lavender\Core\Controller\BaseController;
 use Lavender\Crm\User;
 use Lavender\Pos\Item;
@@ -19,11 +20,7 @@ class CartController extends BaseController
         if(isset($this->user)){
             return $this->user;
         }
-
-        /* @todo get user_id from session */
-        $user_id = 1;
-
-        return $this->user = User::find($user_id);
+        return $this->user = Auth::user();
     }
 
     public function getCart()

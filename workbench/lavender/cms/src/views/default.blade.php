@@ -13,7 +13,7 @@
         <li><a href="{{ URL::to('category/id/'.$category->id) }}">{{ $category->name }}</a></li>
         @endforeach
         <li>
-            <a href="{{ URL::to('pos/cart') }}">Cart ({{ count(Lavender\Crm\User::find(2)->get()[0]->cart->items) }} items)</a>
+            <a href="{{ URL::to('pos/cart') }}">Cart ({{ Auth::user() ? count(Auth::user()->cart->items).' items' : 'please login' }})</a>
         </li>
         @if(Auth::check())
         <li>
