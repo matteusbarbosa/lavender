@@ -13,11 +13,11 @@ class AddUserData extends Migration {
 	public function up()
 	{
         Schema::table('user', function($table) {
-            $table->string('email',250);
-            $table->string('password',60);
-            $table->string('remember_token',60);
-            $table->string('firstname',250);
-            $table->string('lastname',250);
+            $table->string('email',100)->unique();
+            $table->string('password',64);
+            $table->string('remember_token',64);
+            $table->string('firstname',50);
+            $table->string('lastname',50);
         });
 	}
 
