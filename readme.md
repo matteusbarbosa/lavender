@@ -20,7 +20,7 @@ Set up your database connection:
 
 Install product/category tables:
 
-    php artisan migrate --path=app/migrations
+    php artisan migrate
 
 Seed the product/category tables with sample data:
 
