@@ -3,17 +3,32 @@
 @section('head.title') Homepage @stop
 
 @section('header')
-    <div class="menu">
-        <a href="/">Lavender</a>
-        <ul>
-            @foreach(Lavender\Catalog\Category::all() as $category)
-                <li><a href="{{ URL::to('category/id/'.$category->id) }}">{{ $category->name }}</a></li>
-            @endforeach
-            <li>
-                <a href="{{ URL::to('pos/cart') }}">Cart ({{ count(Lavender\Crm\User::find(1)->get()[0]->cart->items) }} items)</a>
-            </li>
-        </ul>
-    </div>
+<div class="menu">
+    <a href="/">Lavender</a>
+    @if(Auth::check())
+    <span>Welcome, {{ Auth::user()->email }}</span>
+    @endif
+    <ul>
+        @foreach(Lavender\Catalog\Category::all() as $category)
+        <li><a href="{{ URL::to('category/id/'.$category->id) }}">{{ $category->name }}</a></li>
+        @endforeach
+        <li>
+            <a href="{{ URL::to('pos/cart') }}">Cart ({{ count(Lavender\Crm\User::find(2)->get()[0]->cart->items) }} items)</a>
+        </li>
+        @if(Auth::check())
+        <li>
+            <a href="{{ URL::to('crm/user/account') }}">My Account</a>
+        </li>
+        <li>
+            <a href="{{ URL::to('crm/user/logout') }}">Logout</a>
+        </li>
+        @else
+        <li>
+            <a href="{{ URL::to('crm/user/login') }}">Login</a>
+        </li>
+        @endif
+    </ul>
+</div>
 @stop
 
 @section('content')

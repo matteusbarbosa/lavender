@@ -23,12 +23,33 @@ class User extends Eloquent implements UserInterface, RemindableInterface
 	 */
 	protected $hidden = array('password');
 
+    /**
+     * Attributes that can be saved to the model.
+     *
+     * @var array
+     */
+    protected $fillable = array('firstname','lastname','email','password');
 
 
+    /**
+     * Attribute validation rules
+     *
+     * @var array
+     */
+    public static $rules = array(
+        'email'=>'required|email|unique:user',
+        'password'=>'required|alpha_num|between:6,12|confirmed',
+        'password_confirmation'=>'required|alpha_num|between:6,12'
+    );
 
+    /**
+     * Load the user's cart
+     * @todo create a cart if one doesnt exist
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function cart()
     {
-        /* @todo create it doesnt exist */
         return $this->hasOne('Lavender\Pos\Cart');
     }
 
@@ -72,7 +93,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      */
     public function getRememberToken()
     {
-
+        return $this->remember_token;
     }
 
     /**
@@ -83,7 +104,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      */
     public function setRememberToken($value)
     {
-
+        $this->remember_token = $value;
     }
 
     /**
@@ -93,7 +114,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface
      */
     public function getRememberTokenName()
     {
-
+        return 'remember_token';
     }
 
 }

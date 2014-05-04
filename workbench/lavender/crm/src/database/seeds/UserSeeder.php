@@ -3,6 +3,7 @@
 namespace Lavender\Crm;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Schema;
 
 class UserSeeder extends Seeder
@@ -13,7 +14,10 @@ class UserSeeder extends Seeder
         $this->command->info(PHP_EOL.'Make a user table and create 10 users.');
         User::whereNotNull('id')->delete();
         for ($i = 1; $i < 11; $i++) {
-            User::create([]);
+            User::create([
+                'email' => 'user'.$i.'@email.com',
+                'password' => Hash::make('password'),
+            ]);
         }
     }
 
