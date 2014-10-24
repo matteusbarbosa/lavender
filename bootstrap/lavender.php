@@ -46,7 +46,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Config\EnvironmentVariables;
-use Lavender\Core\Config\Repository as Config;
+use Lavender\Config\Repository as Config;
 
 /*
 |--------------------------------------------------------------------------
