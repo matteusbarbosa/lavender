@@ -151,6 +151,7 @@ $app->startExceptionHandling();
 
 if ($env != 'testing') ini_set('display_errors', 'Off');
 
+
 /*
 |--------------------------------------------------------------------------
 | Set The Default Timezone
@@ -263,9 +264,17 @@ $app->booted(function() use ($app, $env)
     | all of the routes now and return the application to the callers.
     |
     */
-
-    $routes = $app['path'].'/routes.php';
-
-    if (file_exists($routes)) require $routes;
+    $store_found = false;
+    $hostname = $app->request->server->get('SERVER_NAME');
+    $stores = Lavender::entity('store')->collection();
+    foreach($stores as $store){
+        if($hostname == $store->url){
+            Lavender::setStore($store);
+            $store_found = true;
+        }
+    }
+    if(!$store_found){
+        Lavender::setStore('default');
+    }
 
 });

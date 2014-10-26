@@ -2,6 +2,7 @@
 
 namespace Lavender\Core;
 
+use Lavender\Core\Database\Query\Builder as Schema;
 use Illuminate\Support\ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider
@@ -22,7 +23,6 @@ class CoreServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->package('lavender/core');
-        include __DIR__ . '/../../routes.php';
     }
 
     /**
@@ -32,7 +32,9 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        \App::bind('schema', function(){
+            return new Schema();
+        });
     }
 
     /**
