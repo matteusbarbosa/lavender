@@ -1,8 +1,8 @@
 <?php
-
 namespace Lavender\Core\Config;
+use Illuminate\Config\Repository as CoreConfig;
 
-class Repository extends \Illuminate\Config\Repository
+class Repository extends CoreConfig
 {
 
     /**
@@ -14,6 +14,11 @@ class Repository extends \Illuminate\Config\Repository
      */
     public function get($key, $default = null)
     {
+        list($namespace, $group, $item) = $this->parseKey($key);
+        if($namespace == 'entity'){
+            var_dump($key);
+            die();
+        }
         //do cache
         return parent::get($key, $default);
     }

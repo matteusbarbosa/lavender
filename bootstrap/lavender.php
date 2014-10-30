@@ -264,17 +264,20 @@ $app->booted(function() use ($app, $env)
     | all of the routes now and return the application to the callers.
     |
     */
-    $store_found = false;
-    $hostname = $app->request->server->get('SERVER_NAME');
-    $stores = Lavender::entity('store')->collection();
-    foreach($stores as $store){
-        if($hostname == $store->url){
-            Lavender::setStore($store);
-            $store_found = true;
-        }
+//    $store = $app->loadStore();
+//
+//    $path = $app['path']."/routes/{$store->code}/routes.php";
+//
+//    if (file_exists($path)) require $path;
+
+    $store=null;
+    $app->loadEntities($store);
+
+    $products = Lavender::entity('product')->all();
+    foreach($products as $product){
+        var_dump($product);die("?");
     }
-    if(!$store_found){
-        Lavender::setStore('default');
-    }
+
+
 
 });

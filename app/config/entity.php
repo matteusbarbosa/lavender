@@ -6,7 +6,7 @@ return [
 
     'store' => [
         'table' => 'store',
-        'type' => 'flat',
+        'type' => Lavender::ENTITY_TYPE_FLAT,
         'timestamps' => false,
         'attributes' => [
             'code' => [
@@ -37,7 +37,7 @@ return [
 
     'product' => [
         'table' => 'product',
-        'type' => 'eav',
+        'type' => Lavender::ENTITY_TYPE_EAV,
         'timestamps' => true,
         'attributes' => [
             'sku' => [

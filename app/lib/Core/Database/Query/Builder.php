@@ -1,17 +1,16 @@
 <?php
 namespace Lavender\Core\Database\Query;
 
-use Illuminate\Database\Query\Builder as QueryBuilder;
+use Illuminate\Auth\EloquentUserProvider;
+use Illuminate\Database\Query\Builder as EloquentQueryBuilder;
 
-class Builder extends QueryBuilder
+class Builder extends EloquentQueryBuilder
 {
 
-    public static $attribute_types = [
-        'varchar' => 0,
-        'text' => 1,
-        'int' => 2,
-        'decimal' => 3,
-        'date' => 4,
-    ];
+    public function toSql($debug = false)
+    {
+        $sql = parent::toSql();
+        return $sql;
+    }
 
 }

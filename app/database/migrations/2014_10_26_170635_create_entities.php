@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-use Lavender\Core\Database\Query\Builder;
 
 class CreateEntities extends Migration {
 
@@ -13,77 +12,50 @@ class CreateEntities extends Migration {
 	 */
 	public function up()
 	{
+
         foreach(\Lavender::allEntityConfig() as $identifier => $entity){
             Schema::create($entity['table'], function($table) use ($entity){
+                $table->engine = 'InnoDB';
                 $table->increments('id');
                 if($entity['timestamps']){
                     $table->timestamps();
                 }
                 if($entity['attributes'] && $entity['type'] == 'flat'){
-                    foreach($entity['attributes'] as $code => $attribute){
-                        switch($attribute['type']){
-                            case 'text':
-                                $table->longText($code);
-                                break;
-                            case 'int':
-                                $table->integer($code);
-                                break;
-                            case 'decimal':
-                                $table->decimal($code,12,4);
-                                break;
-                            case 'date':
-                                $table->dateTime($code);
-                                break;
-                            default:
-                                $table->string($code, 150);
-                                break;
-                        }
+                    foreach($entity['attributes'] as $column => $attribute){
+                        $this->addColumn($table, $attribute['type'], $column);
                     }
                 }
             });
             if($entity['attributes'] && $entity['type'] == 'eav'){
                 Schema::create($entity['table'].'_attribute', function($table){
+                    $table->engine = 'InnoDB';
                     $table->increments('id');
                     $table->string('code', 50);
                     $table->string('label', 50);
                     $table->string('type', 50);
                 });
-                Schema::create($entity['table'].'_attribute_text', function($table){
-                    $table->increments('id');
-                    $table->integer('entity_id')->unsigned();
-                    $table->integer('attribute_id')->unsigned();
-                    $table->longText('value');
-                });
-                Schema::create($entity['table'].'_attribute_int', function($table){
-                    $table->increments('id');
-                    $table->integer('entity_id')->unsigned();
-                    $table->integer('attribute_id')->unsigned();
-                    $table->integer('value');
-                });
-                Schema::create($entity['table'].'_attribute_decimal', function($table){
-                    $table->increments('id');
-                    $table->integer('entity_id')->unsigned();
-                    $table->integer('attribute_id')->unsigned();
-                    $table->decimal('value',12,4);
-                });
-                Schema::create($entity['table'].'_attribute_date', function($table){
-                    $table->increments('id');
-                    $table->integer('entity_id')->unsigned();
-                    $table->integer('attribute_id')->unsigned();
-                    $table->dateTime('value');
-                });
-                Schema::create($entity['table'].'_attribute_varchar', function($table){
-                    $table->increments('id');
-                    $table->integer('entity_id')->unsigned();
-                    $table->integer('attribute_id')->unsigned();
-                    $table->string('value', 50);
-                });
+                $eav = Config::get('defaults.eav');
+                foreach($eav as $type){
+                    Schema::create($entity['table'].'_attribute_'.$type, function($table) use ($type){
+                        $table->engine = 'InnoDB';
+                        $table->increments('id');
+                        $table->integer('entity_id')->unsigned();
+                        $table->index('entity_id');
+                        $table->integer('attribute_id')->unsigned();
+                        $table->index('attribute_id');
+                        $this->addColumn($table, $type, 'value');
+                    });
+                    Schema::table($entity['table'].'_attribute_'.$type, function($table) use ($entity){
+                        $table->foreign('entity_id')->references('id')->on($entity['table'])->onDelete('cascade');
+                        $table->foreign('attribute_id')->references('id')->on($entity['table'].'_attribute')->onDelete('cascade');
+                    });
+                }
                 foreach($entity['attributes'] as $code => $attribute){
                     DB::table($entity['table'].'_attribute')->insert(
                         array(
                             'code' => $code,
                             'label' => $attribute['label'],
-                            'type' => Builder::$attribute_types[$attribute['type']],
+                            'type' => array_search($attribute['type'], $eav),
                         )
                     );
                 }
@@ -98,6 +70,27 @@ class CreateEntities extends Migration {
 
 	}
 
+    protected function addColumn(&$table, $type, $column)
+    {
+        switch($type){
+            case 'text':
+                $table->longText($column);
+                break;
+            case 'int':
+                $table->integer($column);
+                break;
+            case 'decimal':
+                $table->decimal($column, 12, 4);
+                break;
+            case 'date':
+                $table->dateTime($column);
+                break;
+            default:
+                $table->string($column, 150);
+                break;
+        }
+    }
+
 	/**
 	 * Reverse the migrations.
 	 *
@@ -109,11 +102,9 @@ class CreateEntities extends Migration {
             Schema::drop($entity['table']);
             if($entity['attributes'] && $entity['type'] == 'eav'){
                 Schema::drop($entity['table'].'_attribute');
-                Schema::drop($entity['table'].'_attribute_text');
-                Schema::drop($entity['table'].'_attribute_int');
-                Schema::drop($entity['table'].'_attribute_decimal');
-                Schema::drop($entity['table'].'_attribute_date');
-                Schema::drop($entity['table'].'_attribute_varchar');
+                foreach(Config::get('defaults.eav') as $type){
+                    Schema::drop($entity['table'].'_attribute_'.$type);
+                }
             }
         }
 	}

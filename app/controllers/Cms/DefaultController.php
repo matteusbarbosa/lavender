@@ -22,7 +22,13 @@ class DefaultController extends BaseController
     public function getIndex()
     {
 
-
+        $collection = \Lavender::entity('product')->collection();
+        var_dump($collection->toSql());
+        foreach($collection as $item){
+            var_dump(['sku',$item->sku]);
+            var_dump(['name',$item->name]);
+        }
+        die();
 
 //        echo \Lavender::getStore();
 //        \Lavender::setStore('product');

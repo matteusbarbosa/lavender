@@ -1,13 +1,20 @@
 <?php
 use Lavender\Core\Database\Entity;
+//use Lavender\Core\Config\Repository as Config;
 
 final class Lavender
 {
+    // Attribute Storage Type
+    const ENTITY_TYPE_FLAT = "Lavender\\Core\\Database\\Entity\\Type\\Flat";
+    const ENTITY_TYPE_EAV = "Lavender\\Core\\Database\\Entity\\Type\\Eav";
+
+    // Attribute Scopes
     const ENTITY_SCOPE_GLOBAL = 'global';
     const ENTITY_SCOPE_STORE = 'store';
     const ENTITY_SCOPE_DEPARTMENT = 'department';
     const ENTITY_SCOPE_VIEW = 'view';
 
+    protected static $config;
     protected static $store;
     protected $department;
     protected $view;
@@ -23,8 +30,6 @@ final class Lavender
             $store = self::entity('store')->findByAttribute('code', $store);
         }
         self::$store = $store;
-        $path =  app_path()."/routes/{$store->code}/routes.php";
-        if (file_exists($path)) require $path;
     }
 
     /**
@@ -35,7 +40,7 @@ final class Lavender
      */
     public static function entity($identifier, $default = array())
     {
-        return new Entity($identifier, $default);
+        return \App::make($identifier, $default);
     }
 
 
