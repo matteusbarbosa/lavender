@@ -264,16 +264,16 @@ $app->booted(function() use ($app, $env)
     | all of the routes now and return the application to the callers.
     |
     */
-//    $store = $app->loadStore();
-//
-//    $path = $app['path']."/routes/{$store->code}/routes.php";
-//
-//    if (file_exists($path)) require $path;
 
-    $store=null;
-    $app->loadEntities($store);
+    $app->loadEntities();
+    $app->loadScope();
+    $_routes = $app->loadRoutes();
 
-    $products = Lavender::entity('product')->all();
+    $path = $app['path']."/routes.php";
+
+    if (file_exists($path)) require $path;
+
+    $products = App::make('product')->all();
     foreach($products as $product){
         var_dump($product);die("?");
     }

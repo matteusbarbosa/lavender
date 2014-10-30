@@ -83,7 +83,7 @@ class Entity extends Eloquent
         // This method just provides a convenient way for us to generate fresh model
         // instances of this current model. It is particularly useful during the
         // hydration of new objects via the Entity query builder instances.
-        $model = \Lavender::entity(self::$identifier, $attributes);
+        $model = \App::make(self::$identifier, $attributes);
 
         $model->exists = $exists;
 
@@ -97,7 +97,7 @@ class Entity extends Eloquent
      */
     public static function query()
     {
-        $instance = Lavender::entity(self::$identifier);
+        $instance = \App::make(self::$identifier);
 
         return $instance->newQuery();
     }
@@ -111,7 +111,7 @@ class Entity extends Eloquent
      */
     public static function all($columns = array('*'))
     {
-        $instance = \Lavender::entity(self::$identifier);
+        $instance = \App::make(self::$identifier);
 
         return $instance->newQuery()->get($columns);
     }
