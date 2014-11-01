@@ -256,26 +256,22 @@ $app->booted(function() use ($app, $env)
 
     /*
     |--------------------------------------------------------------------------
-    | Load The Application Routes
+    | Start The Application
     |--------------------------------------------------------------------------
     |
-    | The Application routes are kept separate from the application starting
-    | just to keep the file a little cleaner. We'll go ahead and load in
-    | all of the routes now and return the application to the callers.
+    | All services have been registered [and booted]...
+    |
+    | Time to start the app!
     |
     */
 
-    $app->loadEntities();
-    $app->loadScope();
-    $_routes = $app->loadRoutes();
-
-    $path = $app['path']."/routes.php";
-
-    if (file_exists($path)) require $path;
 
     $products = App::make('product')->all();
+
     foreach($products as $product){
-        var_dump($product);die("?");
+
+        var_dump($product);die();
+
     }
 
 
