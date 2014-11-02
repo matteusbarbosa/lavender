@@ -12,21 +12,31 @@ class CreateEntities extends Migration {
 	 */
 	public function up()
 	{
+        $config = Config::get('entity');
+        $foreign_keys = array();
 
-        foreach(\Lavender::allEntityConfig() as $identifier => $entity){
+        foreach($config as $identifier => $entity){
             Schema::create($entity['table'], function($table) use ($entity){
                 $table->engine = 'InnoDB';
                 $table->increments('id');
                 if($entity['timestamps']){
                     $table->timestamps();
                 }
-                if($entity['attributes'] && $entity['type'] == 'flat'){
+                if($entity['attributes'] && $entity['type'] == Lavender::ENTITY_TYPE_FLAT){
                     foreach($entity['attributes'] as $column => $attribute){
                         $this->addColumn($table, $attribute['type'], $column);
+                        if(isset($attribute['parent']) && $attribute['parent']){
+                            $foreign_keys[] = array(
+                                'table' =>  $table,
+                                'col' => $column,
+                                'ref_table' => $attribute['parent'],
+                                'ref_col' => 'id',
+                            );
+                        }
                     }
                 }
             });
-            if($entity['attributes'] && $entity['type'] == 'eav'){
+            if($entity['attributes'] && $entity['type'] == Lavender::ENTITY_TYPE_EAV){
                 Schema::create($entity['table'].'_attribute', function($table){
                     $table->engine = 'InnoDB';
                     $table->increments('id');
@@ -60,13 +70,14 @@ class CreateEntities extends Migration {
                     );
                 }
             }
-            if($entity['defaults']){
-                foreach($entity['defaults'] as $default){
-                    $model = \Lavender::entity($identifier, $default);
-                    $model->save();
-                }
-            }
         }
+        foreach($foreign_keys as $foreign_key){
+            $foreign_key['table']->foreign($foreign_key['col'])
+                ->references($foreign_key['ref_col'])
+                ->on($config[$foreign_key['ref_table']]['table'])
+                ->onDelete('cascade');
+        }
+
 
 	}
 
@@ -98,15 +109,18 @@ class CreateEntities extends Migration {
 	 */
 	public function down()
 	{
-        foreach(\Lavender::allEntityConfig() as $identifier => $entity){
-            Schema::drop($entity['table']);
-            if($entity['attributes'] && $entity['type'] == 'eav'){
-                Schema::drop($entity['table'].'_attribute');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        $config = Config::get('entity');
+        foreach($config as $identifier => $entity){
+            if($entity['attributes'] && $entity['type'] == Lavender::ENTITY_TYPE_EAV){
                 foreach(Config::get('defaults.eav') as $type){
                     Schema::drop($entity['table'].'_attribute_'.$type);
                 }
+                Schema::drop($entity['table'].'_attribute');
             }
+            Schema::drop($entity['table']);
         }
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 	}
 
 }

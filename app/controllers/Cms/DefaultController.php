@@ -21,8 +21,7 @@ class DefaultController extends BaseController
 
     public function getIndex()
     {
-
-        $collection = \Lavender::entity('product')->collection();
+        $collection = \App::make('product')->collection();
         var_dump($collection->toSql());
         foreach($collection as $item){
             var_dump(['sku',$item->sku]);

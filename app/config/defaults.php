@@ -17,6 +17,7 @@ return [
         'label' => '',
         'scope' => Lavender::ENTITY_SCOPE_GLOBAL,
         'type' => 'varchar',
+        'parent' => false,
     ],
 
     'eav' => [

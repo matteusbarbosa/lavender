@@ -264,16 +264,14 @@ $app->booted(function() use ($app, $env)
     | Time to start the app!
     |
     */
-
-
-    $products = App::make('product')->all();
-
-    foreach($products as $product){
-
-        var_dump($product);die();
-
-    }
-
+//    \Artisan::call('migrate:rollback');
+//    $products = App::make('product')->all();
+//
+//    foreach($products as $product){
+//
+//        var_dump($product);die();
+//
+//    }
 
 
 });

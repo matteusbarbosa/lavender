@@ -1,9 +1,6 @@
 <?php
-
 namespace Lavender\Core;
 
-
-use Lavender\Core\Database\Query\Builder as Schema;
 use Illuminate\Support\ServiceProvider as CoreServiceProvider;
 
 class ServiceProvider extends CoreServiceProvider
@@ -14,28 +11,31 @@ class ServiceProvider extends CoreServiceProvider
      *  Entity attribute data can be unique for each store id.
      *
      * @var \Lavender\Core\Database\Entity $store
+     * @internal this has values $id, $code, $name, $url
      */
     protected $store;
 
     /**
      * Route-level application scope object:
-     *  Belongs to one $store
      *  Used to segment a store's catalog to define alternate
      *   functionality for core features such as search and checkout.
      *  Entity attribute data can be unique for each department id.
      *
      * @var \Lavender\Core\Database\Entity $department
+     * @internal this has parent $store and values $id, $code, $name,
+     *  $store_id, $path
      */
     protected $department;
 
     /**
      * Session-level application scope object:
-     *  Belongs to one $department
      *  Used to describe themes, locales.
      *
-     * @var \Lavender\Core\Database\Entity $view
+     * @var \Lavender\Core\Database\Entity $theme
+     * @internal this has parent $department and values $id, $code,
+     *  $name, $department_id.
      */
-    protected $view;
+    protected $theme;
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -53,13 +53,25 @@ class ServiceProvider extends CoreServiceProvider
     {
         $this->package('lavender/core');
 
-        $this->mergeDefaults();
+        // First we want to merge default entity configs with
+        // custom entity data configured per each module.
+        $this->defaults();
 
-        $this->loadEntities();
+        // todo modules/migrations - need to figure out when to include a module's entity data
 
-        $this->loadScope();
+        // Next let's bind these entities to the application
+        // so we can easily create them later.
+        $this->entities();
 
-        $this->loadRoutes();
+        // Now we perform some checks here to determine which $store,
+        // $department, and $view to prioritize in our Builder.
+        #$this->scope();
+
+        // todo register event listeners
+
+        // Finally, we can now load the routes, filters, and view composers assigned
+        // to the scope, let's build them now so the app can finish booting.
+        #$this->views();
     }
 
     /**
@@ -69,10 +81,7 @@ class ServiceProvider extends CoreServiceProvider
      */
     public function register()
     {
-
-        $this->app->bind('schema', function(){
-            return new Schema();
-        });
+        // todo bind stuff
     }
 
     /**
@@ -97,8 +106,13 @@ class ServiceProvider extends CoreServiceProvider
     }
 
 
-    public function loadRoutes()
+    /**
+     * View composers, routes, and route filters.
+     */
+    public function views()
     {
+        // todo view composers, filters
+
         foreach($this->app->config['routes'][$this->store->code] as $key => $values){
 
             if($key == 'methods'){
@@ -127,9 +141,11 @@ class ServiceProvider extends CoreServiceProvider
 
 
     /**
-     * @return \Lavender\Core\Database\Entity
+     * Describe the scope for this request
+     *
+     * @return void
      */
-    public function loadScope()
+    public function scope()
     {
         $hostname = $this->app->request->server->get('SERVER_NAME');
 
@@ -151,10 +167,15 @@ class ServiceProvider extends CoreServiceProvider
     }
 
 
-    protected function loadEntities()
+    /**
+     * Bind all registered entities to the application so we can easily
+     *  instantiate them with their config anywhere we need them.
+     *
+     * @return void
+     */
+    protected function entities()
     {
-        // Then we bind the entities to the application so we can easily
-        // instantiate them with their config anywhere we need them.
+        // Then we
         // todo bind singleton()s to eavs as {entity}_resource
         // todo add resolving() listener to each entity
         foreach($this->app->config['entity'] as $entity => $config){
@@ -189,7 +210,7 @@ class ServiceProvider extends CoreServiceProvider
      *
      * @return void
      */
-    protected function mergeDefaults()
+    protected function defaults()
     {
         $this->app->config->afterLoading(null, function($config, $group, $items){
 
@@ -210,7 +231,6 @@ class ServiceProvider extends CoreServiceProvider
 
         });
     }
-
 
 
 }
