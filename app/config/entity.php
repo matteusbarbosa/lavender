@@ -27,7 +27,7 @@ return [
         ],
         'defaults' => [
             1 => [
-                'code' => 'default_store',
+                'code' => 'default',
                 'name' => 'Default Store',
                 'url' => '',//set to your domain
             ],
@@ -64,10 +64,10 @@ return [
         ],
         'defaults' => [
             1 => [
-                'code' => 'default_catalog',
+                'code' => 'default',
                 'name' => 'Default Catalog',
                 'store_id' => 1,
-                'path' => '/',
+                'path' => 'www',
             ],
         ]
     ],
@@ -98,11 +98,31 @@ return [
         ],
         'defaults' => [
             1 => [
-                'code' => 'default_theme',
+                'code' => 'default',
                 'name' => 'Default Theme',
                 'department_id' => 1,
             ],
         ]
+    ],
+
+
+    'theme_session' => [
+        'table' => 'scope_session',
+        'type' => Lavender::ENTITY_TYPE_FLAT,
+        'timestamps' => true, // so we can delete old sessions
+        'attributes' => [
+            'session_token' => [
+                'label' => 'Session Token',
+                'scope' => Lavender::ENTITY_SCOPE_GLOBAL,
+                'type' => 'varchar',
+            ],
+            'theme_id' => [
+                'label' => 'Theme',
+                'scope' => Lavender::ENTITY_SCOPE_GLOBAL,
+                'type' => 'int',
+                'parent' => 'theme'
+            ],
+        ],
     ],
 
 

@@ -137,25 +137,23 @@ class Entity extends Eloquent
 //
 //        return $instance->newQuery();
 //    }
-//
-//    /**
-//     * Find a model by its primary key.
-//     *
-//     * @param  mixed  $id
-//     * @param  array  $columns
-//     * @return \Illuminate\Support\Collection|static
-//     */
-//    public static function find($id, $columns = array('*'))
-//    {
-//        if (is_array($id) && empty($id)) return new Collection;
-//
-//        $instance = new static;
-//
-//        $instance->config(self::$identifier);
-//
-//        return $instance->newQuery()->find($id, $columns);
-//    }
-//
+
+    /**
+     * Find a model by its primary key.
+     *
+     * @param  mixed  $id
+     * @param  array  $columns
+     * @return \Illuminate\Support\Collection|static
+     */
+    public static function find($id, $columns = array('*'))
+    {
+        if (is_array($id) && empty($id)) return new Collection;
+
+        $instance = \App::make(self::$identifier);
+
+        return $instance->newQuery()->find($id, $columns);
+    }
+
 //    /**
 //     * Find a model by its primary key or return new static.
 //     *

@@ -16,7 +16,7 @@ class ServiceProvider extends CoreServiceProvider
     protected $store;
 
     /**
-     * Route-level application scope object:
+     * Subdomain-level application scope object:
      *  Used to segment a store's catalog to define alternate
      *   functionality for core features such as search and checkout.
      *  Entity attribute data can be unique for each department id.
@@ -44,6 +44,7 @@ class ServiceProvider extends CoreServiceProvider
      */
     protected $defer = false;
 
+
     /**
      * Bootstrap the application events.
      *
@@ -59,20 +60,21 @@ class ServiceProvider extends CoreServiceProvider
 
         // todo modules/migrations - need to figure out when to include a module's entity data
 
+        // todo register event listeners
+
         // Next let's bind these entities to the application
         // so we can easily create them later.
         $this->entities();
 
         // Now we perform some checks here to determine which $store,
         // $department, and $view to prioritize in our Builder.
-        #$this->scope();
-
-        // todo register event listeners
+        $this->scope();
 
         // Finally, we can now load the routes, filters, and view composers assigned
         // to the scope, let's build them now so the app can finish booting.
-        #$this->views();
+        $this->themes();
     }
+
 
     /**
      * Register the service provider.
@@ -84,6 +86,7 @@ class ServiceProvider extends CoreServiceProvider
         // todo bind stuff
     }
 
+
     /**
      * Get the services provided by the provider.
      *
@@ -94,23 +97,13 @@ class ServiceProvider extends CoreServiceProvider
         return array();
     }
 
-    public function setStore($store)
-    {
-        if(is_string($store)){
-
-            $store = $this->app->make('store')->findByAttribute('code', $store);
-
-        }
-
-        $this->store = $store;
-    }
-
 
     /**
      * View composers, routes, and route filters.
      */
-    public function views()
+    public function themes()
     {
+        // todo load theme inheritance
         // todo view composers, filters
 
         foreach($this->app->config['routes'][$this->store->code] as $key => $values){
@@ -132,6 +125,7 @@ class ServiceProvider extends CoreServiceProvider
                         }
 
                     }
+
                 }
 
             }
@@ -145,13 +139,16 @@ class ServiceProvider extends CoreServiceProvider
      *
      * @return void
      */
-    public function scope()
+    protected function scope()
     {
-        $hostname = $this->app->request->server->get('SERVER_NAME');
+        /**
+         * Match request url to domain to initialize $store
+         */
+        $request_url = $this->app->request->url();
 
         foreach($this->app->make('store')->all() as $store){
 
-            if($hostname == $store->url){
+            if(!!(strpos($request_url, $store->url))){
 
                 $this->store = $store;
 
@@ -164,6 +161,47 @@ class ServiceProvider extends CoreServiceProvider
             $this->store = $this->app->make('store')->findByAttribute('code', 'default');
 
         }
+
+        /**
+         * Match request subdomain to initialize $department
+         */
+
+        $host = explode('.', parse_url($request_url)['host']);
+
+        $path = array_slice($host, 0, count($host) - 2 );
+
+        $this->department = $this->app->make('department')->findByAttribute('path', $path);
+
+        if(!$this->department){
+
+            $this->department = $this->app->make('department')->findByAttribute('code', 'default');
+
+        }
+
+        /**
+         * Match user session to initialize $theme
+         */
+        $session_token = $this->app->session->get('_token');
+
+        $theme_session = $this->app->make('theme_session')->findByAttribute('session_token', $session_token);
+
+        if(!$theme_session){
+
+            $this->theme = $this->app->make('theme')->findByAttribute('code', 'default');
+
+            $this->app->make('theme_session')->fill([
+                'theme_id' => $this->theme->id,
+                'session_token' => $session_token,
+            ])->save();
+
+        } else {
+
+            $this->theme = $this->app->make('theme')->find($theme_session->theme_id);
+
+            $theme_session->touch();
+
+        }
+
     }
 
 
@@ -205,6 +243,8 @@ class ServiceProvider extends CoreServiceProvider
 
         }
     }
+
+
     /**
      * Merge default entity configs with custom entities
      *
