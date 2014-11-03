@@ -24,12 +24,18 @@ return [
                 'scope' => Lavender::ENTITY_SCOPE_GLOBAL,
                 'type' => 'varchar',
             ],
+            'default_department' => [
+                'label' => 'Default Department',
+                'scope' => Lavender::ENTITY_SCOPE_GLOBAL,
+                'type' => 'varchar',
+            ],
         ],
         'defaults' => [
             1 => [
                 'code' => 'default',
                 'name' => 'Default Store',
                 'url' => '',//set to your domain
+                'default_department' => 'default',
             ],
         ]
     ],
@@ -56,8 +62,13 @@ return [
                 'type' => 'int',
                 'parent' => 'store'
             ],
-            'path' => [
-                'label' => 'Path',
+            'subdomain' => [
+                'label' => 'Sub-domain',
+                'scope' => Lavender::ENTITY_SCOPE_GLOBAL,
+                'type' => 'varchar',
+            ],
+            'default_theme' => [
+                'label' => 'Default Theme',
                 'scope' => Lavender::ENTITY_SCOPE_GLOBAL,
                 'type' => 'varchar',
             ],
@@ -67,7 +78,8 @@ return [
                 'code' => 'default',
                 'name' => 'Default Catalog',
                 'store_id' => 1,
-                'path' => 'www',
+                'subdomain' => 'www',
+                'default_theme' => 'default'
             ],
         ]
     ],
@@ -94,7 +106,12 @@ return [
                 'type' => 'int',
                 'parent' => 'department'
             ],
-            // todo figure out theme model!!!
+            'parent_theme' => [
+                'label' => 'Parent Theme',
+                'scope' => Lavender::ENTITY_SCOPE_GLOBAL,
+                'type' => 'int',
+                'parent' => 'theme'
+            ],
         ],
         'defaults' => [
             1 => [

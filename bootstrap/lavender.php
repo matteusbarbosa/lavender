@@ -42,7 +42,7 @@ if ( ! extension_loaded('mcrypt'))
 |
 */
 
-use Illuminate\Http\Request;
+use Lavender\Core\Http\Request;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Config\EnvironmentVariables;
@@ -272,6 +272,7 @@ $app->booted(function() use ($app, $env)
 //        var_dump($product);die();
 //
 //    }
+
 
 
 });

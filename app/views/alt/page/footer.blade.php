@@ -1,0 +1,1 @@
+<address><?php echo $copyright;?></address>

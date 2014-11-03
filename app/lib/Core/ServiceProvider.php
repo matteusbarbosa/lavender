@@ -1,41 +1,45 @@
 <?php
 namespace Lavender\Core;
 
-use Illuminate\Support\ServiceProvider as CoreServiceProvider;
+use Illuminate\View\ViewServiceProvider;
+use Illuminate\View\FileViewFinder;
 
-class ServiceProvider extends CoreServiceProvider
+class ServiceProvider extends ViewServiceProvider
 {
     /**
-     * Domain-level application scope object:
+     * Domain-level scope object:
      *  Used to define websites and stores.
-     *  Entity attribute data can be unique for each store id.
      *
      * @var \Lavender\Core\Database\Entity $store
-     * @internal this has values $id, $code, $name, $url
+     * @internal has values: id, code, name, url, default_department
+     * @internal attribute data can be unique for each store id.
      */
     protected $store;
 
     /**
-     * Subdomain-level application scope object:
-     *  Used to segment a store's catalog to define alternate
+     * Subdomain-level scope object:
+     *  Used to segment a store's catalog and define alternate
      *   functionality for core features such as search and checkout.
-     *  Entity attribute data can be unique for each department id.
      *
      * @var \Lavender\Core\Database\Entity $department
-     * @internal this has parent $store and values $id, $code, $name,
-     *  $store_id, $path
+     * @internal has parent $store
+     * @internal has values id, code, name, store_id, path, default_theme
+     * @internal attribute data can be unique for each department id.
      */
     protected $department;
 
     /**
-     * Session-level application scope object:
+     * Session-level scope object:
      *  Used to describe themes, locales.
      *
      * @var \Lavender\Core\Database\Entity $theme
-     * @internal this has parent $department and values $id, $code,
-     *  $name, $department_id.
+     * @internal has parent $department
+     * @internal has values id, code, name, department_id, parent_theme.
      */
     protected $theme;
+
+
+    protected $theme_fallbacks;
 
     /**
      * Indicates if loading of the provider is deferred.
@@ -52,7 +56,7 @@ class ServiceProvider extends CoreServiceProvider
      */
     public function boot()
     {
-        $this->package('lavender/core');
+        //$this->package('lavender/core');
 
         // First we want to merge default entity configs with
         // custom entity data configured per each module.
@@ -66,13 +70,33 @@ class ServiceProvider extends CoreServiceProvider
         // so we can easily create them later.
         $this->entities();
 
-        // Now we perform some checks here to determine which $store,
-        // $department, and $view to prioritize in our Builder.
-        $this->scope();
+        // CLI requests do not need scope or themes loaded.
+        if(!$this->app->runningInConsole()){
 
-        // Finally, we can now load the routes, filters, and view composers assigned
-        // to the scope, let's build them now so the app can finish booting.
-        $this->themes();
+            // Now we perform some checks here to determine which $store,
+            // $department, and $view to prioritize in our Builder.
+            $this->scope();
+
+
+            $this->theme_fallbacks = $this->themes($this->theme->id);
+
+            // Overriding the default view finder logic to support our
+            // theme fallbacks.
+            $this->registerViewFinder();
+
+            // Let's register our view composers
+            $this->composers();
+
+            // Finally, we can now load the routes and filters assigned to the
+            // scope, let's build them now so the app can finish booting.
+            $this->routes();
+
+
+        } else {
+
+            parent::registerViewFinder();
+
+        }
     }
 
 
@@ -83,7 +107,44 @@ class ServiceProvider extends CoreServiceProvider
      */
     public function register()
     {
-        // todo bind stuff
+        $this->registerEngineResolver();
+
+        // Once the other components have been registered we're ready to include the
+        // view environment and session binder. The session binder will bind onto
+        // the "before" application event and add errors into shared view data.
+        $this->registerFactory();
+
+        $this->registerSessionBinder();
+    }
+
+
+    /**
+     * Register the view finder implementation.
+     *
+     * @return void
+     */
+    public function registerViewFinder()
+    {
+        $fallbacks = $this->theme_fallbacks;
+
+        $this->app->bindShared('view.finder', function($app) use ($fallbacks){
+
+            $theme_paths = [];
+
+            $paths = $app['config']['view.paths'];
+
+            foreach($fallbacks as $fallback){
+
+                foreach($paths as $path){
+
+                    $theme_paths[] = $path.'/'.$fallback;
+
+                }
+
+            }
+
+            return new FileViewFinder($app['files'], $theme_paths);
+        });
     }
 
 
@@ -98,39 +159,122 @@ class ServiceProvider extends CoreServiceProvider
     }
 
 
-    /**
-     * View composers, routes, and route filters.
-     */
-    public function themes()
+    protected function composers()
     {
-        // todo load theme inheritance
-        // todo view composers, filters
+        foreach($this->mergeThemeDefaults('composers') as $layout => $composer){
 
-        foreach($this->app->config['routes'][$this->store->code] as $key => $values){
+            $this->app->view->composer($layout, $composer);
 
-            if($key == 'methods'){
+        }
+    }
 
-                foreach($values as $method => $routes){
+    /**
+     * Define a theme's routes and route filters.
+     *
+     * @return void
+     */
+    protected function routes()
+    {
+        foreach($this->mergeThemeDefaults('routes') as $path => $route){
 
-                    foreach($routes as $path => $controllerAction){
+            // todo filters
 
-                        if($method == 'post'){
+            $route = $this->merge(
+                $this->app->config['defaults.controller_action'],
+                $route
+            );
 
-                            \Route::post($path, $controllerAction);
+            if($layout = $route['layout']){
 
-                        } else {
+                $this->route($route['method'], $path, function() use ($layout){
 
-                            \Route::get($path, $controllerAction);
+                    return \View::make($layout);
 
-                        }
+                });
 
-                    }
+            } elseif($route['controller'] && $route['action']){
 
-                }
+                $this->route($route['method'], $path, array(
+                    'uses' => sprintf("%s@%s", $route['controller'], $route['action']),
+                ));
 
             }
 
         }
+    }
+
+
+    /**
+     * Register Route
+     *
+     * @param string $method get|post
+     * @param string $path uri segment
+     * @param mixed $callback array|Closure
+     * @return void
+     */
+    protected function route($method, $path, $callback)
+    {
+        if($method == 'post'){
+
+            \Route::post($path, $callback);
+
+        } else {
+
+            \Route::get($path, $callback);
+
+        }
+    }
+
+
+    /**
+     * Merge inherited theme routes
+     * @param int $theme_id
+     * @return array
+     */
+    protected function themes($theme_id)
+    {
+        $themes = [];
+
+        if($theme = $this->app->make('theme')->find($theme_id)){
+
+            $themes[] = $theme->code;
+
+            if($theme->parent_theme){
+
+                $themes = array_merge(
+                    $themes,
+                    $this->themes($theme->parent_theme)
+                );
+
+            }
+
+        }
+
+        return $themes;
+    }
+
+
+    /**
+     * @param $config_type
+     * @return array
+     */
+    protected function mergeThemeDefaults($config_type)
+    {
+        $merged = [];
+
+        foreach($this->theme_fallbacks as $theme_code){
+
+            if(isset($this->app->config[$config_type][$theme_code])){
+
+                $merged = $this->merge(
+                    $this->app->config[$config_type][$theme_code],
+                    $merged
+                );
+
+            }
+        }
+
+        return $merged;
     }
 
 
@@ -142,39 +286,26 @@ class ServiceProvider extends CoreServiceProvider
     protected function scope()
     {
         /**
-         * Match request url to domain to initialize $store
+         * Match the request url to store domain to initialize $store
          */
-        $request_url = $this->app->request->url();
+        if(!$this->store = $this->app->make('store')
+            ->findByAttribute('url', $this->app->request->domain())){
 
-        foreach($this->app->make('store')->all() as $store){
-
-            if(!!(strpos($request_url, $store->url))){
-
-                $this->store = $store;
-
-            }
-
-        }
-
-        if(!isset($this->store)){
-
-            $this->store = $this->app->make('store')->findByAttribute('code', 'default');
+            // No store found, set default
+            $this->store = $this->app->make('store')
+                ->findByAttribute('code', 'default');
 
         }
 
         /**
-         * Match request subdomain to initialize $department
+         * Match the requested sub-domain to initialize $department
          */
+        if(!$this->department = $this->app->make('department')
+            ->findByAttribute('subdomain', $this->app->request->subdomain())){
 
-        $host = explode('.', parse_url($request_url)['host']);
-
-        $path = array_slice($host, 0, count($host) - 2 );
-
-        $this->department = $this->app->make('department')->findByAttribute('path', $path);
-
-        if(!$this->department){
-
-            $this->department = $this->app->make('department')->findByAttribute('code', 'default');
+            // No department found, set default
+            $this->department = $this->app->make('department')
+                ->findByAttribute('code', $this->store->default_department);
 
         }
 
@@ -183,22 +314,25 @@ class ServiceProvider extends CoreServiceProvider
          */
         $session_token = $this->app->session->get('_token');
 
-        $theme_session = $this->app->make('theme_session')->findByAttribute('session_token', $session_token);
+        if($theme_session = $this->app->make('theme_session')
+            ->findByAttribute('session_token', $session_token)){
 
-        if(!$theme_session){
+            $this->theme = $this->app->make('theme')
+                ->find($theme_session->theme_id);
 
-            $this->theme = $this->app->make('theme')->findByAttribute('code', 'default');
+            $theme_session->touch();
 
+        } else {
+
+            // No theme found, set default
+            $this->theme = $this->app->make('theme')
+                ->findByAttribute('code', $this->department->default_theme);
+
+            // No theme_session found, make new and assign to default theme
             $this->app->make('theme_session')->fill([
                 'theme_id' => $this->theme->id,
                 'session_token' => $session_token,
             ])->save();
-
-        } else {
-
-            $this->theme = $this->app->make('theme')->find($theme_session->theme_id);
-
-            $theme_session->touch();
 
         }
 
@@ -264,13 +398,35 @@ class ServiceProvider extends CoreServiceProvider
                     );
 
                 }
-
             }
 
             return $items;
 
         });
     }
+
+
+    /**
+     * Array merge recursive
+     * @param array $arr1
+     * @param array $arr2
+     * @return array
+     */
+    protected function merge($arr1, $arr2)
+    {
+        if(!is_array($arr1) || !is_array($arr2)){return $arr2;}
+
+        foreach($arr2 as $key => $val){
+
+            $arr1[$key] = $this->merge(@$arr1[$key], $val);
+
+        }
+
+        return $arr1;
+    }
+
+
+
 
 
 }

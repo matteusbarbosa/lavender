@@ -8,26 +8,23 @@ use Lavender\Product;
 class DefaultController extends BaseController
 {
 
-    protected $layout = 'default';
+    protected $layout = 'layouts.default';
 
-
-    public function getAlt()
-    {
-
-     //   echo \Lavender::getStore();
-        return \View::make('alt');
-    }
 
 
     public function getIndex()
     {
-        $collection = \App::make('product')->collection();
-        var_dump($collection->toSql());
-        foreach($collection as $item){
-            var_dump(['sku',$item->sku]);
-            var_dump(['name',$item->name]);
-        }
-        die();
+
+        return $this->layout;
+
+    }
+//        $collection = \App::make('product')->collection();
+//        var_dump($collection->toSql());
+//        foreach($collection as $item){
+//            var_dump(['sku',$item->sku]);
+//            var_dump(['name',$item->name]);
+//        }
+       // die();
 
 //        echo \Lavender::getStore();
 //        \Lavender::setStore('product');
@@ -42,7 +39,5 @@ class DefaultController extends BaseController
 
 
 
-        return $this->layout;
-    }
 
 }

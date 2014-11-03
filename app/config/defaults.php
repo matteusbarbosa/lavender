@@ -14,10 +14,18 @@ return [
     ],
 
     'attribute' => [
-        'label' => '',
+        'label' => null,
         'scope' => Lavender::ENTITY_SCOPE_GLOBAL,
         'type' => 'varchar',
         'parent' => false,
+    ],
+
+    'controller_action' => [
+        'controller' => null,//'Lavender\Cms\DefaultController',
+        'action' => null,//'getIndex',
+        'layout' => null,//'default',
+        'method' => 'get',
+        'filter' => null,
     ],
 
     'eav' => [

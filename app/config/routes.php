@@ -2,32 +2,16 @@
 
 return [
 
+
     'default' => [
-        'methods' => [
-
-            'get' => [
-                '/'                     =>  'Lavender\Cms\DefaultController@getIndex',
-            ],
-
-            'post' => [
-
-            ],
-
-        ]
+        '/' => [
+            'layout' => 'cms.home'
+        ],
     ],
 
     'alt' => [
-        'methods' => [
 
-            'get' => [
-                '/'                     =>  'Lavender\Cms\DefaultController@getAlt',
-            ],
-
-            'post' => [
-
-            ],
-
-        ]
     ],
+
 
 ];

@@ -1,8 +1,9 @@
 <?php
-
 namespace Lavender\Core\Controller;
 
-class BaseController extends \Illuminate\Routing\Controller
+use Illuminate\Routing\Controller;
+
+class BaseController extends Controller
 {
 
     /**
@@ -13,7 +14,9 @@ class BaseController extends \Illuminate\Routing\Controller
     protected function setupLayout()
     {
         if (!is_null($this->layout)) {
+
             $this->layout = \View::make($this->layout);
+
         }
     }
 
