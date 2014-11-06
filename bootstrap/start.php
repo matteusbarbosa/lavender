@@ -11,7 +11,7 @@
 |
 */
 
-$app = new Lavender\Core\Application;
+$app = new Illuminate\Foundation\Application;
 
 /*
 |--------------------------------------------------------------------------
