@@ -3,13 +3,13 @@
 class Lavender
 {
     // Attribute Storage Type
-    const ENTITY_FLAT =            "Lavender\\Core\\Database\\Entity\\Type\\Flat";
-    const ENTITY_EAV =             "Lavender\\Core\\Database\\Entity\\Type\\Eav";
+    const ENTITY_FLAT =                 'flat';
+    const ENTITY_EAV =                  'eav';
 
     // Attribute Scopes
-    const SCOPE_GLOBAL =         'global';
-    const SCOPE_STORE =          'store';
-    const SCOPE_DEPARTMENT =     'department';
+    const SCOPE_GLOBAL =                'global';
+    const SCOPE_STORE =                 'store';
+    const SCOPE_DEPARTMENT =            'department';
 
     // Attribute Data Types
     const ATTRIBUTE_DATE =              'date';
