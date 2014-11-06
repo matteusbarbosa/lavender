@@ -6,7 +6,8 @@ return [
 
     'entity' => [
         'table' => null,
-        'type' => Lavender::ENTITY_TYPE_FLAT,
+        'type' => Lavender::ENTITY_FLAT,
+        'scope' => Lavender::SCOPE_GLOBAL,
         'timestamps' => false,
         'attributes' => [],
         'relationships' => [],
@@ -15,9 +16,14 @@ return [
 
     'attribute' => [
         'label' => null,
-        'scope' => Lavender::ENTITY_SCOPE_GLOBAL,
         'type' => 'varchar',
         'parent' => false,
+        'default' => null,// defaults must be less than 50 char
+        // todo support this stuff
+        'length'    => null,
+        'unsigned'  => true,
+        'nullable'  => true,
+        'comment'   => null
     ],
 
     'controller_action' => [
@@ -26,14 +32,6 @@ return [
         'layout' => null,//'default',
         'method' => 'get',
         'filter' => null,
-    ],
-
-    'eav' => [
-        0 => 'varchar',
-        1 => 'text',
-        2 => 'int',
-        3 => 'decimal',
-        4 => 'date',
     ],
 
 ];

@@ -42,11 +42,11 @@ if ( ! extension_loaded('mcrypt'))
 |
 */
 
-use Lavender\Core\Http\Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Config\EnvironmentVariables;
-use Lavender\Core\Config\Repository as Config;
+use Illuminate\Config\Repository as Config;
 
 /*
 |--------------------------------------------------------------------------
@@ -259,20 +259,20 @@ $app->booted(function() use ($app, $env)
     | Start The Application
     |--------------------------------------------------------------------------
     |
-    | All services have been registered [and booted]...
+    | All service providers have been registered [and booted]...
     |
     | Time to start the app!
     |
     */
-//    \Artisan::call('migrate:rollback');
-//    $products = App::make('product')->all();
+
+ #   $products = App::make('product')->where('sku','=','foo')->take(1)->get();
 //
 //    foreach($products as $product){
 //
-//        var_dump($product);die();
+//        var_dump([$product->sku,$product->name]);
 //
 //    }
-
+//die();
 
 
 });

@@ -2,18 +2,28 @@
 
 return array(
 
-	/*
-	|--------------------------------------------------------------------------
-	| Application Debug Mode
-	|--------------------------------------------------------------------------
-	|
-	| When your application is in debug mode, detailed error messages with
-	| stack traces will be shown on every error that occurs within your
-	| application. If disabled, a simple generic error page is shown.
-	|
-	*/
+    /*
+    |--------------------------------------------------------------------------
+    | Application Debug Mode
+    |--------------------------------------------------------------------------
+    |
+    | When your application is in debug mode, detailed error messages with
+    | stack traces will be shown on every error that occurs within your
+    | application. If disabled, a simple generic error page is shown.
+    |
+    */
 
-	'debug' => true,
+    'debug' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Multi-site support
+    |--------------------------------------------------------------------------
+    | This must be enabled before compiling your app.
+    |
+    */
+
+    'multisite' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -104,10 +114,13 @@ return array(
 		'Illuminate\Session\SessionServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
-		//'Illuminate\View\ViewServiceProvider',
-		//'Illuminate\Workbench\WorkbenchServiceProvider',
+		'Illuminate\View\ViewServiceProvider',
+		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		'Lavender\Core\ServiceProvider',
+        'Lavender\Core\ServiceProvider',
+        'Lavender\Multisite\ServiceProvider',
+        'Lavender\Cms\ServiceProvider',
+        'Lavender\Catalog\ServiceProvider',
 	),
 
 	/*

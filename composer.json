@@ -1,28 +1,43 @@
 {
 	"name": "lavender-commerce/lavender",
 	"description": "Lavender",
-	"keywords": ["ecommerce", "lavender", "nsfw"],
+	"keywords": ["lavender", "ecommerce"],
 	"license": "MIT",
     "authors": [
-        {
-            "name": "Daniel sloof",
-            "email": "daniel@rubic.nl"
-        },
         {
             "name": "Ryan Tulino",
             "email": "rtulino@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/lavender-commerce/core"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/lavender-commerce/multisite"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/lavender-commerce/cms"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/lavender-commerce/catalog"
+        }
+    ],
 	"require": {
         "php": ">=5.4.0",
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+        "lavender-commerce/core": "dev-master",
+        "lavender-commerce/multisite": "dev-master",
+        "lavender-commerce/cms": "dev-master",
+        "lavender-commerce/catalog": "dev-master"
 	},
 	"autoload": {
 		"classmap": [
             "app/lib",
-            "app/controllers",
-            "app/composers",
-            "app/models",
             "app/database/migrations",
 			"app/database/seeds"
 		]

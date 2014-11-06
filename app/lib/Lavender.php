@@ -3,13 +3,26 @@
 class Lavender
 {
     // Attribute Storage Type
-    const ENTITY_TYPE_FLAT = "Lavender\\Core\\Database\\Entity\\Type\\Flat";
-    const ENTITY_TYPE_EAV = "Lavender\\Core\\Database\\Entity\\Type\\Eav";
+    const ENTITY_FLAT =            "Lavender\\Core\\Database\\Entity\\Type\\Flat";
+    const ENTITY_EAV =             "Lavender\\Core\\Database\\Entity\\Type\\Eav";
 
     // Attribute Scopes
-    const ENTITY_SCOPE_GLOBAL = 'global';
-    const ENTITY_SCOPE_STORE = 'store';
-    const ENTITY_SCOPE_DEPARTMENT = 'department';
-    const ENTITY_SCOPE_VIEW = 'view';
+    const SCOPE_GLOBAL =         'global';
+    const SCOPE_STORE =          'store';
+    const SCOPE_DEPARTMENT =     'department';
 
+    // Attribute Data Types
+    const ATTRIBUTE_DATE =              'date';
+    const ATTRIBUTE_DECIMAL =           'decimal';
+    const ATTRIBUTE_INTEGER =           'int';
+    const ATTRIBUTE_TEXT =              'text';
+    const ATTRIBUTE_VARCHAR =           'varchar';
+
+    public static $eav_types = [
+        self::ATTRIBUTE_DATE,
+        self::ATTRIBUTE_DECIMAL,
+        self::ATTRIBUTE_INTEGER,
+        self::ATTRIBUTE_TEXT,
+        self::ATTRIBUTE_VARCHAR
+    ];
 }
