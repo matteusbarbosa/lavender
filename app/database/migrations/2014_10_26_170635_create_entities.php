@@ -6,8 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 class CreateEntities extends Migration
 {
 
-    protected $multisite;
-
 
     protected $foreign_keys = [];
 
@@ -19,8 +17,6 @@ class CreateEntities extends Migration
 	 */
 	public function up()
 	{
-        $this->multisite = Config::get('app.multisite');
-
         $config = Config::get('entity');
 
         foreach($config as $identifier => $entity){
@@ -178,22 +174,18 @@ class CreateEntities extends Migration
      */
     protected function addScope(&$table, $entity)
     {
-        if($this->multisite){
+        if($entity['scope'] == Lavender::SCOPE_STORE){
 
-            if($entity['scope'] == Lavender::SCOPE_STORE){
+            $this->addColumn($table, 'int-unsigned', 'store_id', 'store');
+            $table->index('store_id');
 
-                $this->addColumn($table, 'int-unsigned', 'store_id', 'store');
-                $table->index('store_id');
+        } elseif($entity['scope'] == Lavender::SCOPE_DEPARTMENT){
 
-            } elseif($entity['scope'] == Lavender::SCOPE_DEPARTMENT){
+            $this->addColumn($table, 'int-unsigned', 'department_id', 'department');
+            $table->index('department_id');
 
-                $this->addColumn($table, 'int-unsigned', 'department_id', 'department');
-                $table->index('department_id');
-
-                $this->addColumn($table, 'int-unsigned', 'store_id', 'store');
-                $table->index('store_id');
-
-            }
+            $this->addColumn($table, 'int-unsigned', 'store_id', 'store');
+            $table->index('store_id');
 
         }
     }
