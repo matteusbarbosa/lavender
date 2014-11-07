@@ -37,6 +37,7 @@
 	},
 	"autoload": {
 		"classmap": [
+            "app/lib",
             "app/database/migrations",
 			"app/database/seeds"
 		]
