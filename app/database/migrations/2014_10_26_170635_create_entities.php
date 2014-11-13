@@ -36,8 +36,8 @@ class CreateEntities extends Migration
 
                 }
 
-                // For flat entity types, we'll just add columns to our table
-                if($entity['attributes'] && $entity['type'] == Lavender::ENTITY_FLAT){
+                // If we have attributes to add create them now
+                if($entity['attributes']){
 
                     // Append scope columns
                     $this->addScope($table, $entity);
@@ -50,6 +50,7 @@ class CreateEntities extends Migration
                             $table,
                             $parent ? 'int-unsigned' : $attribute['type'],
                             $column,
+                            $parent ? null : $attribute['default'],
                             $parent
                         );
 
@@ -59,60 +60,6 @@ class CreateEntities extends Migration
 
             });
 
-            // If EAV type create EAV tables
-            if($entity['attributes'] && $entity['type'] == Lavender::ENTITY_EAV){
-
-                // Create attribute table
-                Schema::create($entity['table'].'_attribute', function($table){
-                    $table->engine = 'InnoDB';
-                    $table->increments('id');
-                    $table->string('code', 50);
-                    $table->string('label', 50);
-                    $table->string('type', 50);
-                    // defaults must be less than 50 char
-                    $table->string('default', 50);
-                });
-
-                // Create attribute type value tables
-                foreach(Lavender::$eav_types as $type){
-
-                    Schema::create($entity['table'].'_attribute_'.$type, function($table) use ($type, $entity){
-                        $table->engine = 'InnoDB';
-                        $table->increments('id');
-                        $table->integer('entity_id')->unsigned();
-                        $table->index('entity_id');
-                        $table->integer('attribute_id')->unsigned();
-                        $table->index('attribute_id');
-                        $this->addScope($table, $entity);
-                        $this->addColumn($table, $type, 'value');
-                    });
-
-                    Schema::table($entity['table'].'_attribute_'.$type, function($table) use ($entity){
-                        $table->foreign('entity_id')->references('id')->on($entity['table'])->onDelete('cascade');
-                        $table->foreign('attribute_id')->references('id')->on($entity['table'].'_attribute')->onDelete('cascade');
-                    });
-
-                }
-
-                // Populate attributes table
-                foreach($entity['attributes'] as $code => $attribute){
-
-                    $insert = [
-                        'code' => $code,
-                        'label' => $attribute['label'],
-                        'type' => $attribute['type'],
-                    ];
-
-                    if(!is_null($attribute['default'])){
-
-                        $insert['default'] = $attribute['default'];
-
-                    }
-
-                    DB::table($entity['table'].'_attribute')->insert($insert);
-
-                }
-            }
         }
 
         // Now that tables are built, lets apply all foreign keys
@@ -202,7 +149,7 @@ class CreateEntities extends Migration
     {
         switch($type){
             case 'text':
-                $table->longText($column)->default($default);
+                $table->longText($column);
                 break;
             case 'int-unsigned':
                 $table->integer($column)->unsigned()->nullable();

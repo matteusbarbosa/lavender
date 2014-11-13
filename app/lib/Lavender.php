@@ -2,9 +2,8 @@
 
 class Lavender
 {
-    // Attribute Storage Type
-    const ENTITY_FLAT =                 'flat';
-    const ENTITY_EAV =                  'eav';
+    // Storage Type
+    const ENTITY =                      'entity';
 
     // Attribute Scopes
     const SCOPE_GLOBAL =                'global';
@@ -18,11 +17,4 @@ class Lavender
     const ATTRIBUTE_TEXT =              'text';
     const ATTRIBUTE_VARCHAR =           'varchar';
 
-    public static $eav_types = [
-        self::ATTRIBUTE_DATE,
-        self::ATTRIBUTE_DECIMAL,
-        self::ATTRIBUTE_INTEGER,
-        self::ATTRIBUTE_TEXT,
-        self::ATTRIBUTE_VARCHAR
-    ];
 }
