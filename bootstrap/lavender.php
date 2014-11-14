@@ -260,58 +260,5 @@ $app->booted(function () use ($app, $env){
     | Time to start the app!
     |
     */
-    //    $time = microtime(true);
-    //    for($i=0; $i < 100000; $i++){
-    //
-    //        App::make('product')->fill([
-    //            'name' => 'import test',
-    //            'sku' => 'import-test',
-    //            'price' => 9.99,
-    //        ])->save();
-    //    }
-    //    var_dump(microtime(true) - $time);
-    ////    die();
-    //    $time = microtime(true);
-    //
-    //    $products = App::make('product')->where('sku', '=', 'import-foo')->get();
-    //
-    //    foreach($products as $product){
-    //
-    //        var_dump([$product->sku,$product->name,$product->price]);
-    //
-    //    }
-    //    var_dump(microtime(true) - $time);
-    //die();
 
-    //    Schema::create('category_attribute', function($table)
-    //    {
-    //        $table->increments('id');
-    //        $table->string('name', 64);
-    //    });
-    //
-    //    Schema::create('product_attribute', function($table)
-    //    {
-    //        $table->increments('id');
-    //        $table->string('sku', 64);
-    //    });
-
-    $products = \Lavender\Product::find(1)->categories;
-    foreach($products as $product){
-        var_dump($product->id);
-    }
-    die("?!");
-    /* Schema::create('product', function($table){
-         $table->increments('id');
-     });
-
-     Schema::create('category', function($table){
-         $table->increments('id');
-     });
-
-     Schema::create('category_product', function($table){
-         $table->integer('category_id')->unsigned();
-         $table->foreign('category_id')->references('id')->on('category');
-         $table->integer('product_id')->unsigned();
-         $table->foreign('product_id')->references('id')->on('product');
-     });*/
 });
