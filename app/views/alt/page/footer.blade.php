@@ -1,1 +1,1 @@
-<address><?php echo $copyright;?></address>
+<address><?php echo $copyright; ?></address>

@@ -10,7 +10,7 @@ return array(
     | You may specify it now so it is used for all of your workbenches.
     |
     */
-    'name' => 'Ryan Tulino',
+    'name'  => 'Ryan Tulino',
     /*
     |--------------------------------------------------------------------------
     | Workbench Author E-Mail Address

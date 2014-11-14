@@ -10,13 +10,13 @@ class CreateEntities extends Migration
     protected $foreign_keys = [];
 
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
         $config = Config::get('entity');
 
         foreach($config as $identifier => $entity){
@@ -24,7 +24,7 @@ class CreateEntities extends Migration
             $entity['attributes'] = $this->mergeAttributes($entity['attributes']);
 
             // Create base entity table
-            Schema::create($entity['table'], function($table) use ($entity){
+            Schema::create($entity['table'], function ($table) use ($entity){
 
                 $table->engine = 'InnoDB';
 
@@ -33,7 +33,6 @@ class CreateEntities extends Migration
                 if($entity['timestamps']){
 
                     $table->timestamps();
-
                 }
 
                 // If we have attributes to add create them now
@@ -53,19 +52,15 @@ class CreateEntities extends Migration
                             $parent ? null : $attribute['default'],
                             $parent
                         );
-
                     }
-
                 }
-
             });
-
         }
 
         // Now that tables are built, lets apply all foreign keys
         foreach($this->foreign_keys as $table => $fks){
 
-            Schema::table($table, function($table) use ($fks, $config){
+            Schema::table($table, function ($table) use ($fks, $config){
 
                 foreach($fks as $fk){
 
@@ -73,22 +68,19 @@ class CreateEntities extends Migration
                         ->references($fk['ref_col'])
                         ->on($config[$fk['ref_table']]['table'])
                         ->onDelete('cascade');
-
                 }
-
             });
-
         }
-	}
+    }
 
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         $config = Config::get('entity');
@@ -99,20 +91,17 @@ class CreateEntities extends Migration
 
                 foreach(Lavender::$eav_types as $type){
 
-                    Schema::drop($entity['table'].'_attribute_'.$type);
-
+                    Schema::drop($entity['table'] . '_attribute_' . $type);
                 }
 
-                Schema::drop($entity['table'].'_attribute');
-
+                Schema::drop($entity['table'] . '_attribute');
             }
 
             Schema::drop($entity['table']);
-
         }
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-	}
+    }
 
 
     /**
@@ -125,7 +114,6 @@ class CreateEntities extends Migration
 
             $this->addColumn($table, 'int-unsigned', 'store_id', 'store');
             $table->index('store_id');
-
         } elseif($entity['scope'] == Lavender::SCOPE_DEPARTMENT){
 
             $this->addColumn($table, 'int-unsigned', 'department_id', 'department');
@@ -133,7 +121,6 @@ class CreateEntities extends Migration
 
             $this->addColumn($table, 'int-unsigned', 'store_id', 'store');
             $table->index('store_id');
-
         }
     }
 
@@ -171,11 +158,10 @@ class CreateEntities extends Migration
         if($parent){
 
             $this->foreign_keys[$table->getTable()][] = [
-                'col' => $column,
+                'col'       => $column,
                 'ref_table' => $parent,
-                'ref_col' => 'id',
+                'ref_col'   => 'id',
             ];
-
         }
     }
 
@@ -196,7 +182,6 @@ class CreateEntities extends Migration
                 $defaults['attribute'],
                 $attribute
             );
-
         }
 
         return $merged;
@@ -211,15 +196,15 @@ class CreateEntities extends Migration
      */
     protected function merge($arr1, $arr2)
     {
-        if(!is_array($arr1) || !is_array($arr2)){return $arr2;}
+        if(!is_array($arr1) || !is_array($arr2)){
+            return $arr2;
+        }
 
         foreach($arr2 as $key => $val){
 
             $arr1[$key] = $this->merge(@$arr1[$key], $val);
-
         }
 
         return $arr1;
     }
-
 }

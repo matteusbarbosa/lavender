@@ -9,5 +9,4 @@ class DatabaseSeeder extends Seeder
 
         $this->command->info('Entity defaults have been seeded!');
     }
-
 }

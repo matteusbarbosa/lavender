@@ -24,9 +24,8 @@ error_reporting(-1);
 |
 */
 
-if ( ! extension_loaded('mcrypt'))
-{
-    echo 'Mcrypt PHP extension required.'.PHP_EOL;
+if(!extension_loaded('mcrypt')){
+    echo 'Mcrypt PHP extension required.' . PHP_EOL;
 
     exit(1);
 }
@@ -72,8 +71,7 @@ $app->instance('app', $app);
 |
 */
 
-if (isset($unitTesting))
-{
+if(isset($unitTesting)){
     $app['env'] = $env = $testEnvironment;
 }
 
@@ -149,8 +147,7 @@ $app->instance('config', $config = new Config(
 
 $app->startExceptionHandling();
 
-if ($env != 'testing') ini_set('display_errors', 'Off');
-
+if($env != 'testing') ini_set('display_errors', 'Off');
 
 /*
 |--------------------------------------------------------------------------
@@ -221,8 +218,7 @@ $app->getProviderRepository()->load($app, $providers);
 |
 */
 
-$app->booted(function() use ($app, $env)
-{
+$app->booted(function () use ($app, $env){
 
     /*
     |--------------------------------------------------------------------------
@@ -235,9 +231,9 @@ $app->booted(function() use ($app, $env)
     |
     */
 
-    $path = $app['path'].'/start/global.php';
+    $path = $app['path'] . '/start/global.php';
 
-    if (file_exists($path)) require $path;
+    if(file_exists($path)) require $path;
 
     /*
     |--------------------------------------------------------------------------
@@ -250,9 +246,9 @@ $app->booted(function() use ($app, $env)
     |
     */
 
-    $path = $app['path']."/start/{$env}.php";
+    $path = $app['path'] . "/start/{$env}.php";
 
-    if (file_exists($path)) require $path;
+    if(file_exists($path)) require $path;
 
     /*
     |--------------------------------------------------------------------------
@@ -264,15 +260,58 @@ $app->booted(function() use ($app, $env)
     | Time to start the app!
     |
     */
+    //    $time = microtime(true);
+    //    for($i=0; $i < 100000; $i++){
+    //
+    //        App::make('product')->fill([
+    //            'name' => 'import test',
+    //            'sku' => 'import-test',
+    //            'price' => 9.99,
+    //        ])->save();
+    //    }
+    //    var_dump(microtime(true) - $time);
+    ////    die();
+    //    $time = microtime(true);
+    //
+    //    $products = App::make('product')->where('sku', '=', 'import-foo')->get();
+    //
+    //    foreach($products as $product){
+    //
+    //        var_dump([$product->sku,$product->name,$product->price]);
+    //
+    //    }
+    //    var_dump(microtime(true) - $time);
+    //die();
 
- #   $products = App::make('product')->where('sku','=','foo')->take(1)->get();
-//
-//    foreach($products as $product){
-//
-//        var_dump([$product->sku,$product->name]);
-//
-//    }
-//die();
+    //    Schema::create('category_attribute', function($table)
+    //    {
+    //        $table->increments('id');
+    //        $table->string('name', 64);
+    //    });
+    //
+    //    Schema::create('product_attribute', function($table)
+    //    {
+    //        $table->increments('id');
+    //        $table->string('sku', 64);
+    //    });
 
+    $products = \Lavender\Product::find(1)->categories;
+    foreach($products as $product){
+        var_dump($product->id);
+    }
+    die("?!");
+    /* Schema::create('product', function($table){
+         $table->increments('id');
+     });
 
+     Schema::create('category', function($table){
+         $table->increments('id');
+     });
+
+     Schema::create('category_product', function($table){
+         $table->integer('category_id')->unsigned();
+         $table->foreign('category_id')->references('id')->on('category');
+         $table->integer('product_id')->unsigned();
+         $table->foreign('product_id')->references('id')->on('product');
+     });*/
 });

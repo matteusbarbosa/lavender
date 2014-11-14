@@ -16,5 +16,4 @@ class EntitySeeder extends Seeder
             }
         }
     }
-
 }
