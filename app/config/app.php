@@ -107,10 +107,9 @@ return array(
         //'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
-        //        'Lavender\Core\ServiceProvider',
-        //        'Lavender\Multisite\ServiceProvider',
-        //        'Lavender\Cms\ServiceProvider',
-        //        'Lavender\Catalog\ServiceProvider',
+                'Lavender\Core\ServiceProvider',
+                'Lavender\Cms\ServiceProvider',
+                'Lavender\Catalog\ServiceProvider',
     ),
 
     /*
