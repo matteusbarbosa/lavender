@@ -5,10 +5,8 @@
 return [
 
     'entity'            => [
-        'table'         => null,
-        'type'          => Lavender::ENTITY,
+        'class'         => null,
         'scope'         => Lavender::SCOPE_GLOBAL,
-        'timestamps'    => false,
         'attributes'    => [],
         'relationships' => [],
         'defaults'      => [],
