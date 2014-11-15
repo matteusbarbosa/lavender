@@ -16,10 +16,6 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/lavender-commerce/multisite"
-        },
-        {
-            "type": "vcs",
             "url": "https://github.com/lavender-commerce/cms"
         },
         {

@@ -9,7 +9,7 @@ class EntitySeeder extends Seeder
         foreach($config as $identifier => $entity){
             if($entity['defaults']){
                 foreach($entity['defaults'] as $default){
-                    $model = \App::make($identifier);
+                    $model = app($identifier);
                     $model->fill($default);
                     $model->save();
                 }
