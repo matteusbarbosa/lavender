@@ -35,4 +35,11 @@ return [
         'filter'     => null,
     ],
 
+    'relationship' => [
+        'entity' => null,
+        'type' => null,
+        'table' => null,
+        'column' => 'entity_id'
+    ]
+
 ];

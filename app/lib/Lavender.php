@@ -16,4 +16,8 @@ class Lavender
     const ATTRIBUTE_INTEGER = 'int';
     const ATTRIBUTE_TEXT    = 'text';
     const ATTRIBUTE_VARCHAR = 'varchar';
+
+    // Entity Relationship Types
+    const HAS_MANY  = 'many';
+    const HAS_ONE   = 'one';
 }
