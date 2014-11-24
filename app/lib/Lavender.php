@@ -2,9 +2,6 @@
 
 class Lavender
 {
-    // Storage Type
-    const ENTITY = 'entity';
-
     // Attribute Scopes
     const SCOPE_GLOBAL     = 'global';
     const SCOPE_STORE      = 'store';
@@ -18,7 +15,11 @@ class Lavender
     const ATTRIBUTE_VARCHAR = 'varchar';
 
     // Entity Relationship Types
-    const HAS_PIVOT = 'pivot';
-    const HAS_MANY  = 'many';
-    const HAS_ONE   = 'one';
+    const HAS_PIVOT  = 'pivot';
+    const HAS_MANY   = 'many';
+    const HAS_ONE    = 'one';
+    const BELONGS_TO = 'belongs';
+
+    const LAYOUT_APPEND  = 'append';
+    const LAYOUT_REPLACE = 'replace';
 }

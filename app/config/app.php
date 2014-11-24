@@ -80,6 +80,7 @@ return array(
 
     'providers' => array(
 
+        // Laravel Framework
         'Illuminate\Foundation\Providers\ArtisanServiceProvider',
         'Illuminate\Auth\AuthServiceProvider',
         'Illuminate\Cache\CacheServiceProvider',
@@ -104,12 +105,21 @@ return array(
         'Illuminate\Session\SessionServiceProvider',
         'Illuminate\Translation\TranslationServiceProvider',
         'Illuminate\Validation\ValidationServiceProvider',
-        //'Illuminate\View\ViewServiceProvider',
+        'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
-                'Lavender\Core\ServiceProvider',
-                'Lavender\Cms\ServiceProvider',
-                'Lavender\Catalog\ServiceProvider',
+        // Lavender's Dependencies
+        'Zizaco\Confide\ServiceProvider',
+
+        // Lavender Core Modules
+        'Lavender\Entity\ServiceProvider',
+        'Lavender\Cms\ServiceProvider',
+        'Lavender\Account\ServiceProvider',
+        'Lavender\Catalog\ServiceProvider',
+
+        // Local Modules
+        // ...
+
     ),
 
     /*
@@ -144,13 +154,13 @@ return array(
         'Blade'       => 'Illuminate\Support\Facades\Blade',
         'Cache'       => 'Illuminate\Support\Facades\Cache',
         'ClassLoader' => 'Illuminate\Support\ClassLoader',
+        'Confide'     => 'Zizaco\Confide\Facade',
         'Config'      => 'Illuminate\Support\Facades\Config',
         'Controller'  => 'Illuminate\Routing\Controller',
         'Cookie'      => 'Illuminate\Support\Facades\Cookie',
         'Crypt'       => 'Illuminate\Support\Facades\Crypt',
         'DB'          => 'Illuminate\Support\Facades\DB',
         'Eloquent'    => 'Illuminate\Database\Eloquent\Model',
-        'Entity'      => 'Lavender\Core\Database\Entity',
         'Event'       => 'Illuminate\Support\Facades\Event',
         'File'        => 'Illuminate\Support\Facades\File',
         'Form'        => 'Illuminate\Support\Facades\Form',

@@ -12,7 +12,11 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/lavender-commerce/core"
+            "url": "https://github.com/lavender-commerce/entity"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/lavender-commerce/account"
         },
         {
             "type": "vcs",
@@ -26,8 +30,9 @@
     "require": {
         "php": ">=5.4.0",
         "laravel/framework": "4.2.*",
-        "lavender-commerce/core": "dev-master",
+        "lavender-commerce/entity": "dev-master",
         "lavender-commerce/cms": "dev-master",
+        "lavender-commerce/account": "dev-master",
         "lavender-commerce/catalog": "dev-master"
     },
     "autoload": {

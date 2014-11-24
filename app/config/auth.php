@@ -28,7 +28,7 @@ return array(
     |
     */
 
-    'model'    => 'Lavender\\Crm\\User',
+    'model'    => 'Lavender\\Account\\User',
 
     /*
     |--------------------------------------------------------------------------
