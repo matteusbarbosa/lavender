@@ -112,9 +112,10 @@ return array(
         'Zizaco\Confide\ServiceProvider',
 
         // Lavender Core Modules
+        'Lavender\Config\ServiceProvider',
         'Lavender\Entity\ServiceProvider',
-        'Lavender\Cms\ServiceProvider',
         'Lavender\Account\ServiceProvider',
+        'Lavender\Cms\ServiceProvider',
         'Lavender\Catalog\ServiceProvider',
 
         // Local Modules
