@@ -33,11 +33,12 @@ is now possible via the 'layout.php' config file. And lastly assigning composers
 'composers.php' config file.
 
 Theme directories:
-  app/views/{THEME}/layouts:  master layouts which define available sections and skeleton html
-  app/views/{THEME}/page:     page layouts used as top-level layout for routing (ie. home page, login page)
-  app/views/{THEME}/block:    content templates which are injected into page layouts
-  app/views/{THEME}/errors:   error pages like 404
-  app/views/{THEME}/emails:   email templates
+
+    app/views/{THEME}/layouts  master layouts which define available sections and skeleton html
+    app/views/{THEME}/page     page layouts used as top-level layout for routing (ie. home page, login page)
+    app/views/{THEME}/block    content templates which are injected into page layouts
+    app/views/{THEME}/errors   error pages like 404
+    app/views/{THEME}/emails   email templates
 
 
 ####2. Entities

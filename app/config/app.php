@@ -116,6 +116,7 @@ return array(
         'Lavender\Entity\ServiceProvider',
         'Lavender\Account\ServiceProvider',
         'Lavender\Cms\ServiceProvider',
+        'Lavender\Workflow\ServiceProvider',
         'Lavender\Catalog\ServiceProvider',
 
         // Local Modules
