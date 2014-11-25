@@ -28,17 +28,22 @@
         },
         {
             "type": "vcs",
+            "url": "https://github.com/lavender-commerce/workflow"
+        },
+        {
+            "type": "vcs",
             "url": "https://github.com/lavender-commerce/catalog"
         }
     ],
     "require": {
-        "php": ">=5.4.0",
-        "laravel/framework": "4.2.*",
-        "lavender-commerce/config": "dev-master",
-        "lavender-commerce/entity": "dev-master",
-        "lavender-commerce/account": "dev-master",
-        "lavender-commerce/cms": "dev-master",
-        "lavender-commerce/catalog": "dev-master"
+        "php":                          ">=5.4.0",
+        "laravel/framework":            "4.2.*",
+        "lavender-commerce/config":     "dev-master",
+        "lavender-commerce/entity":     "dev-master",
+        "lavender-commerce/account":    "dev-master",
+        "lavender-commerce/cms":        "dev-master",
+        "lavender-commerce/workflow":   "dev-master",
+        "lavender-commerce/catalog":    "dev-master"
     },
     "autoload": {
         "classmap": [

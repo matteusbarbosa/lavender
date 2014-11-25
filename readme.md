@@ -22,22 +22,23 @@ Install entities:
 
 Seed the entities with sample data:
 
-    php artisan db:seed
+    php artisan entity:seed
 
-
-### Project summary:
-
-Lavender makes e-commerce easy. While Laravel provides a clean and simple framework to build database objects, handle
-routing, and organize our views, Lavender goes a step further with entities, workflows, scopes, and themes.
-What makes an e-commerce site unique from a developer's perspective can be split into three categories:
 
 ####1. Themes
 
-Laravel gives us blade templates to organize our views, view-models called 'composers' for exposing logic into our views,
-and easy routing with very skinny controllers. We improved the routing experience by switching to a 'routes.php' config file
-available to each module. The routes are then merged into a global route collection. Templating is also easier with
-view injection via the 'layout.php' config file. And lastly assigning composers to views is even easier with the
+We improved the routing experience by switching to a 'routes.php' config file available to each module. The routes are
+then merged from all modules into a global route collection allowing for rewrites. Adding content to arbitrary templates
+is now possible via the 'layout.php' config file. And lastly assigning composers to views is even easier with the
 'composers.php' config file.
+
+Theme directories:
+  app/views/{THEME}/layouts:  master layouts which define available sections and skeleton html
+  app/views/{THEME}/page:     page layouts used as top-level layout for routing (ie. home page, login page)
+  app/views/{THEME}/block:    content templates which are injected into page layouts
+  app/views/{THEME}/errors:   error pages like 404
+  app/views/{THEME}/emails:   email templates
+
 
 ####2. Entities
 
@@ -51,14 +52,7 @@ Additionally we spend a lot of time customizing user workflows such as the shopp
 Lavender's 'workflow.php' config file allows modules to collaborate on a single user workflow without complicated class
 rewrites and layout injection logic.
 
-####MultiScope
+####4. MultiScope
 
-Lavender was designed from the start to be multi-scope which means that themes, entities, and workflows can be configured
-per store (domain) and/or department (sub-domain) with baked-in inheritance to reduce db footprint.
-
-####Why so much config?
-
-The tl;dr is to manage module rewrite conflicts. Config can be merged from a large number of modules whereas hard-coded
-functions and parameters are either extended or rewritten linearly. Merging from various modules into a single data object
-allows for greater flexibility especially when you can control which modules to load, which config files to read, and the
-priority of the rewrites.
+Lavender's Entity model was designed from the start to be multi-scope which means that all entities can be configured
+per store (domain), per department (sub-domain), or globally.
