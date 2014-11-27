@@ -10,11 +10,15 @@ Lavender is open-sourced software licensed under the [MIT license](http://openso
 
 Run Composer:
 
-    composer install
+    composer create-project lavender-commerce/lavender --prefer-dist -s dev
+
+Set lavender/public as your new web root (example):
+
+    ln -s lavender/public public_html
 
 Set up your database connection:
 
-    app/config/database.php
+    lavender/app/config/database.php
 
 Install entities:
 
