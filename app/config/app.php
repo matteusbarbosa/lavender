@@ -121,6 +121,7 @@ return array(
 
         // Local Modules
         // ...
+        'Ryaan\Lcf\ServiceProvider',
 
     ),
 

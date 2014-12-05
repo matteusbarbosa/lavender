@@ -33,6 +33,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/lavender-commerce/catalog"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ryaan-anthony/lavender-contact-form"
         }
     ],
     "require": {
@@ -43,7 +47,8 @@
         "lavender-commerce/account":    "dev-master",
         "lavender-commerce/cms":        "dev-master",
         "lavender-commerce/workflow":   "dev-master",
-        "lavender-commerce/catalog":    "dev-master"
+        "lavender-commerce/catalog":    "dev-master",
+        "ryaan-anthony/lavender-contact-form":    "dev-master"
     },
     "autoload": {
         "classmap": [
