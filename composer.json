@@ -1,5 +1,5 @@
 {
-    "name": "lavender-commerce/lavender",
+    "name": "lavender/lavender",
     "description": "Lavender",
     "keywords": ["lavender", "ecommerce"],
     "license": "MIT",
@@ -12,27 +12,27 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/lavender-commerce/config"
+            "url": "https://github.com/lavender/config"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/lavender-commerce/entity"
+            "url": "https://github.com/lavender/entity"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/lavender-commerce/account"
+            "url": "https://github.com/lavender/account"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/lavender-commerce/cms"
+            "url": "https://github.com/lavender/cms"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/lavender-commerce/workflow"
+            "url": "https://github.com/lavender/workflow"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/lavender-commerce/catalog"
+            "url": "https://github.com/lavender/catalog"
         },
         {
             "type": "vcs",
@@ -42,12 +42,12 @@
     "require": {
         "php":                          ">=5.4.0",
         "laravel/framework":            "4.2.*",
-        "lavender-commerce/config":     "dev-master",
-        "lavender-commerce/entity":     "dev-master",
-        "lavender-commerce/account":    "dev-master",
-        "lavender-commerce/cms":        "dev-master",
-        "lavender-commerce/workflow":   "dev-master",
-        "lavender-commerce/catalog":    "dev-master",
+        "lavender/config":     "dev-master",
+        "lavender/entity":     "dev-master",
+        "lavender/account":    "dev-master",
+        "lavender/cms":        "dev-master",
+        "lavender/workflow":   "dev-master",
+        "lavender/catalog":    "dev-master",
         "ryaan-anthony/lavender-contact-form":    "dev-master"
     },
     "autoload": {
