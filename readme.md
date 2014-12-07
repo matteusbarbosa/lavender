@@ -16,17 +16,11 @@ Set lavender/public as your new web root (example):
 
     ln -s lavender/public public_html
 
-Set up your database connection:
+Set up your connection in the database config file:
 
     lavender/app/config/database.php
 
-Install entities:
-
-    php artisan entity:update
-
-Seed the entities with sample data:
-
-    php artisan entity:seed
+The first round of migrations will be run for you!
 
 #### Lavender Directories
 
@@ -108,7 +102,7 @@ Additionally we spend a lot of time customizing user workflows such as the shopp
 Lavender's 'workflow.php' config file allows modules to collaborate on a single user workflow without complicated class
 rewrites and layout injection logic.
 
-####4. MultiScope
+#### MultiScope
 
 Lavender's Entity model was designed from the start to be multi-scope which means that all entities can be configured
 per store (domain), per department (sub-domain), or globally.
