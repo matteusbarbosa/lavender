@@ -20,7 +20,38 @@ Set up your connection in the database config file:
 
     lavender/app/config/database.php
 
-The first round of migrations will be run for you!
+Run the first round of migrations:
+
+    cd lavender
+    php artisan migrate
+
+That's it!
+
+
+### Troubleshooting
+Login not working? Try modifying your sessions config:
+
+    lavender/app/config/session.php
+
+Emails not working? Try modifying your email config:
+
+    lavender/app/config/mail.php
+
+Something else? Follow the install instructions carefully or [submit an new issue!](https://github.com/lavender/lavender/issues/new)
+
+
+## Updating entities:
+
+To create a new migration based on updated entity config, run:
+
+    php artisan migrate:entity make_foo
+
+...which creates a migration file for you, now run:
+
+    php artisan migrate
+
+You're done!
+
 
 #### Lavender Directories
 
@@ -43,7 +74,7 @@ The first round of migrations will be run for you!
                 /images
                 /js
 
-#### Recommended Package Directories (loaded by composer)
+#### Recommended Package Directories
 
     /vendor
         /{package}
@@ -67,7 +98,7 @@ The first round of migrations will be run for you!
                 |   /models                 *consumer models
                 |   /views
                 |       /{theme}
-                |           /block          *content templates which are injected into page layouts
+                |           /{custom}       *custom view directories should be intuitive ex: contact/form/container.blade.php
                 |           /email          *email templates
                 |           /errors         *error pages like 404
                 |           /layouts        *master layouts which define available sections and skeleton html
@@ -89,6 +120,7 @@ then merged from all modules into a global route collection allowing for rewrite
 is now possible via the 'layout.php' config file. And lastly assigning composers to views is even easier with the
 'composers.php' config file.
 
+ps. i don't do frontend besides core template files, so the project will remain completely css-free until someone PR's a nice looking skin!
 
 #### Entities
 
