@@ -6,6 +6,11 @@ Lavender is an Open Source E-Commerce Framework built on top of Laravel.
 
 Lavender is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
+## Development Status
+
+This is project is in active development, much of the functionality hasn't been exposed to the frontend.
+
+
 ### Installation instructions:
 
 Run Composer:
