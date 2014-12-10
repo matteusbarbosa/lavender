@@ -8,7 +8,7 @@ Lavender is open-sourced software licensed under the [MIT license](http://openso
 
 ## Development Status
 
-This is project is in active development, much of the functionality hasn't been exposed to the frontend.
+###### This is project is in active development, much of the functionality hasn't been exposed to the frontend.
 
 
 ### Installation instructions:
