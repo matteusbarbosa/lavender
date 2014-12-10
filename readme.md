@@ -24,6 +24,10 @@ Run the first round of migrations:
 
     cd lavender
     php artisan migrate
+    
+Update workflows to get all the cool features working: (note: this will be merged into migrations)
+
+    php artisan workflow:update
 
 That's it!
 
