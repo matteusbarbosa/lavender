@@ -95,7 +95,6 @@ You're done!
                 |   /composers              *view composers, see http://laravel.com/docs/4.2/responses#view-composers
                 |   /config                 *module config, see http://laravel.com/docs/4.2/configuration
                 |       /composers.php
-                |       /data.php
                 |       /entity.php
                 |       /layout.php
                 |       /routes.php
