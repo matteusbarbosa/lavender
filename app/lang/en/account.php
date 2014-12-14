@@ -29,7 +29,7 @@ return array(
     ),
 
     'alerts' => array(
-        'account_created' => 'Your account has been successfully created.',
+        'account_confirm' => 'You will receive a confirmation email shortly.',
         'instructions_sent'       => 'Please check your email for the instructions on how to confirm your account.',
         'too_many_attempts' => 'Too many attempts. Try again in few minutes.',
         'wrong_credentials' => 'Incorrect email or password.',
@@ -45,7 +45,7 @@ return array(
     ),
 
     'email' => array(
-        'account_confirmation' => array(
+        'confirmation' => array(
             'subject' => 'Account Confirmation',
             'greetings' => 'Hello',
             'body' => 'Please access the link below to confirm your account.',

@@ -108,9 +108,6 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
-        // Lavender's Dependencies
-        'Zizaco\Confide\ServiceProvider',
-
         // Lavender Core Modules
         'Lavender\Config\ServiceProvider',
         'Lavender\Entity\ServiceProvider',
@@ -157,7 +154,6 @@ return array(
         'Blade'       => 'Illuminate\Support\Facades\Blade',
         'Cache'       => 'Illuminate\Support\Facades\Cache',
         'ClassLoader' => 'Illuminate\Support\ClassLoader',
-        'Confide'     => 'Zizaco\Confide\Facade',
         'Config'      => 'Illuminate\Support\Facades\Config',
         'Controller'  => 'Illuminate\Routing\Controller',
         'Cookie'      => 'Illuminate\Support\Facades\Cookie',
@@ -173,6 +169,7 @@ return array(
         'Lang'        => 'Illuminate\Support\Facades\Lang',
         'Log'         => 'Illuminate\Support\Facades\Log',
         'Mail'        => 'Illuminate\Support\Facades\Mail',
+        'Message'     => 'Lavender\Cms\Message\Bag',
         'Paginator'   => 'Illuminate\Support\Facades\Paginator',
         'Password'    => 'Illuminate\Support\Facades\Password',
         'Queue'       => 'Illuminate\Support\Facades\Queue',
@@ -186,6 +183,7 @@ return array(
         'Session'     => 'Illuminate\Support\Facades\Session',
         'SSH'         => 'Illuminate\Support\Facades\SSH',
         'Str'         => 'Illuminate\Support\Str',
+        'User'        => 'Lavender\Account\Facade',
         'URL'         => 'Illuminate\Support\Facades\URL',
         'Validator'   => 'Illuminate\Support\Facades\Validator',
         'View'        => 'Illuminate\Support\Facades\View',
