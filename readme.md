@@ -25,12 +25,16 @@ Set up your connection in the database config file:
 
     lavender/app/config/database.php
 
-Run the first round of migrations:
+Run all package migrations:
 
     cd lavender
     php artisan migrate
     
-Seed catalog sample data!
+Publish all package assets:
+
+    php artisan asset:publish
+    
+Seed catalog sample data! (optional)
 
     php artisan db:seed --class=SampleData
 
