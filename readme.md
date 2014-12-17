@@ -20,14 +20,21 @@ Run Composer:
 Set lavender/public as your new web root (example):
 
     ln -s lavender/public public_html
+    
+Navigate to your lavender directory:
+
+    cd lavender
 
 Set up your connection in the database config file:
 
-    lavender/app/config/database.php
+    vim app/config/database.php
+
+Create the first migration (required, will be removed eventually)
+
+    php artisan migrate:make update_entities
 
 Run all package migrations:
 
-    cd lavender
     php artisan migrate
     
 Publish all package assets:
