@@ -1,4 +1,4 @@
-## Lavender
+## Lavender (active development, unstable)
 
 Lavender is an Open Source E-Commerce Framework built on top of Laravel.
 
