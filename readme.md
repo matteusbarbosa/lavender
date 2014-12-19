@@ -31,7 +31,7 @@ Set up your connection in the database config file:
 
 Create the first migration (required, will be removed eventually)
 
-    php artisan migrate:make update_entities
+    php artisan migrate:entity update_entities
 
 Run all package migrations:
 
