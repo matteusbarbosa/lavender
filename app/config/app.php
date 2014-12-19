@@ -114,10 +114,12 @@ return array(
         'Lavender\Account\ServiceProvider',
         'Lavender\Cms\ServiceProvider',
         'Lavender\Workflow\ServiceProvider',
+
+        // Lavender UI Modules
         'Lavender\Catalog\ServiceProvider',
+        'Lavender\Backend\ServiceProvider',
 
         // Local Modules
-        // ...
         'Ryaan\Lcf\ServiceProvider',
 
     ),
