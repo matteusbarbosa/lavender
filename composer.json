@@ -24,7 +24,7 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/lavender/theme"
+            "url": "https://github.com/lavender/view"
         },
         {
             "type": "vcs",
@@ -57,7 +57,7 @@
         "lavender/config":     "dev-master",
         "lavender/entity":     "dev-master",
         "lavender/store":        "dev-master",
-        "lavender/theme":        "dev-master",
+        "lavender/view":        "dev-master",
         "lavender/workflow":   "dev-master",
         "lavender/account":    "dev-master",
         "lavender/catalog":    "dev-master",
