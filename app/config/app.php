@@ -108,16 +108,20 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
-        // Lavender Core Modules
+        // Lavender Framework (services only)
         'Lavender\Config\ServiceProvider',
         'Lavender\Entity\ServiceProvider',
-        'Lavender\Account\ServiceProvider',
-        'Lavender\Cms\ServiceProvider',
-        'Lavender\Workflow\ServiceProvider',
+        #'Lavender\Multisite\ServiceProvider',
+        #'Lavender\Workflow\ServiceProvider',
 
-        // Lavender UI Modules
-        'Lavender\Catalog\ServiceProvider',
-        'Lavender\Backend\ServiceProvider',
+        // Lavender Consumer Layer (models, views, routes)
+        'Lavender\Cms\ServiceProvider',
+        #'Lavender\Account\ServiceProvider',
+        #'Lavender\Catalog\ServiceProvider',
+        #'Lavender\Backend\ServiceProvider',
+
+        // Lavender Themes
+        'Lavender\Frontend\ServiceProvider',
 
         // Local Modules
         'Ryaan\Lcf\ServiceProvider',

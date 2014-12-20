@@ -40,6 +40,10 @@
         },
         {
             "type": "vcs",
+            "url": "https://github.com/lavender/frontend"
+        },
+        {
+            "type": "vcs",
             "url": "https://github.com/ryaan-anthony/lavender-contact-form"
         }
     ],
@@ -53,6 +57,7 @@
         "lavender/workflow":   "dev-master",
         "lavender/catalog":    "dev-master",
         "lavender/backend":    "dev-master",
+        "lavender/frontend":    "dev-master",
         "ryaan-anthony/lavender-contact-form":    "dev-master"
     },
     "autoload": {
