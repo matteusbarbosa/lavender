@@ -20,15 +20,19 @@
         },
         {
             "type": "vcs",
-            "url": "https://github.com/lavender/account"
+            "url": "https://github.com/lavender/store"
         },
         {
             "type": "vcs",
-            "url": "https://github.com/lavender/cms"
+            "url": "https://github.com/lavender/theme"
         },
         {
             "type": "vcs",
             "url": "https://github.com/lavender/workflow"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/lavender/account"
         },
         {
             "type": "vcs",
@@ -52,9 +56,10 @@
         "laravel/framework":            "4.2.*",
         "lavender/config":     "dev-master",
         "lavender/entity":     "dev-master",
-        "lavender/account":    "dev-master",
-        "lavender/cms":        "dev-master",
+        "lavender/store":        "dev-master",
+        "lavender/theme":        "dev-master",
         "lavender/workflow":   "dev-master",
+        "lavender/account":    "dev-master",
         "lavender/catalog":    "dev-master",
         "lavender/backend":    "dev-master",
         "lavender/frontend":    "dev-master",

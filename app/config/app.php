@@ -112,12 +112,14 @@ return array(
         'Lavender\Config\ServiceProvider',
         'Lavender\Entity\ServiceProvider',
         #'Lavender\Multisite\ServiceProvider',
-        #'Lavender\Workflow\ServiceProvider',
+
 
         // Lavender Consumer Layer (models, views, routes)
-        'Lavender\Cms\ServiceProvider',
-        #'Lavender\Account\ServiceProvider',
-        #'Lavender\Catalog\ServiceProvider',
+        'Lavender\Store\ServiceProvider',
+        'Lavender\Theme\ServiceProvider',
+        'Lavender\Workflow\ServiceProvider',
+        'Lavender\Account\ServiceProvider',
+        'Lavender\Catalog\ServiceProvider',
         #'Lavender\Backend\ServiceProvider',
 
         // Lavender Themes
