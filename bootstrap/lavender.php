@@ -255,10 +255,28 @@ $app->booted(function () use ($app, $env){
     | Start The Application
     |--------------------------------------------------------------------------
     |
-    | All service providers have been registered [and booted]...
+    | All services have been registered...
     |
     | Time to start the app!
     |
     */
+
+    // Merge config registered config files
+    Event::fire('lavender.config');
+
+    // Register all entities
+    Event::fire('lavender.entities');
+
+    // Resolve the current.store
+    Event::fire('lavender.store');
+
+    // Resolve the current.theme
+    Event::fire('lavender.theme');
+
+    // Lavender core is booted
+    Event::fire('lavender.booted');
+
+    // Register routes
+    Event::fire('lavender.routes');
 
 });
