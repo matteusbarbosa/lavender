@@ -21,21 +21,25 @@ Set lavender/public as your new web root (example):
 
     ln -s lavender/public public_html
 
+Navigate to the lavender directory:
+
+    cd lavender
+    
 Set up your connection in the database config file:
 
-    vim lavender/app/config/database.php
+    vim app/config/database.php
 
 Run the lavender installer:
 
-    php lavender/artisan lavender:install
+    php artisan lavender:install
     
 Publish all package assets:
 
-    php lavender/artisan asset:publish
+    php artisan asset:publish
     
 Seed catalog sample data! (optional)
 
-    php lavender/artisan db:seed --class=SampleData
+    php artisan db:seed --class=SampleData
 
 That's it!
 
@@ -43,11 +47,11 @@ That's it!
 ### Troubleshooting
 Login not working? Try modifying your sessions config:
 
-    lavender/app/config/session.php
+    app/config/session.php
 
 Emails not working? Try modifying your email config:
 
-    lavender/app/config/mail.php
+    app/config/mail.php
 
 Something else? Follow the install instructions carefully or [submit an new issue!](https://github.com/lavender/lavender/issues/new)
 
@@ -56,11 +60,11 @@ Something else? Follow the install instructions carefully or [submit an new issu
 
 To create a new migration based on updated entity config, run:
 
-    php lavender/artisan migrate:entity make_foo
+    php artisan migrate:entity make_foo
 
 ...which creates a migration file for you, now run:
 
-    php lavender/artisan migrate
+    php artisan migrate
 
 You're done!
 
