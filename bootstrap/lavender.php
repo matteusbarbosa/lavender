@@ -261,22 +261,4 @@ $app->booted(function () use ($app, $env){
     |
     */
 
-    // Merge config registered config files
-    Event::fire('lavender.config');
-
-    // Register all entities
-    Event::fire('lavender.entities');
-
-    // Resolve the current.store
-    Event::fire('lavender.store');
-
-    // Resolve the current.theme
-    Event::fire('lavender.theme');
-
-    // Lavender core is booted
-    Event::fire('lavender.booted');
-
-    // Register routes
-    Event::fire('lavender.routes');
-
 });
