@@ -45,6 +45,9 @@ Route::filter('guest', function (){
 |
 */
 
+// Apply CSRF filter to all 'post', 'put', and 'delete' requests
+Route::when('*', 'csrf', ['post', 'put', 'delete']);
+
 Route::filter('csrf', function (){
     if(Session::token() != Input::get('_token')){
         throw new Illuminate\Session\TokenMismatchException;
