@@ -42,6 +42,7 @@ return array(
         'wrong_password_reset' => 'Invalid password. Try again',
         'wrong_token' => 'The password reset token is not valid.',
         'duplicated_credentials' => 'The credentials provided have already been used. Try with different credentials.',
+        'does_not_exist' => 'Unable to update this account. Try with different credentials.',
     ),
 
     'email' => array(

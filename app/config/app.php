@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return array(
     |
     */
 
-    'providers' => array(
+    'providers' => [
 
         // Laravel Framework
         'Illuminate\Foundation\Providers\ArtisanServiceProvider',
@@ -109,26 +109,25 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
         // Lavender Framework (services only)
-        'Lavender\Config\ServiceProvider',
-        'Lavender\Entity\ServiceProvider',
-        #'Lavender\Multisite\ServiceProvider',
+        'Lavender\Config\ConfigServiceProvider',
+        'Lavender\Entity\EntityServiceProvider',
+        'Lavender\Account\AuthServiceProvider',
 
-
-        // Lavender Consumer Layer (models, views, routes)
-        'Lavender\Store\ServiceProvider',
-        'Lavender\View\ServiceProvider',
-        'Lavender\Workflow\ServiceProvider',
-        'Lavender\Account\ServiceProvider',
+        // Lavender Consumer Layer (models, controllers, routes)
+        'Lavender\Store\StoreServiceProvider',
+        'Lavender\View\ViewServiceProvider',
+        'Lavender\Workflow\WorkflowServiceProvider',
+        'Lavender\Account\AccountServiceProvider',
         'Lavender\Catalog\ServiceProvider',
-        'Lavender\Backend\ServiceProvider',
 
-        // Lavender Themes
-        'Lavender\Frontend\ServiceProvider',
+        // Lavender Themes (views, skins)
+        'Lavender\Frontend\FrontendServiceProvider',
+        'Lavender\Backend\BackendServiceProvider',
 
         // Local Modules
         'Ryaan\Lcf\ServiceProvider',
 
-    ),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -154,8 +153,9 @@ return array(
     |
     */
 
-    'aliases'   => array(
+    'aliases'   => [
 
+        // Laravel Facades
         'App'         => 'Illuminate\Support\Facades\App',
         'Artisan'     => 'Illuminate\Support\Facades\Artisan',
         'Auth'        => 'Illuminate\Support\Facades\Auth',
@@ -177,7 +177,6 @@ return array(
         'Lang'        => 'Illuminate\Support\Facades\Lang',
         'Log'         => 'Illuminate\Support\Facades\Log',
         'Mail'        => 'Illuminate\Support\Facades\Mail',
-        'Message'     => 'Lavender\View\Message\Bag',
         'Paginator'   => 'Illuminate\Support\Facades\Paginator',
         'Password'    => 'Illuminate\Support\Facades\Password',
         'Queue'       => 'Illuminate\Support\Facades\Queue',
@@ -191,12 +190,13 @@ return array(
         'Session'     => 'Illuminate\Support\Facades\Session',
         'SSH'         => 'Illuminate\Support\Facades\SSH',
         'Str'         => 'Illuminate\Support\Str',
-        'User'        => 'Lavender\Account\Facade',
         'URL'         => 'Illuminate\Support\Facades\URL',
         'Validator'   => 'Illuminate\Support\Facades\Validator',
         'View'        => 'Illuminate\Support\Facades\View',
-        'Workflow'    => 'Lavender\Workflow\Facades\Model',
 
-    ),
+        // Lavender Facades
+        'Account'     => 'Lavender\Account\Facade',
+        'Message'     => 'Lavender\View\Message\Bag',
+    ],
 
-);
+];

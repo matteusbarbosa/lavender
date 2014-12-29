@@ -1,47 +1,33 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
-    | Default Authentication Driver
+    | Multi Authentication
     |--------------------------------------------------------------------------
     |
-    | This option controls the authentication driver that will be utilized.
-    | This driver manages the retrieval and authentication of the users
-    | attempting to get access to protected areas of your application.
+    | When using the "Eloquent" authentication 'driver', specify the 'model'.
+    | When using the "Database" authentication 'driver', specify the 'table'.
     |
-    | Supported: "database", "eloquent"
+    | Supported Drivers: "database", "eloquent"
     |
     */
 
-    'driver'   => 'eloquent',
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Model
-    |--------------------------------------------------------------------------
-    |
-    | When using the "Eloquent" authentication driver, we need to know which
-    | Eloquent model should be used to retrieve your users. Of course, it
-    | is often just the "User" model but you may use whatever you like.
-    |
-    */
+    'account' => [
 
-    'model'    => 'Lavender\\Account\\User',
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => 'Lavender\\Account\\Admin',
+        ],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Table
-    |--------------------------------------------------------------------------
-    |
-    | When using the "Database" authentication driver, we need to know which
-    | table should be used to retrieve your users. We have chosen a basic
-    | default value but you may easily change it to any table you like.
-    |
-    */
+        'user' => [
+            'driver' => 'eloquent',
+            'model' => 'Lavender\\Account\\User',
+        ],
+    ],
 
-    'table'    => 'user',
 
     /*
     |--------------------------------------------------------------------------
@@ -58,14 +44,15 @@ return array(
     |
     */
 
-    'reminder' => array(
+    'reminder' => [
 
+        //todo use store config node
         'email'  => 'emails.auth.reminder',
 
         'table'  => 'password_reminders',
 
         'expire' => 60,
 
-    ),
+    ],
 
-);
+];
