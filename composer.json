@@ -1,92 +1,57 @@
 {
-    "name": "lavender/lavender",
-    "description": "Lavender",
-    "keywords": ["lavender", "ecommerce"],
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Ryan Tulino",
-            "email": "rtulino@gmail.com"
-        }
+  "name": "lavender/lavender",
+  "description": "Lavender",
+  "keywords": ["lavender", "ecommerce"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ryan Tulino",
+      "email": "rtulino@gmail.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/lavender/frontend"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/lavender/backend"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/ryaan-anthony/lavender-contact-form"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "laravel/framework": "4.2.*",
+    "lavender/framework": "dev-master",
+    "lavender/frontend": "dev-master",
+    "lavender/backend": "dev-master",
+    "ryaan-anthony/lavender-contact-form": "dev-master"
+  },
+  "autoload": {
+    "classmap": [
+      "app/database/migrations",
+      "app/database/seeds"
+    ]
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "php artisan clear-compiled",
+      "php artisan optimize"
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/lavender/config"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/lavender/entity"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/lavender/store"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/lavender/view"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/lavender/workflow"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/lavender/account"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/lavender/catalog"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/lavender/backend"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/lavender/frontend"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/ryaan-anthony/lavender-contact-form"
-        }
+    "post-update-cmd": [
+      "php artisan clear-compiled",
+      "php artisan optimize"
     ],
-    "require": {
-        "php":                          ">=5.4.0",
-        "laravel/framework":            "4.2.*",
-        "lavender/config":     "dev-master",
-        "lavender/entity":     "dev-master",
-        "lavender/store":        "dev-master",
-        "lavender/view":        "dev-master",
-        "lavender/workflow":   "dev-master",
-        "lavender/account":    "dev-master",
-        "lavender/catalog":    "dev-master",
-        "lavender/backend":    "dev-master",
-        "lavender/frontend":    "dev-master",
-        "ryaan-anthony/lavender-contact-form":    "dev-master"
-    },
-    "autoload": {
-        "classmap": [
-            "app/lib",
-            "app/database/migrations",
-            "app/database/seeds"
-        ]
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "php artisan clear-compiled",
-            "php artisan optimize"
-        ],
-        "post-update-cmd": [
-            "php artisan clear-compiled",
-            "php artisan optimize"
-        ],
-        "post-create-project-cmd": [
-            "php artisan key:generate"
-        ]
-    },
-    "config": {
-        "preferred-install": "dist"
-    },
-    "minimum-stability": "stable"
+    "post-create-project-cmd": [
+      "php artisan key:generate"
+    ]
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "minimum-stability": "stable"
 }

@@ -104,7 +104,7 @@ You're done!
                 |       /routes.php
                 |       /workflow.php
                 |   /controllers            *route controllers, see http://laravel.com/docs/4.2/controllers
-                |   /helpers                *global helper functions
+                |   /helpers                *global helper functions (do not abuse this)
                 |       /functions.php
                 |   /lang                   *language translations, see http://laravel.com/docs/4.2/localization
                 |   /models                 *consumer models

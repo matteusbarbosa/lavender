@@ -32,7 +32,7 @@ return array(
         'account_confirm' => 'You will receive a confirmation email shortly.',
         'instructions_sent'       => 'Please check your email for the instructions on how to confirm your account.',
         'too_many_attempts' => 'Too many attempts. Try again in few minutes.',
-        'wrong_credentials' => 'Incorrect email or password.',
+        'wrong_credentials' => 'Incorrect username or password.',
         'not_confirmed' => 'Your account may not be confirmed. Check your email for the confirmation link',
         'confirmation' => 'Your account has been confirmed! You may now login.',
         'wrong_confirmation' => 'Wrong confirmation code.',

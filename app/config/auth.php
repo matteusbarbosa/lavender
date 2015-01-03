@@ -19,12 +19,12 @@ return [
 
         'admin' => [
             'driver' => 'eloquent',
-            'model' => 'Lavender\\Account\\Admin',
+            'model' => 'Lavender\\Account\\Database\\Admin',
         ],
 
         'user' => [
             'driver' => 'eloquent',
-            'model' => 'Lavender\\Account\\User',
+            'model' => 'Lavender\\Account\\Database\\User',
         ],
     ],
 
