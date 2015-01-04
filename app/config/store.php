@@ -8,6 +8,7 @@ return [
          * General
          */
         'name' => 'lavender store',
+        'logo' => 'images/logo.svg',
         'email' => 'support@lavendercommerce.com',
         'phone' => '215 555 1212',
         'address' => "123 Ecommerce Ave\nPhiladelphia, PA 19101",
