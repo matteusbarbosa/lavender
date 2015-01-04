@@ -113,6 +113,7 @@ return [
         'Lavender\Entity\EntityServiceProvider',
         'Lavender\Account\AuthServiceProvider',
         'Lavender\View\ViewServiceProvider',
+        'Lavender\View\HtmlServiceProvider',
 
         // Lavender Consumer Layer (models, controllers, routes)
         'Lavender\Store\StoreServiceProvider',
