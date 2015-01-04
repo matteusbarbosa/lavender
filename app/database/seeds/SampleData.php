@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Database\Seeder;
-use Lavender\Catalog\Category;
+use Lavender\Catalog\Database\Category;
 
 class SampleData extends Seeder
 {

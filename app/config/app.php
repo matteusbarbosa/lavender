@@ -112,10 +112,11 @@ return [
         'Lavender\Config\ConfigServiceProvider',
         'Lavender\Entity\EntityServiceProvider',
         'Lavender\Account\AuthServiceProvider',
+        'Lavender\View\ViewServiceProvider',
 
         // Lavender Consumer Layer (models, controllers, routes)
         'Lavender\Store\StoreServiceProvider',
-        'Lavender\View\ViewServiceProvider',
+        'Lavender\Theme\ThemeServiceProvider',
         'Lavender\Workflow\WorkflowServiceProvider',
         'Lavender\Account\AccountServiceProvider',
         'Lavender\Catalog\CatalogServiceProvider',
