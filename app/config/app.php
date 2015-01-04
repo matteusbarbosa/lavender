@@ -116,7 +116,7 @@ return [
 
         // Lavender Consumer Layer (models, controllers, routes)
         'Lavender\Store\StoreServiceProvider',
-        'Lavender\Theme\ThemeServiceProvider',
+        'Lavender\View\ThemeServiceProvider',
         'Lavender\Workflow\WorkflowServiceProvider',
         'Lavender\Account\AccountServiceProvider',
         'Lavender\Catalog\CatalogServiceProvider',
