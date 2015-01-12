@@ -109,16 +109,22 @@ return [
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
         // Lavender Framework (services only)
+        'Lavender\Core\CoreServiceProvider',
         'Lavender\Config\ConfigServiceProvider',
         'Lavender\Entity\EntityServiceProvider',
-        'Lavender\Account\AuthServiceProvider',
-        'Lavender\View\ViewServiceProvider',
-        'Lavender\View\HtmlServiceProvider',
-
-        // Lavender Consumer Layer (models, controllers, routes)
-        'Lavender\Store\StoreServiceProvider',
-        'Lavender\View\ThemeServiceProvider',
         'Lavender\Workflow\WorkflowServiceProvider',
+        'Lavender\Account\AuthServiceProvider',
+        'Lavender\View\HtmlServiceProvider',
+        'Lavender\View\ViewServiceProvider',
+        'Lavender\Workflow\ConfigServiceProvider',
+
+        // boot store
+        'Lavender\Store\StoreServiceProvider',
+
+        // boot theme
+        'Lavender\View\ThemeServiceProvider',
+
+        // boot consumers
         'Lavender\Account\AccountServiceProvider',
         'Lavender\Catalog\CatalogServiceProvider',
 
@@ -199,6 +205,9 @@ return [
         // Lavender Facades (bound to service)
         'Account'      => 'Lavender\Account\Facades\Account',
         'Message'      => 'Lavender\View\Facades\Message',
+        'Menu'         => 'Lavender\View\Facades\Menu',
+        'Table'        => 'Lavender\View\Facades\Table',
+        'Workflow'     => 'Lavender\Workflow\Facades\Workflow',
 
         // Lavender Facades (bound to static)
         'Attribute'    => 'Lavender\Entity\Facades\Attribute',
