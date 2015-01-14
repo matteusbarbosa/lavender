@@ -1,6 +1,5 @@
 <?php
 use Illuminate\Database\Seeder;
-use Lavender\Catalog\Database\Category;
 
 class SampleData extends Seeder
 {
@@ -27,7 +26,11 @@ class SampleData extends Seeder
             ],
         ];
 
-        foreach($data as $attr) Category::create($attr);
+        foreach($data as $attr){
+
+            entity('category')->create($attr);
+
+        }
 
         $pivots = [];
 
@@ -87,13 +90,18 @@ class SampleData extends Seeder
 
         foreach($data as $attr){
 
-            $seed = app('product')->fill($attr, false);
+            $seed = entity('product')->fill($attr, false);
+
             $seed->save();
+
             $pivots[$seed->id] = $attr;
+
         }
 
         foreach($pivots as $id => $attr){
-            app('product')->find($id)->fill($attr)->save();
+
+            entity('product')->find($id)->fill($attr)->save();
+
         }
     }
 }
