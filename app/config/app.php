@@ -121,7 +121,7 @@ return [
         // Lavender Frontend
         'Lavender\Store\StoreServiceProvider',
         'Lavender\View\ThemeServiceProvider',
-        'Lavender\Account\AccountServiceProvider',
+        'Lavender\Customer\CustomerServiceProvider',
         'Lavender\Catalog\CatalogServiceProvider',
         'Lavender\Frontend\FrontendServiceProvider',
 
