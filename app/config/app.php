@@ -113,29 +113,26 @@ return [
         'Lavender\Config\ConfigServiceProvider',
         'Lavender\Entity\EntityServiceProvider',
         'Lavender\Workflow\WorkflowServiceProvider',
-        'Lavender\Account\AuthServiceProvider',
+        'Lavender\Auth\AuthServiceProvider',
         'Lavender\View\HtmlServiceProvider',
         'Lavender\View\ViewServiceProvider',
         'Lavender\Workflow\ConfigServiceProvider',
 
-        // boot store
+        // Lavender Frontend
         'Lavender\Store\StoreServiceProvider',
-
-        // boot theme
         'Lavender\View\ThemeServiceProvider',
-
-        // boot consumers
         'Lavender\Account\AccountServiceProvider',
         'Lavender\Catalog\CatalogServiceProvider',
-
-        // Lavender Themes (views, skins)
         'Lavender\Frontend\FrontendServiceProvider',
+
+        // Lavender Backend
+        'Lavender\Admin\AdminServiceProvider',
         'Lavender\Backend\BackendServiceProvider',
 
         // Local Modules
         'Ryaan\Lcf\ServiceProvider',
 
-    ],
+    ] ,
 
     /*
     |--------------------------------------------------------------------------
@@ -203,17 +200,17 @@ return [
         'View'         => 'Illuminate\Support\Facades\View',
 
         // Lavender Facades (bound to service)
-        'Account'      => 'Lavender\Account\Facades\Account',
-        'Message'      => 'Lavender\View\Facades\Message',
-        'Menu'         => 'Lavender\View\Facades\Menu',
-        'Table'        => 'Lavender\View\Facades\Table',
-        'Workflow'     => 'Lavender\Workflow\Facades\Workflow',
+        'Account'      => 'Lavender\Support\Facades\Account',
+        'Message'      => 'Lavender\Support\Facades\Message',
+        'Menu'         => 'Lavender\Support\Facades\Menu',
+        'Table'        => 'Lavender\Support\Facades\Table',
+        'Workflow'     => 'Lavender\Support\Facades\Workflow',
 
         // Lavender Facades (bound to static)
-        'Attribute'    => 'Lavender\Entity\Facades\Attribute',
-        'Layout'       => 'Lavender\View\Facades\Layout',
-        'Relationship' => 'Lavender\Entity\Facades\Relationship',
-        'Scope'        => 'Lavender\Store\Facades\Scope',
+        'Attribute'    => 'Lavender\Support\Facades\Attribute',
+        'Layout'       => 'Lavender\Support\Facades\Layout',
+        'Relationship' => 'Lavender\Support\Facades\Relationship',
+        'Scope'        => 'Lavender\Support\Facades\Scope',
     ],
 
 ];
