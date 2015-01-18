@@ -10,8 +10,7 @@
     }
   ],
   "require": {
-    "php": ">=5.4.0",
-    "lavender/ecommerce": "dev-master"
+    "lavender/ecommerce": "0.1.*"
   },
   "autoload": {
     "classmap": [
