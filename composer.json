@@ -9,27 +9,9 @@
       "email": "rtulino@gmail.com"
     }
   ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/lavender/frontend"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/lavender/backend"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/ryaan-anthony/lavender-contact-form"
-    }
-  ],
   "require": {
     "php": ">=5.4.0",
-    "laravel/framework": "4.2.*",
-    "lavender/framework": "dev-master",
-    "lavender/frontend": "dev-master",
-    "lavender/backend": "dev-master",
-    "ryaan-anthony/lavender-contact-form": "dev-master"
+    "lavender/ecommerce": "dev-master"
   },
   "autoload": {
     "classmap": [
