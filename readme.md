@@ -51,7 +51,7 @@ Emails not working? Try modifying your email config:
 Something else? Follow the install instructions carefully or [submit an new issue!](https://github.com/lavender/lavender/issues/new)
 
 
-## Updating entities:
+### Updating entities:
 
 To create a new migration based on updated entity config, run:
 
@@ -64,8 +64,26 @@ To create a new migration based on updated entity config, run:
 You're done!
 
 
-#### Contributing a.k.a. [Fork me](https://github.com/lavender/lavender/fork)
+### [Contributing](https://github.com/lavender/lavender/fork)
 
 This repository contains the controllers, models, and views that makes Lavender an Ecommerce platform. Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated! (especially with frontend stuff)
 
 To contribute to the Lavender Framework, please see the [lavender/framework](https://github.com/lavender/framework) repository.
+
+### Lavender Ecommerce Features
+
+#### Themes
+
+You can configure routes, route filter, views, and view composers based on themes. Themes can be configured to fallback to the 'default' theme with an unlimited depth of inheritence.
+
+#### Routing
+
+Routes can be configured from the 'routes.php' config file. available to each module. 
+
+#### Layout Injection
+
+Injecting content to templates is done via the 'layout.php' config file. 
+
+#### View composers and Filters
+
+You can assign composers to views with the 'composers.php' config file and predefine route filters in 'filters.php' file.
