@@ -64,13 +64,7 @@ To create a new migration based on updated entity config, run:
 You're done!
 
 
-### [Contributing](https://github.com/lavender/lavender/fork)
-
-This repository contains the controllers, models, and views that makes Lavender an Ecommerce platform. Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated! (especially with frontend stuff)
-
-To contribute to the Lavender Framework, please see the [lavender/framework](https://github.com/lavender/framework) repository.
-
-### Lavender Ecommerce Features
+### Lavender Ecommerce Features:
 
 #### Themes
 
@@ -87,3 +81,10 @@ Injecting content to templates is done via the 'layout.php' config file.
 #### View composers and Filters
 
 You can assign composers to views with the 'composers.php' config file and predefine route filters in 'filters.php' file.
+
+
+### Contributing
+
+This repository contains the controllers, models, and views that makes Lavender an Ecommerce platform. Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated! (especially with frontend stuff)
+
+To contribute to the Lavender Framework, please see the [lavender/framework](https://github.com/lavender/framework) repository.
