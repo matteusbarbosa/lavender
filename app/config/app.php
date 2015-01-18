@@ -118,14 +118,12 @@ return [
         'Lavender\View\ViewServiceProvider',
         'Lavender\Workflow\ConfigServiceProvider',
 
-        // Lavender Frontend
+        // Lavender Ecommerce package (consumer layer)
         'Lavender\Store\StoreServiceProvider',
-        'Lavender\View\ThemeServiceProvider',
+        'Lavender\Theme\ThemeServiceProvider',
         'Lavender\Customer\CustomerServiceProvider',
         'Lavender\Catalog\CatalogServiceProvider',
         'Lavender\Frontend\FrontendServiceProvider',
-
-        // Lavender Backend
         'Lavender\Admin\AdminServiceProvider',
         'Lavender\Manager\ManagerServiceProvider',
         'Lavender\Backend\BackendServiceProvider',
