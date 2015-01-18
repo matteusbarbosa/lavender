@@ -58,6 +58,20 @@ Something else? Follow the install instructions carefully or [submit an new issu
 
 #### Entities
 
+A common task while developing features for an e-commerce site is extending existing entities (customers, orders, products,
+etc) and creating new ones (blog posts, banners, etc) and handling relationships. Lavender's Entity model (see 'entity.php' config files) makes it easy to create and extend entities without having to deal with managing rewrite conflicts, writing database migrations or manually creating relationships.
+
+##### Updating entities
+
+To create a new migration based on updated entity config, run:
+
+    php artisan migrate:entity make_foo
+
+...which creates a migration file for you, now run:
+
+    php artisan migrate
+
+You're done!
 
 
 #### Themes
