@@ -114,7 +114,7 @@ return [
         'Lavender\Entity\EntityServiceProvider',
         'Lavender\Workflow\WorkflowServiceProvider',
         'Lavender\Auth\AuthServiceProvider',
-        'Lavender\View\HtmlServiceProvider',
+        'Lavender\Html\HtmlServiceProvider',
         'Lavender\View\ViewServiceProvider',
         'Lavender\Workflow\ConfigServiceProvider',
 
@@ -202,7 +202,6 @@ return [
         'Account'      => 'Lavender\Support\Facades\Account',
         'Message'      => 'Lavender\Support\Facades\Message',
         'Menu'         => 'Lavender\Support\Facades\Menu',
-        'Table'        => 'Lavender\Support\Facades\Table',
         'Workflow'     => 'Lavender\Support\Facades\Workflow',
 
         // Lavender Facades (bound to static)
