@@ -38,12 +38,6 @@ return [
                 'default' => false,
             ],
         ],
-        'relationships' => [
-            'workflows' => [
-                'entity' => 'workflow.session',
-                'type' => Relationship::HAS_MANY,
-            ],
-        ],
     ],
 
     'reminder' => [
