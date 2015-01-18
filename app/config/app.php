@@ -119,16 +119,16 @@ return [
         'Lavender\Workflow\ConfigServiceProvider',
 
         // Lavender Ecommerce package (consumer layer)
+        'Lavender\Admin\AdminServiceProvider',
+        'Lavender\Backend\BackendServiceProvider',
+        'Lavender\Cart\CartServiceProvider',
+        'Lavender\Catalog\CatalogServiceProvider',
+        'Lavender\Contact\ContactServiceProvider',
+        'Lavender\Customer\CustomerServiceProvider',
+        'Lavender\Manager\ManagerServiceProvider',
+        'Lavender\Page\PageServiceProvider',
         'Lavender\Store\StoreServiceProvider',
         'Lavender\Theme\ThemeServiceProvider',
-        'Lavender\Customer\CustomerServiceProvider',
-        'Lavender\Catalog\CatalogServiceProvider',
-        'Lavender\Frontend\FrontendServiceProvider',
-        'Lavender\Admin\AdminServiceProvider',
-        'Lavender\Manager\ManagerServiceProvider',
-        'Lavender\Backend\BackendServiceProvider',
-        'Lavender\Contact\ContactServiceProvider',
-        'Lavender\Cart\CartServiceProvider',
 
     ] ,
 

@@ -1,5 +1,5 @@
 <?php
-namespace Lavender\Frontend\Footer;
+namespace Lavender\Page\Composers;
 
 class CopyrightComposer
 {

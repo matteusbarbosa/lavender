@@ -1,5 +1,5 @@
 <?php
-namespace Lavender\Frontend\Header;
+namespace Lavender\Page\Composers;
 
 use Illuminate\Support\Facades\HTML;
 use Lavender\Support\Facades\Menu;

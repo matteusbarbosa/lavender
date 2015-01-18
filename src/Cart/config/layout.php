@@ -9,7 +9,7 @@ return [
 
             'header.top.links' => [
 
-                'cart_link' => ['layout' => 'cart.link.summary'],
+                'cart_link' => ['layout' => 'cart.link.summary', 'position' => 20],
 
             ]
 

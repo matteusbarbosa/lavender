@@ -1,9 +1,9 @@
 <?php
-namespace Lavender\Frontend;
+namespace Lavender\Page;
 
 use Illuminate\Support\ServiceProvider;
 
-class FrontendServiceProvider extends ServiceProvider
+class PageServiceProvider extends ServiceProvider
 {
 
     /**

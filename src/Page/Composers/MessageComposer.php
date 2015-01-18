@@ -1,5 +1,5 @@
 <?php
-namespace Lavender\Theme\Composers;
+namespace Lavender\Page\Composers;
 
 class MessageComposer
 {

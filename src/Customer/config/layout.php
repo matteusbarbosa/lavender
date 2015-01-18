@@ -9,7 +9,7 @@ return [
 
             'header.top.links' => [
 
-                'login_link' => ['layout' => 'customer.link.login'],
+                'login_link' => ['layout' => 'customer.link.login', 'position' => 10],
 
             ]
 

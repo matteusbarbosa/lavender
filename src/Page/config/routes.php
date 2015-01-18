@@ -4,9 +4,11 @@ return [
 
 
     'default' => [
+
         '/' => [
             'layout' => 'page.home'
         ],
+
     ],
 
 
