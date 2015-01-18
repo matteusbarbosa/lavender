@@ -127,9 +127,7 @@ return [
         'Lavender\Admin\AdminServiceProvider',
         'Lavender\Manager\ManagerServiceProvider',
         'Lavender\Backend\BackendServiceProvider',
-
-        // Local Modules
-        'Ryaan\Lcf\ServiceProvider',
+        'Lavender\Contact\ContactServiceProvider',
 
     ] ,
 
