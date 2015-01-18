@@ -10,13 +10,16 @@
     }
   ],
   "require": {
-    "lavender/ecommerce": "0.1.*"
+    "lavender/framework": "0.1.*"
   },
   "autoload": {
     "classmap": [
       "app/database/migrations",
       "app/database/seeds"
-    ]
+    ],
+    "psr-4": {
+      "Lavender\\": "src"
+    }
   },
   "scripts": {
     "post-install-cmd": [

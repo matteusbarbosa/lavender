@@ -1,0 +1,24 @@
+<?php
+namespace Lavender\Customer\Database;
+
+use Lavender\Auth\Database\Account;
+
+class Customer extends Account
+{
+
+    protected $entity = 'customer';
+
+    protected $table = 'account_customer';
+
+    public $rules = [
+        'create' => [
+            'email'    => 'required|email',
+            'password' => 'required|min:4',
+        ],
+        'update' => [
+            'email'    => 'required|email',
+            'password' => 'required|min:4',
+        ]
+    ];
+
+}
