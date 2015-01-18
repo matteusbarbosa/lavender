@@ -128,6 +128,7 @@ return [
         'Lavender\Manager\ManagerServiceProvider',
         'Lavender\Backend\BackendServiceProvider',
         'Lavender\Contact\ContactServiceProvider',
+        'Lavender\Cart\CartServiceProvider',
 
     ] ,
 

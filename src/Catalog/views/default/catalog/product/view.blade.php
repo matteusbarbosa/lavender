@@ -6,8 +6,10 @@ Product View
 
 @section('content')
 
-<h1>{{ $product->name }}</h1>
+    <h1>{{ $product->name }}</h1>
 
-<div class="price">Price: ${{ $product->price }}</div>
+    @include('catalog.product.price', ['product' => $product])
+
+    @workflow('add_to_cart', ['product' => $product])
 
 @stop

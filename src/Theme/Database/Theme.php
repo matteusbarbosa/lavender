@@ -2,7 +2,7 @@
 namespace Lavender\Theme\Database;
 
 use Lavender\Entity\Database\Entity;
-use Lavender\Entity\Traits\BootableEntity;
+use Lavender\Support\Traits\BootableEntity;
 
 class Theme extends Entity
 {

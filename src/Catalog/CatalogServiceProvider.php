@@ -74,6 +74,7 @@ class CatalogServiceProvider extends ServiceProvider
         });
     }
 
+    //todo improve routes
     private function registerRoutes()
     {
         // Product view pages

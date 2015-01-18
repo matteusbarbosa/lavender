@@ -9,7 +9,7 @@ return [
 
             'header.top.links' => [
 
-                'login_link' => ['layout' => 'customer.link.login'],
+                'cart_link' => ['layout' => 'cart.link.summary'],
 
             ]
 

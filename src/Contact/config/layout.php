@@ -6,19 +6,6 @@ return [
     'default' => [
 
         // template
-        'contactform.page' => [
-
-            // section
-            'content' => [
-
-                // your custom layout
-                'contact' => ['workflow' => 'contactform'],
-
-            ]
-
-        ],
-
-        // template
         'page.section.footer' => [
 
             // section

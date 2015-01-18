@@ -5,5 +5,9 @@ Reset Password
 @stop
 
 @section('content')
-<h2>Reset your password</h2>
+
+    <h2>Reset your password</h2>
+
+    @workflow('customer_reset_password')
+
 @stop

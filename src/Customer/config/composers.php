@@ -4,7 +4,7 @@ return [
 
     'default' => [
 
-        'page.link.login'                       => 'Lavender\Customer\Composers\Link\LoginComposer',
+        'customer.link.login'                       => 'Lavender\Customer\Composers\Link\LoginComposer',
 
     ]
 

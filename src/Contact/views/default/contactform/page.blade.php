@@ -27,6 +27,8 @@ Contact form
 
 @section('content')
 
-<h2>Contact form:</h2>
+    <h2>Contact form:</h2>
+
+    @workflow('contactform')
 
 @stop

@@ -1,11 +1,7 @@
 @extends('layouts.split')
 
 @section('head.title')
-New account
-@stop
-
-@section('content.top')
-<h2>Register or Login</h2>
+Register or Login
 @stop
 
 @section('left.top')
@@ -13,7 +9,15 @@ New account
 <p>By creating an account with our store, you will be able to view and track your orders.</p>
 @stop
 
+@section('left')
+    @workflow('new_customer')
+@stop
+
 @section('right.top')
 <h5>Registered Customers</h5>
 <p>If you have an account with us, please log in.</p>
+@stop
+
+@section('right')
+    @workflow('existing_customer')
 @stop
