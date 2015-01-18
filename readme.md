@@ -2,8 +2,6 @@
 
 Lavender is an Open Source E-Commerce Framework built on top of Laravel.
 
-> **Note:**  This is project is in active development, much of the functionality hasn't been exposed to the frontend.
-
 ### License
 
 Lavender is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
@@ -12,7 +10,7 @@ Lavender is open-sourced software licensed under the [MIT license](http://openso
 
 Run Composer:
 
-    composer create-project lavender-commerce/lavender --prefer-dist -s dev
+    composer create-project lavender-commerce/lavender
 
 Set lavender/public as your new web root (example):
 
@@ -66,29 +64,6 @@ To create a new migration based on updated entity config, run:
 You're done!
 
 
-#### Themes
+#### Contributing
 
-We improved the routing experience by switching to a 'routes.php' config file available to each module. The routes are
-then merged from all modules into a global route collection allowing for rewrites. Adding content to arbitrary templates
-is now possible via the 'layout.php' config file. And lastly assigning composers to views is even easier with the
-'composers.php' config file.
-
-
-#### Entities
-
-A common task while developing features for an e-commerce site is extending existing entities (customers, orders, products,
-etc) and creating new ones (blog posts, banners, etc). Lavender's 'entity.php' config file allows modules to extend and
-create entities without having to deal with migrations or relationships.
-
-
-#### Workflows
-
-Additionally we spend a lot of time customizing user workflows such as the shopping cart, checkout, various forms, etc.
-Lavender's 'workflow.php' config file allows modules to collaborate on a single user workflow without complicated class
-rewrites and layout injection logic.
-
-
-#### Scope
-
-Lavender's Entity model was designed to support attribute scopes which means that all entities can be configured per store 
-(domain), per department (sub-domain), or globally.
+To contribute to Lavender please see the [framework](https://github.com/lavender/framework) and [ecommerce](https://github.com/lavender/ecommerce) packages.
