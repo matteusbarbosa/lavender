@@ -12,7 +12,7 @@ Lavender is open-sourced software licensed under the [MIT license](http://openso
 
 Run Composer:
 
-    composer create-project lavender-commerce/lavender --prefer-dist -s dev
+    composer create-project lavender-commerce/lavender
 
 Set lavender/public as your new web root (example):
 
