@@ -127,6 +127,7 @@ return [
 
         // Lavender Backend
         'Lavender\Admin\AdminServiceProvider',
+        'Lavender\Manager\ManagerServiceProvider',
         'Lavender\Backend\BackendServiceProvider',
 
         // Local Modules
