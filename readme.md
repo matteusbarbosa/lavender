@@ -66,6 +66,6 @@ You're done!
 
 #### Contributing a.k.a. [Fork me](https://github.com/lavender/lavender/fork)
 
-This repository contains the consumer layer of Lavender (controllers, models, views, assets, config), basically the stuff you want to customize. Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated! (especially with frontend stuff)
+This repository contains the controllers, models, and views that makes Lavender an Ecommerce platform. Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated! (especially with frontend stuff)
 
-To contribute to the Lavender Ecommerce Framework, please see the [lavender/framework](https://github.com/lavender/framework) repository.
+To contribute to the Lavender Framework, please see the [lavender/framework](https://github.com/lavender/framework) repository.
