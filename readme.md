@@ -2,11 +2,13 @@
 
 Lavender is an Open Source E-Commerce Framework built on top of Laravel.
 
+
 ### License
 
 Lavender is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
-### Installation instructions:
+
+### Installation instructions
 
 Run Composer:
 
@@ -40,6 +42,7 @@ That's it!
 
 
 ### Troubleshooting
+
 Login not working? Try modifying your sessions config:
 
     app/config/session.php
@@ -51,20 +54,11 @@ Emails not working? Try modifying your email config:
 Something else? Follow the install instructions carefully or [submit an new issue!](https://github.com/lavender/lavender/issues/new)
 
 
-### Updating entities:
+### Lavender Ecommerce Features
 
-To create a new migration based on updated entity config, run:
-
-    php artisan migrate:entity make_foo
-
-...which creates a migration file for you, now run:
-
-    php artisan migrate
-
-You're done!
+#### Entities
 
 
-### Lavender Ecommerce Features:
 
 #### Themes
 
