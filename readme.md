@@ -64,6 +64,8 @@ To create a new migration based on updated entity config, run:
 You're done!
 
 
-#### Contributing
+#### Contributing a.k.a. [Fork me](https://github.com/lavender/lavender/fork)
 
-To contribute to Lavender please see the [framework](https://github.com/lavender/framework) and [ecommerce](https://github.com/lavender/ecommerce) packages.
+This repository contains the consumer layer of Lavender (controllers, models, views, assets, config), basically the stuff you want to customize. Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated! (especially with frontend stuff)
+
+To contribute to the Lavender Ecommerce Framework, please see the [lavender/framework](https://github.com/lavender/framework) repository.
