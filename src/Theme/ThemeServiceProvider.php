@@ -15,6 +15,7 @@ class ThemeServiceProvider extends ServiceProvider
      */
     protected $defer = false;
 
+    protected $theme_config = ['composers', 'layout', 'routes', 'filters'];
     /**
      * Get the services provided by the provider.
      *
@@ -46,11 +47,11 @@ class ThemeServiceProvider extends ServiceProvider
     {
         $this->registerTheme();
 
+        $this->registerInstaller();
+
         $this->registerCommands();
 
         $this->registerConfig();
-
-        $this->registerInstaller();
 
         $this->app->booted(function (){
 
@@ -61,8 +62,12 @@ class ThemeServiceProvider extends ServiceProvider
 
     private function registerTheme()
     {
-        $this->app->bindShared('theme', function($app){
-            return new Theme();
+        $this->app->bindShared('theme.singleton', function ($app){
+            return entity('theme');
+        });
+
+        $this->app->bind('theme', function ($app){
+            return clone $app['theme.singleton'];
         });
     }
 
@@ -81,20 +86,18 @@ class ThemeServiceProvider extends ServiceProvider
      */
     private function registerConfig()
     {
-        $this->app['lavender.config']->merge(['composers', 'layout', 'routes', 'filters']);
-
-        $this->app['lavender.theme.config']->merge(['composers', 'layout', 'routes', 'filters']);
+        $this->app['lavender.config']->merge($this->theme_config);
 
         $merge_routes = [
             'config' => 'routes',
             'default' => 'routes',
-            'depth' => 1
+            'depth' => 2
         ];
 
         $merge_layout = [
             'config' => 'layout',
             'default' => 'layout',
-            'depth' => 3
+            'depth' => 4
         ];
 
         $this->app['lavender.config.defaults']->merge([$merge_routes, $merge_layout]);
@@ -112,6 +115,7 @@ class ThemeServiceProvider extends ServiceProvider
 
                 $console->call('lavender:theme', ['--store' => $this->app->store->id]);
 
+                //todo do i really want to do this?
                 $this->bootCurrentTheme();
             }
         });
@@ -132,13 +136,11 @@ class ThemeServiceProvider extends ServiceProvider
             // Now that we have our theme loaded, lets collect the fallbacks
             $theme->fallbacks = $this->themes($theme);
 
-            // Register the theme object with the theme fallbacks
-            $this->app->theme->booting($theme);
-
-            $this->app->theme = $theme;
+            $this->app['theme.singleton'] = $theme;
 
             // note: we boot the theme's callbacks prior to registering
             // the layouts, composers, routes, and filters.
+            $this->mergeConfig();
 
             // Override Laravel's view.finder to support theme fallbacks.
             $this->registerViewFinder();
@@ -163,6 +165,29 @@ class ThemeServiceProvider extends ServiceProvider
 
             // something went wrong
             if(!\App::runningInConsole()) throw new \Exception($e->getMessage());
+        }
+    }
+
+
+
+    public function mergeConfig()
+    {
+        // Cascade various configuration types based on current theme fallbacks.
+        foreach($this->theme_config as $type){
+
+            $merged = [];
+
+            $config = $this->app->config[$type];
+
+            foreach($this->app->theme->fallbacks as $theme_code){
+
+                if(isset($config[$theme_code])){
+
+                    $merged = recursive_merge($config[$theme_code], $merged);
+                }
+            }
+
+            $this->app->config[$type] = $merged;
         }
     }
 

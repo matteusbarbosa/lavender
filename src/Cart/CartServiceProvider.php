@@ -3,7 +3,6 @@ namespace Lavender\Cart;
 
 use Illuminate\Database\QueryException;
 use Illuminate\Support\ServiceProvider;
-use Lavender\Cart\Database\Cart;
 
 class CartServiceProvider extends ServiceProvider
 {
@@ -64,8 +63,11 @@ class CartServiceProvider extends ServiceProvider
 
     private function registerCart()
     {
-        $this->app->bindShared('cart', function($app){
-            return new Cart;
+        $this->app->bindShared('cart.singleton', function($app){
+            return entity('cart');
+        });
+        $this->app->bind('cart', function($app){
+            return clone $app['cart.singleton'];
         });
     }
 
@@ -81,10 +83,7 @@ class CartServiceProvider extends ServiceProvider
             // Find or create the current cart session
             $cart = $this->app->cart->find('session');
 
-            // Register the current cart object
-            $this->app->cart->booting($cart);
-
-            $this->app->cart = $cart;
+            $this->app['cart.singleton'] = $cart;
 
         } catch(QueryException $e){
 

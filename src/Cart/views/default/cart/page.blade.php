@@ -10,6 +10,8 @@
 
 @section('left')
 
+    @include('cart.items')
+
 @stop
 
 @section('right.top')

@@ -60,18 +60,16 @@ class StoreServiceProvider extends ServiceProvider
 
             $this->bootCurrentStore();
 
-            $this->app->theme->booted(function (){
-
-                $this->mergeConfig();
-
-            });
         });
     }
 
     private function registerStore()
     {
-        $this->app->bindShared('store', function (){
-            return new Store();
+        $this->app->bindShared('store.singleton', function ($app){
+            return entity('store');
+        });
+        $this->app->bind('store', function ($app){
+            return clone $app['store.singleton'];
         });
     }
     protected function registerListeners()
@@ -159,13 +157,12 @@ class StoreServiceProvider extends ServiceProvider
     public function bootCurrentStore()
     {
         try{
-            // Find the default store
-            $store = $this->app->store->where('default', '=', true)->first();
+            // Find the current store
+            $store = $this->app->store->find('rules');
 
-            // Register the current store object
-            $this->app->store->booting($store);
+            $this->app['store.singleton'] = $store;
 
-            $this->app->store = $store;
+            $this->mergeConfig();
 
         } catch(QueryException $e){
 

@@ -2,11 +2,9 @@
 namespace Lavender\Cart\Database;
 
 use Lavender\Entity\Database\Entity;
-use Lavender\Support\Traits\BootableEntity;
 
 class Cart extends Entity
 {
-    use BootableEntity;
 
     protected $entity = 'cart';
 
