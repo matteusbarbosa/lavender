@@ -8,19 +8,24 @@ class SubdomainMatch
 
     public function match($store)
     {
-        return $store->whereHas('config', function($q){
+        $hostname = Request::server('SERVER_NAME');
 
-            $hostname = Request::server('SERVER_NAME');
+        $host = explode('.', $hostname);
 
-            $host = explode('.', $hostname);
+        if(isset($host[count($host) - 3])){
 
-            $subdomain = array_slice($host, count($host) - 3, count($host) - 2);
+            $subdomain = $host[count($host) - 3];
 
-            $q->where('key', '=', 'subdomain');
+            return $store->whereHas('config', function ($q) use ($subdomain){
 
-            $q->where('value', '=', $subdomain);
+                $q->where('key', '=', 'subdomain');
 
-        })->first();
+                $q->where('value', '=', $subdomain);
+
+            })->first();
+        }
+
+        return false;
     }
 
 }
