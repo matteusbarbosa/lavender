@@ -19,18 +19,15 @@ return [
             'password' => [
                 'label' => 'Password',
                 'type' => Attribute::VARCHAR,
-                'backend.table' => false,
             ],
             'confirmation_code' => [
                 'label' => 'Confirmation Code',
                 'type' => Attribute::VARCHAR,
-                'backend.table' => false,
             ],
             'remember_token' => [
                 'label' => 'Remember Token',
                 'type' => Attribute::VARCHAR,
                 'nullable' => true,
-                'backend.table' => false,
             ],
             'confirmed' => [
                 'label' => 'confirmed',

@@ -25,7 +25,6 @@ return [
             'password' => [
                 'label' => 'Password',
                 'type' => Attribute::VARCHAR,
-                'backend.table' => false,
             ],
             'remember_token' => [
                 'label' => 'Remember Token',

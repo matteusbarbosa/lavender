@@ -24,16 +24,6 @@ return [
         ],
 
 
-        'backend.index' => [
-
-            'content' => [
-
-                'login' => ['workflow' => 'admin_login'],
-
-            ],
-
-        ],
-
     ]
 
 

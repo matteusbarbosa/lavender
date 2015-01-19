@@ -9,8 +9,8 @@ return [
         'backend' => [
 
             'layout' => 'backend.dashboard',
-            'before' => 'backend',
 
+            'before' => 'backend',
 
         ],
 
@@ -18,18 +18,6 @@ return [
 
             'layout' => 'backend.index'
 
-        ],
-
-        'backend/entity/{entity}' => [
-            'controller' => 'Lavender\Backend\Controllers\EntityController',
-            'action'     => 'loadTable',
-            'before' => 'backend',
-        ],
-
-        'backend/entity/{entity}/id/{id}' => [
-            'controller' => 'Lavender\Backend\Controllers\EntityController',
-            'action'     => 'loadForm',
-            'before' => 'backend',
         ],
 
     ],

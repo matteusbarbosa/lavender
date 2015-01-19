@@ -5,5 +5,6 @@ Backend Login
 @stop
 
 @section('content')
-<h4>Backend Login:</h4>
+    <h4>Backend Login:</h4>
+    @workflow('admin_login')
 @stop
