@@ -23,42 +23,39 @@ class Entity implements WorkflowContract
 
     public function edit(WorkflowInterface $view)
     {
-        if($view->entity->getEntity() == 'product'){
+        //todo add support for relationships
+        $fields = $this->loadBackendFields($view->entity);
 
-            return [
+        return $fields;
+    }
 
-                'name' => [
-                    'label' => 'Name',
-                    'value' => $view->entity->name,
-                    'type' => 'text',
-                    'validate' => ['required'],
-                ],
+    protected function loadBackendFields($entity)
+    {
+        $fields['id'] = [
+            'type' => 'hidden',
+            'value' => $entity->id,
+        ];
 
-                'sku' => [
-                    'label' => 'Sku',
-                    'value' => $view->entity->sku,
-                    'type' => 'text',
-                    'validate' => ['required'],
-                ],
+        foreach($entity->getConfig('attributes') as $field => $attribute){
 
-
+            $fields[$field] = [
+                'label' => $attribute['label'],
+                'type' => $attribute['backend.type'],
+                'value' => $entity->$field,
+                'validate' => $attribute['backend.validate'],
             ];
 
         }
 
-
-        return [
-
-            'id' => [
-                'label' => 'Todo',
-                'value' => $view->entity->getEntity(),
-                'type' => 'text',
-                'validate' => ['required'],
-            ],
-
-
+        $fields['submit'] = [
+            'type' => 'button',
+            'value' => 'Save',
+            'options' => ['type' => 'submit'],
         ];
+
+        return $fields;
     }
+
 
 
 
