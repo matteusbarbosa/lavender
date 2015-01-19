@@ -14,7 +14,7 @@ return [
             'email' => [
                 'label' => 'Email',
                 'type' => Attribute::VARCHAR,
-                'backend.renderer' => 'Lavender\Backend\Handlers\Entity\EditLink',
+                'backend.renderer' => 'Lavender\Manager\Handlers\Entity\EditLink',
             ],
             'password' => [
                 'label' => 'Password',

@@ -13,7 +13,7 @@ return [
             'name' => [
                 'label' => 'Name',
                 'type' => Attribute::VARCHAR,
-                'backend.renderer' => 'Lavender\Backend\Handlers\Entity\EditLink',
+                'backend.renderer' => 'Lavender\Manager\Handlers\Entity\EditLink',
             ],
             'description' => [
                 'label' => 'Description',
@@ -54,12 +54,12 @@ return [
             'sku' => [
                 'label' => 'Sku',
                 'type' => Attribute::VARCHAR,
-                'backend.renderer' => 'Lavender\Backend\Handlers\Entity\EditLink',
+                'backend.renderer' => 'Lavender\Manager\Handlers\Entity\EditLink',
             ],
             'name' => [
                 'label' => 'Name',
                 'type' => Attribute::VARCHAR,
-                'backend.renderer' => 'Lavender\Backend\Handlers\Entity\EditLink',
+                'backend.renderer' => 'Lavender\Manager\Handlers\Entity\EditLink',
             ],
             'price' => [
                 'label' => 'Price',
