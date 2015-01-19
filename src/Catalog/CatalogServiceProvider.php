@@ -71,7 +71,7 @@ class CatalogServiceProvider extends ServiceProvider
                 // Reload the new store object
                 $this->app->store = entity('store')->find($this->app->store->id);
             }
-        });
+        }, 40);
     }
 
     //todo improve routes

@@ -65,13 +65,16 @@ class StoreServiceProvider extends ServiceProvider
     private function registerStore()
     {
         $this->app->bindShared('store.singleton', function ($app){
+
             return entity('store');
         });
         $this->app->bind('store', function ($app){
 
             if(!$app['store.singleton']) throw new \Exception("Store model is not instantiated.");
 
-            return clone $app['store.singleton'];
+            $store = clone $app['store.singleton'];
+
+            return $store;
         });
     }
     protected function registerListeners()
@@ -111,11 +114,12 @@ class StoreServiceProvider extends ServiceProvider
 
             if($config['scope'] == Scope::IS_STORE){
 
-                $scope = ['store_id' => ['parent' => 'store']];
+                $scope['store_id'] = ['parent' => 'store'];
 
                 merge_defaults($scope, 'attribute');
 
-                $config['attributes'] += $scope;
+                $config['attributes']['store_id'] = $scope;
+
             }/* elseif($config['scope'] == Scope::IS_DEPARTMENT){
 
                 $scope = [
@@ -141,7 +145,7 @@ class StoreServiceProvider extends ServiceProvider
 
                 $this->bootCurrentStore();
             }
-        });
+        }, 20);
     }
 
     protected function registerConfig()

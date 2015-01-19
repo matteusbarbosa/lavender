@@ -37,7 +37,18 @@ class Store extends Entity
             }
         }
 
-        return self::where('default', '=', true)->first();
+        return self::findDefault();
+    }
+
+    protected static function findDefault()
+    {
+        if(!$default = self::where('default', '=', true)->first()){
+
+            $default = new static;
+
+        }
+
+        return $default;
     }
 
 }

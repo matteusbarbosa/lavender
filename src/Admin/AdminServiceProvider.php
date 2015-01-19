@@ -74,7 +74,7 @@ class AdminServiceProvider extends ServiceProvider
                 $console->call('lavender:admin');
 
             }
-        });
+        }, 50);
     }
 
     private function registerListeners()

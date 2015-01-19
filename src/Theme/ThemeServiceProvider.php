@@ -118,7 +118,7 @@ class ThemeServiceProvider extends ServiceProvider
                 //todo do i really want to do this?
                 $this->bootCurrentTheme();
             }
-        });
+        }, 30);
     }
 
     /**
