@@ -21,7 +21,7 @@
 
             <li>
 
-                <a href="{{{ URL::to($product->url) }}}">{{ $product->name }}</a>
+                <a href="{{{ $product->getUrl() }}}">{{ $product->name }}</a>
 
             </li>
 

@@ -12,4 +12,9 @@ class Product extends Entity
 
     public $timestamps = true;
 
+    public function getUrl()
+    {
+        return \URL::to(\Config::get('store.product_url') . '/' . $this->url);
+    }
+
 }

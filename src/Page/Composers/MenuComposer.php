@@ -35,7 +35,7 @@ class MenuComposer
         foreach($category->children as $child){
 
             $children[] = [
-                'content' => HTML::link($child->url, $child->name),
+                'content' => HTML::link($child->getUrl(), $child->name),
                 'children' => $this->getChildCategories($child)
             ];
 
@@ -49,7 +49,7 @@ class MenuComposer
         foreach($this->getCategories() as $category){
 
             Menu::frontend()->add('cat-'.$category->id, [
-                'content' => HTML::link($category->url, $category->name),
+                'content' => HTML::link($category->getUrl(), $category->name),
                 'children' =>  $this->getChildCategories($category)
             ]);
 

@@ -78,22 +78,18 @@ class CatalogServiceProvider extends ServiceProvider
     private function registerRoutes()
     {
         // Product view pages
-        \Route::get(\Config::get('store.product_url') . '/{product}', function ($product){
+        \Route::get(\Config::get('store.product_url') . '/{product_url}', function ($product_url){
 
-            $url = \Config::get('store.product_url') . '/' . $product;
-
-            $product = entity('product')->findByAttribute('url', $url);
+            $product = entity('product')->findByAttribute('url', $product_url);
 
             return $this->app->view->make('catalog.product.view')
                 ->withProduct($product);
         });
 
         // Category view pages
-        \Route::get(\Config::get('store.category_url') . '/{category}', function ($category){
+        \Route::get(\Config::get('store.category_url') . '/{category_url}', function ($category_url){
 
-            $url = \Config::get('store.category_url') . '/' . $category;
-
-            $category = entity('category')->findByAttribute('url', $url);
+            $category = entity('category')->findByAttribute('url', $category_url);
 
             return $this->app->view->make('catalog.category.view')
                 ->withCategory($category)
