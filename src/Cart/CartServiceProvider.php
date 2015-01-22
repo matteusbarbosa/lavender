@@ -11,7 +11,7 @@ class CartServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = true;
+    protected $defer = false;
 
 
     /**
@@ -43,9 +43,13 @@ class CartServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerCart();
+        $this->app->booted(function(){
 
-        $this->registerListeners();
+            $this->registerCart();
+
+            $this->registerListeners();
+
+        });
     }
 
     private function registerListeners()

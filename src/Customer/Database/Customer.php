@@ -21,4 +21,8 @@ class Customer extends Account
         ]
     ];
 
+    public function getCart()
+    {
+        return $this->cart->first();
+    }
 }

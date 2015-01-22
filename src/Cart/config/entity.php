@@ -58,7 +58,7 @@ return [
 
             'cart' => [
                 'entity' => 'cart',
-                'type' => Relationship::HAS_ONE,
+                'type' => Relationship::HAS_MANY,
             ],
 
         ],

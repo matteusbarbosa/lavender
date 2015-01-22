@@ -21,13 +21,13 @@ class ReloadCart
                 $session_cart = app('cart');
 
                 // load customer cart
-                if($customer_cart = $account->cart){
+                if($customer_cart = $account->getCart()){
 
                     // if cart ids don't match, we must merge their contents
                     if($customer_cart->id != $session_cart->id){
 
                         // todo merge session_cart into customer_cart
-                        var_dump("todo: merge session_cart into customer_cart");
+                        \Message::addError("todo: merge session_cart into customer_cart");
 
                         // delete original session cart id
                         entity('cart')->find($session_cart->id)->delete();
