@@ -66,7 +66,7 @@ class AdminServiceProvider extends ServiceProvider
      */
     private function registerInstaller()
     {
-        $this->app->installer->update('Install admin account', function ($console){
+        $this->app->installer->update('add_admin_account', function ($console){
 
             // If a default theme doesn't exist, create it now
             if(!entity('admin')->all()->count()){

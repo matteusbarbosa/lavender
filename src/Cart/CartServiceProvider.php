@@ -11,7 +11,7 @@ class CartServiceProvider extends ServiceProvider
      *
      * @var bool
      */
-    protected $defer = false;
+    protected $defer = true;
 
 
     /**
@@ -33,12 +33,6 @@ class CartServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->package('lavender/cart', 'cart', realpath(__DIR__));
-
-        $this->app->booted(function (){
-
-            $this->bootCurrentCart();
-
-        });
     }
 
 
@@ -50,11 +44,20 @@ class CartServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerCart();
+
         $this->registerListeners();
     }
 
     private function registerListeners()
     {
+        $this->app->events->listen(
+            'auth.logout',
+            'Lavender\Cart\Handlers\UnloadCart@handle'
+        );
+        $this->app->events->listen(
+            'auth.login',
+            'Lavender\Cart\Handlers\ReloadCart@handle'
+        );
         $this->app->events->listen(
             'workflow.add_to_cart.add.after',
             'Lavender\Cart\Handlers\AddToCart@handle'
@@ -63,36 +66,9 @@ class CartServiceProvider extends ServiceProvider
 
     private function registerCart()
     {
-        $this->app->bindShared('cart.singleton', function($app){
-            return entity('cart');
-        });
-        $this->app->bind('cart', function($app){
-            return clone $app['cart.singleton'];
+        $this->app->bindShared('cart', function($app){
+            return new Shared\Cart();
         });
     }
 
-    /**
-     * Match user session to initialize $theme
-     *
-     * @throws \Exception
-     * @return void
-     */
-    private function bootCurrentCart()
-    {
-        try{
-            // Find or create the current cart session
-            $cart = $this->app->cart->find('session');
-
-            $this->app['cart.singleton'] = $cart;
-
-        } catch(QueryException $e){
-
-            // missing core tables
-            if(!\App::runningInConsole()) throw new \Exception("Lavender not installed.");
-        } catch(\Exception $e){
-
-            // something went wrong
-            if(!\App::runningInConsole()) throw new \Exception($e->getMessage());
-        }
-    }
 }

@@ -62,13 +62,9 @@ class ThemeServiceProvider extends ServiceProvider
 
     private function registerTheme()
     {
-        $this->app->bindShared('theme.singleton', function ($app){
-            return entity('theme');
-        });
-
-        $this->app->bind('theme', function ($app){
-            return clone $app['theme.singleton'];
-        });
+        $this->app->bind('theme', function ($app, $theme){
+            return new Shared\Theme($theme);
+        }, true);
     }
 
     /**
@@ -108,7 +104,7 @@ class ThemeServiceProvider extends ServiceProvider
      */
     private function registerInstaller()
     {
-        $this->app->installer->update('Install default theme', function ($console){
+        $this->app->installer->update('add_default_theme', function ($console){
 
             // If a default theme doesnt exist, create it now
             if(!$this->app->theme->id){
@@ -136,8 +132,7 @@ class ThemeServiceProvider extends ServiceProvider
             // Now that we have our theme loaded, lets collect the fallbacks
             $theme->fallbacks = $this->themes($theme);
 
-            $this->app['theme.singleton'] = $theme;
-
+            $this->app->make('theme', $theme);
             // note: we boot the theme's callbacks prior to registering
             // the layouts, composers, routes, and filters.
             $this->mergeConfig();

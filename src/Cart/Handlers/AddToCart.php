@@ -12,7 +12,7 @@ class AddToCart
             $request['product'] = entity('product')->find($request['product']);
 
             // set the current cart
-            $request['cart'] = app('cart');
+            $request['cart'] = app('cart')->getCart();
 
             // create new cart item
             $cart_item = entity('cart_item')->fill($request);

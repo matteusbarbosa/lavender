@@ -64,17 +64,9 @@ class StoreServiceProvider extends ServiceProvider
 
     private function registerStore()
     {
-        $this->app->bindShared('store.singleton', function ($app){
+        $this->app->bindShared('store', function ($app){
 
-            return entity('store');
-        });
-        $this->app->bind('store', function ($app){
-
-            if(!$app['store.singleton']) throw new \Exception("Store model is not instantiated.");
-
-            $store = clone $app['store.singleton'];
-
-            return $store;
+            return new Shared\Store();
         });
     }
     protected function registerListeners()
@@ -87,12 +79,7 @@ class StoreServiceProvider extends ServiceProvider
             if($config['scope'] == Scope::IS_STORE){
 
                 $query->where('store_id', '=', $this->app->store->id);
-            } /*elseif($config['scope'] == Scope::IS_DEPARTMENT){
-
-                $query->where('store_id', '=', app('current.store')->id);
-
-                $query->where('department_id', '=', app('current.department')->id);
-            }*/
+            }
         });
 
         $this->app->events->listen('entity.query.insert', function (QueryBuilder $query, &$values){
@@ -102,12 +89,7 @@ class StoreServiceProvider extends ServiceProvider
             if($config['scope'] == Scope::IS_STORE){
 
                 $values['store_id'] = $this->app->store->id;
-            } /*elseif($config['scope'] == Scope::IS_DEPARTMENT){
-
-                $values['store_id'] = $this->app->store->id;
-
-                $values['department_id'] = app('current.department')->id;
-            }*/
+            }
         });
 
         $this->app->events->listen('entity.creator.prepare', function (&$config){
@@ -120,23 +102,13 @@ class StoreServiceProvider extends ServiceProvider
 
                 $config['attributes']['store_id'] = $scope;
 
-            }/* elseif($config['scope'] == Scope::IS_DEPARTMENT){
-
-                $scope = [
-                    'store_id' => ['parent' => 'store'],
-                    'department_id' => ['parent' => 'department'],
-                ];
-
-                merge_defaults($scope, 'attribute');
-
-                $config['attributes'] += $scope;
-            }*/
+            }
         });
     }
 
     protected function registerInstaller()
     {
-        $this->app->installer->update('Install default store', function ($console){
+        $this->app->installer->update('add_default_store', function ($console){
 
             // If a default store doesnt exist, create it now
             if(!$this->app->store->id){
@@ -163,12 +135,13 @@ class StoreServiceProvider extends ServiceProvider
     public function bootCurrentStore()
     {
         try{
-            // Find the current store
-            $store = $this->app->store->find('rules');
 
-            $this->app['store.singleton'] = $store;
+            // merge store config into global config
+            foreach($this->app->store->config->all() as $item){
 
-            $this->mergeConfig();
+                $this->app['config']->set('store.'.$item->key, $item->value);
+
+            }
 
         } catch(QueryException $e){
 
@@ -178,17 +151,6 @@ class StoreServiceProvider extends ServiceProvider
 
             // something went wrong
             if(!\App::runningInConsole()) throw new \Exception($e->getMessage());
-        }
-    }
-
-    public function mergeConfig()
-    {
-        $config = $this->app->store->config->all();
-
-        foreach($config as $item){
-
-            $this->app['config']->set('store.'.$item->key, $item->value);
-
         }
     }
 }

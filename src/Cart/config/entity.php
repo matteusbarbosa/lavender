@@ -15,6 +15,11 @@ return [
         ],
         'relationships' => [
 
+            'customer' => [
+                'entity' => 'customer',
+                'type' => Relationship::BELONGS_TO,
+            ],
+
             'items' => [
                 'entity' => 'cart_item',
                 'type' => Relationship::HAS_MANY,
@@ -47,6 +52,17 @@ return [
         ],
     ],
 
+
+    'customer' => [
+        'relationships' => [
+
+            'cart' => [
+                'entity' => 'cart',
+                'type' => Relationship::HAS_ONE,
+            ],
+
+        ],
+    ],
 
 
 
