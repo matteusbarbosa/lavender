@@ -1,5 +1,5 @@
 <?php
-namespace Lavender\Manager\Workflow;
+namespace Lavender\Backend\Workflow;
 
 use Lavender\Support\Contracts\WorkflowContract;
 use Lavender\Support\Contracts\WorkflowInterface;

@@ -77,19 +77,11 @@ class ThemeServiceProvider extends ServiceProvider
     {
         $this->app['lavender.config']->merge($this->theme_config);
 
-        $merge_routes = [
+        $this->app['lavender.config.defaults']->merge([[
             'config' => 'routes',
             'default' => 'routes',
             'depth' => 2
-        ];
-
-        $merge_layout = [
-            'config' => 'layout',
-            'default' => 'layout',
-            'depth' => 4
-        ];
-
-        $this->app['lavender.config.defaults']->merge([$merge_routes, $merge_layout]);
+        ]]);
     }
 
     /**
@@ -251,37 +243,8 @@ class ThemeServiceProvider extends ServiceProvider
     {
         foreach($this->app->config['routes'] as $path => $route){
 
-            if($route['layout']){
-
-                $callback = function () use ($route){
-
-                    return $this->app->view->make($route['layout']);
-                };
-
-                $this->route($route['method'], $path, $callback, $route['before']);
-
-            } elseif($route['controller'] && $route['action']){
-
-                $action = sprintf("%s@%s", $route['controller'], $route['action']);
-
-                $this->route($route['method'], $path, ['uses' => $action], $route['before']);
-            }
+            $this->app['page.router']->route($path, $route);
         }
-    }
-
-
-
-    /**
-     * Register Route
-     *
-     * @param string $method get|post
-     * @param string $path uri segment
-     * @param mixed $callback array|Closure
-     * @return void
-     */
-    protected function route($method, $path, $callback, $before)
-    {
-        \Route::$method($path, $callback)->before($before);
     }
 }
 

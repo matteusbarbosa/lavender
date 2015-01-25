@@ -10,7 +10,7 @@
 
         <ul>
 
-            @yield('backend.header.top.links')
+            @yield('header.top.links')
 
         </ul>
 

@@ -1,5 +1,5 @@
 <?php
-namespace Lavender\Manager\Handlers\Entity;
+namespace Lavender\Backend\Handlers\Entity;
 
 class EditLink
 {

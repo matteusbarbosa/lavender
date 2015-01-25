@@ -1,5 +1,5 @@
 <?php
-namespace Lavender\Manager\Controllers;
+namespace Lavender\Backend\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\HTML;
@@ -12,9 +12,9 @@ use Lavender\Support\Facades\Workflow;
 class EntityController extends Controller
 {
 
-    protected $form_layout = 'manager.entity.form';
+    protected $form_layout = 'backend.manager.entity.form';
 
-    protected $table_layout = 'manager.entity.table';
+    protected $table_layout = 'backend.manager.entity.table';
 
     /**
      * Manage entity table

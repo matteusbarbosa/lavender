@@ -125,7 +125,6 @@ return [
         'Lavender\Catalog\CatalogServiceProvider',
         'Lavender\Contact\ContactServiceProvider',
         'Lavender\Customer\CustomerServiceProvider',
-        'Lavender\Manager\ManagerServiceProvider',
         'Lavender\Page\PageServiceProvider',
         'Lavender\Store\StoreServiceProvider',
         'Lavender\Theme\ThemeServiceProvider',
