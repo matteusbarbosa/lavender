@@ -6,7 +6,7 @@ return [
     /**
      * General
      */
-    'name' => 'lavender store',
+    'name' => 'lavender commerce',
     'logo' => 'images/logo.svg',
     'email' => 'support@lavendercommerce.com',
     'phone' => '215 555 1212',
@@ -50,6 +50,7 @@ return [
 
     /**
      * Multisite: Add store scope to lavender entities
+     * todo reimplement
      */
     'multisite' => true,
 

@@ -253,15 +253,18 @@ class ThemeServiceProvider extends ServiceProvider
 
             if($route['layout']){
 
-                $this->route($route['method'], $path, ['before' => $route['before'], function () use ($route){
+                $callback = function () use ($route){
 
                     return $this->app->view->make($route['layout']);
-                }]);
+                };
+
+                $this->route($route['method'], $path, $callback, $route['before']);
+
             } elseif($route['controller'] && $route['action']){
 
                 $action = sprintf("%s@%s", $route['controller'], $route['action']);
 
-                $this->route($route['method'], $path, ['before' => $route['before'], 'uses' => $action]);
+                $this->route($route['method'], $path, ['uses' => $action], $route['before']);
             }
         }
     }
@@ -276,15 +279,9 @@ class ThemeServiceProvider extends ServiceProvider
      * @param mixed $callback array|Closure
      * @return void
      */
-    protected function route($method, $path, $callback)
+    protected function route($method, $path, $callback, $before)
     {
-        if($method == 'post'){
-
-            \Route::post($path, $callback);
-        } else{
-
-            \Route::get($path, $callback);
-        }
+        \Route::$method($path, $callback)->before($before);
     }
 }
 

@@ -1,3 +1,3 @@
 <?php
 
-// var_dump("PRODUCTION MODE");
+// var_dump("Production");

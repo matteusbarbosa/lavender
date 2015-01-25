@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -13,7 +13,10 @@ return array(
     |
     */
 
-    'paths'      => array(__DIR__ . '/../views'),
+    'paths'      => [
+        __DIR__ . '/../views/'.App::environment(),
+        __DIR__ . '/../views/core'
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -28,4 +31,4 @@ return array(
 
     'pagination' => 'pagination::slider-3',
 
-);
+];

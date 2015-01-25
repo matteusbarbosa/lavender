@@ -147,7 +147,7 @@ $app->instance('config', $config = new Config(
 
 $app->startExceptionHandling();
 
-if($env != 'development') ini_set('display_errors', 'Off');
+if($env != 'testing' && $env != 'develop') ini_set('display_errors', 'Off');
 
 /*
 |--------------------------------------------------------------------------
@@ -284,6 +284,25 @@ $app->booted(function () use ($app, $env){
         return Response::make("Be right back!", 503);
     });
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application & Route Filters
+    |--------------------------------------------------------------------------
+    |
+    | Below you will find the "before" and "after" events for the application
+    | which may be used to do any work before or after a request into your
+    | application. Here you may also register your custom route filters.
+    |
+    */
+
+    $app->before(function ($request){
+        //
+    });
+
+    $app->after(function ($request, $response){
+        //
+    });
+
 
     /*
     |--------------------------------------------------------------------------
@@ -304,6 +323,7 @@ $app->booted(function () use ($app, $env){
             throw new Illuminate\Session\TokenMismatchException;
         }
     });
+
 
     /*
     |--------------------------------------------------------------------------
