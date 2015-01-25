@@ -34,8 +34,6 @@ class StoreServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->package('lavender/store', 'store', realpath(__DIR__));
-
-        $this->commands(['lavender.store']);
     }
 
     /**
@@ -46,8 +44,6 @@ class StoreServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerStore();
-
-        $this->registerCommands();
 
         $this->registerConfig();
 
@@ -133,12 +129,6 @@ class StoreServiceProvider extends ServiceProvider
         $this->app['lavender.config']->merge(['store']);
     }
 
-    private function registerCommands()
-    {
-        $this->app->bind('lavender.store', function (){
-            return new Commands\CreateStore;
-        });
-    }
 
     public function bootCurrentStore()
     {

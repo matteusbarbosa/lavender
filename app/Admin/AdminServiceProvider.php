@@ -31,8 +31,6 @@ class AdminServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->package('lavender/admin', 'admin', realpath(__DIR__));
-
-        $this->commands(['admin.creator']);
     }
 
     /**
@@ -42,23 +40,9 @@ class AdminServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerCommands();
-
         $this->registerInstaller();
 
         $this->registerListeners();
-    }
-
-    /**
-     * Register artisan commands
-     */
-    private function registerCommands()
-    {
-        $this->app->bind('admin.creator', function (){
-
-            return new Commands\CreateAdmin;
-
-        });
     }
 
     /**

@@ -31,8 +31,6 @@ class CatalogServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->package('lavender/catalog', 'catalog', realpath(__DIR__));
-
-        $this->commands(['lavender.category.creator']);
     }
 
     /**
@@ -42,20 +40,11 @@ class CatalogServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerCommands();
-
         $this->registerInstaller();
 
         $this->app->booted(function (){
 
             $this->registerRoutes();
-        });
-    }
-
-    private function registerCommands()
-    {
-        $this->app->bind('lavender.category.creator', function (){
-            return new Commands\CreateCategory;
         });
     }
 

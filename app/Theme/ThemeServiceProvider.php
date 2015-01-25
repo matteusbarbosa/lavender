@@ -22,7 +22,7 @@ class ThemeServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['theme', 'theme.creator'];
+        return ['theme'];
     }
 
     /**
@@ -33,8 +33,6 @@ class ThemeServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->package('lavender/view', 'theme', realpath(__DIR__));
-
-        $this->commands(['theme.creator']);
     }
 
     /**
@@ -47,8 +45,6 @@ class ThemeServiceProvider extends ServiceProvider
         $this->registerTheme();
 
         $this->registerInstaller();
-
-        $this->registerCommands();
 
         $this->registerConfig();
 
@@ -71,16 +67,6 @@ class ThemeServiceProvider extends ServiceProvider
 
             return new Shared\Theme($theme);
 
-        });
-    }
-
-    /**
-     * Register artisan commands
-     */
-    private function registerCommands()
-    {
-        $this->app->bind('theme.creator', function (){
-            return new Commands\CreateTheme;
         });
     }
 

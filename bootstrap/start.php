@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-    'local' => [gethostname()],
+    'development' => [gethostname()],
     'production' => [],
 
 ));
@@ -42,7 +42,16 @@ $env = $app->detectEnvironment(array(
 |
 */
 
-$app->bindInstallPaths(require __DIR__ . '/paths.php');
+$app->bindInstallPaths([
+
+    'app'     => __DIR__ . '/..',
+
+    'public'  => __DIR__ . '/../public',
+
+    'base'    => __DIR__ . '/..',
+
+    'storage' => __DIR__ . '/../storage',
+]);
 
 /*
 |--------------------------------------------------------------------------

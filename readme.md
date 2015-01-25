@@ -29,13 +29,13 @@ Navigate to the lavender directory:
     
 Set up your connection in the database config file:
 
-    vim app/config/database.php
+    config/database.php
 
 Run the lavender installer:
 
     php artisan lavender:install
     
-Publish all package assets:
+Publish all package assets (only needed for 3rd party modules):
 
     php artisan asset:publish
     
@@ -50,11 +50,11 @@ That's it!
 
 Login not working? Try modifying your sessions config:
 
-    app/config/session.php
+    config/session.php
 
 Emails not working? Try modifying your email config:
 
-    app/config/mail.php
+    config/mail.php
 
 Something else? Follow the install instructions carefully or [submit an new issue!](https://github.com/lavender/lavender/issues/new)
 

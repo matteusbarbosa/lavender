@@ -147,7 +147,7 @@ $app->instance('config', $config = new Config(
 
 $app->startExceptionHandling();
 
-if($env != 'testing') ini_set('display_errors', 'Off');
+if($env != 'development') ini_set('display_errors', 'Off');
 
 /*
 |--------------------------------------------------------------------------
@@ -220,20 +220,90 @@ $app->getProviderRepository()->load($app, $providers);
 
 $app->booted(function () use ($app, $env){
 
+
     /*
     |--------------------------------------------------------------------------
-    | Load The Application Start Script
+    | Register The Laravel Class Loader
     |--------------------------------------------------------------------------
     |
-    | The start scripts gives this application the opportunity to override
-    | any of the existing IoC bindings, as well as register its own new
-    | bindings for things like repositories, etc. We'll load it here.
+    | In addition to using Composer, you may use the Laravel class loader to
+    | load your controllers and models. This is useful for keeping all of
+    | your classes in the "global" namespace without Composer updating.
     |
     */
 
-    $path = $app['path'] . '/start/global.php';
+    ClassLoader::addDirectories(array(
 
-    if(file_exists($path)) require $path;
+        app_path() . '/database/migrations',
+        app_path() . '/database/seeds',
+
+    ));
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Error Logger
+    |--------------------------------------------------------------------------
+    |
+    | Here we will configure the error logger setup for the application which
+    | is built on top of the wonderful Monolog library. By default we will
+    | build a basic log file setup which creates a single file for logs.
+    |
+    */
+
+    $app->log->useFiles(storage_path() . '/logs/lavender.log');
+
+    /*
+    |--------------------------------------------------------------------------
+    | Application Error Handler
+    |--------------------------------------------------------------------------
+    |
+    | Here you may handle any errors that occur in your application, including
+    | logging them or displaying custom views for specific errors. You may
+    | even register several error handlers to handle different types of
+    | exceptions. If nothing is returned, the default error view is
+    | shown, which includes a detailed stack trace during debug.
+    |
+    */
+
+    $app->error(function (Exception $exception, $code){
+        Log::error($exception);
+    });
+
+    /*
+    |--------------------------------------------------------------------------
+    | Maintenance Mode Handler
+    |--------------------------------------------------------------------------
+    |
+    | The "down" Artisan command gives you the ability to put an application
+    | into maintenance mode. Here, you will define what is displayed back
+    | to the user if maintenance mode is in effect for the application.
+    |
+    */
+
+    $app->down(function (){
+        return Response::make("Be right back!", 503);
+    });
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | CSRF Protection Filter
+    |--------------------------------------------------------------------------
+    |
+    | The CSRF filter is responsible for protecting your application against
+    | cross-site request forgery attacks. If this special token in a user
+    | session does not match the one given in this request, we'll bail.
+    |
+    */
+
+    // Apply CSRF filter to all 'post', 'put', and 'delete' requests
+    Route::when('*', 'csrf', ['post', 'put', 'delete']);
+
+    Route::filter('csrf', function (){
+        if(Session::token() != Input::get('_token')){
+            throw new Illuminate\Session\TokenMismatchException;
+        }
+    });
 
     /*
     |--------------------------------------------------------------------------
@@ -246,19 +316,8 @@ $app->booted(function () use ($app, $env){
     |
     */
 
-    $path = $app['path'] . "/start/{$env}.php";
+    $start_script = $app['path'] . "/start/{$env}.php";
 
-    if(file_exists($path)) require $path;
-
-    /*
-    |--------------------------------------------------------------------------
-    | Start The Application
-    |--------------------------------------------------------------------------
-    |
-    | All services have been registered...
-    |
-    | Time to start the app!
-    |
-    */
+    if(file_exists($start_script)) require $start_script;
 
 });
