@@ -18,9 +18,9 @@ class SendResponse
                 $message
                     ->to(Config::get('mail.from.address'), Config::get('mail.from.name'))
                     ->from($data['email'])
-                    ->subject(Lang::get('contactform::contactform.email.subject'));
+                    ->subject(Lang::get('contactform.email.subject'));
         });
-        Message::addSuccess(Lang::get('contactform::contactform.success.message'));
+        Message::addSuccess(Lang::get('contactform.success.message'));
     }
 
 }

@@ -2,7 +2,7 @@
 
 @section('content')
 
-<h1>{{ Lang::get('contactform::contactform.email.header') }}</h1>
+<h1>{{ Lang::get('contactform.email.header') }}</h1>
 
 <p>{{ $comment }}</p>
 
