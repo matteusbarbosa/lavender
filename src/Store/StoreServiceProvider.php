@@ -66,29 +66,37 @@ class StoreServiceProvider extends ServiceProvider
     {
         $this->app->bindShared('store', function ($app){
 
-            return new Shared\Store();
+            $store = entity('store');
+
+            return new Shared\Store($store);
         });
     }
-    protected function registerListeners()
-    {
 
+    private function registerListeners()
+    {
         $this->app->events->listen('entity.query.select', function (QueryBuilder $query){
 
-            $config = $query->config();
+            if($this->app->bound('store') && $this->app->store->exists){
 
-            if($config['scope'] == Scope::IS_STORE){
+                $config = $query->config();
 
-                $query->where('store_id', '=', $this->app->store->id);
+                if($config['scope'] == Scope::IS_STORE){
+
+                    $query->where('store_id', '=', $this->app->store->id);
+                }
             }
         });
 
         $this->app->events->listen('entity.query.insert', function (QueryBuilder $query, &$values){
 
-            $config = $query->config();
+            if($this->app->bound('store') && $this->app->store->exists){
 
-            if($config['scope'] == Scope::IS_STORE){
+                $config = $query->config();
 
-                $values['store_id'] = $this->app->store->id;
+                if($config['scope'] == Scope::IS_STORE){
+
+                    $values['store_id'] = $this->app->store->id;
+                }
             }
         });
 
@@ -106,12 +114,12 @@ class StoreServiceProvider extends ServiceProvider
         });
     }
 
-    protected function registerInstaller()
+    private function registerInstaller()
     {
         $this->app->installer->update('add_default_store', function ($console){
 
             // If a default store doesnt exist, create it now
-            if(!$this->app->store->id){
+            if(!$this->app->store->exists){
 
                 $console->call('lavender:store', ['--default' => true]);
 
@@ -120,12 +128,12 @@ class StoreServiceProvider extends ServiceProvider
         }, 20);
     }
 
-    protected function registerConfig()
+    private function registerConfig()
     {
         $this->app['lavender.config']->merge(['store']);
     }
 
-    protected function registerCommands()
+    private function registerCommands()
     {
         $this->app->bind('lavender.store', function (){
             return new Commands\CreateStore;
@@ -136,11 +144,13 @@ class StoreServiceProvider extends ServiceProvider
     {
         try{
 
-            // merge store config into global config
-            foreach($this->app->store->config->all() as $item){
+            if($this->app->store->bootStore()){
+                // merge store config into global config
+                foreach($this->app->store->config->all() as $item){
 
-                $this->app['config']->set('store.'.$item->key, $item->value);
+                    $this->app['config']->set('store.' . $item->key, $item->value);
 
+                }
             }
 
         } catch(QueryException $e){

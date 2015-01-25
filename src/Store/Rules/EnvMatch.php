@@ -8,9 +8,13 @@ class EnvMatch
 
     public function match($store)
     {
-        $store_id = Request::server('LAVENDER_STORE');
+        if($store_id = Request::server('LAVENDER_STORE')){
 
-        return $store->find($store_id);
+            return $store->find($store_id);
+
+        }
+
+        return false;
     }
 
 }

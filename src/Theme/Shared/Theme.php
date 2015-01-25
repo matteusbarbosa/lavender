@@ -6,18 +6,45 @@ use Lavender\Support\SharedEntity;
 
 class Theme extends SharedEntity
 {
-    public $count = 0;
 
-    function __construct($theme = null)
+
+    public function bootTheme($store)
     {
-        if(!$theme instanceof EntityInterface) throw new \Exception('Theme not defined.');
+        // Load the theme assigned to the current store
+        if($store->exists && $theme = $store->theme){
 
-        $this->setTheme($theme);
+            // Now that we have our theme loaded, lets collect the fallbacks
+            $theme->fallbacks = $this->themes($theme);
+
+            $this->setEntity($theme);
+
+            return $theme->exists;
+        }
+
+        return false;
     }
 
-    public function setTheme(EntityInterface $theme)
+    /**
+     * Merge inherited theme routes
+     * @param Theme $theme
+     * @internal param int $theme_id
+     * @return array
+     */
+    protected function themes($theme)
     {
-        $this->setEntity($theme);
+        $themes[] = $theme->code;
+
+        $parent = $theme->parent;
+
+        if($parent->id != $theme->id){
+
+            $themes = array_merge(
+                $themes,
+                $this->themes($parent)
+            );
+        }
+
+        return $themes;
     }
 
 }

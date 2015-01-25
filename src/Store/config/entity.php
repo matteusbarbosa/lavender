@@ -36,7 +36,7 @@ return [
      */
     'store.config' => [
         'class' => 'Lavender\Store\Database\Config',
-        //'scope' => Scope::IS_STORE,
+        'scope' => Scope::IS_STORE,
         'attributes' => [
             'key' => [
                 'label' => 'Key',
@@ -47,12 +47,12 @@ return [
                 'type' => Attribute::VARCHAR,
             ],
         ],
-//        'relationships' => [
-//            'store' => [
-//                'entity' => 'store',
-//                'type' => Relationship::HAS_ONE,
-//            ],
-//        ],
+        'relationships' => [
+            'store' => [
+                'entity' => 'store',
+                'type' => Relationship::HAS_ONE,
+            ],
+        ],
     ],
 
 

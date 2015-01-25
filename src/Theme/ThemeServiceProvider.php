@@ -3,7 +3,6 @@ namespace Lavender\Theme;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\QueryException;
-use Lavender\Theme\Database\Theme;
 
 class ThemeServiceProvider extends ServiceProvider
 {
@@ -55,16 +54,24 @@ class ThemeServiceProvider extends ServiceProvider
 
         $this->app->booted(function (){
 
-            $this->bootCurrentTheme();
+            if($this->app->store->exists){
+
+                $this->bootCurrentTheme();
+
+            }
 
         });
     }
 
     private function registerTheme()
     {
-        $this->app->bind('theme', function ($app, $theme){
+        $this->app->bindShared('theme', function ($app){
+
+            $theme = entity('theme');
+
             return new Shared\Theme($theme);
-        }, true);
+
+        });
     }
 
     /**
@@ -107,7 +114,7 @@ class ThemeServiceProvider extends ServiceProvider
         $this->app->installer->update('add_default_theme', function ($console){
 
             // If a default theme doesnt exist, create it now
-            if(!$this->app->theme->id){
+            if(!$this->app->theme->exists){
 
                 $console->call('lavender:theme', ['--store' => $this->app->store->id]);
 
@@ -126,31 +133,27 @@ class ThemeServiceProvider extends ServiceProvider
     private function bootCurrentTheme()
     {
         try{
-            // Load the theme assigned to the current store
-            $theme = $this->app->store->theme;
 
-            // Now that we have our theme loaded, lets collect the fallbacks
-            $theme->fallbacks = $this->themes($theme);
+            if($this->app->theme->bootTheme($this->app->store)){
+                // note: we boot the theme's callbacks prior to registering
+                // the layouts, composers, routes, and filters.
+                $this->mergeConfig();
 
-            $this->app->make('theme', $theme);
-            // note: we boot the theme's callbacks prior to registering
-            // the layouts, composers, routes, and filters.
-            $this->mergeConfig();
+                // Override Laravel's view.finder to support theme fallbacks.
+                $this->registerViewFinder();
 
-            // Override Laravel's view.finder to support theme fallbacks.
-            $this->registerViewFinder();
+                // Now let's register our view composers
+                $this->registerComposers();
 
-            // Now let's register our view composers
-            $this->registerComposers();
+                // Inject views into our layouts
+                $this->injectLayoutViews();
 
-            // Inject views into our layouts
-            $this->injectLayoutViews();
+                // Register filters that are used for routes
+                $this->registerFilters();
 
-            // Register filters that are used for routes
-            $this->registerFilters();
-
-            // Finally we can load our routes and filters so the app can finish booting.
-            $this->registerRoutes();
+                // Finally we can load our routes and filters so the app can finish booting.
+                $this->registerRoutes();
+            }
 
         } catch(QueryException $e){
 
@@ -296,29 +299,6 @@ class ThemeServiceProvider extends ServiceProvider
 
             \Route::get($path, $callback);
         }
-    }
-
-    /**
-     * Merge inherited theme routes
-     * @param Theme $theme
-     * @internal param int $theme_id
-     * @return array
-     */
-    protected function themes(Theme $theme)
-    {
-        $themes[] = $theme->code;
-
-        $parent = $theme->parent;
-
-        if($parent->id != $theme->id){
-
-            $themes = array_merge(
-                $themes,
-                $this->themes($parent)
-            );
-        }
-
-        return $themes;
     }
 }
 

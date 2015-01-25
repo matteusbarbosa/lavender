@@ -7,18 +7,16 @@ use Lavender\Support\SharedEntity;
 
 class Store extends SharedEntity
 {
-    protected $_data = [];
 
-    function __construct($store = null)
+    public function bootStore($store = null)
     {
-        if(!$store instanceof EntityInterface){
+        if(!$store instanceof EntityInterface) $store = $this->findStore();
 
-            $store = $this->findStore();
+        if($store->exists) $this->setStore($store);
 
-        }
-
-        $this->setStore($store);
+        return $this->exists;
     }
+
 
     public function setStore(EntityInterface $store)
     {
@@ -47,7 +45,9 @@ class Store extends SharedEntity
 
     protected function findDefault()
     {
-        return entity('store')->where('default', '=', true)->first();
+        $default = entity('store')->where('default', '=', true)->first();
+
+        return $default ?: entity('store');
     }
 
 }
