@@ -54,7 +54,13 @@ return array(
     |
     */
 
-    'from'       => array('address' => null, 'name' => null),
+    'from'       => [
+
+        'address' => null,
+
+        'name' => null
+
+    ],
 
     /*
     |--------------------------------------------------------------------------

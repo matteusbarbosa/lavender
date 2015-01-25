@@ -66,15 +66,23 @@ App::down(function (){
     return Response::make("Be right back!", 503);
 });
 
+
 /*
 |--------------------------------------------------------------------------
-| Require The Filters File
+| CSRF Protection Filter
 |--------------------------------------------------------------------------
 |
-| Next we will load the filters file for the application. This gives us
-| a nice separate location to store our route and application filter
-| definitions instead of putting them all in the main routes file.
+| The CSRF filter is responsible for protecting your application against
+| cross-site request forgery attacks. If this special token in a user
+| session does not match the one given in this request, we'll bail.
 |
 */
 
-require app_path() . '/filters.php';
+// Apply CSRF filter to all 'post', 'put', and 'delete' requests
+Route::when('*', 'csrf', ['post', 'put', 'delete']);
+
+Route::filter('csrf', function (){
+    if(Session::token() != Input::get('_token')){
+        throw new Illuminate\Session\TokenMismatchException;
+    }
+});

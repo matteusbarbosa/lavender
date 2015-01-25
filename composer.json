@@ -14,11 +14,11 @@
   },
   "autoload": {
     "classmap": [
-      "app/database/migrations",
-      "app/database/seeds"
+      "database/migrations",
+      "database/seeds"
     ],
     "psr-4": {
-      "Lavender\\": "src"
+      "Lavender\\": "app"
     }
   },
   "scripts": {
