@@ -43,7 +43,10 @@ class BackendServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->events->listen(
+            'workflow.entity_manager.edit.after',
+            'Lavender\Backend\Handlers\Entity\After'
+        );
     }
 
 }

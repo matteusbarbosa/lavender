@@ -17,7 +17,7 @@ class Register implements WorkflowContract
         ];
     }
 
-    public function options($workflow, $state)
+    public function options($workflow, $state, $view)
     {
         return [];
     }

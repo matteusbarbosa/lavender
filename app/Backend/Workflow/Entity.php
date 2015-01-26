@@ -16,9 +16,11 @@ class Entity implements WorkflowContract
         ];
     }
 
-    public function options($workflow, $state)
+    public function options($workflow, $state, $view)
     {
-        return [];
+        $baseUrl = \Config::get('store.workflow_base_url');
+
+        return ['url' => \URL::to($baseUrl.'/'.$workflow.'/'.$state.'/'.$view->entity->getEntity().'/'.$view->entity->id)];
     }
 
     public function edit(WorkflowInterface $view)
@@ -34,6 +36,10 @@ class Entity implements WorkflowContract
         $fields['id'] = [
             'type' => 'hidden',
             'value' => $entity->id,
+        ];
+        $fields['entity'] = [
+            'type' => 'hidden',
+            'value' => $entity->getEntity(),
         ];
 
         foreach($entity->getConfig('attributes') as $field => $attribute){
