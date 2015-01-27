@@ -2,6 +2,8 @@
 namespace Lavender\Catalog;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\HTML;
+use Lavender\Support\Facades\Menu;
 
 class CatalogServiceProvider extends ServiceProvider
 {
@@ -45,6 +47,8 @@ class CatalogServiceProvider extends ServiceProvider
         $this->app->booted(function (){
 
             $this->registerRoutes();
+
+            $this->registerMenu();
         });
     }
 
@@ -84,5 +88,39 @@ class CatalogServiceProvider extends ServiceProvider
                 ->withCategory($category)
                 ->withProducts($category->products()->paginate(\Config::get('store.product_count')));
         });
+    }
+
+    private function registerMenu()
+    {
+        $store = $this->app->store;
+
+        $categories = $store->root_category ?
+            $store->root_category->children : [];
+
+        foreach($categories as $category){
+
+            Menu::make('frontend')->add('cat-'.$category->id, [
+                'content' => HTML::link($category->getUrl(), $category->name),
+                'children' =>  $this->getChildCategories($category)
+            ]);
+
+        }
+
+    }
+
+    protected function getChildCategories($category)
+    {
+        $children = [];
+
+        foreach($category->children as $child){
+
+            $children[] = [
+                'content' => HTML::link($child->getUrl(), $child->name),
+                'children' => $this->getChildCategories($child)
+            ];
+
+        }
+
+        return $children;
     }
 }
