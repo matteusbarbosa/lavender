@@ -2,6 +2,7 @@
 namespace Lavender\Backend\Controllers;
 
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\HTML;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
@@ -11,6 +12,7 @@ use Lavender\Support\Facades\Workflow;
 
 class EntityController extends Controller
 {
+    protected $tabs = 'entity_manager';
 
     protected $form_layout = 'backend.manager.entity.form';
 
@@ -49,15 +51,17 @@ class EntityController extends Controller
     {
         if($model = $this->validate($entity, $id)){
 
-            $form = Workflow::make('entity_manager')->with('entity', $model);
+            Event::fire('tabs.entity_manager.make', $model);
 
             return View::make($this->form_layout)
-                ->with('entity', $entity)
-                ->with('form', $form);
+                ->with('tabs', 'entity_manager')
+                ->with('entity', $entity);
 
         }
 
-        return Redirect::to('backend');
+        Message::addError("Invalid entity '{$entity}' with id '{$id}'");
+
+        return Redirect::back();
     }
 
     /**

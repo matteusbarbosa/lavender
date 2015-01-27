@@ -1,6 +1,6 @@
 <ul>
 
-    @foreach($navigation as $id => $item)
+    @foreach($items as $id => $item)
 
         <li id="{{{ $id }}}">
 

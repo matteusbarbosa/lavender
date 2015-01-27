@@ -118,16 +118,20 @@ return [
         'Lavender\View\ViewServiceProvider',
         'Lavender\Workflow\ConfigServiceProvider',
 
+        // Lavender Ecommerce entities (global state objects)
+        'Lavender\Store\StoreServiceProvider',
+        'Lavender\Theme\ThemeServiceProvider',
+        'Lavender\Cart\CartServiceProvider',
+
         // Lavender Ecommerce package (consumer layer)
         'Lavender\Admin\AdminServiceProvider',
         'Lavender\Backend\BackendServiceProvider',
-        'Lavender\Cart\CartServiceProvider',
         'Lavender\Catalog\CatalogServiceProvider',
         'Lavender\Contact\ContactServiceProvider',
         'Lavender\Customer\CustomerServiceProvider',
+        'Lavender\Menu\MenuServiceProvider',
         'Lavender\Page\PageServiceProvider',
-        'Lavender\Store\StoreServiceProvider',
-        'Lavender\Theme\ThemeServiceProvider',
+        'Lavender\Tabs\TabsServiceProvider',
 
     ] ,
 
@@ -200,6 +204,7 @@ return [
         'Account'      => 'Lavender\Support\Facades\Account',
         'Message'      => 'Lavender\Support\Facades\Message',
         'Menu'         => 'Lavender\Support\Facades\Menu',
+        'Tabs'         => 'Lavender\Support\Facades\Tabs',
         'Workflow'     => 'Lavender\Support\Facades\Workflow',
 
         // Lavender Facades (bound to static)

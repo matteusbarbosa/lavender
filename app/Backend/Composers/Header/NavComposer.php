@@ -8,7 +8,7 @@ class NavComposer
     {
         $this->createNav();
 
-        $view->with('navigation', \Menu::backend()->all());
+        $view->with('navigation', \Menu::backend());
     }
 
 

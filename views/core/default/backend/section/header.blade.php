@@ -22,7 +22,7 @@
 
     <nav class="navigation">
 
-        @include('backend.section.header.navigation')
+        @menu('backend')
 
     </nav>
 

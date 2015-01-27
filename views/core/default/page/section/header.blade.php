@@ -22,7 +22,7 @@
 
     <nav class="navigation">
 
-        @include('page.section.header.navigation')
+        @menu('frontend')
 
     </nav>
 

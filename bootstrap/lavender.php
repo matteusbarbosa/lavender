@@ -340,4 +340,30 @@ $app->booted(function () use ($app, $env){
 
     if(file_exists($start_script)) require $start_script;
 
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Lavender's Blade Extensions
+    |--------------------------------------------------------------------------
+    |
+    | These extensions are compiled along with our views, if you need to update
+    | the output of a blade extension, make sure you call "php artisan cache:clear"
+    |
+    */
+
+    Blade::extend(function($view, $compiler)
+    {
+        $pattern = $compiler->createMatcher('tabs');
+
+        return preg_replace($pattern, '$1<?php echo Tabs::make$2; ?>', $view);
+    });
+
+    Blade::extend(function($view, $compiler)
+    {
+        $pattern = $compiler->createMatcher('menu');
+
+        return preg_replace($pattern, '$1<?php echo Menu::make$2; ?>', $view);
+    });
+
 });
