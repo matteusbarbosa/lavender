@@ -130,6 +130,7 @@ return [
         'Lavender\Contact\ContactServiceProvider',
         'Lavender\Customer\CustomerServiceProvider',
         'Lavender\Menu\MenuServiceProvider',
+        'Lavender\Message\MessageServiceProvider',
         'Lavender\Page\PageServiceProvider',
         'Lavender\Tabs\TabsServiceProvider',
 
