@@ -2,12 +2,11 @@
 namespace Lavender\Backend\Workflow;
 
 use Lavender\Support\Contracts\WorkflowContract;
-use Lavender\Support\Contracts\WorkflowInterface;
 
 class Entity implements WorkflowContract
 {
 
-    public function states($workflow)
+    public function states()
     {
         return [
 
@@ -16,17 +15,20 @@ class Entity implements WorkflowContract
         ];
     }
 
-    public function options($workflow, $state, $view)
+    public function template($state)
     {
-        $baseUrl = \Config::get('store.workflow_base_url');
-
-        return ['url' => \URL::to($baseUrl.'/'.$workflow.'/'.$state.'/'.$view->entity->getEntity().'/'.$view->entity->id)];
+        return 'workflow.form.container';
     }
 
-    public function edit(WorkflowInterface $view)
+    public function options($state)
+    {
+        return ['url' => \URL::to('backend/post/entity_manager/'.$state)];
+    }
+
+    public function edit($params)
     {
         //todo add support for relationships
-        $fields = $this->loadBackendFields($view->entity);
+        $fields = $this->loadBackendFields($params['entity']);
 
         return $fields;
     }

@@ -1,7 +1,7 @@
 <?php
 namespace Lavender\Admin\Handlers;
 
-use Lavender\Support\Facades\Workflow;
+use Lavender\Support\Facades\Message;
 
 class Login
 {
@@ -12,18 +12,23 @@ class Login
 
             if(\Account::admin()->isThrottled($data)){
 
-                throw new \Exception(\Lang::get('account.alerts.too_many_attempts'));
+                $error = \Lang::get('account.alerts.too_many_attempts');
 
             } elseif(\Account::admin()->existsButNotConfirmed($data)) {
 
-                throw new \Exception(\Lang::get('account.alerts.instructions_sent'));
+                $error = \Lang::get('account.alerts.instructions_sent');
+
+            } else {
+
+                $error = \Lang::get('account.alerts.wrong_credentials');
 
             }
 
-            throw new \Exception(\Lang::get('account.alerts.wrong_credentials'));
+            Message::addError($error);
+
+            throw new \Exception($error);
         }
 
-        Workflow::redirect('backend');
     }
 
 }

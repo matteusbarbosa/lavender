@@ -1,7 +1,10 @@
 <?php
 namespace Lavender\Backend;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
+use Lavender\Support\Facades\Workflow;
 
 class BackendServiceProvider extends ServiceProvider
 {
@@ -43,6 +46,19 @@ class BackendServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerListeners();
+
+        $this->registerRoutes();
+
+        $this->app->booted(function(){
+
+            $this->createNav();
+
+        });
+    }
+
+    private function registerListeners()
+    {
         $this->app->events->listen(
             'workflow.entity_manager.edit.after',
             'Lavender\Backend\Handlers\Entity\After'
@@ -51,10 +67,13 @@ class BackendServiceProvider extends ServiceProvider
             'tabs.entity_manager.make',
             'Lavender\Backend\Handlers\Entity\AddTabs'
         );
+    }
 
-        $this->app->booted(function(){
+    private function registerRoutes()
+    {
+        Route::post('backend/post/{workflow}/{state}', function ($workflow, $state){
 
-            $this->createNav();
+            return Workflow::make($workflow)->post($state, Input::all());
 
         });
     }

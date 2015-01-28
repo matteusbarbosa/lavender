@@ -1,7 +1,10 @@
 <?php
 namespace Lavender\Admin;
 
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Lavender\Support\Facades\Workflow;
 
 class AdminServiceProvider extends ServiceProvider
 {
@@ -43,6 +46,17 @@ class AdminServiceProvider extends ServiceProvider
         $this->registerInstaller();
 
         $this->registerListeners();
+
+        $this->registerRoutes();
+    }
+
+    private function registerRoutes()
+    {
+        Route::post('backend/admin/post/{state}', function ($state){
+
+            return Workflow::make('admin_login')->post($state, Input::all());
+
+        });
     }
 
     /**

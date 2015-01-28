@@ -11,7 +11,7 @@ class AddTabs
         Tabs::make('entity_manager')->add('general', [
             'content' => "General Information",
             'children' => [
-                ['content' => Workflow::make('entity_manager')->with('entity', $model)],
+                ['content' => Workflow::make('entity_manager', ['entity' => $model])],
             ]
         ]);
 

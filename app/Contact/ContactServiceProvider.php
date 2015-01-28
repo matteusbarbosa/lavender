@@ -1,8 +1,10 @@
 <?php
 namespace Lavender\Contact;
 
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider as CoreServiceProvider;
-
+use Lavender\Support\Facades\Workflow;
 
 class ContactServiceProvider extends CoreServiceProvider
 {
@@ -54,6 +56,12 @@ class ContactServiceProvider extends CoreServiceProvider
             'workflow.contactform.show_form.after',
             'Lavender\Contact\Handlers\SendResponse@handle'
         );
+
+        Route::post('contactform/post/{state}', function ($state){
+
+            return Workflow::make('contactform')->post($state, Input::all());
+
+        });
     }
 
 

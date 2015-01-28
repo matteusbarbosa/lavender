@@ -1,8 +1,10 @@
 <?php
 namespace Lavender\Cart;
 
-use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
+use Lavender\Support\Facades\Workflow;
 
 class CartServiceProvider extends ServiceProvider
 {
@@ -48,6 +50,17 @@ class CartServiceProvider extends ServiceProvider
             $this->registerCart();
 
             $this->registerListeners();
+
+            $this->registerRoutes();
+
+        });
+    }
+
+    private function registerRoutes()
+    {
+        Route::post('cart/post/{workflow}/{state}', function ($workflow, $state){
+
+            return Workflow::make($workflow)->post($state, Input::all());
 
         });
     }

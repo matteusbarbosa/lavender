@@ -38,11 +38,19 @@ class Register
                 }
             } else{
 
-                throw new \Exception(implode(PHP_EOL, $user->errors()->all(':message')));
+                $error = implode(PHP_EOL, $user->errors()->all(':message'));
+
+                Message::addError($error);
+
+                throw new \Exception($error);
             }
         } else{
 
-            throw new \Exception(Lang::get('account.alerts.duplicated_credentials'));
+            $error = Lang::get('account.alerts.duplicated_credentials');
+
+            Message::addError($error);
+
+            throw new \Exception($error);
         }
     }
 }

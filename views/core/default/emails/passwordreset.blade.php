@@ -7,8 +7,8 @@
 <p>{{ Lang::get('account.email.password_reset.greetings') }},</p>
 
 <p>{{ Lang::get('account.email.password_reset.body') }}</p>
-<a href='{{ URL::to('account/reset_password/'.$token) }}'>
-    {{ URL::to('account/reset_password/'.$token)  }}
+<a href='{{ URL::to('customer/reset_password/'.$token) }}'>
+    {{ URL::to('customer/reset_password/'.$token)  }}
 </a>
 
 <p>{{ Lang::get('account.email.password_reset.farewell') }}</p>

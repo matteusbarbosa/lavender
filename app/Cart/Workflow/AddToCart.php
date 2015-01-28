@@ -7,7 +7,7 @@ use Lavender\Support\Contracts\WorkflowContract;
 class AddToCart implements WorkflowContract
 {
 
-    public function states($workflow)
+    public function states()
     {
         return [
 
@@ -16,18 +16,23 @@ class AddToCart implements WorkflowContract
         ];
     }
 
-    public function options($workflow, $state, $view)
+    public function template($state)
     {
-        return [];
+        return 'workflow.form.container';
     }
 
-    public function add($cart)
+    public function options($state)
+    {
+        return ['url' => URL::to('cart/post/add_to_cart/'.$state)];
+    }
+
+    public function add($params)
     {
         return [
 
             'product' => [
                 'type' => 'hidden',
-                'value' => $cart->product ? $cart->product->id : -1,
+                'value' => isset($params['product']) ? $params['product']->id : -1,
                 'validate' => ['required'],
             ],
 

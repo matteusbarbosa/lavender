@@ -1,12 +1,13 @@
 <?php
 namespace Lavender\Customer\Workflow;
 
+use Illuminate\Support\Facades\URL;
 use Lavender\Support\Contracts\WorkflowContract;
 
 class ForgotPassword implements WorkflowContract
 {
 
-    public function states($workflow)
+    public function states()
     {
         return [
 
@@ -15,9 +16,14 @@ class ForgotPassword implements WorkflowContract
         ];
     }
 
-    public function options($workflow, $state, $view)
+    public function template($state)
     {
-        return [];
+        return 'workflow.form.container';
+    }
+
+    public function options($state)
+    {
+        return ['url' => URL::to('customer/post/customer_forgot_password/'.$state)];
     }
 
     public function request_reset()

@@ -23,7 +23,7 @@ class CustomerController extends Controller
             \Message::addError(\Lang::get('account.alerts.wrong_confirmation'));
         }
 
-        return \Redirect::to('account/login');
+        return \Redirect::to('customer/login');
     }
 
     /**
@@ -35,7 +35,7 @@ class CustomerController extends Controller
     {
         \Account::customer()->logout();
 
-        return \View::make('account.logout');
+        return \View::make('customer.logout');
     }
 
     /**
@@ -53,7 +53,7 @@ class CustomerController extends Controller
         // flash the token to the session to be used by workflow fields
         \Input::flashOnly('token');
 
-        return \Redirect::to('account/reset_password');
+        return \Redirect::to('customer/reset_password');
     }
 
     /**
@@ -65,6 +65,6 @@ class CustomerController extends Controller
      */
     public function doReset()
     {
-        return \View::make('account.reset_password');
+        return \View::make('customer.reset_password');
     }
 }

@@ -7,7 +7,7 @@ use Lavender\Support\Contracts\WorkflowContract;
 class Login implements WorkflowContract
 {
 
-    public function states($workflow)
+    public function states()
     {
         return [
 
@@ -16,9 +16,14 @@ class Login implements WorkflowContract
         ];
     }
 
-    public function options($workflow, $state, $view)
+    public function template($state)
     {
-        return [];
+        return 'workflow.form.container';
+    }
+
+    public function options($state)
+    {
+        return ['url' => URL::to('customer/post/existing_customer/'.$state)];
     }
 
     public function login_customer()

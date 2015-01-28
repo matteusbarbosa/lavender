@@ -1,7 +1,10 @@
 <?php
 namespace Lavender\Customer;
 
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
+use Lavender\Support\Facades\Workflow;
 
 class CustomerServiceProvider extends ServiceProvider
 {
@@ -40,6 +43,13 @@ class CustomerServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->registerListeners();
+
+        $this->registerRoutes();
+    }
+
+    private function registerListeners()
+    {
         $this->app->events->listen(
             'workflow.new_customer.register_customer.after',
             'Lavender\Customer\Handlers\Register@handle'
@@ -59,6 +69,15 @@ class CustomerServiceProvider extends ServiceProvider
             'workflow.reset_password.do_reset.after',
             'Lavender\Customer\Handlers\ResetPassword@handle'
         );
+    }
+
+    private function registerRoutes()
+    {
+        Route::post('customer/post/{workflow}/{state}', function ($workflow, $state){
+
+            return Workflow::make($workflow)->post($state, Input::all());
+
+        });
     }
 
 

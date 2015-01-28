@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Lang;
 use Lavender\Support\Facades\Account;
 use Lavender\Support\Facades\Message;
-use Lavender\Support\Facades\Workflow;
 
 class Login
 {
@@ -16,18 +15,22 @@ class Login
 
             if(Account::customer()->isThrottled($request)){
 
-                Message::addError(Lang::get('account.alerts.too_many_attempts'));
+                $error = Lang::get('account.alerts.too_many_attempts');
 
             } elseif(Account::customer()->existsButNotConfirmed($request)){
 
-                Message::addError(Lang::get('account.alerts.instructions_sent'));
+                $error = Lang::get('account.alerts.instructions_sent');
 
+            } else {
+
+                $error = Lang::get('account.alerts.wrong_credentials');
             }
 
-            Message::addError(Lang::get('account.alerts.wrong_credentials'));
+            Message::addError($error);
+
+            throw new \Exception($error);
 
         }
 
-        Workflow::redirect('account/dashboard');
     }
 }
