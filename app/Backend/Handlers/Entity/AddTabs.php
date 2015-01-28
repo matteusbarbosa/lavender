@@ -8,25 +8,27 @@ class AddTabs
 {
     public function handle($model)
     {
-        Tabs::make('entity_manager')->add('general', [
+        $tabs = Tabs::make('entity_manager');
+
+        $tabs->add('general', [
             'content' => "General Information",
             'children' => [
-                ['content' => Workflow::make('entity_manager', ['entity' => $model])],
+                ['content' => Workflow::make('entity_manager', ['entity' => $model])->render()],
             ]
         ]);
 
         foreach($model->getRelationships() as $relation => $config){
 
-            //Workflow::make('relationship_manager')->with('entity', $model);
+            $workflow = $config['type'].'_manager';
 
+            $params = ['entity' => $model, 'config' => $config];
 
-            Tabs::make('entity_manager')->add($relation, [
-                'content' => $relation,
+            $tabs->add('_'.$relation, [
+                'content' => "Manage ".$relation,
                 'children' => [
-                    //['content' => Workflow::make('entity_manager')->with('entity', $model)],
+                    ['content' => Workflow::make($workflow, $params)->render()],
                 ]
             ]);
-
 
         }
 
