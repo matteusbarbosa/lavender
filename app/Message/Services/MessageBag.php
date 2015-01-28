@@ -3,6 +3,7 @@ namespace Lavender\Message\Services;
 
 use Illuminate\Support\MessageBag as Message;
 
+// todo extend/use ViewErrorBag
 class MessageBag
 {
 
