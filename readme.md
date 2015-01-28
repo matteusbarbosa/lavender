@@ -1,6 +1,6 @@
 ## Lavender
 
-Lavender is an Open Source E-Commerce Framework built on top of Laravel.
+Lavender is an Open Source E-Commerce Framework built on top of Laravel. **For more information on Lavender, please see [lavender/docs](https://github.com/lavender/docs).**
 
 
 ### License
@@ -59,45 +59,10 @@ Emails not working? Try modifying your email config:
 Something else? Follow the install instructions carefully or [submit an new issue!](https://github.com/lavender/lavender/issues/new)
 
 
-### Lavender Ecommerce Features
-
-#### Entities
-
-A common task while developing features for an e-commerce site is extending existing entities (customers, orders, products,
-etc) and creating new ones (blog posts, banners, etc) and handling relationships. Lavender's Entity model (see 'entity.php' config files) makes it easy to create and extend entities without having to deal with managing rewrite conflicts, writing database migrations or manually creating relationships.
-
-##### Updating entities
-
-To create a new migration based on updated entity config, run:
-
-    php artisan migrate:entity make_foo
-
-...which creates a migration file for you, now run:
-
-    php artisan migrate
-
-You're done!
-
-
-#### Themes
-
-You can configure routes, route filter, views, and view composers based on themes. Themes can be configured to fallback to the 'default' theme with an unlimited depth of inheritence.
-
-#### Routing
-
-Routes can be configured from the 'routes.php' config file. available to each module. 
-
-#### Layout Injection
-
-Injecting content to templates is done via the 'layout.php' config file. 
-
-#### View composers and Filters
-
-You can assign composers to views with the 'composers.php' config file and predefine route filters in 'filters.php' file.
-
-
 ### Contributing
 
-This repository contains the controllers, models, and views that makes Lavender an Ecommerce platform. Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated! (especially with frontend stuff)
+Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated!
+
+This repository contains the controllers, models, and views that makes Lavender an Ecommerce platform. 
 
 To contribute to the Lavender Framework, please see the [lavender/framework](https://github.com/lavender/framework) repository.
