@@ -109,7 +109,6 @@ return [
         'Illuminate\Workbench\WorkbenchServiceProvider',
 
         // Lavender Framework (services only)
-        'Lavender\Core\CoreServiceProvider',
         'Lavender\Config\ConfigServiceProvider',
         'Lavender\Entity\EntityServiceProvider',
         'Lavender\Workflow\WorkflowServiceProvider',

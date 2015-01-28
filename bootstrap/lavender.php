@@ -60,6 +60,19 @@ use Illuminate\Config\Repository as Config;
 
 $app->instance('app', $app);
 
+
+/*
+|--------------------------------------------------------------------------
+| Register Lavender Installer
+|--------------------------------------------------------------------------
+|
+|
+|
+*/
+$app->bindShared('installer', function ($app){
+    return new \Lavender\Support\Installer();
+});
+
 /*
 |--------------------------------------------------------------------------
 | Check For The Test Environment
@@ -206,6 +219,7 @@ Request::enableHttpMethodParameterOverride();
 $providers = $config['providers'];
 
 $app->getProviderRepository()->load($app, $providers);
+
 
 /*
 |--------------------------------------------------------------------------
