@@ -13,7 +13,7 @@ class AddTabs
         $tabs->add('general', [
             'content' => "General Information",
             'children' => [
-                ['content' => Workflow::make('entity_manager', ['entity' => $model])->render()],
+                ['content' => Workflow::make('entity_manager', ['entity' => $model])],
             ]
         ]);
 
@@ -26,7 +26,7 @@ class AddTabs
             $tabs->add('_'.$relation, [
                 'content' => "Manage ".$relation,
                 'children' => [
-                    ['content' => Workflow::make($workflow, $params)->render()],
+                    ['content' => Workflow::make($workflow, $params)],
                 ]
             ]);
 
