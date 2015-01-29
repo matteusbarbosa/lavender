@@ -1,5 +1,7 @@
 <?php
 
+Artisan::add(new \Lavender\Support\Commands\InstallLavender());
+
 Artisan::add(new \Lavender\Admin\Commands\CreateAdmin());
 
 Artisan::add(new \Lavender\Catalog\Commands\CreateCategory());
