@@ -2,9 +2,10 @@
 namespace Lavender\Customer\Workflow;
 
 use Illuminate\Support\Facades\URL;
-use Lavender\Support\Contracts\WorkflowContract;
 
-class Register implements WorkflowContract
+use Lavender\Support\Workflow;
+
+class Register extends Workflow
 {
 
     public function states()
@@ -18,17 +19,21 @@ class Register implements WorkflowContract
         ];
     }
 
-    public function template($state)
-    {
-        return 'workflow.form.container';
-    }
-
-    public function options($state)
+    public function options($state, $params)
     {
         return ['url' => URL::to('customer/post/new_customer/'.$state)];
     }
 
-    public function register_now()
+    public function fields($state, $params)
+    {
+        if($state == 'register_now') return $this->register_now($params);
+
+        if($state == 'register_customer') return $this->register_customer($params);
+
+        return [];
+    }
+
+    protected function register_now($params)
     {
         return [
 
@@ -42,7 +47,7 @@ class Register implements WorkflowContract
     }
 
 
-    public function register_customer()
+    protected function register_customer($params)
     {
         return [
 

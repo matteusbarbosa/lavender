@@ -1,13 +1,15 @@
 <?php
-namespace Lavender\Backend\Handlers\Entity;
+namespace Lavender\Backend\Composers\Manager;
 
 use Lavender\Support\Facades\Tabs;
 use Lavender\Support\Facades\Workflow;
 
-class AddTabs
+class AddEntityTabs
 {
-    public function handle($model)
+    public function compose($view)
     {
+        $model = $view->model;
+
         $tabs = Tabs::make('entity_manager');
 
         $tabs->add('general', [
@@ -21,9 +23,9 @@ class AddTabs
 
             $workflow = $config['type'].'_manager';
 
-            $params = ['entity' => $model, 'config' => $config];
+            $params = ['relation' => $model->$relation, 'config' => $config];
 
-            $tabs->add('_'.$relation, [
+            $tabs->add($relation, [
                 'content' => "Manage ".$relation,
                 'children' => [
                     ['content' => Workflow::make($workflow, $params)],

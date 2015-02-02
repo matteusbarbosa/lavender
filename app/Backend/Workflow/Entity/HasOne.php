@@ -1,9 +1,9 @@
 <?php
 namespace Lavender\Backend\Workflow\Entity;
 
-use Lavender\Support\Contracts\WorkflowContract;
+use Lavender\Support\Workflow;
 
-class HasOne implements WorkflowContract
+class HasOne extends Workflow
 {
 
     public function states()
@@ -15,18 +15,14 @@ class HasOne implements WorkflowContract
         ];
     }
 
-    public function template($state)
-    {
-        return 'workflow.form.container';
-    }
-
-    public function options($state)
+    public function options($state, $params)
     {
         return ['url' => \URL::to('backend/post/hasone_manager/'.$state)];
     }
 
-    public function edit($params)
+    public function fields($state, $params)
     {
+        if($state != 'edit') return [];
         //todo add support for relationships
         //var_dump($params['entity']);
 

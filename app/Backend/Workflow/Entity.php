@@ -1,9 +1,9 @@
 <?php
 namespace Lavender\Backend\Workflow;
 
-use Lavender\Support\Contracts\WorkflowContract;
+use Lavender\Support\Workflow;
 
-class Entity implements WorkflowContract
+class Entity extends Workflow
 {
 
     public function states()
@@ -20,17 +20,24 @@ class Entity implements WorkflowContract
         return 'workflow.form.container';
     }
 
-    public function options($state)
+    public function options($state, $params)
     {
-        return ['url' => \URL::to('backend/post/entity_manager/'.$state)];
+        $entity = $params['entity'];
+
+        $post_url = "backend/entity_manager/{$state}/{$entity->getEntity()}/{$entity->id}";
+
+        return ['url' => \URL::to($post_url)];
     }
 
-    public function edit($params)
+    public function fields($state, $params)
     {
-        //todo add support for relationships
-        $fields = $this->loadBackendFields($params['entity']);
+        if($state == 'edit'){
 
-        return $fields;
+            return $this->loadBackendFields($params['entity']);
+
+        }
+
+        return [];
     }
 
     protected function loadBackendFields($entity)
@@ -44,11 +51,11 @@ class Entity implements WorkflowContract
             'value' => $entity->getEntity(),
         ];
 
-        foreach($entity->getConfig('attributes') as $field => $attribute){
+        foreach($entity->backendTable() as $field => $attribute){
 
             $fields[$field] = [
                 'label' => $attribute['label'],
-                'type' => $attribute['backend.type'],
+                'type' => $attribute['backend.input'],
                 'value' => $entity->$field,
                 'validate' => $attribute['backend.validate'],
             ];

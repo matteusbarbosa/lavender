@@ -13,6 +13,7 @@ return [
             'name' => [
                 'label' => 'Name',
                 'type' => Attribute::VARCHAR,
+                'backend.table' => true,
                 'backend.renderer' => 'Lavender\Backend\Handlers\Entity\EditLink',
             ],
             'description' => [
@@ -54,11 +55,13 @@ return [
             'sku' => [
                 'label' => 'Sku',
                 'type' => Attribute::VARCHAR,
+                'backend.table' => true,
                 'backend.renderer' => 'Lavender\Backend\Handlers\Entity\EditLink',
             ],
             'name' => [
                 'label' => 'Name',
                 'type' => Attribute::VARCHAR,
+                'backend.table' => true,
                 'backend.renderer' => 'Lavender\Backend\Handlers\Entity\EditLink',
             ],
             'price' => [

@@ -1,9 +1,9 @@
 <?php
 namespace Lavender\Backend\Workflow\Entity;
 
-use Lavender\Support\Contracts\WorkflowContract;
+use Lavender\Support\Workflow;
 
-class Pivot implements WorkflowContract
+class Pivot extends Workflow
 {
 
     public function states()
@@ -20,19 +20,56 @@ class Pivot implements WorkflowContract
         return 'workflow.form.container';
     }
 
-    public function options($state)
+    public function options($state, $params)
     {
         return ['url' => \URL::to('backend/post/pivot_manager/'.$state)];
     }
 
-    public function edit($params)
+    public function fields($state, $params)
     {
-        //todo add support for relationships
-        //var_dump($params['entity']);
+        if($state == 'edit') return $this->edit($params);
 
-        $fields['todo'] = [
+        return [];
+    }
+
+    protected function edit($params)
+    {
+        $header = [];
+
+        $headers = [];
+
+        $rows = [];
+
+        foreach($params['relation'] as $item){
+
+            $column = [];
+
+            $attributes = $item->backendTable();
+
+            foreach($attributes as $key => $value){
+
+                if(!$headers) $header[] = $item->backendLabel($key);
+
+                $column[] = $item->backendValue($key);
+
+            }
+
+            $rows[] = $column;
+
+            if(!$headers) $headers = $header;
+
+        }
+
+        $fields['relation'] = [
+            'type' => 'table',
+            'value' => [],
+            'headers' => $headers,
+            'values' => $rows,
+        ];
+
+        $fields['save'] = [
             'type' => 'button',
-            'value' => 'todo pivot',
+            'value' => 'Save',
             'options' => ['type' => 'submit'],
         ];
 

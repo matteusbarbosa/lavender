@@ -2,9 +2,10 @@
 namespace Lavender\Contact\Workflow;
 
 use Illuminate\Support\Facades\URL;
-use Lavender\Support\Contracts\WorkflowContract;
 
-class ContactForm implements WorkflowContract
+use Lavender\Support\Workflow;
+
+class ContactForm extends Workflow
 {
     public function states()
     {
@@ -20,13 +21,15 @@ class ContactForm implements WorkflowContract
         return 'workflow.form.container';
     }
 
-    public function options($state)
+    public function options($state, $params)
     {
         return ['url' => URL::to('contactform/post/'.$state)];
     }
 
-    public function show_form()
+    public function fields($state, $params)
     {
+        if($state != 'show_form') return [];
+
         return [
 
             'email' => [

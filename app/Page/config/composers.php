@@ -4,9 +4,17 @@ return [
 
     'default' => [
 
-        'layouts.elements.messages'             => 'Lavender\Page\Composers\MessageComposer',
+        'layouts.elements.messages'             => [
 
-        'page.section.footer.copyright'         => 'Lavender\Page\Composers\CopyrightComposer',
+            10 => 'Lavender\Page\Composers\MessageComposer',
+
+        ],
+
+        'page.section.footer.copyright'         => [
+
+            10 => 'Lavender\Page\Composers\CopyrightComposer',
+
+        ]
 
     ]
 

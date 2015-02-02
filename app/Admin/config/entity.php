@@ -15,6 +15,7 @@ return [
                 'label' => 'Username',
                 'type' => Attribute::VARCHAR,
                 'unique' => true,
+                'backend.table' => true,
                 'backend.renderer' => 'Lavender\Backend\Handlers\Entity\EditLink',
             ],
             'email' => [

@@ -366,12 +366,12 @@ $app->booted(function () use ($app, $env){
     |
     */
 
-    Blade::extend(function($view, $compiler)
+    /*Blade::extend(function($view, $compiler)
     {
         $pattern = $compiler->createMatcher('tabs');
 
         return preg_replace($pattern, '$1<?php echo Tabs::make$2; ?>', $view);
-    });
+    });*/
 
     Blade::extend(function($view, $compiler)
     {
@@ -379,5 +379,25 @@ $app->booted(function () use ($app, $env){
 
         return preg_replace($pattern, '$1<?php echo Menu::make$2; ?>', $view);
     });
+
+
+    Blade::extend(function($value) {
+        return preg_replace('/\@define(.+)/', '<?php ${1}; ?>', $value);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 });

@@ -1,10 +1,11 @@
 <?php
 namespace Lavender\Cart\Workflow;
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
-use Lavender\Support\Contracts\WorkflowContract;
+use Lavender\Support\Workflow;
 
-class AddToCart implements WorkflowContract
+class AddToCart extends Workflow
 {
 
     public function states()
@@ -16,18 +17,20 @@ class AddToCart implements WorkflowContract
         ];
     }
 
-    public function template($state)
+    public function response($state)
     {
-        return 'workflow.form.container';
+        return Redirect::to('cart');
     }
 
-    public function options($state)
+    public function options($state, $params)
     {
         return ['url' => URL::to('cart/post/add_to_cart/'.$state)];
     }
 
-    public function add($params)
+    public function fields($state, $params)
     {
+        if($state != 'add') return [];
+
         return [
 
             'product' => [

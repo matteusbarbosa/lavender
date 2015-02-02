@@ -2,21 +2,16 @@
 namespace Lavender\Backend\Controllers;
 
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Form;
 use Illuminate\Support\Facades\HTML;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
 use Lavender\Backend\Interfaces\ViewModelInterface;
 use Lavender\Support\Facades\Message;
-use Lavender\Support\Facades\Workflow;
+use Lavender\Support\Facades\Tabs;
 
 class EntityController extends Controller
 {
-    protected $tabs = 'entity_manager';
-
-    protected $form_layout = 'backend.manager.entity.form';
-
-    protected $table_layout = 'backend.manager.entity.table';
 
     /**
      * Manage entity table
@@ -28,15 +23,37 @@ class EntityController extends Controller
     {
         if($model = $this->validate($entity)){
 
-            $table = HTML::table($entity, 'entity')->with('entity', $model);
+            // todo get backend table attributes
+            $attributes = $model->backendTable();
 
-            return View::make($this->table_layout)
+            $columns = [-1 => "id"] + array_keys($attributes);
+
+            $headers = $this->tableHeaders($attributes);
+
+            $rows = $model->all($columns);
+
+            $table = Form::table($rows, $headers, 'backend.entity.form.table');
+
+            return View::make('backend.manager.entity.table')
                 ->with('entity', $entity)
                 ->with('table', $table);
 
         }
 
         return Redirect::to('backend');
+    }
+
+    public function tableHeaders($attributes)
+    {
+        $labels = [];
+
+        foreach($attributes as $attribute => $config){
+
+            $labels[] = isset($config['label']) ? $config['label'] : $attribute;
+
+        }
+
+        return $labels;
     }
 
 
@@ -51,10 +68,9 @@ class EntityController extends Controller
     {
         if($model = $this->validate($entity, $id)){
 
-            Event::fire('tabs.entity_manager.make', $model);
-
-            return View::make($this->form_layout)
-                ->with('tabs', 'entity_manager')
+            return View::make('backend.manager.entity.form')
+                ->with('content', Tabs::make('entity_manager'))
+                ->with('model', $model)
                 ->with('entity', $entity);
 
         }

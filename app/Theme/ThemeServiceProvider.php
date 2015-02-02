@@ -201,9 +201,16 @@ class ThemeServiceProvider extends ServiceProvider
      */
     private function registerComposers()
     {
-        foreach($this->app->config['composers'] as $layout => $composer){
+        foreach($this->app->config['composers'] as $layout => $composers){
 
-            $this->app->view->composer($layout, $composer);
+            ksort($composers);
+
+            foreach($composers as $composer){
+
+                $this->app->view->composer($layout, $composer);
+
+            }
+
         }
     }
 

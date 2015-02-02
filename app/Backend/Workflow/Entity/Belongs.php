@@ -1,11 +1,10 @@
 <?php
 namespace Lavender\Backend\Workflow\Entity;
 
-use Lavender\Support\Contracts\WorkflowContract;
+use Lavender\Support\Workflow;
 
-class Belongs implements WorkflowContract
+class Belongs extends Workflow
 {
-
     public function states()
     {
         return [
@@ -15,20 +14,15 @@ class Belongs implements WorkflowContract
         ];
     }
 
-    public function template($state)
-    {
-        return 'workflow.form.container';
-    }
-
-    public function options($state)
+    public function options($state, $params)
     {
         return ['url' => \URL::to('backend/post/belongs_manager/'.$state)];
     }
 
-    public function edit($params)
+
+    public function fields($state, $params)
     {
-        //todo add support for relationships
-        //var_dump($params['entity']);
+        if($state != 'edit') return [];
 
         $fields['todo'] = [
             'type' => 'button',
@@ -38,8 +32,5 @@ class Belongs implements WorkflowContract
 
         return $fields;
     }
-
-
-
 
 }

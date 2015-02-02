@@ -8,6 +8,6 @@
 
 @section('content')
 
-    @tabs($tabs)
+    {{ $content }}
 
 @stop

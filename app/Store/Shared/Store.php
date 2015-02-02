@@ -50,4 +50,9 @@ class Store extends SharedEntity
         return $default ?: entity('store');
     }
 
+    public function __get($key)
+    {
+        return isset($this->_data[$key]) ? $this->_data[$key] : Config::get('store.'.$key);
+    }
+
 }

@@ -1,10 +1,12 @@
 <?php
 namespace Lavender\Customer\Workflow;
 
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
-use Lavender\Support\Contracts\WorkflowContract;
 
-class Login implements WorkflowContract
+use Lavender\Support\Workflow;
+
+class Login extends Workflow
 {
 
     public function states()
@@ -16,18 +18,20 @@ class Login implements WorkflowContract
         ];
     }
 
-    public function template($state)
+    public function response($state)
     {
-        return 'workflow.form.container';
+        return Redirect::to('account/dashboard');
     }
 
-    public function options($state)
+    public function options($state, $params)
     {
         return ['url' => URL::to('customer/post/existing_customer/'.$state)];
     }
 
-    public function login_customer()
+    public function fields($state, $params)
     {
+        if($state != 'login_customer') return [];
+
         return [
 
             'email' => [

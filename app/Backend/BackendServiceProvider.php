@@ -4,6 +4,7 @@ namespace Lavender\Backend;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Lavender\Support\Facades\Message;
 use Lavender\Support\Facades\Workflow;
 
 class BackendServiceProvider extends ServiceProvider
@@ -63,17 +64,16 @@ class BackendServiceProvider extends ServiceProvider
             'workflow.entity_manager.edit.after',
             'Lavender\Backend\Handlers\Entity\After'
         );
-        $this->app->events->listen(
-            'tabs.entity_manager.make',
-            'Lavender\Backend\Handlers\Entity\AddTabs'
-        );
     }
 
     private function registerRoutes()
     {
-        Route::post('backend/post/{workflow}/{state}', function ($workflow, $state){
+        Route::post('backend/{workflow}/{state}/{entity}/{id}', function ($workflow, $state, $entity, $id){
 
-            return Workflow::make($workflow)->post($state, Input::all());
+            if($model = $this->validate($entity, $id)){
+
+                return Workflow::make($workflow, ['entity' => $model])->post($state, Input::all());
+            }
 
         });
     }
@@ -136,6 +136,40 @@ class BackendServiceProvider extends ServiceProvider
 
             ]
         ]);
+    }
+
+
+
+    /**
+     * todo move this functionality (see EntityController::validate())
+     * @param $entity
+     * @param null $id
+     * @return ViewModelInterface
+     */
+    protected function validate($entity, $id = null)
+    {
+        if(app()->bound("entity.{$entity}")){
+
+            $model = entity($entity);
+
+            // passing < 1 will allow new entities
+            if($id > 0) $model = $model->find($id);
+
+            if($model) {
+
+                return $model;
+
+            } else {
+
+                Message::addError("{$entity} not found in database for id '{$id}'.");
+
+            }
+
+        } else {
+
+            Message::addError("Entity '{$entity}' not found.");
+
+        }
     }
 
 }

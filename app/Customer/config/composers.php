@@ -4,7 +4,11 @@ return [
 
     'default' => [
 
-        'customer.link.login'                       => 'Lavender\Customer\Composers\Link\LoginComposer',
+        'customer.link.login' => [
+
+            10 => 'Lavender\Customer\Composers\Link\LoginComposer',
+
+        ]
 
     ]
 

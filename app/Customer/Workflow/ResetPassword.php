@@ -2,9 +2,10 @@
 namespace Lavender\Customer\Workflow;
 
 use Illuminate\Support\Facades\URL;
-use Lavender\Support\Contracts\WorkflowContract;
 
-class ResetPassword implements WorkflowContract
+use Lavender\Support\Workflow;
+
+class ResetPassword extends Workflow
 {
 
     public function states()
@@ -16,18 +17,15 @@ class ResetPassword implements WorkflowContract
         ];
     }
 
-    public function template($state)
-    {
-        return 'workflow.form.container';
-    }
-
-    public function options($state)
+    public function options($state, $params)
     {
         return ['url' => URL::to('customer/post/customer_reset_password/'.$state)];
     }
 
-    public function do_reset()
+    public function fields($state, $params)
     {
+        if($state != 'do_reset') return [];
+
         return [
 
             'token' => [
