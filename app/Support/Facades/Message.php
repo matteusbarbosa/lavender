@@ -1,5 +1,5 @@
 <?php
-namespace Lavender\Support\Facades;
+namespace App\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

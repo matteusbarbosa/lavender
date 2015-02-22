@@ -13,8 +13,6 @@ return [
     'address' => "123 Ecommerce Ave\nPhiladelphia, PA 19101",
     'hours' => "9am-5pm Monday-Friday\n10am-3pm Sat & Sun",
 
-
-
     /**
      * Account
      */
@@ -36,23 +34,13 @@ return [
     'email_account_confirmation' => 'emails.confirm', // with $user
 
 
-
     /**
-     * Workflows
+     * Catalog
      */
-    'workflow_base_url' => 'workflow',
+    'category_url' => 'catalog/category',
+    'product_url' => 'catalog/product',
+    'product_count' => 5,
 
-
-
-    /**
-     * Advanced (changing these values could break lavender)
-     */
-
-    /**
-     * Multisite: Add store scope to lavender entities
-     * todo reimplement
-     */
-    'multisite' => true,
 
     /**
      * Message Types: are used to create and display global messages
@@ -63,4 +51,14 @@ return [
      */
     'message_types' => ['success', 'notice', 'warning', 'error'],
 
+
+    'store_rules' => [
+
+        10 => 'App\Handlers\Rules\EnvMatch',
+
+        20 => 'App\Handlers\Rules\DomainMatch',
+
+        30 => 'App\Handlers\Rules\SubdomainMatch',
+
+    ],
 ];

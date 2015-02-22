@@ -2,7 +2,7 @@
 
 return [
 
-    /*
+	/*
     |--------------------------------------------------------------------------
     | Multi Authentication
     |--------------------------------------------------------------------------
@@ -15,44 +15,38 @@ return [
     */
 
 
-    'account' => [
+	'account' => [
 
-        'admin' => [
-            'driver' => 'eloquent',
-            'entity' => 'admin',
-        ],
+		'admin' => [
+			'driver' => 'eloquent',
+			'entity' => 'admin',
+		],
 
-        'customer' => [
-            'driver' => 'eloquent',
-            'entity' => 'customer',
-        ],
-    ],
+		'customer' => [
+			'driver' => 'eloquent',
+			'entity' => 'customer',
+		],
+	],
 
+	/*
+	|--------------------------------------------------------------------------
+	| Password Reset Settings
+	|--------------------------------------------------------------------------
+	|
+	| Here you may set the options for resetting passwords including the view
+	| that is your password reset e-mail. You can also set the name of the
+	| table that maintains all of the reset tokens for your application.
+	|
+	| The expire time is the number of minutes that the reset token should be
+	| considered valid. This security feature keeps tokens short-lived so
+	| they have less time to be guessed. You may change this as needed.
+	|
+	*/
 
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reminder Settings
-    |--------------------------------------------------------------------------
-    |
-    | Here you may set the settings for password reminders, including a view
-    | that should be used as your password reminder e-mail. You will also
-    | be able to set the name of the table that holds the reset tokens.
-    |
-    | The "expire" time is the number of minutes that the reminder should be
-    | considered valid. This security feature keeps tokens short-lived so
-    | they have less time to be guessed. You may change this as needed.
-    |
-    */
-
-    'reminder' => [
-
-        //todo use store config node
-        'email'  => 'emails.auth.reminder',
-
-        'table'  => 'password_reminders',
-
-        'expire' => 60,
-
-    ],
+	'password' => [
+		'email' => 'emails.password',
+		'table' => 'password_resets',
+		'expire' => 60,
+	],
 
 ];
