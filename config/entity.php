@@ -9,55 +9,39 @@ return [
     'admin' => [
         'class' => 'App\Database\Admin',
         'scope' => Scope::IS_GLOBAL,
-        'timestamps' => true,
         'attributes' => [
             'email' => [
                 'label' => 'Email',
-                'type' => Attribute::VARCHAR,
                 'unique' => true,
-                'backend.table' => true,
-                'backend.renderer' => 'App\Handlers\Attributes\EditLink',
             ],
             'password' => [
                 'label' => 'Password',
-                'type' => Attribute::VARCHAR,
             ],
             'remember_token' => [
                 'label' => 'Remember Token',
-                'type' => Attribute::VARCHAR,
                 'nullable' => true,
-                'backend.table' => false,
             ],
         ],
-
     ],
 
     'cart' => [
         'class' => 'App\Database\Cart',
         'scope' => Scope::IS_STORE,
-        'timestamps' => true,
-        'attributes' => [
-
-        ],
         'relationships' => [
-
             'customer' => [
                 'entity' => 'customer',
                 'type' => Relationship::BELONGS_TO,
             ],
-
             'items' => [
                 'entity' => 'cart_item',
                 'type' => Relationship::HAS_MANY,
             ],
-
         ],
     ],
 
     'cart_item' => [
         'class' => 'App\Database\Cart\Item',
         'scope' => Scope::IS_STORE,
-        'timestamps' => true,
         'attributes' => [
             'qty' => [
                 'label' => 'Qty',
@@ -65,12 +49,10 @@ return [
             ]
         ],
         'relationships' => [
-
             'product' => [
                 'entity' => 'product',
                 'type' => Relationship::BELONGS_TO,
             ],
-
             'cart' => [
                 'entity' => 'cart',
                 'type' => Relationship::BELONGS_TO,
@@ -84,9 +66,6 @@ return [
         'attributes' => [
             'name' => [
                 'label' => 'Name',
-                'type' => Attribute::VARCHAR,
-                'backend.table' => true,
-                'backend.renderer' => 'App\Handlers\Attributes\EditLink',
             ],
             'description' => [
                 'label' => 'Description',
@@ -94,12 +73,10 @@ return [
             ],
             'url' => [
                 'label' => 'Url',
-                'type' => Attribute::VARCHAR,
                 'before_save' => 'App\Handlers\Attributes\Category\UrlKey'
             ],
         ],
         'relationships' => [
-
             'products' => [
                 'entity' => 'product',
                 'type' => Relationship::HAS_PIVOT,
@@ -121,25 +98,20 @@ return [
     'customer' => [
         'class' => 'App\Database\Customer',
         'scope' => Scope::IS_STORE,
-        'timestamps' => true,
         'attributes' => [
             'email' => [
                 'label' => 'Email',
-                'type' => Attribute::VARCHAR,
                 'backend.table' => true,
                 'backend.renderer' => 'App\Handlers\Attributes\EditLink',
             ],
             'password' => [
                 'label' => 'Password',
-                'type' => Attribute::VARCHAR,
             ],
             'confirmation_code' => [
                 'label' => 'Confirmation Code',
-                'type' => Attribute::VARCHAR,
             ],
             'remember_token' => [
                 'label' => 'Remember Token',
-                'type' => Attribute::VARCHAR,
                 'nullable' => true,
             ],
             'confirmed' => [
@@ -149,27 +121,22 @@ return [
             ],
         ],
         'relationships' => [
-
             'cart' => [
                 'entity' => 'cart',
                 'type' => Relationship::HAS_MANY,
             ],
-
         ],
     ],
 
     'reminder' => [
         'class' => 'App\Database\Reminder',
         'scope' => Scope::IS_STORE,
-        'timestamps' => true,
         'attributes' => [
             'email' => [
                 'label' => 'Email',
-                'type' => Attribute::VARCHAR,
             ],
             'token' => [
                 'label' => 'Token',
-                'type' => Attribute::VARCHAR,
             ],
             'created_at' => [
                 'label' => 'Created At',
@@ -184,21 +151,17 @@ return [
         'attributes' => [
             'sku' => [
                 'label' => 'Sku',
-                'type' => Attribute::VARCHAR,
             ],
             'name' => [
                 'label' => 'Name',
-                'type' => Attribute::VARCHAR,
             ],
             'price' => [
                 'label' => 'Price',
                 'type' => Attribute::DECIMAL,
-                'backend.table' => true,
                 'default' => 0.00,
             ],
             'url' => [
                 'label' => 'Url',
-                'type' => Attribute::VARCHAR,
                 'before_save' => 'App\Handlers\Attributes\Product\UrlKey'
             ],
             'special_price' => [
@@ -208,13 +171,11 @@ return [
             ],
         ],
         'relationships' => [
-
             'categories' => [
                 'entity' => 'category',
                 'type' => Relationship::HAS_PIVOT,
                 'table' => 'catalog_category_product',
             ],
-
         ],
     ],
 
@@ -248,11 +209,9 @@ return [
         'attributes' => [
             'key' => [
                 'label' => 'Key',
-                'type' => Attribute::VARCHAR,
             ],
             'value' => [
                 'label' => 'Value',
-                'type' => Attribute::VARCHAR,
             ],
         ],
         'relationships' => [
@@ -269,16 +228,10 @@ return [
         'attributes' => [
             'code' => [
                 'label' => 'Code',
-                'type' => Attribute::VARCHAR,
                 'unique' => true,
-                'backend.table' => true,
-                'backend.renderer' => 'App\Handlers\Attributes\EditLink',
             ],
             'name' => [
                 'label' => 'Name',
-                'type' => Attribute::VARCHAR,
-                'backend.table' => true,
-                'backend.renderer' => 'App\Handlers\Attributes\EditLink',
             ],
         ],
         'relationships' => [
