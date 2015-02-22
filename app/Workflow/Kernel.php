@@ -8,24 +8,15 @@ class Kernel extends WorkflowKernel
 
     protected $workflowForms = [
 
+        /** Backend */
         'admin_login' => [
             10 => 'App\Workflow\Forms\Admin\Login',
         ],
-        'entity_manager' => [
-            10 => 'App\Workflow\Forms\Backend\Entity',
+        'edit_product' => [
+            10 => 'App\Workflow\Forms\Backend\Entity\Product'
         ],
-        'pivot_manager' => [
-            10 => 'App\Workflow\Forms\Backend\Entity\Pivot',
-        ],
-        'many_manager' => [
-            10 => 'App\Workflow\Forms\Backend\Entity\Many',
-        ],
-        'belongs_manager' => [
-            10 => 'App\Workflow\Forms\Backend\Entity\Belongs',
-        ],
-        'hasone_manager' => [
-            10 => 'App\Workflow\Forms\Backend\Entity\HasOne',
-        ],
+
+        /** Frontend */
         'add_to_cart' => [
             10 => 'App\Workflow\Forms\Cart\AddToCart',
         ],

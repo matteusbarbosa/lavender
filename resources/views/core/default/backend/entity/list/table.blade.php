@@ -6,13 +6,13 @@
 
         <tr>
 
-            <th><input type="checkbox" /></th>
-
             @foreach($headers as $header)
 
                 <th>{!!$header!!}</th>
 
             @endforeach
+
+            <th class="no-sort"></th>
 
         </tr>
 
@@ -24,13 +24,13 @@
 
         <tr>
 
-            <td><input type="checkbox" value="{{ $row->id }}"/></td>
-
             @foreach($row->toArray() as $key => $value)
 
                 <td>{!! $row->backendValue($key) !!}</td>
 
             @endforeach
+
+            <td><a href="{{ url('backend',[$entity, 'edit', $row->id]) }}">edit</a></td>
 
         </tr>
 
@@ -38,29 +38,22 @@
 
     </tbody>
 
-    <tfoot>
-
-        <tr>
-
-            <th><input type="checkbox" /></th>
-
-            @foreach($headers as $header)
-
-                <th>{!! $header !!}</th>
-
-            @endforeach
-
-        </tr>
-
-    </tfoot>
-
 </table>
 
 <script>
 
     $(document).ready( function () {
 
-        $('#entity-table').DataTable();
+        $('#entity-table').DataTable({
+            order: [
+                [ {{ isset($sort_column) ? $sort_column : 0 }}, "{{ isset($sort_dir) ? $sort_dir : 'desc' }}" ]
+            ],
+            columnDefs: [{
+                targets: 'no-sort',
+                searchable: false,
+                orderable: false
+            }]
+        });
 
     } );
 

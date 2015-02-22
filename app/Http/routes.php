@@ -41,22 +41,36 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function(){
 });
 
 
-Route::group(['namespace' => 'Backend', 'prefix' => 'backend'], function(){
-
-    Route::get('entity/{entity}/id/{id}',['uses' => 'EntityController@getEntity']);
-
-	Route::controllers([
-		'entity/{entity}' => 'EntityController',
-		'/' => 'DashboardController',
-	]);
-
-});
-
-
 Route::group(['prefix' => 'contact'], function(){
 
 	Route::controllers([
 		'/' => 'ContactFormController',
 	]);
+
+});
+
+
+Route::group(['namespace' => 'Backend', 'prefix' => 'backend'], function(){
+
+    Route::group(['namespace' => 'Catalog'], function(){
+
+        Route::controllers([
+            'product'       => 'ProductController',
+            'category'      => 'CategoryController',
+        ]);
+
+    });
+
+    Route::controllers([
+        'catalog'       => 'CatalogController',
+        '/'             => 'DashboardController',
+    ]);
+
+//    Route::get('entity/{entity}/id/{id}',['uses' => 'EntityController@getEntity']);
+//
+//    Route::controllers([
+//        'entity/{entity}' => 'EntityController',
+//        '/' => 'DashboardController',
+//    ]);
 
 });

@@ -107,8 +107,6 @@ class LayoutHandler
     {
         $this->composer('page.section.head', function($view){
 
-            append_section('head.style', ['style' => 'css/backend.css']);
-
             append_section('head.style', ['style' => 'css/jquery.dataTables.min.css']);
 
             append_section('head.script', ['script' => 'js/jquery-2.1.3.min.js']);
@@ -141,39 +139,46 @@ class LayoutHandler
     {
         $backend_navigation = menu('backend.navigation');
 
-        $backend_navigation->add('catalog', [
-            'content' => HTML::link('#','Catalog'),
-            'children' => [
-                ['content' => HTML::link('backend/entity/product','Products')],
-                ['content' => HTML::link('backend/entity/category','Categories')],
+        $backend_navigation->add('home', [
+            'content' => HTML::link('backend','Dashboard'),
+        ]);
 
+        $backend_navigation->add('catalog', [
+            'content' => HTML::link('backend/catalog','Catalog'),
+            'children' => [
+                ['content' => HTML::link('backend/product','Products')],
+                ['content' => HTML::link('backend/category','Categories')],
+            ]
+        ]);
+
+        $backend_navigation->add('sales', [
+            'content' => HTML::link('backend/sales','Sales'),
+            'children' => [
+                ['content' => HTML::link('backend/sales/orders','Orders')],
+                ['content' => HTML::link('backend/sales/reports','Reports')],
             ]
         ]);
 
         $backend_navigation->add('account', [
-            'content' => HTML::link('#','Accounts'),
+            'content' => HTML::link('backend/account','Accounts'),
             'children' => [
-                ['content' => HTML::link('backend/entity/customer','Customers')],
-                ['content' => HTML::link('backend/entity/admin','Administrators')],
-
+                ['content' => HTML::link('backend/customer','Customers')],
+                ['content' => HTML::link('backend/admin','Administrators')],
             ]
         ]);
 
         $backend_navigation->add('website', [
-            'content' => HTML::link('#','Website'),
+            'content' => HTML::link('backend/website','Website'),
             'children' => [
-                ['content' => HTML::link('backend/entity/store','Stores')],
-                ['content' => HTML::link('backend/entity/department','Departments')],
-                ['content' => HTML::link('backend/entity/theme','Themes')],
-
-            ]
-        ]);
-
-        $backend_navigation->add('config', [
-            'content' => HTML::link('backend/config', 'Manage Config'),
-            'children' => [
-                ['content' => HTML::link('backend/import', 'Import')],
-                ['content' => HTML::link('backend/export', 'Export')],
+                ['content' => HTML::link('backend/store','Stores')],
+                ['content' => HTML::link('backend/theme','Themes')],
+                [
+                    'content' => HTML::link('backend/config', 'Config'),
+                    'children' => [
+                        ['content' => HTML::link('backend/config/import', 'Import')],
+                        ['content' => HTML::link('backend/config/export', 'Export')],
+                    ]
+                ]
             ]
         ]);
     }

@@ -1,13 +1,9 @@
 @extends('layouts.single')
 
 @section('head.title')
-
-    Entity: {{ $entity }}
-
+    Catalog
 @stop
 
 @section('content')
-
-    @workflow($workflow, ['entity' => $model])
-
+    Catalog details..
 @stop
