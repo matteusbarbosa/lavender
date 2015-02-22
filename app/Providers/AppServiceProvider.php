@@ -7,7 +7,6 @@ use App\Theme;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Blade;
 use Lavender\Support\ServiceProvider;
-use Lavender\Support\Facades\Workflow;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class AppServiceProvider extends ServiceProvider
@@ -69,7 +68,6 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton('cart', function($app){
 
             return new Cart();
-
         });
     }
 
@@ -77,7 +75,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('store', function ($app){
 
-            $store = entity('store');
+            $store = null;//entity('store');
 
             return new Store($store);
         });
@@ -85,12 +83,11 @@ class AppServiceProvider extends ServiceProvider
 
     private function registerTheme()
     {
-        $this->app->bindShared('theme', function ($app){
+        $this->app->singleton('theme', function ($app){
 
             $theme = entity('theme');
 
             return new Theme($theme);
-
         });
     }
 
@@ -100,11 +97,11 @@ class AppServiceProvider extends ServiceProvider
 
             if($this->app->store->bootStore()){
                 // merge store config into global config
-                foreach($this->app->store->config->all() as $item){
-
-                    $this->app['config']->set('store.' . $item->key, $item->value);
-
-                }
+//                foreach($this->app->store->config->all() as $item){
+//
+//                    $this->app['config']->set('store.' . $item->key, $item->value);
+//
+//                }
             } else {
 
                 throw new \Exception("Default store was not found.");
