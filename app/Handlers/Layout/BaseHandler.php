@@ -1,5 +1,5 @@
 <?php
-namespace App\Handlers\Events\Layout;
+namespace App\Handlers\Layout;
 
 class BaseHandler
 {

@@ -1,5 +1,5 @@
 <?php
-namespace App\Handlers\Events\Layout;
+namespace App\Handlers\Layout;
 
 class BackendHandler
 {
@@ -22,77 +22,77 @@ class BackendHandler
         $backend_navigation = menu('backend.navigation');
 
         $backend_navigation->add('home', [
-            'href' => 'backend',
+            'href' => url('backend'),
             'text' => 'Dashboard',
         ]);
 
         $backend_navigation->add('catalog', [
-            'href' => 'backend/catalog',
+            'href' => url('backend/catalog'),
             'text' => 'Catalog',
             'children' => [
                 [
-                    'href' => 'backend/product',
+                    'href' => url('backend/product'),
                     'text' => 'Products'
                 ],
                 [
-                    'href' => 'backend/category',
+                    'href' => url('backend/category'),
                     'text' => 'Categories'
                 ],
             ]
         ]);
 
         $backend_navigation->add('sales', [
-            'href' => 'backend/sales',
+            'href' => url('backend/sales'),
             'text' => 'Sales',
             'children' => [
                 [
-                    'href' => 'backend/sales/orders',
+                    'href' => url('backend/sales/orders'),
                     'text' => 'Orders',
                 ],
                 [
-                    'href' => 'backend/sales/reports',
+                    'href' => url('backend/sales/reports'),
                     'text' => 'Reports',
                 ],
             ]
         ]);
 
         $backend_navigation->add('account', [
-            'href' => 'backend/account',
+            'href' => url('backend/account'),
             'text' => 'Accounts',
             'children' => [
                 [
-                    'href' => 'backend/customer',
+                    'href' => url('backend/customer'),
                     'text' => 'Customers',
                 ],
                 [
-                    'href' => 'backend/admin',
+                    'href' => url('backend/admin'),
                     'text' => 'Administrators',
                 ],
             ]
         ]);
 
         $backend_navigation->add('website', [
-            'href' => 'backend/website',
+            'href' => url('backend/website'),
             'text' => 'Website',
             'children' => [
                 [
-                    'href' => 'backend/store',
+                    'href' => url('backend/store'),
                     'text' => 'Stores',
                 ],
                 [
-                    'href' => 'backend/theme',
+                    'href' => url('backend/theme'),
                     'text' => 'Themes',
                 ],
                 [
-                    'href' => 'backend/config',
+                    'href' => url('backend/config'),
                     'text' => 'Config',
                     'children' => [
                         [
-                            'href' => 'backend/config/import',
+                            'href' => url('backend/config/import'),
                             'text' => 'Import',
                         ],
                         [
-                            'href' => 'backend/config/export',
+                            'href' => url('backend/config/export'),
                             'text' => 'Export',
                         ],
                     ]
@@ -106,7 +106,7 @@ class BackendHandler
         $backend_links = menu('backend.links');
 
         $backend_links->add('frontend', [
-            'href' => '/',
+            'href' => url('/'),
             'text' => 'Go to frontend',
         ]);
     }

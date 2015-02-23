@@ -8,7 +8,7 @@ class AddToCart extends Workflow
 
     public function __construct($params)
     {
-        $this->options['url'] = url('cart/add');
+        $this->options['action'] = url('cart/add');
 
         $this->addField('product', [
             'type' => 'hidden',

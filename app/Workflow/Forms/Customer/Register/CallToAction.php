@@ -8,7 +8,7 @@ class CallToAction extends Workflow
 
     public function __construct($params)
     {
-        $this->options['url'] = url('customer/register');
+        $this->options['action'] = url('customer/register');
 
         $this->addField('submit', [
             'type' => 'button',

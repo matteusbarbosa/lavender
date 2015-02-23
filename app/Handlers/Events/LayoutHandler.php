@@ -13,15 +13,15 @@ class LayoutHandler
     {
         $events->listen(
             'App\Events\Layout\LoadBase',
-            'App\Handlers\Events\Layout\BaseHandler'
+            'App\Handlers\Layout\BaseHandler'
         );
         $events->listen(
             'App\Events\Layout\LoadFrontend',
-            'App\Handlers\Events\Layout\FrontendHandler'
+            'App\Handlers\Layout\FrontendHandler'
         );
         $events->listen(
             'App\Events\Layout\LoadBackend',
-            'App\Handlers\Events\Layout\BackendHandler'
+            'App\Handlers\Layout\BackendHandler'
         );
     }
 
