@@ -4,7 +4,7 @@
 
         <li id="{{{ $id }}}">
 
-            {!! $item->content !!}
+            <a href="{{ $item->href }}">{{ $item->text }}</a>
 
             @if($children = $item->children)
 
@@ -14,7 +14,7 @@
 
                         <li>
 
-                            {!! $child->content !!}
+                            <a href="{{ $child->href }}">{{ $child->text }}</a>
 
                             @if($grandchildren = $child->children)
 
@@ -24,7 +24,7 @@
 
                                         <li>
 
-                                            {!! $grandchild->content !!}
+                                            <a href="{{ $grandchild->href }}">{{ $grandchild->text }}</a>
 
                                         </li>
 

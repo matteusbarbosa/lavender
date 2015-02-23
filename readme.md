@@ -1,6 +1,6 @@
 ## Lavender
 
-Lavender is an Open Source E-Commerce Framework built on top of Laravel. **For more information on Lavender, please see [lavender/docs](https://github.com/lavender/docs).**
+Lavender is an Open Source E-Commerce Framework built on top of [Laravel 5](laravel.com/docs/5.0).
 
 
 ### License
@@ -8,34 +8,56 @@ Lavender is an Open Source E-Commerce Framework built on top of Laravel. **For m
 Lavender is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
 
+### Docs
+
+Please see [lavender/docs](https://github.com/lavender/docs).
+
+
 ### Support
 
 Come chat with us in [#lavender on freenode](http://webchat.freenode.net/?channels=#lavender), or [submit an new issue.](https://github.com/lavender/lavender/issues/new)
 
 
-### Installation instructions
+### Contributing
 
-Run Composer:
+Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated!
+
+This repository provides the consumer application which contains the [controllers](https://github.com/lavender/lavender/tree/master/app/Http/Controllers), [models](https://github.com/lavender/lavender/tree/master/app/Database), and [views](https://github.com/lavender/lavender/tree/master/resources/views/core/default) (and config, locale, etc) that makes Lavender an ecommerce platform. 
+
+The [lavender/framework](https://github.com/lavender/framework) repository contains framework enhancements for Laravel 5, including [multiple authentication](https://github.com/lavender/framework/tree/master/src/Auth), a powerful [Entity class](https://github.com/lavender/framework/tree/master/src/Database), layout injection, and easily extensible [multi-state forms](https://github.com/lavender/framework/tree/master/src/Workflow).  
+
+
+## Installation Instructions
+ 
+### Step 1: Install Lavender with Composer.
+
+> Avoid installing lavender in your web server's public directory. Instead create a symlink on lavender/public as your public root. 
+
+Run composer to create the lavender application:
 
     composer create-project lavender-commerce/lavender
     
 Set up your environment config file:
 
-    lavender/.env
+    lavender/.env    
 
-Create the first round of migrations:
+
+### Step 2: Set up Lavender with Artisan.
+
+Create the first round of migrations. This command reads the definitions in config/entity.php and compares it to your database.
 
     php artisan migrate:entity
 
-Run your newly created migrations:
+Run your newly created migration file:
 
     php artisan migrate
 
-Install lavender's dependencies:
+Install lavender's dependencies (default store, theme, admin):
 
     php artisan db:seed --class=InstallLavender
     
-Seed catalog sample data! (optional)
+    
+### Step 3: (Optional) Seed catalog sample data!
 
     php artisan db:seed --class=SampleData
 
@@ -43,8 +65,6 @@ That's it!
 
 
 ### Troubleshooting
-
-Page not loading? CPanel users [see here.](https://laracasts.com/discuss/channels/general-discussion/how-to-install-laravel-in-the-root-directory)
 
 Login not working? Try modifying your sessions config:
 
@@ -56,11 +76,3 @@ Emails not working? Try modifying your email config:
 
 Something else? Follow the install instructions carefully or [submit an new issue!](https://github.com/lavender/lavender/issues/new)
 
-
-### Contributing
-
-Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated!
-
-This repository contains the controllers, models, and views that makes Lavender an Ecommerce platform. 
-
-To contribute to the Lavender Framework, please see the [lavender/framework](https://github.com/lavender/framework) repository.
