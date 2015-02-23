@@ -225,6 +225,14 @@ class AppServiceProvider extends ServiceProvider
                 $html
             );
         });
+
+        Blade::extend(function($html, $compiler){
+            return preg_replace(
+                $compiler->createMatcher('printArray'),
+                '$1<?php foreach((array)$2 as $item) echo $item; ?>',
+                $html
+            );
+        });
     }
 
 

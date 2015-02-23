@@ -8,7 +8,7 @@ class ResetPassword extends Workflow
 
     public function __construct($params)
     {
-        $this->options['url'] = URL::to('customer/reset_password');
+        $this->options['action'] = url('customer/reset_password');
 
         $this->addField('token', [
             'type' => 'hidden',

@@ -6,6 +6,8 @@ use Lavender\Workflow\Kernel as WorkflowKernel;
 class Kernel extends WorkflowKernel
 {
 
+    protected $workflowTemplate = 'layouts.elements.form';
+
     protected $workflowForms = [
 
         /** Backend */

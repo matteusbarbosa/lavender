@@ -8,7 +8,7 @@ class ForgotPassword extends Workflow
 
     public function __construct($params)
     {
-        $this->options['url'] = URL::to('customer/forgot_password');
+        $this->options['action'] = url('customer/forgot_password');
 
         $this->addField('email', [
             'label' => 'Email',

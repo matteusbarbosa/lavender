@@ -8,7 +8,7 @@ class NewCustomer extends Workflow
 
     public function __construct($params)
     {
-        $this->options['url'] = url('customer/register');
+        $this->options['action'] = url('customer/register');
 
         $this->addField('email', [
             'label' => 'Email',

@@ -1,5 +1,5 @@
 <?php
-namespace App\Handlers\Events\Layout;
+namespace App\Handlers\Layout;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -26,7 +26,7 @@ class FrontendHandler
         $bottom_links = menu('bottom.links');
 
         $bottom_links->add('contact', [
-            'href' => 'contact',
+            'href' => url('contact'),
             'text' => 'Contact us',
         ]);
     }
@@ -36,26 +36,26 @@ class FrontendHandler
         $top_links = menu('top.links');
 
         $top_links->add('cart', [
-            'href' => 'cart',
+            'href' => url('cart'),
             'text' => 'My Cart ('.app('cart')->getSummary().')',
         ]);
 
         if(Auth::customer()->check()){
 
             $top_links->add('account', [
-                'href' => 'customer/dashboard',
+                'href' => url('customer/dashboard'),
                 'text' => 'My Account',
             ]);
 
             $top_links->add('logout', [
-                'href' => 'customer/logout',
+                'href' => url('customer/logout'),
                 'text' => 'Logout',
             ]);
 
         } else {
 
             $top_links->add('login', [
-                'href' => 'customer/login',
+                'href' => url('customer/login'),
                 'text' => 'Login/Register',
             ]);
 
