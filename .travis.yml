@@ -9,11 +9,10 @@ branches:
   only:
     - master
 
-before_script:
-  - composer self-update
+install:
   - composer create-project lavender-commerce/lavender
 
-after_script:
+script:
   - php lavender/artisan migrate:entity
   - php lavender/artisan migrate
   - php lavender/artisan db:seed --class=InstallLavender
