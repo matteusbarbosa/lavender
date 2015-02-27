@@ -12,7 +12,12 @@ branches:
 install:
   - composer create-project lavender-commerce/lavender
 
+before_script:
+  - mysql -e 'create database testing;'
+  - cd lavender
+  - rm -f .env
+
 script:
-  - php lavender/artisan migrate:entity
-  - php lavender/artisan migrate
-  - php lavender/artisan db:seed --class=InstallLavender
+  - php artisan migrate:entity
+  - php artisan migrate
+  - php artisan db:seed --class=InstallLavender
