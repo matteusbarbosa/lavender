@@ -13,6 +13,7 @@ install:
   - composer install
 
 before_script:
+  - cd lavender/lavender
   - mysql -e 'create database testing;'
   - sed -i s/DB_DATABASE=null/DB_DATABASE=testing/ .env
   - sed -i s/DB_USERNAME=null/DB_USERNAME=root/ .env
