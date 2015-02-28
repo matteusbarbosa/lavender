@@ -10,9 +10,10 @@ branches:
     - master
 
 install:
-  - cd lavender/lavender
   - composer install
   - mysql -e 'create database testing;'
+  - php -r "copy('.env.example', '.env');"
+  - php artisan key:generate
   - sed -i s/DB_DATABASE=null/DB_DATABASE=testing/ .env
   - sed -i s/DB_USERNAME=null/DB_USERNAME=root/ .env
 
