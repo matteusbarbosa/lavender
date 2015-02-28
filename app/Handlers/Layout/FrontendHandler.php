@@ -72,8 +72,8 @@ class FrontendHandler
         foreach($categories as $category){
 
             menu('top.navigation')->add('cat-'.$category->id, [
-                'href' => $category->getUrl(),
-                'text' => $category->name,
+                'href' => $category->url(),
+                'text' => $category->name(),
                 'children' =>  $this->getChildCategories($category)
             ]);
 
@@ -88,8 +88,8 @@ class FrontendHandler
         foreach($category->children as $child){
 
             $children[] = [
-                'href' => $child->getUrl(),
-                'text' => $child->name,
+                'href' => $child->url(),
+                'text' => $child->name(),
                 'children' => $this->getChildCategories($child)
             ];
 

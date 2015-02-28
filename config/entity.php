@@ -180,6 +180,7 @@ return [
             'default' => [
                 'label' => 'Default store',
                 'type' => Attribute::BOOL,
+                'default' => false,
             ],
         ],
         'relationships' => [
