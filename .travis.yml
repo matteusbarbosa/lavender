@@ -10,7 +10,7 @@ branches:
     - master
 
 install:
-  - composer create-project lavender-commerce/lavender
+  - composer install
 
 before_script:
   - mysql -e 'create database testing;'
