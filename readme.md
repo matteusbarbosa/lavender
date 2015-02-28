@@ -1,7 +1,13 @@
-## Lavender
+# Lavender
+
+[![Build Status](https://travis-ci.org/lavender/lavender.svg?branch=master)](https://travis-ci.org/lavender/lavender)
+[![Latest Stable Version](https://poser.pugx.org/lavender-commerce/lavender/v/stable.svg)](https://packagist.org/packages/lavender-commerce/lavender) 
+[![Total Downloads](https://poser.pugx.org/lavender-commerce/lavender/downloads.svg)](https://packagist.org/packages/lavender-commerce/lavender) 
+[![License](https://poser.pugx.org/lavender-commerce/lavender/license.svg)](https://packagist.org/packages/lavender-commerce/lavender)
 
 Lavender is an Open Source E-Commerce Framework built on top of [Laravel 5](laravel.com/docs/5.0).
 
+> **Note:** Lavender is in active development and NOT ready for production.
 
 ### License
 
@@ -52,9 +58,13 @@ Run your newly created migration file:
 
     php artisan migrate
 
-Install lavender's dependencies (default store, theme, admin):
+Install lavender's dependencies (default store and theme):
 
     php artisan db:seed --class=InstallLavender
+
+Create an admin account:
+
+    php artisan make:admin
     
     
 ### Step 3: (Optional) Seed catalog sample data!

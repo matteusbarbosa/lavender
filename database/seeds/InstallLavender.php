@@ -46,8 +46,6 @@ class InstallLavender extends Seeder {
 				'root_category' => $category,
 			]);
 
-            $this->command->call('admin:create');
-
             $this->command->info("Lavender has successfully installed!");
 
 		}
