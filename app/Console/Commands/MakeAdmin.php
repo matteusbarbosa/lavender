@@ -2,6 +2,8 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputOption;
 
 class MakeAdmin extends Command
 {
@@ -32,11 +34,15 @@ class MakeAdmin extends Command
 
             $admin = entity('admin');
 
-            $admin->email = $this->ask('Enter an email address: (required)');
+            $email = $this->option('email');
 
-            $admin->password = $this->secret('Enter a password: (required)');
+            $password = $this->option('password');
 
-            $admin->password_confirmation = $this->secret('Confirm your password: (required)');
+            $admin->email = $email ?: $this->ask('Enter an email address: (required)');
+
+            $admin->password = $password ?: $this->secret('Enter a password: (required)');
+
+            $admin->password_confirmation = $password ?: $this->secret('Confirm your password: (required)');
 
             $success = $admin->save();
 
@@ -62,6 +68,9 @@ class MakeAdmin extends Command
      */
     protected function getOptions()
     {
-        return [];
+        return [
+            ['email', null, InputOption::VALUE_OPTIONAL, 'Email address'],
+            ['password', null, InputOption::VALUE_OPTIONAL, 'Password'],
+        ];
     }
 }

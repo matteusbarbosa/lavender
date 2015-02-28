@@ -21,3 +21,4 @@ script:
   - php artisan migrate:entity
   - php artisan migrate
   - php artisan db:seed --class=InstallLavender
+  - php artisan make:admin --email=foo@bar.com --password=testing
