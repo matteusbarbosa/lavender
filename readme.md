@@ -1,9 +1,9 @@
 # Lavender
 
-[![License](https://poser.pugx.org/lavender-commerce/lavender/license.svg)](https://packagist.org/packages/lavender-commerce/lavender)
 [![Build Status](https://travis-ci.org/lavender/lavender.svg?branch=master)](https://travis-ci.org/lavender/lavender)
 [![Latest Stable Version](https://poser.pugx.org/lavender-commerce/lavender/v/stable.svg)](https://packagist.org/packages/lavender-commerce/lavender) 
 [![Total Downloads](https://poser.pugx.org/lavender-commerce/lavender/downloads.svg)](https://packagist.org/packages/lavender-commerce/lavender) 
+[![License](https://poser.pugx.org/lavender-commerce/lavender/license.svg)](https://packagist.org/packages/lavender-commerce/lavender)
 
 Lavender is an Open Source E-Commerce Framework built on top of [Laravel 5](laravel.com/docs/5.0).
 
