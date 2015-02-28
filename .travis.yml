@@ -15,7 +15,6 @@ install:
 before_script:
   - mysql -e 'create database testing;'
   - cd lavender
-  - rm -f .env
 
 script:
   - php artisan migrate:entity
