@@ -14,7 +14,6 @@ install:
 
 before_script:
   - mysql -e 'create database testing;'
-  - cd lavender
   - sed -i s/DB_DATABASE=null/DB_DATABASE=testing/ .env
   - sed -i s/DB_USERNAME=null/DB_USERNAME=root/ .env
 
