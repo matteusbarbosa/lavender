@@ -1,7 +1,6 @@
 <?php
 namespace App;
 
-use Lavender\Support\Contracts\EntityInterface;
 use Lavender\Support\SharedEntity;
 
 class Theme extends SharedEntity
@@ -20,7 +19,6 @@ class Theme extends SharedEntity
 
             return $theme->exists;
         }
-
         return false;
     }
 

@@ -3,7 +3,6 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controller\Backend;
 use App\Support\Facades\Message;
-use Lavender\Support\Contracts\EntityInterface;
 
 class EntityController extends Backend
 {
@@ -66,7 +65,7 @@ class EntityController extends Backend
     /**
      * @param $entity
      * @param null $id
-     * @return EntityInterface
+     * @return \Lavender\Contracts\Entity
      */
     protected function validateEntity($entity, $id = null)
     {

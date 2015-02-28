@@ -1,7 +1,7 @@
 <?php
 namespace App\Handlers\Events;
 
-use Lavender\Support\Facades\Scope;
+use Lavender\Database\Scope;
 
 class StoreHandler
 {
@@ -18,7 +18,7 @@ class StoreHandler
 
             $config = $event->query->config();
 
-            if($config['scope'] == Scope::IS_STORE){
+            if($config['scope'] == Scope::STORE){
 
                 $event->query->where('store_id', '=', $this->store->id);
             }
@@ -33,7 +33,7 @@ class StoreHandler
 
             $config = $event->query->config();
 
-            if($config['scope'] == Scope::IS_STORE){
+            if($config['scope'] == Scope::STORE){
 
                 $attributes['store_id'] = $this->store->id;
             }
@@ -46,7 +46,7 @@ class StoreHandler
     {
         $attributes = [];
 
-        if($event->entity->getConfig('scope') == Scope::IS_STORE){
+        if($event->entity->getScope() == Scope::STORE){
 
             $attributes['store_id'] = ['parent' => 'store'];
 

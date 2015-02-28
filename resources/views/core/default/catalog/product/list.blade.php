@@ -21,7 +21,7 @@
 
             <li>
 
-                {!! $product->name()->toLink($product->getUrl(), ['class' => 'product']) !!}
+                <a href="{{ $product->url() }}">{{ $product->name }}</a>
 
             </li>
 

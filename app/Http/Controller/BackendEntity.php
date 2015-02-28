@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controller;
 
-use App\Events\Layout\LoadBackend;
-use Lavender\Support\Contracts\EntityInterface;
+use Lavender\Contracts\Entity;
+use Lavender\Support\Facades\Message;
 
 abstract class BackendEntity extends Backend
 {
@@ -10,7 +10,7 @@ abstract class BackendEntity extends Backend
     /**
      * @param $entity
      * @param null $id
-     * @return EntityInterface
+     * @return Entity
      */
     protected function validateEntity($entity, $id = null)
     {
@@ -38,11 +38,11 @@ abstract class BackendEntity extends Backend
         }
     }
 
-    public function tableHeaders(EntityInterface $entity, array $allowed)
+    public function tableHeaders(Entity $entity, array $allowed)
     {
         $labels = [];
 
-        $attributes = $entity->getConfig('attributes');
+        $attributes = $entity->getAttributes();
 
         foreach($allowed as $label => $attribute){
 

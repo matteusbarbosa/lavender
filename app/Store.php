@@ -1,8 +1,7 @@
 <?php
 namespace App;
 
-use Illuminate\Support\Facades\Config;
-use Lavender\Support\Contracts\EntityInterface;
+use Lavender\Contracts\Entity;
 use Lavender\Support\SharedEntity;
 
 class Store extends SharedEntity
@@ -10,7 +9,7 @@ class Store extends SharedEntity
 
     public function bootStore($store = null)
     {
-        if(!$store instanceof EntityInterface) $store = $this->findStore();
+        if(!$store instanceof Entity) $store = $this->findStore();
 
         if($store->exists) $this->setStore($store);
 
@@ -18,7 +17,7 @@ class Store extends SharedEntity
     }
 
 
-    public function setStore(EntityInterface $store)
+    public function setStore(Entity $store)
     {
         $this->setEntity($store);
     }

@@ -3,21 +3,21 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-class Foo extends Command
+class MakeAdmin extends Command
 {
     /**
      * The console command name.
      *
      * @var string
      */
-    protected $name = 'foo';
+    protected $name = 'make:admin';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Foo, bar';
+    protected $description = 'Create a new admin account';
 
     /**
      * Execute the console command.
@@ -26,8 +26,23 @@ class Foo extends Command
      */
     public function handle()
     {
-        $this->comment('foo');
-        $this->error('bar');
+        $success = false;
+
+        while(!$success){
+
+            $admin = entity('admin');
+
+            $admin->email = $this->ask('Enter an email address: (required)');
+
+            $admin->password = $this->secret('Enter a password: (required)');
+
+            $admin->password_confirmation = $this->secret('Confirm your password: (required)');
+
+            $success = $admin->save();
+
+            if(!$success) $this->error($admin->errors);
+
+        }
     }
 
     /**

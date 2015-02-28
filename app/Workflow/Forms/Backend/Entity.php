@@ -20,7 +20,7 @@ abstract class Entity extends Workflow
 
         $this->addField('entity', [
             'type' => 'hidden',
-            'value' => $entity->getEntity(),
+            'value' => $entity->getEntityName(),
         ]);
 
         $this->addField('submit', [

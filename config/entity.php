@@ -1,14 +1,11 @@
 <?php
-
-use Lavender\Support\Facades\Attribute;
-use Lavender\Support\Facades\Relationship;
-use Lavender\Support\Facades\Scope;
-
+use Lavender\Database\Attribute;
+use Lavender\Database\Relationship;
+use Lavender\Database\Scope;
 return [
 
     'admin' => [
         'class' => 'App\Database\Admin',
-        'scope' => Scope::IS_GLOBAL,
         'attributes' => [
             'email' => [
                 'label' => 'Email',
@@ -26,7 +23,7 @@ return [
 
     'cart' => [
         'class' => 'App\Database\Cart',
-        'scope' => Scope::IS_STORE,
+        'scope' => Scope::STORE,
         'relationships' => [
             'customer' => [
                 'entity' => 'customer',
@@ -41,7 +38,7 @@ return [
 
     'cart_item' => [
         'class' => 'App\Database\Cart\Item',
-        'scope' => Scope::IS_STORE,
+        'scope' => Scope::STORE,
         'attributes' => [
             'qty' => [
                 'label' => 'Qty',
@@ -62,7 +59,7 @@ return [
 
     'category' => [
         'class' => 'App\Database\Category',
-        'scope' => Scope::IS_DEPARTMENT,
+        'scope' => Scope::DEPARTMENT,
         'attributes' => [
             'name' => [
                 'label' => 'Name',
@@ -73,7 +70,7 @@ return [
             ],
             'url' => [
                 'label' => 'Url',
-                'before_save' => 'App\Handlers\Attributes\Category\UrlKey'
+                'handler' => 'App\Handlers\Attributes\Category\Url'
             ],
         ],
         'relationships' => [
@@ -97,12 +94,10 @@ return [
 
     'customer' => [
         'class' => 'App\Database\Customer',
-        'scope' => Scope::IS_STORE,
+        'scope' => Scope::STORE,
         'attributes' => [
             'email' => [
                 'label' => 'Email',
-                'backend.table' => true,
-                'backend.renderer' => 'App\Handlers\Attributes\EditLink',
             ],
             'password' => [
                 'label' => 'Password',
@@ -130,7 +125,7 @@ return [
 
     'reminder' => [
         'class' => 'App\Database\Reminder',
-        'scope' => Scope::IS_STORE,
+        'scope' => Scope::STORE,
         'attributes' => [
             'email' => [
                 'label' => 'Email',
@@ -147,7 +142,7 @@ return [
 
     'product' => [
         'class' => 'App\Database\Product',
-        'scope' => Scope::IS_STORE,
+        'scope' => Scope::STORE,
         'attributes' => [
             'sku' => [
                 'label' => 'Sku',
@@ -162,7 +157,7 @@ return [
             ],
             'url' => [
                 'label' => 'Url',
-                'before_save' => 'App\Handlers\Attributes\Product\UrlKey'
+                'handler' => 'App\Handlers\Attributes\Product\Url'
             ],
             'special_price' => [
                 'label' => 'Special Price',
@@ -197,15 +192,15 @@ return [
                 'type' => Relationship::BELONGS_TO,
             ],
             'config' => [
-                'entity' => 'store.config',
+                'entity' => 'store_config',
                 'type' => Relationship::HAS_MANY,
             ],
         ],
     ],
 
-    'store.config' => [
+    'store_config' => [
         'class' => 'App\Database\Store\Config',
-        'scope' => Scope::IS_STORE,
+        'scope' => Scope::STORE,
         'attributes' => [
             'key' => [
                 'label' => 'Key',
@@ -224,7 +219,7 @@ return [
 
     'theme' => [
         'class' =>  'App\Database\Theme',
-        'scope' => Scope::IS_STORE,
+        'scope' => Scope::STORE,
         'attributes' => [
             'code' => [
                 'label' => 'Code',
