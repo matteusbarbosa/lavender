@@ -6,20 +6,28 @@ use App\Workflow\Forms\Backend\Entity;
 class Product extends Entity
 {
 
+    public $product;
+
     public function __construct($params)
     {
-        $entity = $params->entity;
+        $this->product = $params->entity;
 
         $this->addField('sku', [
             'label' => 'Sku',
             'type' => 'text',
-            'value' => $entity->sku,
+            'value' => $this->product->sku,
         ]);
 
         $this->addField('name', [
             'label' => 'Name',
             'type' => 'text',
-            'value' => $entity->name,
+            'value' => $this->product->name,
+        ]);
+
+        $this->addField('price', [
+            'label' => 'Price',
+            'type' => 'text',
+            'value' => $this->product->price,
         ]);
 
         parent::__construct($params);

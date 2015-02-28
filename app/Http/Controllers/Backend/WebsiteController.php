@@ -3,17 +3,17 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controller\Backend;
 
-class DashboardController extends Backend
+class WebsiteController extends Backend
 {
 
-	public function __construct()
-	{
+    public function __construct()
+    {
         $this->loadLayout();
-	}
+    }
 
 	public function getIndex()
 	{
-		return view('backend.dashboard');
+        return view('backend.website');
 	}
 
 }

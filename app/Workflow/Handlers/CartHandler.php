@@ -8,14 +8,15 @@ class CartHandler
 {
 
     /**
+     * todo better validations (stock availability, customer group, etc)
      * @param $data
      */
-    public function add_to_cart(Workflow $data)
+    public function add_cart_item(Workflow $data)
     {
         $request = $data->request;
 
         try{
-            // load product
+            // load and set product to the request
             $request['product'] = entity('product')->find($request['product']);
 
             // set the current cart
@@ -34,9 +35,41 @@ class CartHandler
             ));
 
         } catch(\Exception $e){
-            echo '<pre>';
-            print_r($e->getMessage());
-            die;
+
+            dd($e->getMessage());
+
+        }
+    }
+
+    /**
+     * todo better validations (stock availability, customer group, etc)
+     * @param $data
+     */
+    public function update_cart_item(Workflow $data)
+    {
+        $request = $data->request;
+
+        try{
+            // load the current cart
+            $cart = app('cart')->getCart();
+
+            if($cart_item = $cart->findItem($request['item_id'])){
+
+                $cart_item->update([
+                    'qty' => $request['qty']
+                ]);
+
+                Message::addSuccess(sprintf(
+                    "Product %s was updated in cart id %s",
+                    $cart_item->product->name,
+                    $cart->id
+                ));
+            }
+
+        } catch(\Exception $e){
+
+            dd($e->getMessage());
+
         }
     }
 
@@ -49,8 +82,12 @@ class CartHandler
     public function subscribe($events)
     {
         $events->listen(
-            'App\Workflow\Forms\Cart\AddToCart',
-            'App\Workflow\Handlers\CartHandler@add_to_cart'
+            'App\Workflow\Forms\Cart\ItemAdd',
+            'App\Workflow\Handlers\CartHandler@add_cart_item'
+        );
+        $events->listen(
+            'App\Workflow\Forms\Cart\ItemUpdate',
+            'App\Workflow\Handlers\CartHandler@update_cart_item'
         );
     }
 

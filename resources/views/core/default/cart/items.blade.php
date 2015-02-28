@@ -10,8 +10,7 @@
         @foreach($items as $item)
             <tr>
                 <td>{{$item->product->name}}</td>
-                <td><input type="number" name="qty" value="{{$item->qty}}" /></td>
-                <td><button>edit</button></td>
+                <td>@workflow('cart_item_update', ['item' => $item])</td>
             </tr>
         @endforeach
     </tbody>

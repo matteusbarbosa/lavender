@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Cart;
 
 use App\Http\Controller\Frontend;
 use Illuminate\Support\Facades\Input;
@@ -16,12 +16,5 @@ class CartController extends Frontend
 	{
 		return view('cart.page');
 	}
-
-    public function postAdd()
-    {
-        workflow('add_to_cart')->handle(Input::all());
-
-        return redirect('cart');
-    }
 
 }

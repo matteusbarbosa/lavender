@@ -19,8 +19,11 @@ class Kernel extends WorkflowKernel
         ],
 
         /** Frontend */
-        'add_to_cart' => [
-            10 => 'App\Workflow\Forms\Cart\AddToCart',
+        'cart_item_add' => [
+            10 => 'App\Workflow\Forms\Cart\ItemAdd',
+        ],
+        'cart_item_update' => [
+            10 => 'App\Workflow\Forms\Cart\ItemUpdate',
         ],
         'contact' => [
             10 => 'App\Workflow\Forms\ContactForm'
@@ -50,6 +53,7 @@ class Kernel extends WorkflowKernel
         'App\Workflow\Handlers\Admin\AuthHandler',
 
         'App\Workflow\Handlers\CartHandler',
+        'App\Workflow\Handlers\BackendHandler',
 
     ];
 

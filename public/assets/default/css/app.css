@@ -832,6 +832,10 @@ address{
 table{
     width: 100%;
 }
+table form,
+table input {
+    margin:0;
+}
 
 thead input[type="text"]{
     width: 100%;

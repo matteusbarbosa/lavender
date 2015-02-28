@@ -31,8 +31,6 @@ class PasswordController extends Controller {
 	{
 		$this->auth = Auth::admin();
 		$this->passwords = $passwords;
-
-		$this->middleware('guest');
 	}
 
 }

@@ -2,14 +2,13 @@
 namespace App\Http\Controllers\Backend\Catalog;
 
 use App\Http\Controller\BackendEntity;
+use Illuminate\Http\Request;
 
 class ProductController extends BackendEntity
 {
 
     public function __construct()
     {
-        $this->middleware('backend');
-
         $this->loadLayout();
     }
 
@@ -19,8 +18,7 @@ class ProductController extends BackendEntity
 
             return view('backend.entity.view')
                 ->with('model',     $model)
-                ->with('workflow',  'edit_product')
-                ->with('entity',    'product');
+                ->with('workflow',  'edit_product');
         }
 
         return redirect('backend');
@@ -45,5 +43,23 @@ class ProductController extends BackendEntity
 
         return redirect('backend');
 	}
+
+
+    /**
+     * Handle a login request to the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function postEdit(Request $request, $id)
+    {
+        if($model = $this->validateEntity('product', $id)){
+
+            workflow('edit_product', ['entity' => $model])->handle($request->all());
+
+        }
+
+        return redirect()->back();
+    }
 
 }

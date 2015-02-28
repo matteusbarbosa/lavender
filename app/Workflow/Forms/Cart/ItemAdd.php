@@ -3,12 +3,12 @@ namespace App\Workflow\Forms\Cart;
 
 use Lavender\Support\Workflow;
 
-class AddToCart extends Workflow
+class ItemAdd extends Workflow
 {
 
     public function __construct($params)
     {
-        $this->options['action'] = url('cart/add');
+        $this->options['action'] = url('cart/item/add');
 
         $this->addField('product', [
             'type' => 'hidden',

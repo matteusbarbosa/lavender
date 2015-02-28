@@ -8,8 +8,6 @@ class CategoryController extends BackendEntity
 
     public function __construct()
     {
-        $this->middleware('backend');
-
         $this->loadLayout();
     }
 
@@ -19,8 +17,7 @@ class CategoryController extends BackendEntity
 
             return view('backend.entity.view')
                 ->with('model',     $model)
-                ->with('workflow',  'edit_category')
-                ->with('entity',    'category');
+                ->with('workflow',  'edit_category');
         }
 
         return redirect('backend');

@@ -10,4 +10,15 @@ class Cart extends Entity
 
     protected $table = 'sales_cart';
 
+
+    public function findItem($item_id)
+    {
+        foreach($this->items as $item){
+
+            if($item_id == $item->id) return $item;
+
+        }
+
+        return false;
+    }
 }

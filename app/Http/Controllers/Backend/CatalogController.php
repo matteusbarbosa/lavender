@@ -8,8 +8,6 @@ class CatalogController extends Backend
 
     public function __construct()
     {
-        $this->middleware('backend');
-
         $this->loadLayout();
     }
 

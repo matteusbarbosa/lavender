@@ -2,7 +2,7 @@
 
 @section('head.title')
 
-    Entity: {{ $entity }}
+    Entity: {{ $model->getEntityName() }}
 
 @stop
 

@@ -19,8 +19,6 @@ class AuthController extends Base
 	{
 		$this->auth = Auth::admin();
 
-        $this->middleware('admin_guest');
-
         $this->loadLayout();
 	}
 
@@ -41,7 +39,7 @@ class AuthController extends Base
 	 */
 	public function getLogin()
 	{
-		return view('backend.index');
+		return view('admin.login');
 	}
 
     /**
