@@ -58,9 +58,13 @@ Run your newly created migration file:
 
     php artisan migrate
 
-Install lavender's dependencies (default store, theme, admin):
+Install lavender's dependencies (default store and theme):
 
     php artisan db:seed --class=InstallLavender
+
+Create an admin account:
+
+    php artisan make:admin
     
     
 ### Step 3: (Optional) Seed catalog sample data!
