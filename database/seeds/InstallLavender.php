@@ -46,26 +46,9 @@ class InstallLavender extends Seeder {
 				'root_category' => $category,
 			]);
 
-			// todo create admin (move back to artisan command)
-			$success = false;
+            $this->command->call('admin:create');
 
-			while(!$success){
-
-				$admin = entity('admin');
-
-				$admin->email = $this->command->ask('Enter an email address: (required)');
-
-				$admin->password = $this->command->secret('Enter a password: (required)');
-
-				$admin->password_confirmation = $this->command->secret('Confirm your password: (required)');
-
-				$success = $admin->save();
-
-				if(!$success) $this->command->error($admin->errors);
-
-			}
-
-			$this->command->info("Lavender has successfully installed!");
+            $this->command->info("Lavender has successfully installed!");
 
 		}
 	}

@@ -204,12 +204,6 @@ return [
 		// Application Facades
 		'Message'      => 'App\Support\Facades\Message',
 		'Menu'         => 'App\Support\Facades\Menu',
-
-		// Lavender Facades
-		'Attribute'    => 'Lavender\Support\Facades\Attribute',
-		'Layout'       => 'Lavender\Support\Facades\Layout',
-		'Relationship' => 'Lavender\Support\Facades\Relationship',
-		'Scope'        => 'Lavender\Support\Facades\Scope',
 		'Workflow'     => 'Lavender\Support\Facades\Workflow',
 
 	],

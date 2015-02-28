@@ -10,9 +10,7 @@ class EnvMatch
     {
         if($store_id = Request::server('LAVENDER_STORE')){
 
-            $found = $store->find($store_id);
-
-            dd($found);
+            return $store->find($store_id);
 
         }
 

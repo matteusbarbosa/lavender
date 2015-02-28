@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controller\Frontend;
 use Lavender\Support\Facades\Workflow;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CatalogController extends Frontend
 {
@@ -12,23 +13,38 @@ class CatalogController extends Frontend
         $this->loadLayout();
 	}
 
-	public function getCategory($category)
+	public function getCategory($url_key)
 	{
-        $category = entity('category')->findByAttribute('url', $category);
+        $category = entity('category')
+            ->findByAttribute('url', $url_key);
 
-        $products = $category->products()->paginate(config('store.product_count'));
+        if($category){
 
-        return view('catalog.category.view')
-            ->withCategory($category)
-            ->withProducts($products);
+            $products = $category->products()
+                ->paginate(config('store.product_count'));
+
+            return view('catalog.category.view')
+                ->withCategory($category)
+                ->withProducts($products);
+
+        }
+
+        throw new HttpException(404, 'Category not found.');
 	}
 
-    public function getProduct($product)
+    public function getProduct($url_key)
     {
-        $product = entity('product')->findByAttribute('url', $product);
+        $product = entity('product')
+            ->findByAttribute('url', $url_key);
 
-        return view('catalog.product.view')
-            ->withProduct($product);
+        if($product){
+
+            return view('catalog.product.view')
+                ->withProduct($product);
+
+        }
+
+        throw new HttpException(404, 'Product not found.');
     }
 
 }

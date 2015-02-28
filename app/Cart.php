@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-use Lavender\Support\Contracts\EntityInterface;
+use Lavender\Contracts\Entity;
 use Lavender\Support\SharedEntity;
 
 class Cart extends SharedEntity
@@ -9,7 +9,7 @@ class Cart extends SharedEntity
 
     function __construct($cart = null)
     {
-        if(!$cart instanceof EntityInterface){
+        if(!$cart instanceof Entity){
 
             $cart = $this->findOrNew();
 
@@ -30,7 +30,7 @@ class Cart extends SharedEntity
         $this->unsetData();
     }
 
-    public function setCart(EntityInterface $cart)
+    public function setCart(Entity $cart)
     {
         // set cart id in session
         $this->setSessionVariable($cart->id);

@@ -11,7 +11,7 @@ class CartHandler
     public function unload($account)
     {
         // if account login is a customer
-        if($account->getEntity() == 'customer'){
+        if($account->getEntityName() == 'customer'){
 
             // unload session cart
             app('cart')->unsetCart();
@@ -27,7 +27,7 @@ class CartHandler
 
         try{
             // if account login is a customer
-            if($account->getEntity() == 'customer'){
+            if($account->getEntityName() == 'customer'){
 
                 // load session cart
                 $session_cart = app('cart');

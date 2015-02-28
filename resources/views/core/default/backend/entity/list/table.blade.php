@@ -26,7 +26,7 @@
 
             @foreach($row->toArray() as $key => $value)
 
-                <td>{!! $row->backendValue($key) !!}</td>
+                <td>{!! $row->$key()->backend() !!}</td>
 
             @endforeach
 
