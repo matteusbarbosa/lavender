@@ -6,7 +6,7 @@ use Lavender\Workflow\Kernel as WorkflowKernel;
 class Kernel extends WorkflowKernel
 {
 
-    protected $workflowTemplate = 'layouts.elements.form';
+    protected $workflowTemplate = 'layouts.partials.form';
 
     protected $workflowForms = [
 
@@ -16,6 +16,12 @@ class Kernel extends WorkflowKernel
         ],
         'edit_product' => [
             10 => 'App\Workflow\Forms\Backend\Entity\Product'
+        ],
+        'edit_product_categories' => [
+            10 => 'App\Workflow\Forms\Backend\Entity\Product\Categories'
+        ],
+        'edit_category' => [
+            10 => 'App\Workflow\Forms\Backend\Entity\Category'
         ],
 
         /** Frontend */
@@ -53,6 +59,7 @@ class Kernel extends WorkflowKernel
         'App\Workflow\Handlers\Admin\AuthHandler',
 
         'App\Workflow\Handlers\CartHandler',
+
         'App\Workflow\Handlers\BackendHandler',
 
     ];
@@ -63,6 +70,7 @@ class Kernel extends WorkflowKernel
         'error'     => 'App\Workflow\Fields\Html',
         'comment'   => 'App\Workflow\Fields\Html',
         'button'    => 'App\Workflow\Fields\Html',
+        'tree'      => 'App\Workflow\Fields\Html',
 
         'checkbox'  => 'App\Workflow\Fields\Input',
         'radio'     => 'App\Workflow\Fields\Input',

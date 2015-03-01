@@ -17,6 +17,14 @@ class BackendHandler
             'App\Workflow\Forms\Backend\Entity\Product',
             'App\Workflow\Handlers\Backend\EditProduct'
         );
+        $events->listen(
+            'App\Workflow\Forms\Backend\Entity\Product\Categories',
+            'App\Workflow\Handlers\Backend\EditProduct@categories'
+        );
+        $events->listen(
+            'App\Workflow\Forms\Backend\Entity\Category',
+            'App\Workflow\Handlers\Backend\EditCategory'
+        );
     }
 
 }

@@ -4,7 +4,7 @@ use Lavender\Support\ContentHierarchy;
 
 class MenuBuilder extends ContentHierarchy
 {
-    protected $layout = 'layouts.elements.menu';
+    protected $layout = 'layouts.partials.menu';
 
 
     public function view()

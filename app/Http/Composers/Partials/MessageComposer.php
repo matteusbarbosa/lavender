@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Composers\Elements;
+namespace App\Http\Composers\Partials;
 
 use App\Support\Facades\Message;
 

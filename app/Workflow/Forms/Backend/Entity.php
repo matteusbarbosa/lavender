@@ -1,7 +1,6 @@
 <?php
 namespace App\Workflow\Forms\Backend;
 
-use Lavender\Support\Facades\Message;
 use Lavender\Support\Workflow;
 
 abstract class Entity extends Workflow
@@ -10,8 +9,6 @@ abstract class Entity extends Workflow
     public function __construct($params)
     {
         $entity = $params->entity;
-
-        Message::addNotice('todo tabs');
 
         $this->addField('id', [
             'type' => 'hidden',
@@ -24,7 +21,7 @@ abstract class Entity extends Workflow
         ]);
 
         $this->addField('submit', [
-            'type' => 'button',
+            'type' => 'submit',
             'value' => 'Save',
             'options' => ['type' => 'submit']
         ]);

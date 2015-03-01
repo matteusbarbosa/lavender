@@ -229,7 +229,7 @@ class AppServiceProvider extends ServiceProvider
         Blade::extend(function($html, $compiler){
             return preg_replace(
                 $compiler->createMatcher('printArray'),
-                '$1<?php foreach((array)$2 as $item) echo $item; ?>',
+                '$1<?php printArray$2; ?>',
                 $html
             );
         });

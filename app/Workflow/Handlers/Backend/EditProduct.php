@@ -16,20 +16,33 @@ class EditProduct
 
         $product = $data->product;
 
-        try{
+        $product->update($request);
 
-            $product->update($request);
+        Message::addSuccess(sprintf(
+            "Product \"%s\" was updated.",
+            $product->name
+        ));
+    }
 
-            Message::addSuccess(sprintf(
-                "Product %s was updated.",
-                $product->name
-            ));
+    /**
+     * @param $data
+     */
+    public function categories(Workflow $data)
+    {
+        $request = $data->request;
 
-        } catch(\Exception $e){
+        $product = $data->product;
 
-            dd($e->getMessage());
+        //todo fix detach / update (doesn't work sequentially without cloning entity)
+        $cloned = clone $product;
+        $cloned->categories()->detach();
 
-        }
+        $product->update(['categories' => ['category' => $request['categories']]]);
+
+        Message::addSuccess(sprintf(
+            "Product \"%s\" was updated.",
+            $product->name
+        ));
     }
 
 }

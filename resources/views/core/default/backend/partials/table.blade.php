@@ -24,13 +24,13 @@
 
         <tr>
 
-            @foreach($row->toArray() as $key => $value)
+            @foreach($row->attributesToArray() as $key => $value)
 
                 <td>{!! $row->$key()->backend() !!}</td>
 
             @endforeach
 
-            <td><a href="{{ url('backend',[$entity, 'edit', $row->id]) }}">edit</a></td>
+            <td><a href="{{ url($edit_url, [$row->id]) }}">edit</a></td>
 
         </tr>
 
@@ -42,7 +42,7 @@
 
 <script>
 
-    $(document).ready( function () {
+    /*$(document).ready( function () {
 
         $('#entity-table').DataTable({
             order: [
@@ -55,6 +55,6 @@
             }]
         });
 
-    } );
+    } );*/
 
 </script>

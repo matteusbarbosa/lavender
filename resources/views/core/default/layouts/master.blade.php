@@ -14,7 +14,7 @@
     <main>
         <div class="container">
             @yield('main.top')
-            @include('layouts.elements.messages')
+            @include('layouts.partials.messages')
             @yield('main')
             @yield('main.bottom')
         </div>

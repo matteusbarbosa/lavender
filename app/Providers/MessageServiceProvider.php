@@ -29,8 +29,8 @@ class MessageServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->app->view->composer(
-            'layouts.elements.messages',
-            'App\Http\Composers\Elements\MessageComposer'
+            'layouts.partials.messages',
+            'App\Http\Composers\Partials\MessageComposer'
         );
 
     }
