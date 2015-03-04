@@ -20,7 +20,7 @@ Please see [lavender/docs](https://github.com/lavender/docs).
 
 
 ### Roadmap
-Each stage of the project is charted below. Once the goals have been completed for each version we will move to the next version.
+Each major version (N.x.x) of the project is charted below. Once the goals have been completed for each major version we will move to the next major version. As we progress, big updates (breaking changes) are released in minor versions (x.N.x) and smaller updates (new features) are released in micro versions (x.x.N). The application (this repo) is built in minor versions, so a re-install is required between minor versions.
 
 Version / Stage                        | Release Date               | Goals     
  :-----------------------------------: | :------------------------- | :------------------------------------------------------
