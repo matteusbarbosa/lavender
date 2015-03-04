@@ -19,6 +19,19 @@ Lavender is open-sourced software licensed under the [MIT license](http://openso
 Please see [lavender/docs](https://github.com/lavender/docs).
 
 
+### Roadmap
+Each stage of the project is charted below. Once the goals have been completed for each version we will move to the next version.
+
+Version / Stage                        | Release Date               | Goals     
+ :-----------------------------------: | :------------------------- | :------------------------------------------------------
+ `0.x.x - Development`                 | Feb 2014                   | Create standard ecommerce entities, workflows, and routes. Create a functional backend and proof of concept for stores and themes.
+ `1.x.x - Developer Beta`              | Coming Q2 2015             | Feature development, ui improvements, documentation, screencasts.
+ `2.x.x - Preview`                     | Coming Q4 2015             | Improve extensibility, minimize module/theme boilerplate, focus on performance.
+ `3.x.x - Public Release`              | Coming Q2 2016             | Provide documentation for end users, create a marketing site to promote adoption.
+
+
+
+
 ### Support
 
 Come chat with us in [#lavender on freenode](http://webchat.freenode.net/?channels=#lavender), or [submit an new issue.](https://github.com/lavender/lavender/issues/new)
