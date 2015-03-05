@@ -97,11 +97,11 @@ class AppServiceProvider extends ServiceProvider
 
             if($this->app->store->bootStore()){
                 // merge store config into global config
-//                foreach($this->app->store->config->all() as $item){
-//
-//                    $this->app['config']->set('store.' . $item->key, $item->value);
-//
-//                }
+                foreach($this->app->store->config->all() as $item){
+
+                    $this->app['config']->set('store.' . $item->key, $item->value);
+
+                }
             } else {
 
                 throw new \Exception("Default store was not found.");

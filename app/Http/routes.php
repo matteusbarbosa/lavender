@@ -104,14 +104,24 @@ Route::group([
     'middleware'    => 'backend',
 ], function(){
 
-//    Route::group(['namespace' => 'Account'], function(){
-//
-//        Route::controllers([
-//            'customer'  => 'AdminController',
-//            'admin'     => 'CustomerController',
-//        ]);
-//
-//    });
+    Route::group(['namespace' => 'Website'], function(){
+
+        Route::controllers([
+            'store'     => 'StoreController',
+            'theme'     => 'ThemeController',
+            'config'    => 'ConfigController',
+        ]);
+
+    });
+
+    Route::group(['namespace' => 'Account'], function(){
+
+        Route::controllers([
+            'customer'  => 'CustomerController',
+            'admin'     => 'AdminController',
+        ]);
+
+    });
 
     Route::group(['namespace' => 'Catalog'], function(){
 
@@ -128,13 +138,6 @@ Route::group([
         'sales'         => 'SalesController',
         'catalog'       => 'CatalogController',
         '/'             => 'DashboardController',
-    ]);
-
-    Route::get('entity/{entity}/id/{id}',['uses' => 'EntityController@getEntity']);
-
-    Route::controllers([
-        'entity/{entity}' => 'EntityController',
-        '/' => 'DashboardController',
     ]);
 
 });

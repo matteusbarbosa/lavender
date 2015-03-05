@@ -15,6 +15,8 @@ abstract class Backend extends Base
 
     public function missingMethod($parameters = [])
     {
+        $this->loadLayout();
+
         Message::addError("Page not found.");
 
         compose_section('layouts.default', 'head.title', 'Not found');

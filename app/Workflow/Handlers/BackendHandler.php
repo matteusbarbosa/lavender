@@ -15,15 +15,23 @@ class BackendHandler
     {
         $events->listen(
             'App\Workflow\Forms\Backend\Entity\Product',
-            'App\Workflow\Handlers\Backend\EditProduct'
+            'App\Workflow\Handlers\Backend\EditProduct@handle_product'
         );
         $events->listen(
             'App\Workflow\Forms\Backend\Entity\Product\Categories',
-            'App\Workflow\Handlers\Backend\EditProduct@categories'
+            'App\Workflow\Handlers\Backend\EditProduct@handle_categories'
         );
         $events->listen(
             'App\Workflow\Forms\Backend\Entity\Category',
-            'App\Workflow\Handlers\Backend\EditCategory'
+            'App\Workflow\Handlers\Backend\EditCategory@handle_category'
+        );
+        $events->listen(
+            'App\Workflow\Forms\Backend\Config\General',
+            'App\Workflow\Handlers\Backend\EditConfig@handle_general'
+        );
+        $events->listen(
+            'App\Workflow\Forms\Backend\Config\Account',
+            'App\Workflow\Handlers\Backend\EditConfig@handle_account'
         );
     }
 

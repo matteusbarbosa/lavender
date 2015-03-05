@@ -10,7 +10,7 @@ class EditProduct
     /**
      * @param $data
      */
-    public function handle(Workflow $data)
+    public function handle_product(Workflow $data)
     {
         $request = $data->request;
 
@@ -32,7 +32,7 @@ class EditProduct
     /**
      * @param $data
      */
-    public function categories(Workflow $data)
+    public function handle_categories(Workflow $data)
     {
         $request = $data->request;
 

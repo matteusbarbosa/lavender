@@ -249,6 +249,22 @@ samp {
  * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
  */
 
+span.use_default {
+    margin-left: 10px;
+}
+
+span.use_default input{
+
+}
+
+span.use_default label{
+    display: inline-block;
+    margin-left: 5px;
+    font-weight: normal;
+    font-size: 0.75em;
+    vertical-align: middle;
+}
+
 button,
 input,
 optgroup,

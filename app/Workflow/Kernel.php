@@ -24,6 +24,12 @@ class Kernel extends WorkflowKernel
         'edit_category' => [
             10 => 'App\Workflow\Forms\Backend\Entity\Category'
         ],
+        'config_general' => [
+            10 => 'App\Workflow\Forms\Backend\Config\General'
+        ],
+        'config_account' => [
+            10 => 'App\Workflow\Forms\Backend\Config\Account'
+        ],
 
         /** Frontend */
         'cart_item_add' => [
@@ -93,6 +99,7 @@ class Kernel extends WorkflowKernel
 
     protected $workflowResources = [
 
+        'yesno'             => 'App\Workflow\Resources\YesNo',
         'category_tree'     => 'App\Workflow\Resources\CategoryTree',
         'category_children'     => 'App\Workflow\Resources\CategoryTree@toChildren',
 
