@@ -1,19 +1,21 @@
-<ul class="tree-list">
+<li>
 
-    @foreach($list as $item)
+    <a class="expand" data-children="{{ count($list['children']) }}">[+]</a>
 
-        <li>
+    {!! $list['content'] !!}
 
-            {!! $item['content'] !!}
+    @if($list['children'])
 
-            @if($item['children'])
+        <ul class="tree-node" style="display: none;">
 
-                @include('layouts.partials.tree.list', ['list' => $item['children']])
+            @foreach($list['children'] as $child)
 
-            @endif
+                @include('layouts.partials.tree.list', ['list' => $child])
 
-        </li>
+            @endforeach
 
-    @endforeach
+        </ul>
 
-</ul>
+    @endif
+
+</li>

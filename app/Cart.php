@@ -40,6 +40,18 @@ class Cart extends SharedEntity
     }
 
 
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+
+    public function getItemsCount()
+    {
+        return $this->items->count();
+    }
+
+
     public function getSummary()
     {
         $items_count = 0;

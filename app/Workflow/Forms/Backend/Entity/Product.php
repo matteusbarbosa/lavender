@@ -15,18 +15,21 @@ class Product extends Entity
         $this->addField('sku', [
             'label' => 'Sku',
             'type' => 'text',
+            'validate' => ['required'],
             'value' => $this->product->sku,
         ]);
 
         $this->addField('name', [
             'label' => 'Name',
             'type' => 'text',
+            'validate' => ['required'],
             'value' => $this->product->name,
         ]);
 
         $this->addField('price', [
             'label' => 'Price',
             'type' => 'text',
+            'validate' => ['required'],
             'value' => $this->product->price,
         ]);
 

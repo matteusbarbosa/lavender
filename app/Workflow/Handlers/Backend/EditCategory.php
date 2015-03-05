@@ -16,11 +16,22 @@ class EditCategory
 
         $category = $data->category;
 
-        $category->update($request);
+        $new = !$category->exists;
+
+        $parent = reset($request['category']);
+
+        $request['parent'] = ['category' => $parent];
+
+        unset($request['category']);
+
+        $category->fill($request);
+
+        $category->save();
 
         Message::addSuccess(sprintf(
-            "Category \"%s\" was updated.",
-            $category->name
+            "Category \"%s\" was %s.",
+            $category->name,
+            $new ? 'created' : 'updated'
         ));
     }
 

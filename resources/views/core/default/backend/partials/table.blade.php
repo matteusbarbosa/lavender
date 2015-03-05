@@ -1,5 +1,19 @@
 
+<div class="row">
 
+    <div class="six columns">
+
+        @yield('mass_actions')
+
+    </div>
+
+    <div class="six columns right">
+
+        @yield('new_button')
+
+    </div>
+
+</div>
 <table id="entity-table" class="u-max-full-width">
 
     <thead>
@@ -42,7 +56,7 @@
 
 <script>
 
-    /*$(document).ready( function () {
+    $(document).ready( function () {
 
         $('#entity-table').DataTable({
             order: [
@@ -55,6 +69,6 @@
             }]
         });
 
-    } );*/
+    } );
 
 </script>

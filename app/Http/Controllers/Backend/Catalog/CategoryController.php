@@ -16,14 +16,20 @@ class CategoryController extends BackendEntity
     {
         if($model = $this->validateEntity('category', $id)){
 
+            $tabs[] = [
+                'label' => "General",
+                'content' => workflow('edit_category', ['entity' => $model]),
+            ];
+
+            if($model->exists){
+
+                //
+
+            }
+
             return view('backend.tabs')
                 ->with('title', $model->getEntityName())
-                ->with('tabs', [
-                    [
-                        'label' => "General",
-                        'content' => workflow('edit_category', ['entity' => $model]),
-                    ]
-                ]);
+                ->with('tabs', $tabs);
         }
 
         return redirect('backend');
@@ -38,6 +44,20 @@ class CategoryController extends BackendEntity
                 'Category Name' => 'name',
                 'Last Updated'  => 'updated_at'
             ];
+
+            $new_button = url('backend/category/edit/new');
+
+            compose_section(
+                'backend.grid',
+                'new_button',
+                "<button onclick=\"window.location='{$new_button}';\">Add new category</button>"
+            );
+
+            compose_section(
+                'backend.grid',
+                'mass_actions',
+                "<select><option>Action</option></select>"
+            );
 
             return view('backend.grid')
                 ->with('title',    'category')
@@ -60,7 +80,11 @@ class CategoryController extends BackendEntity
     {
         if($model = $this->validateEntity('category', $id)){
 
+            $new = !$model->exists;
+
             workflow('edit_category', ['entity' => $model])->handle($request->all());
+
+            if($new && $model->exists) return redirect()->to('backend/category/edit/'.$model->id);
 
         }
 

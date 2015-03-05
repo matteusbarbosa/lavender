@@ -13,18 +13,22 @@ class ProductController extends BackendEntity
 
             $this->loadLayout();
 
+            $tabs[] = [
+                'label' => "General",
+                'content' => workflow('edit_product', ['entity' => $model])
+            ];
+
+            if($model->exists){
+
+                $tabs[] = [
+                    'label'   => "Categories",
+                    'content' => workflow('edit_product_categories', ['entity' => $model])
+                ];
+
+            }
             return view('backend.tabs')
                 ->with('title', $model->getEntityName())
-                ->with('tabs', [
-                    [
-                        'label' => "General",
-                        'content' => workflow('edit_product', ['entity' => $model])
-                    ],
-                    [
-                        'label' => "Categories",
-                        'content' => workflow('edit_product_categories', ['entity' => $model])
-                    ],
-                ]);
+                ->with('tabs', $tabs);
         }
 
         return redirect('backend');
@@ -42,6 +46,20 @@ class ProductController extends BackendEntity
             ];
 
             $this->loadLayout();
+
+            $new_button = url('backend/product/edit/new');
+
+            compose_section(
+                'backend.grid',
+                'new_button',
+                "<button onclick=\"window.location='{$new_button}';\">Add new product</button>"
+            );
+
+            compose_section(
+                'backend.grid',
+                'mass_actions',
+                "<select><option>Action</option></select>"
+            );
 
             return view('backend.grid')
                 ->with('title',    'Product')
@@ -64,7 +82,11 @@ class ProductController extends BackendEntity
     {
         if($model = $this->validateEntity('product', $id)){
 
+            $new = !$model->exists;
+
             workflow('edit_product', ['entity' => $model])->handle($request->all());
+
+            if($new && $model->exists) return redirect()->to('backend/product/edit/'.$model->id);
 
         }
 

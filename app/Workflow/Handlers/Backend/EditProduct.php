@@ -16,11 +16,16 @@ class EditProduct
 
         $product = $data->product;
 
-        $product->update($request);
+        $new = !$product->exists;
+
+        $product->fill($request);
+
+        $product->save();
 
         Message::addSuccess(sprintf(
-            "Product \"%s\" was updated.",
-            $product->name
+            "Product \"%s\" was %s.",
+            $product->name,
+            $new ? 'created' : 'updated'
         ));
     }
 
@@ -37,7 +42,7 @@ class EditProduct
         $cloned = clone $product;
         $cloned->categories()->detach();
 
-        $product->update(['categories' => ['category' => $request['categories']]]);
+        $product->update(['categories' => ['category' => $request['category']]]);
 
         Message::addSuccess(sprintf(
             "Product \"%s\" was updated.",

@@ -37,6 +37,9 @@ class Kernel extends HttpKernel {
 
         // admin must NOT be authenticated
 		'admin_guest' => 'App\Http\Middleware\Admin\RedirectIfAuthenticated',
+
+        // admin must NOT be authenticated
+		'cart' => 'App\Http\Middleware\Cart\RedirectIfEmpty',
 	];
 
 }

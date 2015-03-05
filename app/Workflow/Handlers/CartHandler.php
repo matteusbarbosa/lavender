@@ -55,9 +55,17 @@ class CartHandler
 
             if($cart_item = $cart->findItem($request['item_id'])){
 
-                $cart_item->update([
-                    'qty' => $request['qty']
-                ]);
+                if($request['qty']){
+
+                    $cart_item->update([
+                        'qty' => $request['qty']
+                    ]);
+
+                } else {
+
+                    $cart_item->delete();
+
+                }
 
                 Message::addSuccess(sprintf(
                     "Product %s was updated in cart id %s",
