@@ -387,7 +387,6 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
 }
-
 /**
  * Define consistent border, margin, and padding.
  */
@@ -711,6 +710,26 @@ label > .label-body {
     font-weight: normal;
     margin-left: .5rem; }
 
+
+select.changes,
+textarea.changes,
+input.changes{
+    border-color: #3D9970;
+}
+
+/* Tabs
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+li.tab-title.changes:after{
+    content:"(changed)"; /*todo save icon*/
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+li.tab-title{
+    position:relative;
+    list-style: none;
+}
 
 /* Lists
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
