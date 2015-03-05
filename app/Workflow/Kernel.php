@@ -3,6 +3,7 @@ namespace App\Workflow;
 
 use Lavender\Workflow\Kernel as WorkflowKernel;
 
+// todo split up kernels by controller
 class Kernel extends WorkflowKernel
 {
 
@@ -70,7 +71,7 @@ class Kernel extends WorkflowKernel
         'error'     => 'App\Workflow\Fields\Html',
         'comment'   => 'App\Workflow\Fields\Html',
         'button'    => 'App\Workflow\Fields\Html',
-        'tree'      => 'App\Workflow\Fields\Html',
+        'tree'      => 'App\Workflow\Fields\Tree',
 
         'checkbox'  => 'App\Workflow\Fields\Input',
         'radio'     => 'App\Workflow\Fields\Input',
@@ -87,6 +88,13 @@ class Kernel extends WorkflowKernel
         'reset'     => 'App\Workflow\Fields\Input',
 
         'select'    => 'App\Workflow\Fields\Select@dropdown',
+
+    ];
+
+    protected $workflowResources = [
+
+        'category_tree'     => 'App\Workflow\Resources\CategoryTree',
+        'category_children'     => 'App\Workflow\Resources\CategoryTree@toChildren',
 
     ];
 

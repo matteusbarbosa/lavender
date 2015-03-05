@@ -2,7 +2,6 @@
 namespace App\Workflow\Forms\Backend\Entity\Product;
 
 use App\Workflow\Forms\Backend\Entity;
-use Illuminate\Database\Query\Expression;
 use Lavender\Contracts\Entity as EntityContract;
 
 class Categories extends Entity
@@ -16,6 +15,7 @@ class Categories extends Entity
 
         $this->options['action'] = url('backend/product/categories/'.$this->product->id);
 
+        // todo find/make a "get relationship ids" method
         $selected = [];
 
         foreach($this->product->categories as $category){
@@ -28,17 +28,7 @@ class Categories extends Entity
             'label' => 'Category Tree',
             'type' => 'tree',
             'value' => $selected,
-            'resource' => app('store')->root_category,
-            'resource_helper' => function($resource, $test = false){
-                if($resource instanceof EntityContract){
-                    return $resource->children()->get([
-                        'name as label',
-                        new Expression('"categories" as name'),
-                        'id as value',
-                        'id as id',
-                    ]);
-                }
-            }
+            'resource' => 'category_children',
         ]);
 
         parent::__construct($params);

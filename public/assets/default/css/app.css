@@ -473,6 +473,9 @@ th {
 .row .columns:first-child {
     margin-left: 0; }
 
+
+.right{ text-align: right; }
+
 /* For devices larger than 550px */
 @media (min-width: 550px) {
 
@@ -574,6 +577,15 @@ a:hover {
 
 /* Buttons
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+a.expand{
+    font-family: monospace;
+    font-size: 14px;
+    vertical-align: top;
+    margin-right: 2px;
+    letter-spacing: -1px;
+    cursor: pointer;
+}
+
 .button,
 button,
 input[type="submit"],

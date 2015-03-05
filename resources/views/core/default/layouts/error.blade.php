@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	@include('page.section.head')
-
 	<style>
 		body {
 			margin: 0;

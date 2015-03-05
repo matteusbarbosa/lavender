@@ -2,24 +2,28 @@
 namespace App\Workflow\Fields;
 
 use Illuminate\Contracts\Support\Arrayable;
+use Lavender\Contracts\Entity as EntityContract;
 
 class Select
 {
     public function dropdown($selected, $options, $resource)
     {
-        $html[] = '<select'.attr($options).'>';
+        $options = $this->buildOptions($selected, $resource);
 
-        if($resource instanceof Arrayable) $resource = $resource->toArray();
+        return '<select'.attr($options).'>'.implode(PHP_EOL, $options).'</select>';
+    }
 
-        foreach((array)$resource as $value => $option){
+    protected function buildOptions($selected, $resource)
+    {
+        $html = [];
+
+        foreach($resource as $value => $option){
 
             $html[] = $this->getSelectOption($option, $value, $selected);
 
         }
 
-        $html[] = '</select>';
-
-        return implode(PHP_EOL, $html);
+        return $html;
     }
 
     /**
@@ -32,9 +36,10 @@ class Select
      */
     protected function getSelectOption($option, $value, $selected)
     {
-        if (is_array($option))
-        {
+        if(is_array($option)){
+
             return $this->optionGroup($option, $value, $selected);
+
         }
 
         return $this->option($option, $value, $selected);
