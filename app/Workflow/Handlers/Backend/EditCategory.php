@@ -10,7 +10,7 @@ class EditCategory
     /**
      * @param $data
      */
-    public function handle(Workflow $data)
+    public function handle_category(Workflow $data)
     {
         $request = $data->request;
 

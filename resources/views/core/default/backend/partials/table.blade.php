@@ -26,7 +26,12 @@
 
             @endforeach
 
-            <th class="no-sort"></th>
+            @if($edit_url)
+
+                <th class="no-sort"></th>
+
+            @endif
+
 
         </tr>
 
@@ -44,7 +49,11 @@
 
             @endforeach
 
-            <td><a href="{{ url($edit_url, [$row->id]) }}">edit</a></td>
+            @if($edit_url)
+
+                <td><a href="{{ url($edit_url, [$row->id]) }}">edit</a></td>
+
+            @endif
 
         </tr>
 
