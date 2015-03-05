@@ -47,6 +47,20 @@
          */
         $('ul.tabs li').click(function(){
 
+            var current_index = $('ul.tabs').find('li.active').index();
+
+            var current_panel = $('div.tab-panel')[current_index];
+
+            if($(current_panel).find('.changes').length){
+
+                if(!confirm('Changes on this tab will not be saved.')){
+
+                    return false;
+
+                }
+
+            }
+
             $('ul.tabs li').removeClass('active');
 
             $(this).addClass('active');
@@ -68,6 +82,12 @@
                 $('ul.tabs').remove();
 
             }
+
+            $('div.tab-panel :input').bind('change', function(){
+
+                $(this).addClass('changes');
+
+            });
 
         } );
 
