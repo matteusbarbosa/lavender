@@ -11,7 +11,7 @@
             <h5>Your Shopping Cart</h5>
         </div>
         <div class="five columns">
-            <a href="{{ url('/') }}">Continue Shopping</a> or <button onclick="setLocation('{{ url('checkout') }}')">Go to Checkout</button>
+            <a href="{{ url('/') }}">Keep Shopping</a> or <button onclick="setLocation('{{ url('checkout') }}')">Continue to Checkout</button>
         </div>
     </div>
 
@@ -21,8 +21,8 @@
         <div class="seven columns">
             <p><strong>shipping calculator</strong></p>
         </div>
-        <div class="five columns">
-            <a href="{{ url('/') }}">Continue Shopping</a> or <button onclick="setLocation('{{ url('checkout') }}')">Go to Checkout</button>
+        <div class="five columns right">
+            <button onclick="setLocation('{{ url('checkout') }}')">Continue to Checkout</button>
         </div>
     </div>
 
