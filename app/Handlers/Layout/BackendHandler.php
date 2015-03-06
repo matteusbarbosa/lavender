@@ -115,6 +115,8 @@ class BackendHandler
     {
         view()->composer('page.section.head', function($view){
 
+            append_section('head.style', ['style' => 'css/util/code.css']);
+
             append_section('head.style', ['style' => 'css/jquery.dataTables.min.css']);
 
             append_section('head.script', ['script' => 'js/jquery-2.1.3.min.js']);
