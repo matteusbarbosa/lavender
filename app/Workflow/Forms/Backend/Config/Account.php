@@ -5,6 +5,7 @@ use Lavender\Support\Workflow;
 
 class Account extends Workflow
 {
+    public $template = 'backend.partials.form';
 
     public function __construct($params)
     {
@@ -15,6 +16,7 @@ class Account extends Workflow
             'type' => 'select',
             'resource' => 'yesno',
             'value' => config('store.signup_email'),
+            'use_default' => true,
         ]);
 
         $this->addField('signup_confirm', [
@@ -22,6 +24,7 @@ class Account extends Workflow
             'type' => 'select',
             'resource' => 'yesno',
             'value' => config('store.signup_confirm'),
+            'use_default' => true,
         ]);
 
         $this->addField('submit', [

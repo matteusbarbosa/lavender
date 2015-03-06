@@ -19,6 +19,15 @@ class BaseHandler
 
             append_section('head.anchor', ['config' => 'store.name']);
 
+            append_section('head.style', ['style' => 'css/base.css']);
+
+            // css utilities - todo merge
+            append_section('head.style', ['style' => 'css/util/code.css']);
+            append_section('head.style', ['style' => 'css/util/messages.css']);
+            append_section('head.style', ['style' => 'css/util/navigation.css']);
+            append_section('head.style', ['style' => 'css/util/print.css']);
+            append_section('head.style', ['style' => 'css/util/table.css']);
+
             append_section('head.style', ['style' => 'css/app.css']);
 
             append_section('head.script', ['script' => 'js/app.js']);

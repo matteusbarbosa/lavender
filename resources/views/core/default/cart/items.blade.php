@@ -1,17 +1,45 @@
-<table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Qty</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($items as $item)
-            <tr>
-                <td>{{$item->product->name}}</td>
-                <td>@workflow('cart_item_update', ['item' => $item])</td>
-            </tr>
-        @endforeach
-    </tbody>
-</table>
+<div class="table" id="cart-table">
+
+<div class="thead">
+
+    <div class="row">
+
+        <div class="eight columns">Name</div>
+
+        <div class="four columns">Qty</div>
+
+    </div>
+
+</div>
+
+<div class="tbody">
+
+@foreach($items as $item)
+
+    <div class="row">
+
+        <div class="eight columns">
+
+            {{$item->product->name}}
+
+        </div>
+
+        <div class="four columns">
+
+            @workflow('cart_item_update', ['item' => $item])
+
+        </div>
+
+    </div>
+
+@endforeach
+
+</div>
+
+<div class="tfoot">
+
+    <div class="row"></div>
+
+</div>
+
+</div>

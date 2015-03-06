@@ -1,23 +1,29 @@
-@extends('layouts.split')
+@extends('layouts.default')
 
 @section('head.title')
     Shopping Cart
 @stop
 
-@section('left.top')
-    <h5>Shopping cart:</h5>
-@stop
+@section('main')
 
-@section('left')
+    <div class="row">
+        <div class="seven columns">
+            <h5>Your Shopping Cart</h5>
+        </div>
+        <div class="five columns">
+            <a href="{{ url('/') }}">Continue Shopping</a> or <button onclick="setLocation('{{ url('checkout') }}')">Go to Checkout</button>
+        </div>
+    </div>
 
     @include('cart.items', ['items' => app('cart')->items])
 
-@stop
-
-@section('right.top')
-    <p>Checkout options:</p>
-@stop
-
-@section('right')
+    <div class="row">
+        <div class="seven columns">
+            <p><strong>shipping calculator</strong></p>
+        </div>
+        <div class="five columns">
+            <a href="{{ url('/') }}">Continue Shopping</a> or <button onclick="setLocation('{{ url('checkout') }}')">Go to Checkout</button>
+        </div>
+    </div>
 
 @stop

@@ -21,7 +21,7 @@ class ItemAdd extends Workflow
             'type' => 'text',
             'value' => 1,
             'validate' => ['required'],
-            'options' => ['class' => 'small-input'],
+            'options' => ['class' => 'tiny-input'],
         ]);
 
         $this->addField('submit', [

@@ -1,5 +1,5 @@
 
-<form onsubmit="submit.disabled=true;return true;" {!! attr($options) !!} >
+<form onsubmit="preventDoubleSubmit(this)" {!! attr($options) !!} >
 
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 

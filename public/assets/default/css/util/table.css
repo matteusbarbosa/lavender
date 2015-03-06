@@ -1,0 +1,31 @@
+div.table form,
+div.table input,
+div.table select,
+div.table textarea,
+div.table button{
+    margin:0;
+}
+
+div.table div.field{
+    display: inline-block;
+}
+
+div.thead div.row{
+    border-bottom: 1px solid #C5C5C5;
+}
+
+div.tfoot div.row{
+    border-top: 1px solid #C5C5C5;
+}
+
+div.table div.row{
+    margin:0;padding:10px;
+}
+
+div.tbody div.row:first-child,
+div.tbody div.row:nth-child(2n+3){
+    background: #EDEDED;
+    border-bottom: 1px solid #C5C5C5;
+    border-top: 1px solid #C5C5C5;
+}
+
