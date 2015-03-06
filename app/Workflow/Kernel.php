@@ -38,6 +38,11 @@ class Kernel extends WorkflowKernel
         'cart_item_update' => [
             10 => 'App\Workflow\Forms\Cart\ItemUpdate',
         ],
+        'checkout' => [
+            10 => 'App\Workflow\Forms\Checkout\Shipping',
+            20 => 'App\Workflow\Forms\Checkout\Payment',
+            30 => 'App\Workflow\Forms\Checkout\Review',
+        ],
         'contact' => [
             10 => 'App\Workflow\Forms\ContactForm'
         ],
@@ -66,6 +71,8 @@ class Kernel extends WorkflowKernel
         'App\Workflow\Handlers\Admin\AuthHandler',
 
         'App\Workflow\Handlers\CartHandler',
+
+        'App\Workflow\Handlers\CheckoutHandler',
 
         'App\Workflow\Handlers\BackendHandler',
 
@@ -101,7 +108,7 @@ class Kernel extends WorkflowKernel
 
         'yesno'             => 'App\Workflow\Resources\YesNo',
         'category_tree'     => 'App\Workflow\Resources\CategoryTree',
-        'category_children'     => 'App\Workflow\Resources\CategoryTree@toChildren',
+        'category_children' => 'App\Workflow\Resources\CategoryTree@toChildren',
 
     ];
 

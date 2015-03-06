@@ -35,7 +35,7 @@ Route::group(['prefix'  => 'contact'], function(){
 
 /**
  * Customer routes
- *  - App\Http\Controllers\Customer
+ *  - namespace App\Http\Controllers\Customer
  *  - Various dashboards and workflow(s)
  *  - middleware handled by controllers
  */
@@ -55,7 +55,7 @@ Route::group([
 
 /**
  * Shopping cart routes
- *  - App\Http\Controllers\Cart
+ *  - namespace App\Http\Controllers\Cart
  *  - Cart page and cart item workflow(s)
  */
 Route::group([
@@ -66,6 +66,28 @@ Route::group([
 	Route::controllers([
 		'item'      => 'ItemController',
 		'/'         => 'CartController',
+	]);
+
+});
+
+
+/**
+ * Checkout routes
+ *  - namespace App\Http\Controllers\Checkout
+ *  - Checkout workflow
+ */
+Route::group([
+    'namespace'     => 'Checkout',
+    'prefix'        => 'checkout',
+    'middleware'    => 'cart',
+], function(){
+
+	Route::controllers([
+		'success'   => 'SuccessController',
+		'review'    => 'ReviewController',
+		'payment'   => 'PaymentController',
+		'shipping'  => 'ShippingController',
+		'/'         => 'IndexController',
 	]);
 
 });

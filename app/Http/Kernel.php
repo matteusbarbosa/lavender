@@ -40,6 +40,11 @@ class Kernel extends HttpKernel {
 
         // admin must NOT be authenticated
 		'cart' => 'App\Http\Middleware\Cart\RedirectIfEmpty',
+
+        'checkout_shipping' => 'App\Http\Middleware\Checkout\ShowShipping',
+        'checkout_payment' => 'App\Http\Middleware\Checkout\ShowPayment',
+        'checkout_review' => 'App\Http\Middleware\Checkout\ShowReview',
+        'checkout_success' => 'App\Http\Middleware\Checkout\ShowSuccess',
 	];
 
 }

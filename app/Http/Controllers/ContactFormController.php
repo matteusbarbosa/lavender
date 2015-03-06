@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Controller\Frontend;
 use Illuminate\Support\Facades\Input;
-use Lavender\Support\Facades\Workflow;
 
 class ContactFormController extends Frontend
 {

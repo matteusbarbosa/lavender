@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Cart;
 
 use App\Http\Controller\Frontend;
-use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 
 class ItemController extends Frontend
 {
@@ -12,16 +12,16 @@ class ItemController extends Frontend
         $this->loadLayout();
     }
 
-    public function postAdd()
+    public function postAdd(Request $request)
     {
-        workflow('cart_item_add')->handle(Input::all());
+        workflow('cart_item_add')->handle($request->all());
 
         return redirect('cart');
     }
 
-    public function postUpdate()
+    public function postUpdate(Request $request)
     {
-        workflow('cart_item_update')->handle(Input::all());
+        workflow('cart_item_update')->handle($request->all());
 
         return redirect('cart');
     }
