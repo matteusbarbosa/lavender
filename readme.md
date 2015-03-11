@@ -20,7 +20,7 @@ Each major version (N.x.x) of the project is charted below. Once the goals have 
 Version / Stage                        |                            | Goals     
  :-----------------------------------: | :------------------------- | :------------------------------------------------------
  `0.x.x - Development`                 | Current                    | Create standard ecommerce entities and routes, as well as backend forms and grids. Create tests. Demonstrate use of stores and themes.
- `1.x.x - Developer Beta`              | Coming Q2 2015             | Feature development, ui improvements, documentation.
+ `1.x.x - Developer Beta`              | Coming Q2 2015             | Feature development, ui improvements, [documentation](https://github.com/lavender/lavender/wiki).
  `2.x.x - Preview`                     | Coming Q4 2015             | Improve extensibility, performance/security audits.
  `3.x.x - Public Release`              | Coming Q2 2016             | Provide documentation for end users, create a marketing site to promote adoption.
 
