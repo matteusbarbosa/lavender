@@ -29,7 +29,7 @@ Version / Stage                        |                            | Goals
  `2.x.x - Preview`                     | Coming Q4 2015             | Improve extensibility, performance/security audits.
  `3.x.x - Public Release`              | Coming Q2 2016             | Provide documentation for end users, create a marketing site to promote adoption.
 
-
+What does production-ready Lavender look like? A feature-light but highly extensible ecommerce platform with elegant code structures and detailed documentation.
 
 
 ### Support
