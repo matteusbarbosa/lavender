@@ -14,11 +14,6 @@ Lavender is an Open Source E-Commerce Framework built on top of [Laravel 5](lara
 Lavender is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
 
 
-### Docs
-
-Please see [lavender/docs](https://github.com/lavender/docs).
-
-
 ### Roadmap
 Each major version (N.x.x) of the project is charted below. Once the goals have been completed for each major version we will move to the next major version. As we progress, big updates (breaking changes) are released in minor versions (x.N.x) and smaller updates (new features) are released in micro versions (x.x.N). The application (this repo) is built in minor versions, so a re-install is required between minor versions.
 
