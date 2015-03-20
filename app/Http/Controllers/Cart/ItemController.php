@@ -7,21 +7,16 @@ use Illuminate\Http\Request;
 class ItemController extends Frontend
 {
 
-    public function __construct()
-    {
-        $this->loadLayout();
-    }
-
     public function postAdd(Request $request)
     {
-        workflow('cart_item_add')->handle($request->all());
+        workflow('cart_item_add')->handle($request);
 
         return redirect('cart');
     }
 
     public function postUpdate(Request $request)
     {
-        workflow('cart_item_update')->handle($request->all());
+        workflow('cart_item_update')->handle($request);
 
         return redirect('cart');
     }

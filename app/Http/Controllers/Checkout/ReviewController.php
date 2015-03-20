@@ -23,7 +23,7 @@ class ReviewController extends Frontend
     public function postIndex(Request $request)
     {
         //todo shipping + payment middleware
-        workflow('checkout')->handle($request->all());
+        workflow('checkout')->handle($request);
 
         //todo get order
         $order = new \stdClass();

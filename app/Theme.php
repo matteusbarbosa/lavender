@@ -10,7 +10,7 @@ class Theme extends SharedEntity
     public function bootTheme($store)
     {
         // Load the theme assigned to the current store
-        if($store->exists && $theme = $store->theme){
+        if($store->exists && $theme = $store->getTheme()){
 
             // Now that we have our theme loaded, lets collect the fallbacks
             $theme->fallbacks = $this->themes($theme);

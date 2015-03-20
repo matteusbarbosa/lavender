@@ -10,11 +10,6 @@ class Payment extends Workflow
     {
         $this->options['action'] = url('checkout/payment');
 
-        $this->addField('method', [
-            'label' => 'Payment Method',
-            'type' => 'text',
-        ]);
-
         $this->addField('submit', [
             'type' => 'button',
             'value' => 'Next',

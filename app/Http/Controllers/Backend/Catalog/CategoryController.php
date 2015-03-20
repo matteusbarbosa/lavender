@@ -80,7 +80,7 @@ class CategoryController extends BackendEntity
 
             $new = !$model->exists;
 
-            workflow('edit_category', ['entity' => $model])->handle($request->all());
+            workflow('edit_category', ['entity' => $model])->handle($request);
 
             if($new && $model->exists) return redirect()->to('backend/category/edit/'.$model->id);
 

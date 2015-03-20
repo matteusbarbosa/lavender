@@ -1,15 +1,16 @@
 <?php
 namespace App\Handlers\Events;
 
+use App\Store;
 use Lavender\Database\Scope;
 
 class StoreHandler
 {
     protected $store;
 
-    function __construct()
+    function __construct(Store $store)
     {
-        $this->store = app('store');
+        $this->store = $store;
     }
 
     public function addStoreToSelect($event)

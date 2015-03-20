@@ -1,8 +1,16 @@
 <?php
 namespace App\Http\Middleware\Cart;
 
+use App\Cart;
+
 class RedirectIfEmpty
 {
+    protected $cart;
+
+    public function __construct(Cart $cart)
+    {
+        $this->cart = $cart;
+    }
     /**
      * Handle an incoming request.
      *
@@ -12,7 +20,7 @@ class RedirectIfEmpty
      */
     public function handle($request, \Closure $next)
     {
-        if(!app('cart')->getItemsCount()){
+        if(!$this->cart->getItemsCount()){
 
             return redirect()->guest('cart/empty');
 

@@ -1,4 +1,4 @@
-@extends('layouts.rightcol')
+@extends('layouts.single')
 
 @section('head.title')
     Shopping Cart
@@ -8,8 +8,4 @@
 
     @workflow('checkout')
 
-@stop
-
-@section('sidebar')
-    <p>Checkout review:</p>
 @stop

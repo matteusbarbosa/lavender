@@ -10,14 +10,11 @@ if ( ! function_exists('menu'))
 }
 
 
-if ( ! function_exists('printArray'))
+if ( ! function_exists('price'))
 {
-    function printArray(array $array, $before = '', $after = '')
+    function price($price)
     {
-        foreach($array as $item){
-
-            echo $before.$item.$after;
-
-        }
+        // todo currency conversion service
+        return '$'.number_format($price, 2);
     }
 }

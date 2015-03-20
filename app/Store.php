@@ -17,6 +17,27 @@ class Store extends SharedEntity
     }
 
 
+    public function getConfig()
+    {
+        return $this->getStore()->config->all();
+    }
+
+    public function getStore()
+    {
+        return entity('store')->find($this->id);
+    }
+
+    public function getTheme()
+    {
+        return $this->getStore()->theme;
+    }
+
+    public function getRootCategory()
+    {
+        return $this->getStore()->root_category;
+    }
+
+
     public function setStore(Entity $store)
     {
         $this->setEntity($store);

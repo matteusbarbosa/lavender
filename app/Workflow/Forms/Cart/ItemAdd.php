@@ -10,7 +10,7 @@ class ItemAdd extends Workflow
     {
         $this->options['action'] = url('cart/item/add');
 
-        $this->addField('product', [
+        $this->addField('product_id', [
             'type' => 'hidden',
             'value' => isset($params->product) ? $params->product->id : -1,
             'validate' => ['required'],

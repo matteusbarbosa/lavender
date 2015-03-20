@@ -1,0 +1,22 @@
+
+
+
+.checkout-states label{
+    display: inline-block;
+    font-weight: 600;
+    margin-bottom: .5rem;
+    width: 30%;
+    vertical-align: top;
+    padding: 10px;
+}
+.checkout-states .tab{
+    font-size: 1.8rem;
+    padding: 0 10px;
+    color: white;
+    margin: 0;
+    background: #3D9970;
+    border: 1px solid #188454;
+}
+.checkout-states .tab.active{
+    margin-bottom: 10px;
+}

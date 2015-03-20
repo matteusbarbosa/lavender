@@ -5,5 +5,5 @@ Home
 @stop
 
 @section('content')
-<p>Hello, {{ app('store')->theme->name }}!</p>
+<p>Welcome to Lavender.</p>
 @stop

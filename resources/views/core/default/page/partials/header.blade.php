@@ -2,23 +2,23 @@
 
     <div class="logo eight columns">
 
-        @include('page.section.header.logo')
+        @include('page.partials.header.logo')
 
     </div>
 
     <div class="links four columns">
 
-        @yield('header.top.links')
+        @menu('header.links')
 
     </div>
 
 </div>
 
-<div class="bottom block">
+<div class="bottom row">
 
     <nav class="navigation">
 
-        @yield('header.top.navigation')
+        @menu('top.navigation')
 
     </nav>
 

@@ -4,27 +4,28 @@
     @yield('head')
 </head>
 <body>
+    @yield('body.before')
     <header>
         <div class="container">
-            @yield('header.top')
+            @yield('header.before')
             @yield('header')
-            @yield('header.bottom')
+            @yield('header.after')
         </div>
     </header>
     <main>
         <div class="container">
-            @yield('main.top')
-            @include('layouts.partials.messages')
+            @yield('main.before')
             @yield('main')
-            @yield('main.bottom')
+            @yield('main.after')
         </div>
     </main>
     <footer>
         <div class="container">
-            @yield('footer.top')
+            @yield('footer.before')
             @yield('footer')
-            @yield('footer.bottom')
+            @yield('footer.after')
         </div>
     </footer>
+    @yield('body.after')
 </body>
 </html>

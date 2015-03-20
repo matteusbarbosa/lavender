@@ -1,8 +1,8 @@
 <?php
 namespace App\Http\Controllers\Cart;
 
+use App\Cart;
 use App\Http\Controller\Frontend;
-use Illuminate\Support\Facades\Input;
 
 class CartController extends Frontend
 {
@@ -14,9 +14,19 @@ class CartController extends Frontend
         $this->middleware('cart', ['except' => 'getEmpty']);
 	}
 
-	public function getIndex()
+	public function getIndex(Cart $cart)
 	{
-		return view('cart.page');
+        /** @var \App\Database\Cart $model */
+        $model = $cart->getCart();
+
+        append_section(
+            'cart.items',
+            view('cart.items')
+                ->withItems($model->items)
+        );
+
+		return view('cart.page')
+            ->withTotals(['Total' => $cart->getTotal()]);
 	}
 
 	public function getEmpty()

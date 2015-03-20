@@ -21,8 +21,12 @@ class ShippingController extends Frontend
 
     public function postIndex(Request $request)
     {
-        workflow('checkout')->handle($request->all());
+        if(workflow('checkout')->handle($request)){
 
-        return redirect('checkout/payment');
+            return redirect('checkout/payment');
+
+        }
+
+        return redirect('checkout/shipping');
     }
 }

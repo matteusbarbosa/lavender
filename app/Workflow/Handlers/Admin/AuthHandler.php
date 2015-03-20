@@ -9,7 +9,7 @@ class AuthHandler
 {
     public function login(Workflow $workflow)
     {
-        $request = $workflow->request;
+        $request = $workflow->request->all();
 
         if(!Auth::admin()->logAttempt($request, $mustBeConfirmed = false)){
 
@@ -31,7 +31,7 @@ class AuthHandler
 
     public function reset_password(Workflow $workflow)
     {
-        $request = $workflow->request;
+        $request = $workflow->request->all();
 
         if(!Auth::customer()->resetPassword($request)){
 
@@ -44,7 +44,7 @@ class AuthHandler
 
     public function forgot_password(Workflow $workflow)
     {
-        $request = $workflow->request;
+        $request = $workflow->request->all();
 
         if(!Auth::customer()->forgotPassword($request['email'])){
 

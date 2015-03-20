@@ -23,7 +23,7 @@ class PaymentController extends Frontend
     public function postIndex(Request $request)
     {
         //todo shipping middleware
-        workflow('checkout')->handle($request->all());
+        workflow('checkout')->handle($request);
 
         return redirect('checkout/review');
     }
