@@ -1,9 +1,9 @@
 <?php
-namespace App\Workflow\Handlers;
+namespace App\Handlers\Forms;
 
-use Lavender\Contracts\Workflow;
+use App\Support\FormHandler;
 
-class BackendHandler
+class BackendHandler extends FormHandler
 {
     /**
      * Register the listeners for the subscriber.
@@ -15,23 +15,28 @@ class BackendHandler
     {
         $events->listen(
             'App\Workflow\Forms\Backend\Entity\Product',
-            'App\Workflow\Handlers\Backend\EditProduct@handle_product'
+            'App\Handlers\Forms\Backend\EditProduct@handle_product',
+            10
         );
         $events->listen(
             'App\Workflow\Forms\Backend\Entity\Product\Categories',
-            'App\Workflow\Handlers\Backend\EditProduct@handle_categories'
+            'App\Handlers\Forms\Backend\EditProduct@handle_categories',
+            10
         );
         $events->listen(
             'App\Workflow\Forms\Backend\Entity\Category',
-            'App\Workflow\Handlers\Backend\EditCategory@handle_category'
+            'App\Handlers\Forms\Backend\EditCategory@handle_category',
+            10
         );
         $events->listen(
             'App\Workflow\Forms\Backend\Config\General',
-            'App\Workflow\Handlers\Backend\EditConfig@handle_general'
+            'App\Handlers\Forms\Backend\EditConfig@handle_general',
+            10
         );
         $events->listen(
             'App\Workflow\Forms\Backend\Config\Account',
-            'App\Workflow\Handlers\Backend\EditConfig@handle_account'
+            'App\Handlers\Forms\Backend\EditConfig@handle_account',
+            10
         );
     }
 

@@ -1,15 +1,15 @@
 <?php
-namespace App\Http\Middleware\Checkout;
+namespace App\Http\Middleware\Cart;
 
 use Closure;
+use Illuminate\Support\Facades\Session;
 
-class ShowReview
+class CheckoutSuccess
 {
 
 
     /**
      * Handle an incoming request.
-     * todo confirm shipping and payment info
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
@@ -17,9 +17,7 @@ class ShowReview
      */
     public function handle($request, Closure $next)
     {
-        $checkout = workflow('checkout');
-
-        if(!$checkout->isCurrentForm('App\Workflow\Forms\Checkout\Review')){
+        if(!Session::get('order', false)){
 
             if ($request->ajax()){
 
@@ -27,7 +25,7 @@ class ShowReview
 
             } else{
 
-                return redirect('checkout/shipping');
+                return redirect()->guest('cart');
 
             }
 

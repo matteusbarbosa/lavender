@@ -1,9 +1,9 @@
 <?php
-namespace App\Workflow\Forms\Customer\Register;
+namespace App\Workflow\Forms\Customer;
 
 use Lavender\Support\Workflow;
 
-class NewCustomer extends Workflow
+class Register extends Workflow
 {
 
     public function __construct($params)

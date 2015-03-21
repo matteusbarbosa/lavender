@@ -76,21 +76,21 @@ Route::group([
  *  - namespace App\Http\Controllers\Checkout
  *  - Checkout workflow
  */
-Route::group([
-    'namespace'     => 'Checkout',
-    'prefix'        => 'checkout',
-    'middleware'    => 'cart',
-], function(){
-
-	Route::controllers([
-		'success'   => 'SuccessController',
-		'review'    => 'ReviewController',
-		'payment'   => 'PaymentController',
-		'shipping'  => 'ShippingController',
-		'/'         => 'IndexController',
-	]);
-
-});
+//Route::group([
+//    'namespace'     => 'Checkout',
+//    'prefix'        => 'checkout',
+//    'middleware'    => 'cart',
+//], function(){
+//
+//	Route::controllers([
+//		'success'   => 'SuccessController',
+//		'review'    => 'ReviewController',
+//		'payment'   => 'PaymentController',
+//		'shipping'  => 'ShippingController',
+//		'/'         => 'IndexController',
+//	]);
+//
+//});
 
 
 /**

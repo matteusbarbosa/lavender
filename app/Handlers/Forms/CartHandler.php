@@ -1,9 +1,11 @@
 <?php
-namespace App\Workflow\Handlers;
+namespace App\Handlers\Forms;
 
 use App\Cart;
 use App\Support\Facades\Message;
+use App\Support\FormHandler;
 use Illuminate\Foundation\Bus\DispatchesCommands;
+use Illuminate\Http\Request;
 use Lavender\Contracts\Entity;
 use Lavender\Contracts\Workflow;
 
@@ -17,20 +19,23 @@ class CartHandler
      * Create a new command instance.
      *
      * @param Cart $cart
+     * @param Request $request
      */
-    public function __construct(Cart $cart)
+    public function __construct(Cart $cart, Request $request)
     {
         $this->cart = $cart;
+
+        $this->request = $request;
     }
 
     /**
      * @param $data
      */
-    public function add_cart_item(Workflow $data)
+    public function add_cart_item()
     {
         $this->dispatchFrom(
             'App\Commands\Cart\AddToCart',
-            $data->request,
+            $this->request,
             ['cart_id' => $this->cart->id]
         );
 
@@ -40,11 +45,11 @@ class CartHandler
     /**
      * @param $data
      */
-    public function update_cart_item(Workflow $data)
+    public function update_cart_item()
     {
         $this->dispatchFrom(
             'App\Commands\Cart\UpdateCart',
-            $data->request,
+            $this->request,
             ['cart_id' => $this->cart->id]
         );
 
@@ -61,11 +66,11 @@ class CartHandler
     {
         $events->listen(
             'App\Workflow\Forms\Cart\ItemAdd',
-            'App\Workflow\Handlers\CartHandler@add_cart_item'
+            'App\Handlers\Forms\CartHandler@add_cart_item'
         );
         $events->listen(
             'App\Workflow\Forms\Cart\ItemUpdate',
-            'App\Workflow\Handlers\CartHandler@update_cart_item'
+            'App\Handlers\Forms\CartHandler@update_cart_item'
         );
     }
 

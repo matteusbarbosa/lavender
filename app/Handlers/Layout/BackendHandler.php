@@ -10,16 +10,21 @@ class BackendHandler
      */
     public function handle($event)
     {
-        $this->backendLinks();
+        app()->singleton(
+            'Lavender\Contracts\Workflow\Kernel',
+            'App\Workflow\BackendKernel'
+        );
 
-        $this->backendNavigation();
+        $this->header();
 
-        $this->backendLayouts();
+        $this->navigation();
+
+        $this->layouts();
     }
 
-    protected function backendNavigation()
+    protected function navigation()
     {
-        $backend_navigation = menu('backend.navigation');
+        $backend_navigation = menu('top.navigation');
 
         $backend_navigation->add('home', [
             'href' => url('backend'),
@@ -101,9 +106,9 @@ class BackendHandler
         ]);
     }
 
-    protected function backendLinks()
+    protected function header()
     {
-        $backend_links = menu('backend.links');
+        $backend_links = menu('header.links');
 
         $backend_links->add('frontend', [
             'href' => url('/'),
@@ -111,11 +116,12 @@ class BackendHandler
         ]);
     }
 
-    protected function backendLayouts()
+    protected function layouts()
     {
-        view()->composer('page.section.head', function($view){
+        view()->composer('page.partials.head', function($view){
 
             append_section('head.style', ['style' => 'css/util/tabs.css']);
+
             append_section('head.style', ['style' => 'css/util/code.css']);
 
             append_section('head.style', ['style' => 'css/jquery.dataTables.min.css']);
@@ -126,13 +132,13 @@ class BackendHandler
 
         });
 
-        view()->composer('page.section.header.logo', function($view){
+        view()->composer('page.partials.header.logo', function($view){
 
             $view->with('url', url('backend'));
 
         });
 
-        view()->composer('page.section.header', function($view){
+        view()->composer('page.partials.header', function($view){
 
             append_section('header.top.links', ['menu' => 'backend.links']);
 

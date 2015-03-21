@@ -1,10 +1,11 @@
 <?php
-namespace App\Workflow\Handlers\Backend;
+namespace App\Handlers\Forms\Backend;
 
 use App\Support\Facades\Message;
+use App\Support\FormHandler;
 use Lavender\Contracts\Workflow;
 
-class EditProduct
+class EditProduct extends FormHandler
 {
 
     /**
@@ -12,7 +13,7 @@ class EditProduct
      */
     public function handle_product(Workflow $data)
     {
-        $request = $data->request;
+        $request = $this->request;
 
         $product = $data->product;
 
@@ -34,7 +35,7 @@ class EditProduct
      */
     public function handle_categories(Workflow $data)
     {
-        $request = $data->request;
+        $request = $this->request;
 
         $product = $data->product;
 

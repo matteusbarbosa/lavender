@@ -1,10 +1,11 @@
 <?php
-namespace App\Workflow\Handlers\Backend;
+namespace App\Handlers\Forms\Backend;
 
 use App\Support\Facades\Message;
+use App\Support\FormHandler;
 use Lavender\Contracts\Workflow;
 
-class EditConfig
+class EditConfig extends FormHandler
 {
 
     /**
@@ -12,7 +13,7 @@ class EditConfig
      */
     public function handle_general(Workflow $data)
     {
-        $this->updateConfig($data->getFields(), $data->request);
+        $this->updateConfig($data->getFields());
 
         Message::addSuccess('Config updated successfully!');
     }
@@ -22,7 +23,7 @@ class EditConfig
      */
     public function handle_account(Workflow $data)
     {
-        $this->updateConfig($data->getFields(), $data->request);
+        $this->updateConfig($data->getFields());
 
         Message::addSuccess('Config updated successfully!');
     }
@@ -33,25 +34,24 @@ class EditConfig
      * Also delete any stored fields that are missing from the request.
      *
      * @param $fields array of fields required to be in the request
-     * @param $request array of user input
      */
-    protected function updateConfig($fields, $request)
+    protected function updateConfig($fields)
     {
         foreach($fields as $field){
 
             $config = $this->getConfig($field);
 
-            if(isset($request[$field])){
+            if(isset($this->request[$field])){
 
                 if($config->exists){
 
                     // update config if exists
-                    $config->value = $request[$field];
+                    $config->value = $this->request[$field];
 
                 } else{
 
                     // otherwise add new entry
-                    $config->fill(['key' => $field, 'value' => $request[$field]]);
+                    $config->fill(['key' => $field, 'value' => $this->request[$field]]);
 
                 }
 

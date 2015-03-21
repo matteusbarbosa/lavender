@@ -26,6 +26,11 @@ class FrontendHandler
      */
     public function handle($event)
     {
+        app()->singleton(
+            'Lavender\Contracts\Workflow\Kernel',
+            'App\Workflow\FrontendKernel'
+        );
+
         $this->header();
 
         $this->footer();

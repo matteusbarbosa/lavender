@@ -1,16 +1,16 @@
 <?php
-namespace App\Workflow\Handlers;
+namespace App\Handlers\Forms;
 
 
 use App\Support\Facades\Message;
+use App\Support\FormHandler;
 use Illuminate\Support\Facades\Mail;
 
-class ContactFormHandler
+class ContactFormHandler extends FormHandler
 {
-
-    public function handle($data)
+    public function handle()
     {
-        $request = $data->request;
+        $request = $this->request->all();
 
         Mail::queue(
             'emails.contact',
@@ -35,7 +35,7 @@ class ContactFormHandler
     {
         $events->listen(
             'App\Workflow\Forms\ContactForm',
-            'App\Workflow\Handlers\ContactFormHandler@handle'
+            'App\Handlers\Forms\ContactFormHandler@handle'
         );
     }
 

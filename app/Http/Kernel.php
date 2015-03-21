@@ -27,24 +27,24 @@ class Kernel extends HttpKernel {
 	protected $routeMiddleware = [
 
         // customer must be authenticated
-		'auth' => 'App\Http\Middleware\Customer\Authenticate',
+		'auth'              => 'App\Http\Middleware\Customer\Authenticate',
 
         // customer must NOT be authenticated
-		'guest' => 'App\Http\Middleware\Customer\RedirectIfAuthenticated',
+		'guest'             => 'App\Http\Middleware\Customer\RedirectIfAuthenticated',
 
         // admin must be authenticated
-		'backend' => 'App\Http\Middleware\Admin\Authenticate',
+		'backend'           => 'App\Http\Middleware\Admin\Authenticate',
 
         // admin must NOT be authenticated
-		'admin_guest' => 'App\Http\Middleware\Admin\RedirectIfAuthenticated',
+		'admin_guest'       => 'App\Http\Middleware\Admin\RedirectIfAuthenticated',
 
         // admin must NOT be authenticated
-		'cart' => 'App\Http\Middleware\Cart\RedirectIfEmpty',
+		'cart'              => 'App\Http\Middleware\Cart\RedirectIfEmpty',
 
-        'checkout_shipping' => 'App\Http\Middleware\Checkout\ShowShipping',
-        'checkout_payment' => 'App\Http\Middleware\Checkout\ShowPayment',
-        'checkout_review' => 'App\Http\Middleware\Checkout\ShowReview',
-        'checkout_success' => 'App\Http\Middleware\Checkout\ShowSuccess',
+        // cart middleware for checkout
+        'cart_shipment'     => 'App\Http\Middleware\Cart\HasShipment',
+        'cart_payment'      => 'App\Http\Middleware\Cart\HasPayment',
+        'cart_conversion'   => 'App\Http\Middleware\Cart\CheckoutSuccess',
 	];
 
 }

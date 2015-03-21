@@ -1,15 +1,16 @@
 <?php
-namespace App\Workflow\Handlers\Admin;
+namespace App\Handlers\Forms\Admin;
 
 use App\Support\Facades\Message;
+use App\Support\FormHandler;
 use Illuminate\Support\Facades\Auth;
 use Lavender\Contracts\Workflow;
 
-class AuthHandler
+class AuthHandler extends FormHandler
 {
     public function login(Workflow $workflow)
     {
-        $request = $workflow->request->all();
+        $request = $this->request->all();
 
         if(!Auth::admin()->logAttempt($request, $mustBeConfirmed = false)){
 
@@ -31,7 +32,7 @@ class AuthHandler
 
     public function reset_password(Workflow $workflow)
     {
-        $request = $workflow->request->all();
+        $request = $this->request->all();
 
         if(!Auth::customer()->resetPassword($request)){
 
@@ -44,7 +45,7 @@ class AuthHandler
 
     public function forgot_password(Workflow $workflow)
     {
-        $request = $workflow->request->all();
+        $request = $this->request->all();
 
         if(!Auth::customer()->forgotPassword($request['email'])){
 
@@ -69,7 +70,7 @@ class AuthHandler
     {
         $events->listen(
             'App\Workflow\Forms\Admin\Login',
-            'App\Workflow\Handlers\Admin\AuthHandler@login'
+            'App\Handlers\Forms\Admin\AuthHandler@login'
         );
 
 //        $events->listen(
