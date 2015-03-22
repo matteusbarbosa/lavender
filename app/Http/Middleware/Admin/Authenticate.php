@@ -16,16 +16,18 @@ class Authenticate {
 	 */
 	public function handle($request, Closure $next)
 	{
-		if (Auth::admin()->guest())
-		{
-			if ($request->ajax())
-			{
+		if(Auth::admin()->guest()){
+
+            if($request->ajax()){
+
 				return response('Unauthorized.', 401);
-			}
-			else
-			{
+
+			} else {
+
 				return redirect()->guest('admin/login');
+
 			}
+
 		}
 
         // Bind the Backend Kernel to our request
