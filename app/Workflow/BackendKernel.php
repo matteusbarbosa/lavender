@@ -8,7 +8,6 @@ class BackendKernel extends Kernel
 
     protected $forms = [
 
-        'admin_login'               => 'App\Workflow\Forms\Admin\Login',
         'edit_product'              => 'App\Workflow\Forms\Backend\Entity\Product',
         'edit_product_categories'   => 'App\Workflow\Forms\Backend\Entity\Product\Categories',
         'edit_category'             => 'App\Workflow\Forms\Backend\Entity\Category',

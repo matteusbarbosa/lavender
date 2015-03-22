@@ -41,10 +41,10 @@ $app->singleton(
 	'App\Exceptions\Handler'
 );
 
-//$app->singleton(
-//	'Lavender\Contracts\Workflow\Kernel',
-//	'App\Workflow\Kernel'
-//);
+$app->singleton(
+	'Lavender\Contracts\Workflow\Kernel',
+	'App\Workflow\FrontendKernel'
+);
 
 /*
 |--------------------------------------------------------------------------

@@ -28,6 +28,12 @@ class Authenticate {
 			}
 		}
 
+        // Bind the Backend Kernel to our request
+        app()->singleton(
+            'Lavender\Contracts\Workflow\Kernel',
+            'App\Workflow\BackendKernel'
+        );
+
 		return $next($request);
 	}
 

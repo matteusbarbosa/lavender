@@ -8,6 +8,7 @@ class FrontendKernel extends Kernel
 
     protected $forms = [
 
+        'admin_login'               => 'App\Workflow\Forms\Admin\Login',
         'cart_item_add'             => 'App\Workflow\Forms\Cart\ItemAdd',
         'cart_item_update'          => 'App\Workflow\Forms\Cart\ItemUpdate',
         'checkout'                  => 'App\Workflow\Forms\Checkout\Shipping',

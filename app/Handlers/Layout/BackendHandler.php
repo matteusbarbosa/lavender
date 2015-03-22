@@ -10,11 +10,6 @@ class BackendHandler
      */
     public function handle($event)
     {
-        app()->singleton(
-            'Lavender\Contracts\Workflow\Kernel',
-            'App\Workflow\BackendKernel'
-        );
-
         $this->header();
 
         $this->navigation();
