@@ -21,12 +21,12 @@ Route::get('contact', 'ContactFormController@get');
  *  - Category and Product pages
  */
 Route::get(
-    config('store.category_url') . '/{url_key}',
+    config('url.category') . '/{url_key}',
     'CatalogController@getCategory'
 );
 
 Route::get(
-    config('store.product_url') . '/{url_key}',
+    config('url.product') . '/{url_key}',
     'CatalogController@getProduct'
 );
 
