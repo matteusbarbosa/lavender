@@ -53,6 +53,11 @@ class FrontendHandler
             'text' => 'Contact us',
         ]);
 
+        $bottom_links->add('backend', [
+            'href' => url('backend'),
+            'text' => 'Go to backend',
+        ]);
+
         $bottom_links->add('copyright', [
             'text' => '&copy; ' . date('Y') . ' ' . config('store.name'),
         ]);
@@ -87,11 +92,6 @@ class FrontendHandler
             ]);
 
         }
-
-        $top_links->add('backend', [
-            'href' => url('backend'),
-            'text' => 'Go to backend',
-        ]);
     }
 
     protected function navigation()
