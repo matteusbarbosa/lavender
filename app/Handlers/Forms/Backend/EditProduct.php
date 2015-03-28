@@ -13,7 +13,7 @@ class EditProduct extends FormHandler
      */
     public function handle_product(Workflow $data)
     {
-        $request = $this->request;
+        $request = $this->request->all();
 
         $product = $data->product;
 
@@ -35,7 +35,7 @@ class EditProduct extends FormHandler
      */
     public function handle_categories(Workflow $data)
     {
-        $request = $this->request;
+        $request = $this->request->all();
 
         $product = $data->product;
 
