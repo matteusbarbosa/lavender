@@ -14,6 +14,6 @@ class Url extends Attribute
 
     public function value()
     {
-        return url(config('store.category_url').'/'.parent::value());
+        return url(config('url.category').'/'.parent::value());
     }
 }

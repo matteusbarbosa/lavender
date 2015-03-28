@@ -13,6 +13,6 @@ class Url extends Attribute
 
     public function value()
     {
-        return url(config('store.product_url').'/'.parent::value());
+        return url(config('url.product').'/'.parent::value());
     }
 }
