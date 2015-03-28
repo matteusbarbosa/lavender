@@ -58,12 +58,12 @@ return [
             ],
         ],
         'relationships' => [
-            'product' => [
-                'entity' => 'product',
-                'type' => Relationship::BELONGS_TO,
-            ],
             'cart' => [
                 'entity' => 'cart',
+                'type' => Relationship::BELONGS_TO,
+            ],
+            'product' => [
+                'entity' => 'product',
                 'type' => Relationship::BELONGS_TO,
             ],
         ],
@@ -81,6 +81,10 @@ return [
             ],
         ],
         'relationships' => [
+            'cart' => [
+                'entity' => 'cart',
+                'type' => Relationship::BELONGS_TO,
+            ],
             'address' => [
                 'entity' => 'customer_address',
                 'type' => Relationship::BELONGS_TO,
@@ -104,6 +108,10 @@ return [
             ],
         ],
         'relationships' => [
+            'cart' => [
+                'entity' => 'cart',
+                'type' => Relationship::BELONGS_TO,
+            ],
             'address' => [
                 'entity' => 'customer_address',
                 'type' => Relationship::BELONGS_TO,
