@@ -43,7 +43,7 @@ class Kernel extends WorkflowKernel
         'yesno'             => 'App\Workflow\Resources\YesNo',
         'category_tree'     => 'App\Workflow\Resources\CategoryTree',
         'category_children' => 'App\Workflow\Resources\CategoryTree@toChildren',
-        'shipment_methods'  => 'App\Workflow\Resources\ShippingMethods',
+        'shipment_methods'  => 'App\Workflow\Resources\ShipmentMethods',
 
     ];
 
