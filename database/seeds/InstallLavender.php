@@ -1,27 +1,28 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
 class InstallLavender extends Seeder {
 
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
+    function __construct(\App\Store $store)
+    {
+        $this->store = $store;
+    }
+    /**
+     * Run the database seeds.
+     */
 	public function run()
 	{
 		// only run this seed if store doesn't exist
-		if(!$this->container->store->exists){
+		if(!$this->store->exists){
 
 			// create default store
-			$store = entity('store')->create([
+			$default_store = entity('store')->create([
 				'default' => true,
 			]);
 
 			// set the current store scope
-			$this->container->store->setStore($store);
+            $this->store->setStore($default_store);
 
 			// create default theme
 			$theme = entity('theme')->create([
@@ -35,7 +36,7 @@ class InstallLavender extends Seeder {
 			]);
 
 			// update store
-			$store->update([
+            $default_store->update([
 				'theme'         => $theme,
 				'root_category' => $category,
 			]);
