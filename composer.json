@@ -4,7 +4,7 @@
   "keywords": ["eCommerce", "Lavender"],
   "license": "MIT",
   "require": {
-	"lavender/framework": "0.4.*"
+	"lavender/framework": "0.5.*"
   },
   "require-dev": {
 	"phpunit/phpunit": "~4.0",
