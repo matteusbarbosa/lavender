@@ -30,6 +30,20 @@ class Cart extends SharedEntity
         return $cart->items;
     }
 
+    public function getShipments()
+    {
+        $cart = $this->getCart();
+
+        return $cart->shipments;
+    }
+
+    public function getPayments()
+    {
+        $cart = $this->getCart();
+
+        return $cart->payments;
+    }
+
     public function unsetCart()
     {
         $this->setCartSession(null);
