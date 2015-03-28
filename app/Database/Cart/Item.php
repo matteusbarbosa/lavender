@@ -8,7 +8,7 @@ class Item extends Entity
 
     protected $entity = 'cart_item';
 
-    protected $table = 'sales_cart_item';
+    protected $table = 'cart_item';
 
     protected $_price;
 

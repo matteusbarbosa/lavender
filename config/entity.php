@@ -4,38 +4,6 @@ use Lavender\Database\Relationship;
 use Lavender\Database\Scope;
 return [
 
-    'address' => [
-        'class' => 'App\Database\Address',
-        'attributes' => [
-            'name' => [
-                'label' => 'Name',
-            ],
-            'street_1' => [
-                'label' => 'Street 1',
-            ],
-            'street_2' => [
-                'label' => 'Street 2',
-            ],
-            'city' => [
-                'label' => 'City',
-            ],
-            'region' => [
-                'label' => 'Region',
-            ],
-            'country' => [
-                'label' => 'Country',
-            ],
-            'postcode' => [
-                'label' => 'Postcode',
-            ],
-            'phone' => [
-                'label' => 'Phone',
-            ],
-        ],
-        'relationships' => [
-        ],
-    ],
-
     'admin' => [
         'class' => 'App\Database\Admin',
         'attributes' => [
@@ -83,7 +51,11 @@ return [
             'qty' => [
                 'label' => 'Qty',
                 'type' => Attribute::INTEGER,
-            ]
+            ],
+            'total' => [
+                'label' => 'Total',
+                'type' => Attribute::DECIMAL,
+            ],
         ],
         'relationships' => [
             'product' => [
@@ -110,7 +82,7 @@ return [
         ],
         'relationships' => [
             'address' => [
-                'entity' => 'address',
+                'entity' => 'customer_address',
                 'type' => Relationship::BELONGS_TO,
             ],
             'items' => [
@@ -133,7 +105,7 @@ return [
         ],
         'relationships' => [
             'address' => [
-                'entity' => 'address',
+                'entity' => 'customer_address',
                 'type' => Relationship::BELONGS_TO,
             ],
         ],
@@ -202,6 +174,46 @@ return [
                 'entity' => 'cart',
                 'type' => Relationship::HAS_MANY,
             ],
+            'address' => [
+                'entity' => 'customer_address',
+                'type' => Relationship::BELONGS_TO,
+            ],
+        ],
+    ],
+
+    'customer_address' => [
+        'class' => 'App\Database\Customer\Address',
+        'attributes' => [
+            'name' => [
+                'label' => 'Name',
+            ],
+            'street_1' => [
+                'label' => 'Street 1',
+            ],
+            'street_2' => [
+                'label' => 'Street 2',
+            ],
+            'city' => [
+                'label' => 'City',
+            ],
+            'region' => [
+                'label' => 'Region',
+            ],
+            'country' => [
+                'label' => 'Country',
+            ],
+            'postcode' => [
+                'label' => 'Postcode',
+            ],
+            'phone' => [
+                'label' => 'Phone',
+            ],
+        ],
+        'relationships' => [
+            'customer' => [
+                'entity' => 'customer',
+                'type' => Relationship::BELONGS_TO,
+            ]
         ],
     ],
 
