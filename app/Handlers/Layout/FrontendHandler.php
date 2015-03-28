@@ -87,6 +87,11 @@ class FrontendHandler
             ]);
 
         }
+
+        $top_links->add('backend', [
+            'href' => url('backend'),
+            'text' => 'Go to backend',
+        ]);
     }
 
     protected function navigation()
