@@ -33,6 +33,8 @@ class Kernel extends WorkflowKernel
         'reset'     => 'App\Workflow\Fields\Input',
 
         'select'    => 'App\Workflow\Fields\Select@dropdown',
+        'list'      => 'App\Workflow\Fields\ListType@multiple',
+        'radiolist' => 'App\Workflow\Fields\ListType@single',
 
     ];
 
@@ -41,6 +43,7 @@ class Kernel extends WorkflowKernel
         'yesno'             => 'App\Workflow\Resources\YesNo',
         'category_tree'     => 'App\Workflow\Resources\CategoryTree',
         'category_children' => 'App\Workflow\Resources\CategoryTree@toChildren',
+        'shipment_methods'  => 'App\Workflow\Resources\ShippingMethods',
 
     ];
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Cart;
 use App\Cart;
 use App\Http\Controller\Frontend;
 
-class CartController extends Frontend
+class CheckoutController extends Frontend
 {
 
 	public function __construct()
@@ -12,7 +12,10 @@ class CartController extends Frontend
         $this->loadLayout();
 
         // Cart is not empty
-        $this->middleware('cart', ['except' => 'getEmpty']);
+        $this->middleware('cart');
+
+        // Cart is ready to ship and paid in full
+        $this->middleware('checkout');
 	}
 
 	public function getIndex(Cart $cart)
@@ -23,11 +26,6 @@ class CartController extends Frontend
         );
 
 		return view('cart.page')->withTotals(['Total' => $cart->getTotal()]);
-	}
-
-	public function getEmpty()
-	{
-		return view('cart.empty');
 	}
 
 }

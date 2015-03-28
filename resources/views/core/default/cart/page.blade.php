@@ -20,7 +20,7 @@
 
             <span>or</span>
 
-            <button onclick="setLocation('{{ url('checkout') }}')">Continue to Checkout</button>
+            <a href="{{ url('checkout') }}" class="button">Continue to Checkout</a>
 
         </div>
 
@@ -54,7 +54,7 @@
 
             </div>
 
-            <button onclick="setLocation('{{ url('checkout') }}')">Continue to Checkout</button>
+            <a href="{{ url('checkout') }}" class="button">Continue to Checkout</a>
 
         </div>
     </div>

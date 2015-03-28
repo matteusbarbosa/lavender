@@ -13,12 +13,12 @@ class ContactFormController extends Frontend
         $this->loadLayout();
 	}
 
-	public function getIndex()
+	public function get()
 	{
 		return view('contact.form');
 	}
 
-    public function postIndex(Request $request)
+    public function post(Request $request)
     {
         workflow('contact')->handle($request);
 

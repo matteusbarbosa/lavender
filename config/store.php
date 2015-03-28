@@ -10,7 +10,7 @@ return [
     'logo'      => 'images/logo.svg',
     'email'     => 'support@lavendercommerce.com',
     'phone'     => null,
-    'address'   => null,
+    'address'   => 'not set',
     'hours'     => null,
 
     /**

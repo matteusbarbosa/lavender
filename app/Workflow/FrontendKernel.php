@@ -11,7 +11,8 @@ class FrontendKernel extends Kernel
         'admin_login'               => 'App\Workflow\Forms\Admin\Login',
         'cart_item_add'             => 'App\Workflow\Forms\Cart\ItemAdd',
         'cart_item_update'          => 'App\Workflow\Forms\Cart\ItemUpdate',
-        'checkout'                  => 'App\Workflow\Forms\Checkout\Shipping',
+        'shipment'                  => 'App\Workflow\Forms\Cart\Shipment',
+
         'contact'                   => 'App\Workflow\Forms\ContactForm',
         'customer_login'            => 'App\Workflow\Forms\Customer\Login',
         'customer_register'         => 'App\Workflow\Forms\Customer\Register',

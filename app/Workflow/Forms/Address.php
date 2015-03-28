@@ -4,7 +4,7 @@ namespace App\Workflow\Forms;
 trait Address
 {
 
-    public function addCustomerAddress($name)
+    public function addAddress($name)
     {
         $this->addField($name.'[name]', [
             'label' => 'Full Name',

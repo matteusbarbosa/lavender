@@ -4,6 +4,38 @@ use Lavender\Database\Relationship;
 use Lavender\Database\Scope;
 return [
 
+    'address' => [
+        'class' => 'App\Database\Address',
+        'attributes' => [
+            'name' => [
+                'label' => 'Name',
+            ],
+            'street_1' => [
+                'label' => 'Street 1',
+            ],
+            'street_2' => [
+                'label' => 'Street 2',
+            ],
+            'city' => [
+                'label' => 'City',
+            ],
+            'region' => [
+                'label' => 'Region',
+            ],
+            'country' => [
+                'label' => 'Country',
+            ],
+            'postcode' => [
+                'label' => 'Postcode',
+            ],
+            'phone' => [
+                'label' => 'Phone',
+            ],
+        ],
+        'relationships' => [
+        ],
+    ],
+
     'admin' => [
         'class' => 'App\Database\Admin',
         'attributes' => [
@@ -33,6 +65,14 @@ return [
                 'entity' => 'cart_item',
                 'type' => Relationship::HAS_MANY,
             ],
+            'shipments' => [
+                'entity' => 'cart_shipment',
+                'type' => Relationship::HAS_MANY,
+            ],
+            'payments' => [
+                'entity' => 'cart_payment',
+                'type' => Relationship::HAS_MANY,
+            ],
         ],
     ],
 
@@ -52,6 +92,48 @@ return [
             ],
             'cart' => [
                 'entity' => 'cart',
+                'type' => Relationship::BELONGS_TO,
+            ],
+        ],
+    ],
+
+    'cart_shipment' => [
+        'class' => 'App\Database\Cart\Shipment',
+        'attributes' => [
+            'type' => [
+                'label' => 'Type'
+            ],
+            'amount' => [
+                'label' => 'Amount',
+                'type' => Attribute::DECIMAL,
+            ],
+        ],
+        'relationships' => [
+            'address' => [
+                'entity' => 'address',
+                'type' => Relationship::BELONGS_TO,
+            ],
+            'items' => [
+                'entity' => 'cart_item',
+                'type' => Relationship::HAS_MANY,
+            ],
+        ],
+    ],
+
+    'cart_payment' => [
+        'class' => 'App\Database\Cart\Payment',
+        'attributes' => [
+            'type' => [
+                'label' => 'Type'
+            ],
+            'amount' => [
+                'label' => 'Amount',
+                'type' => Attribute::DECIMAL,
+            ],
+        ],
+        'relationships' => [
+            'address' => [
+                'entity' => 'address',
                 'type' => Relationship::BELONGS_TO,
             ],
         ],
@@ -123,23 +205,6 @@ return [
         ],
     ],
 
-    'reminder' => [
-        'class' => 'App\Database\Reminder',
-        'scope' => Scope::STORE,
-        'attributes' => [
-            'email' => [
-                'label' => 'Email',
-            ],
-            'token' => [
-                'label' => 'Token',
-            ],
-            'created_at' => [
-                'label' => 'Created At',
-                'type' => Attribute::TIMESTAMP,
-            ],
-        ],
-    ],
-
     'product' => [
         'class' => 'App\Database\Product',
         'scope' => Scope::STORE,
@@ -174,107 +239,19 @@ return [
         ],
     ],
 
-    'order' => [
-        'class' => 'App\Database\Order',
+    'reminder' => [
+        'class' => 'App\Database\Reminder',
+        'scope' => Scope::STORE,
         'attributes' => [
-            'total' => [
-                'label' => 'Total',
-                'type' => Attribute::DECIMAL,
+            'email' => [
+                'label' => 'Email',
             ],
-        ],
-        'relationships' => [
-            'customer' => [
-                'entity' => 'customer',
-                'type' => Relationship::BELONGS_TO,
+            'token' => [
+                'label' => 'Token',
             ],
-            'status' => [
-                'entity' => 'order_status',
-                'type' => Relationship::BELONGS_TO,
-            ],
-            'items' => [
-                'entity' => 'order_item',
-                'type' => Relationship::HAS_MANY,
-            ],
-            'shipments' => [
-                'entity' => 'order_shipment',
-                'type' => Relationship::HAS_MANY,
-            ],
-            'payments' => [
-                'entity' => 'order_payment',
-                'type' => Relationship::HAS_MANY,
-            ],
-        ],
-    ],
-
-    'order_address' => [
-        'class' => 'App\Database\Order\Address',
-        'attributes' => [
-            'name' => [],
-            'street_1' => [],
-            'street_2' => [],
-            'city' => [],
-            'region' => [],
-            'country' => [],
-            'postcode' => [],
-            'phone' => [],
-        ],
-        'relationships' => [
-        ],
-    ],
-
-    'order_item' => [
-        'class' => 'App\Database\Order\Item',
-        'attributes' => [
-            'subtotal' => [
-                'label' => 'Subtotal',
-                'type' => Attribute::DECIMAL,
-            ],
-        ],
-        'relationships' => [
-            'product' => []
-        ],
-    ],
-
-    'order_shipment' => [
-        'class' => 'App\Database\Order\Shipment',
-        'attributes' => [
-            'method' => [],
-            'subtotal' => [
-                'label' => 'Subtotal',
-                'type' => Attribute::DECIMAL,
-            ],
-        ],
-        'relationships' => [
-            'address' => [],
-        ],
-    ],
-
-    'order_status' => [
-        'class' => 'App\Database\Order\Status',
-        'attributes' => [
-            'status' => [],
-        ],
-        'relationships' => [
-            'orders' => [
-                'entity' => 'order',
-                'type' => Relationship::HAS_MANY,
-            ],
-        ],
-    ],
-
-    'order_payment' => [
-        'class' => 'App\Database\Order\Payment',
-        'attributes' => [
-            'method' => [],
-            'subtotal' => [
-                'label' => 'Subtotal',
-                'type' => Attribute::DECIMAL,
-            ],
-        ],
-        'relationships' => [
-            'address' => [
-                'entity' => 'order_address',
-                'type' => Relationship::BELONGS_TO,
+            'created_at' => [
+                'label' => 'Created At',
+                'type' => Attribute::TIMESTAMP,
             ],
         ],
     ],

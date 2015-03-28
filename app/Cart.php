@@ -23,6 +23,13 @@ class Cart extends SharedEntity
         return entity('cart')->find($this->id);
     }
 
+    public function getItems()
+    {
+        $cart = $this->getCart();
+
+        return $cart->items;
+    }
+
     public function unsetCart()
     {
         $this->setCartSession(null);
@@ -41,11 +48,30 @@ class Cart extends SharedEntity
 
 
 
+    public function hasShipmentAddress()
+    {
+        return true;
+    }
+
+
+
+    public function readyToShip()
+    {
+        return false;
+    }
+
+
+
+    public function paidInFull()
+    {
+        return false;
+    }
+
+
+
     public function getItemsCount()
     {
-        $cart = $this->getCart();
-
-        return $cart->items->count();
+        return $this->getItems()->count();
     }
 
 
@@ -53,9 +79,7 @@ class Cart extends SharedEntity
     {
         $items_count = 0;
 
-        $cart = $this->getCart();
-
-        foreach($cart->items as $item){
+        foreach($this->getItems() as $item){
 
             $items_count += $item->qty;
 
@@ -69,9 +93,7 @@ class Cart extends SharedEntity
     {
         $total = 0;
 
-        $cart = $this->getCart();
-
-        foreach($cart->items as $item){
+        foreach($this->getItems() as $item){
 
             $total += $item->getSubtotal();
 

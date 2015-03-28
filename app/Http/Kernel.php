@@ -38,8 +38,11 @@ class Kernel extends HttpKernel {
         // admin must NOT be authenticated
 		'admin_guest'       => 'App\Http\Middleware\Admin\RedirectIfAuthenticated',
 
-        // admin must NOT be authenticated
+        // cart must not be empty
 		'cart'              => 'App\Http\Middleware\Cart\RedirectIfEmpty',
+
+        // all cart requirements have been met
+		'checkout'          => 'App\Http\Middleware\Cart\ReadyToCheckout',
 
         // cart middleware for checkout
         'cart_shipment'     => 'App\Http\Middleware\Cart\HasShipment',

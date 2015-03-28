@@ -4,33 +4,31 @@
 /**
  * Home page
  */
+
 Route::get('/', 'HomeController@index');
 
 
 /**
- * Catalog routes
- *  - Category and Product pages
+ * Contact form
  */
-Route::group(['prefix' => 'catalog'], function(){
+Route::post('contact', 'ContactFormController@post');
 
-    Route::controllers([
-        '/' => 'CatalogController',
-    ]);
-
-});
+Route::get('contact', 'ContactFormController@get');
 
 
 /**
- * Simple contact form
- *  - single page and workflow
+ * Store Catalog
+ *  - Category and Product pages
  */
-Route::group(['prefix'  => 'contact'], function(){
+Route::get(
+    config('store.category_url') . '/{url_key}',
+    'CatalogController@getCategory'
+);
 
-    Route::controllers([
-        '/'         => 'ContactFormController',
-    ]);
-
-});
+Route::get(
+    config('store.product_url') . '/{url_key}',
+    'CatalogController@getProduct'
+);
 
 
 /**
@@ -58,15 +56,32 @@ Route::group([
  *  - namespace App\Http\Controllers\Cart
  *  - Cart page and cart item workflow(s)
  */
-Route::group([
-    'namespace'     => 'Cart',
-    'prefix'        => 'cart'
-], function(){
+Route::group(['namespace'=> 'Cart'], function(){
 
-	Route::controllers([
-		'item'      => 'ItemController',
-		'/'         => 'CartController',
-	]);
+    /**
+     * Checkout review and submit
+     */
+    Route::group(['prefix' => 'checkout'], function(){
+
+        Route::controllers([
+            '/'         => 'CheckoutController',
+        ]);
+
+    });
+
+    /**
+     * Cart view and edit
+     */
+    Route::group(['prefix' => 'cart'], function(){
+
+        Route::controllers([
+    //		'payment'   => 'PaymentController',
+            'shipment'  => 'ShipmentController',
+            'item'      => 'ItemController',
+            '/'         => 'CartController',
+        ]);
+
+    });
 
 });
 
