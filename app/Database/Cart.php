@@ -8,7 +8,7 @@ class Cart extends Entity
 
     protected $entity = 'cart';
 
-    protected $table = 'sales_cart';
+    protected $table = 'cart';
 
 
     public function findItem($item_id)

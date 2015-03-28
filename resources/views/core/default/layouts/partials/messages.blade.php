@@ -1,9 +1,9 @@
 
-@foreach($messages as $type => $messagebag)
+@foreach($messages as $type => $group)
 
-    <ul class="message-group {{{ $type }}}">
+    <ul class="message-group {{ $type }}">
 
-        @foreach( $messagebag->all() as $message )
+        @foreach($group->all() as $message)
 
             <li class="message">{{ $message }}</li>
 

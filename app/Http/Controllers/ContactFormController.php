@@ -2,8 +2,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controller\Frontend;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Lavender\Support\Facades\Workflow;
 
 class ContactFormController extends Frontend
 {
@@ -13,14 +13,14 @@ class ContactFormController extends Frontend
         $this->loadLayout();
 	}
 
-	public function getIndex()
+	public function get()
 	{
 		return view('contact.form');
 	}
 
-    public function postIndex()
+    public function post(Request $request)
     {
-        workflow('contact')->handle(Input::all());
+        workflow('contact')->handle($request);
 
         return redirect('contact');
     }

@@ -33,6 +33,14 @@ return [
                 'entity' => 'cart_item',
                 'type' => Relationship::HAS_MANY,
             ],
+            'shipments' => [
+                'entity' => 'cart_shipment',
+                'type' => Relationship::HAS_MANY,
+            ],
+            'payments' => [
+                'entity' => 'cart_payment',
+                'type' => Relationship::HAS_MANY,
+            ],
         ],
     ],
 
@@ -42,8 +50,12 @@ return [
         'attributes' => [
             'qty' => [
                 'label' => 'Qty',
-                'type' => 'number',
-            ]
+                'type' => Attribute::INTEGER,
+            ],
+            'total' => [
+                'label' => 'Total',
+                'type' => Attribute::DECIMAL,
+            ],
         ],
         'relationships' => [
             'product' => [
@@ -52,6 +64,48 @@ return [
             ],
             'cart' => [
                 'entity' => 'cart',
+                'type' => Relationship::BELONGS_TO,
+            ],
+        ],
+    ],
+
+    'cart_shipment' => [
+        'class' => 'App\Database\Cart\Shipment',
+        'attributes' => [
+            'type' => [
+                'label' => 'Type'
+            ],
+            'amount' => [
+                'label' => 'Amount',
+                'type' => Attribute::DECIMAL,
+            ],
+        ],
+        'relationships' => [
+            'address' => [
+                'entity' => 'customer_address',
+                'type' => Relationship::BELONGS_TO,
+            ],
+            'items' => [
+                'entity' => 'cart_item',
+                'type' => Relationship::HAS_MANY,
+            ],
+        ],
+    ],
+
+    'cart_payment' => [
+        'class' => 'App\Database\Cart\Payment',
+        'attributes' => [
+            'type' => [
+                'label' => 'Type'
+            ],
+            'amount' => [
+                'label' => 'Amount',
+                'type' => Attribute::DECIMAL,
+            ],
+        ],
+        'relationships' => [
+            'address' => [
+                'entity' => 'customer_address',
                 'type' => Relationship::BELONGS_TO,
             ],
         ],
@@ -120,23 +174,46 @@ return [
                 'entity' => 'cart',
                 'type' => Relationship::HAS_MANY,
             ],
+            'address' => [
+                'entity' => 'customer_address',
+                'type' => Relationship::BELONGS_TO,
+            ],
         ],
     ],
 
-    'reminder' => [
-        'class' => 'App\Database\Reminder',
-        'scope' => Scope::STORE,
+    'customer_address' => [
+        'class' => 'App\Database\Customer\Address',
         'attributes' => [
-            'email' => [
-                'label' => 'Email',
+            'name' => [
+                'label' => 'Name',
             ],
-            'token' => [
-                'label' => 'Token',
+            'street_1' => [
+                'label' => 'Street 1',
             ],
-            'created_at' => [
-                'label' => 'Created At',
-                'type' => Attribute::TIMESTAMP,
+            'street_2' => [
+                'label' => 'Street 2',
             ],
+            'city' => [
+                'label' => 'City',
+            ],
+            'region' => [
+                'label' => 'Region',
+            ],
+            'country' => [
+                'label' => 'Country',
+            ],
+            'postcode' => [
+                'label' => 'Postcode',
+            ],
+            'phone' => [
+                'label' => 'Phone',
+            ],
+        ],
+        'relationships' => [
+            'customer' => [
+                'entity' => 'customer',
+                'type' => Relationship::BELONGS_TO,
+            ]
         ],
     ],
 
@@ -170,6 +247,23 @@ return [
                 'entity' => 'category',
                 'type' => Relationship::HAS_PIVOT,
                 'table' => 'catalog_category_product',
+            ],
+        ],
+    ],
+
+    'reminder' => [
+        'class' => 'App\Database\Reminder',
+        'scope' => Scope::STORE,
+        'attributes' => [
+            'email' => [
+                'label' => 'Email',
+            ],
+            'token' => [
+                'label' => 'Token',
+            ],
+            'created_at' => [
+                'label' => 'Created At',
+                'type' => Attribute::TIMESTAMP,
             ],
         ],
     ],

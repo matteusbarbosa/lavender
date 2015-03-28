@@ -6,6 +6,8 @@ use Lavender\Support\Workflow;
 class General extends Workflow
 {
 
+    public $template = 'backend.partials.form';
+
     public function __construct($params)
     {
         $this->addField('name', [

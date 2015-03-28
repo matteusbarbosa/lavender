@@ -43,7 +43,7 @@ $app->singleton(
 
 $app->singleton(
 	'Lavender\Contracts\Workflow\Kernel',
-	'App\Workflow\Kernel'
+	'App\Workflow\FrontendKernel'
 );
 
 /*

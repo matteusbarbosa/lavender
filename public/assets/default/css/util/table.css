@@ -1,0 +1,37 @@
+
+/* remove margins */
+div.table form,
+div.table input,
+div.table select,
+div.table textarea,
+div.table button{
+    margin:0;
+}
+
+/* table fields */
+div.table div.field{
+    display: inline-block;
+}
+
+/* header rows */
+div.thead div.row{
+    border-bottom: 1px solid #C5C5C5;
+}
+
+/* footer rows */
+div.tfoot div.row{
+    border-top: 1px solid #C5C5C5;
+}
+
+/* all rows */
+div.table div.row{
+    margin:0;padding:10px;
+}
+
+/* odd rows */
+div.tbody div.row:first-child,
+div.tbody div.row:nth-child(2n+3){
+    border-bottom: 1px solid #C5C5C5;
+    border-top: 1px solid #C5C5C5;
+}
+

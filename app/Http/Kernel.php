@@ -27,19 +27,27 @@ class Kernel extends HttpKernel {
 	protected $routeMiddleware = [
 
         // customer must be authenticated
-		'auth' => 'App\Http\Middleware\Customer\Authenticate',
+		'auth'              => 'App\Http\Middleware\Customer\Authenticate',
 
         // customer must NOT be authenticated
-		'guest' => 'App\Http\Middleware\Customer\RedirectIfAuthenticated',
+		'guest'             => 'App\Http\Middleware\Customer\RedirectIfAuthenticated',
 
         // admin must be authenticated
-		'backend' => 'App\Http\Middleware\Admin\Authenticate',
+		'backend'           => 'App\Http\Middleware\Admin\Authenticate',
 
         // admin must NOT be authenticated
-		'admin_guest' => 'App\Http\Middleware\Admin\RedirectIfAuthenticated',
+		'admin_guest'       => 'App\Http\Middleware\Admin\RedirectIfAuthenticated',
 
-        // admin must NOT be authenticated
-		'cart' => 'App\Http\Middleware\Cart\RedirectIfEmpty',
+        // cart must not be empty
+		'cart'              => 'App\Http\Middleware\Cart\RedirectIfEmpty',
+
+        // all cart requirements have been met
+		'checkout'          => 'App\Http\Middleware\Cart\ReadyToCheckout',
+
+        // cart middleware for checkout
+        'cart_shipment'     => 'App\Http\Middleware\Cart\HasShipment',
+        'cart_payment'      => 'App\Http\Middleware\Cart\HasPayment',
+        'cart_conversion'   => 'App\Http\Middleware\Cart\CheckoutSuccess',
 	];
 
 }

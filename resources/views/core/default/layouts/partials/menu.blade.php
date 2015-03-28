@@ -1,44 +1,18 @@
 <ul>
 
-    @foreach($items as $id => $item)
+    @foreach($items as $index => $item)
 
-        <li id="{{{ $id }}}">
+        <li class="item item-{{ $index }}">
 
-            <a href="{{ $item->href }}">{{ $item->text }}</a>
+            @if(!is_null($item->href)) <a href="{{ $item->href }}">{{ $item->text }}</a>
+
+            @else {{ $item->text }}
+
+            @endif
 
             @if($children = $item->children)
 
-                <ul>
-
-                    @foreach($children as $child)
-
-                        <li>
-
-                            <a href="{{ $child->href }}">{{ $child->text }}</a>
-
-                            @if($grandchildren = $child->children)
-
-                                <ul>
-
-                                    @foreach($grandchildren as $grandchild)
-
-                                        <li>
-
-                                            <a href="{{ $grandchild->href }}">{{ $grandchild->text }}</a>
-
-                                        </li>
-
-                                    @endforeach
-
-                                </ul>
-
-                            @endif
-
-                        </li>
-
-                    @endforeach
-
-                </ul>
+                @include('layouts.partials.menu', ['items' => $children])
 
             @endif
 

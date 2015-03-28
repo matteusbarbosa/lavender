@@ -16,17 +16,19 @@ class Authenticate {
 	 */
 	public function handle($request, Closure $next)
 	{
-		if (Auth::admin()->guest())
-		{
-			if ($request->ajax())
-			{
-				return response('Unauthorized.', 401);
-			}
-			else
-			{
-				return redirect()->guest('admin/login');
-			}
+		if(Auth::admin()->guest()){
+
+            if($request->ajax()) return response('Unauthorized.', 401);
+
+			return redirect()->guest('admin/login');
+
 		}
+
+        // Bind the Backend Kernel to our request
+        app()->singleton(
+            'Lavender\Contracts\Workflow\Kernel',
+            'App\Workflow\BackendKernel'
+        );
 
 		return $next($request);
 	}

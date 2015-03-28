@@ -1,10 +1,24 @@
 <?php
 namespace App\Handlers\Layout;
 
+use App\Cart;
+use App\Store;
 use Illuminate\Support\Facades\Auth;
 
 class FrontendHandler
 {
+
+    protected $cart;
+
+    protected $store;
+
+    public function __construct(Cart $cart, Store $store)
+    {
+        $this->cart = $cart;
+
+        $this->store = $store;
+    }
+
     /**
      * Base layout applied to all views
      *
@@ -12,32 +26,45 @@ class FrontendHandler
      */
     public function handle($event)
     {
-        $this->topLinks();
+        $this->header();
 
-        $this->bottomLinks();
+        $this->footer();
 
-        $this->topNavigation();
+        $this->navigation();
 
-        $this->frontendLayouts();
+        $this->layouts();
     }
 
-    protected function bottomLinks()
+    protected function layouts()
     {
-        $bottom_links = menu('bottom.links');
+        view()->composer('page.partials.header.logo', function($view){
+
+            $view->with('url', url('/'));
+
+        });
+    }
+
+    protected function footer()
+    {
+        $bottom_links = menu('footer.links');
 
         $bottom_links->add('contact', [
             'href' => url('contact'),
             'text' => 'Contact us',
         ]);
+
+        $bottom_links->add('copyright', [
+            'text' => '&copy; ' . date('Y') . ' ' . config('store.name'),
+        ]);
     }
 
-    protected function topLinks()
+    protected function header()
     {
-        $top_links = menu('top.links');
+        $top_links = menu('header.links');
 
         $top_links->add('cart', [
             'href' => url('cart'),
-            'text' => 'My Cart ('.app('cart')->getSummary().')',
+            'text' => 'Cart #'.$this->cart->id.' - '.$this->cart->getSummary().' item(s)',
         ]);
 
         if(Auth::customer()->check()){
@@ -60,64 +87,44 @@ class FrontendHandler
             ]);
 
         }
+
+        $top_links->add('backend', [
+            'href' => url('backend'),
+            'text' => 'Go to backend',
+        ]);
     }
 
-    protected function topNavigation()
+    protected function navigation()
     {
-        $store = app('store');
+        if($root = $this->store->getRootCategory()){
 
-        $categories = $store->root_category ?
-            $store->root_category->children : [];
+            foreach($root->children as $category){
 
-        foreach($categories as $category){
+                menu('top.navigation')->add('cat-' . $category->id, [
+                    'href'     => $category->url(),
+                    'text'     => $category->name(),
+                    'children' => $this->children($category)
+                ]);
 
-            menu('top.navigation')->add('cat-'.$category->id, [
-                'href' => $category->url(),
-                'text' => $category->name(),
-                'children' =>  $this->getChildCategories($category)
-            ]);
+            }
 
         }
-
     }
 
-    protected function getChildCategories($category)
+    private function children($item)
     {
         $children = [];
 
-        foreach($category->children as $child){
+        foreach($item->children as $child){
 
             $children[] = [
                 'href' => $child->url(),
                 'text' => $child->name(),
-                'children' => $this->getChildCategories($child)
+                'children' => $this->children($child)
             ];
 
         }
 
         return $children;
-    }
-
-    protected function frontendLayouts()
-    {
-        view()->composer('page.section.header', function($view){
-
-            append_section('header.top.links', ['menu' => 'top.links']);
-
-            append_section('header.top.navigation', ['menu' => 'top.navigation']);
-
-        });
-
-        view()->composer('page.section.header.logo', function($view){
-
-            $view->with('url', url('/'));
-
-        });
-
-        view()->composer('page.section.footer', function($view){
-
-            append_section('footer.top.links', ['menu' => 'bottom.links']);
-
-        });
     }
 }

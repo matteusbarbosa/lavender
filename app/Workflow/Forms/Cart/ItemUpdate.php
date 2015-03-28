@@ -20,7 +20,7 @@ class ItemUpdate extends Workflow
             'type' => 'text',
             'value' => isset($params->item) ? $params->item->qty : 1,
             'validate' => ['required'],
-            'options' => ['class' => 'small-input'],
+            'options' => ['class' => 'tiny-input'],
         ]);
 
         $this->addField('submit', [

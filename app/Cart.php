@@ -7,11 +7,11 @@ use Lavender\Support\SharedEntity;
 class Cart extends SharedEntity
 {
 
-    function __construct($cart = null)
+    function __construct()
     {
-        if(!$cart instanceof Entity){
+        if(!$cart = $this->findInSession()){
 
-            $cart = $this->findOrNew();
+            $cart = $this->newCartInstance();
 
         }
 
@@ -23,9 +23,16 @@ class Cart extends SharedEntity
         return entity('cart')->find($this->id);
     }
 
+    public function getItems()
+    {
+        $cart = $this->getCart();
+
+        return $cart->items;
+    }
+
     public function unsetCart()
     {
-        $this->setSessionVariable(null);
+        $this->setCartSession(null);
 
         $this->unsetData();
     }
@@ -33,22 +40,38 @@ class Cart extends SharedEntity
     public function setCart(Entity $cart)
     {
         // set cart id in session
-        $this->setSessionVariable($cart->id);
+        $this->setCartSession($cart->id);
 
         // set cart entity data
         $this->setEntity($cart);
     }
 
 
-    public function getItems()
+
+    public function hasShipmentAddress()
     {
-        return $this->items;
+        return true;
     }
+
+
+
+    public function readyToShip()
+    {
+        return false;
+    }
+
+
+
+    public function paidInFull()
+    {
+        return false;
+    }
+
 
 
     public function getItemsCount()
     {
-        return $this->items->count();
+        return $this->getItems()->count();
     }
 
 
@@ -56,7 +79,7 @@ class Cart extends SharedEntity
     {
         $items_count = 0;
 
-        foreach($this->items as $item){
+        foreach($this->getItems() as $item){
 
             $items_count += $item->qty;
 
@@ -66,10 +89,24 @@ class Cart extends SharedEntity
     }
 
 
-    public function findInSession()
+    public function getTotal()
+    {
+        $total = 0;
+
+        foreach($this->getItems() as $item){
+
+            $total += $item->getSubtotal();
+
+        }
+
+        return price($total);
+    }
+
+
+    protected function findInSession()
     {
         // check if session has a cart id
-        if($cart_id = $this->getSessionVariable()){
+        if($cart_id = $this->getCartSession()){
 
             // if a session id is found, verify that it belongs to a cart
             return entity('cart')->find($cart_id);
@@ -77,17 +114,6 @@ class Cart extends SharedEntity
         }
 
         return false;
-    }
-
-    protected function findOrNew()
-    {
-        if(!$cart = $this->findInSession()){
-
-            $cart = $this->newCartInstance();
-
-        }
-
-        return $cart;
     }
 
 
@@ -102,20 +128,20 @@ class Cart extends SharedEntity
 
     }
 
+
     /**
-     * @param $name
      * @return mixed
      */
-    private function getSessionVariable()
+    protected function getCartSession()
     {
         return \Session::get("sales_cart");
     }
 
+
     /**
-     * @param $name
-     * @param $state
+     * @param $var
      */
-    private function setSessionVariable($var)
+    protected function setCartSession($var)
     {
         \Session::put("sales_cart", $var);
     }

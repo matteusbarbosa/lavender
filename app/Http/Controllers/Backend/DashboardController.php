@@ -6,14 +6,11 @@ use App\Http\Controller\Backend;
 class DashboardController extends Backend
 {
 
-	public function __construct()
-	{
-        $this->loadLayout();
-	}
-
 	public function getIndex()
 	{
-		return view('backend.dashboard');
+        $this->loadLayout();
+
+        return view('backend.dashboard');
 	}
 
 }

@@ -1,24 +1,12 @@
 
+function setLocation(url)
+{
+    window.location = url;
+}
 
-$(document).ready( function () {
+function preventDoubleSubmit(elem)
+{
+    elem.submit.disabled=true;
 
-    $('span.use_default').each(function(){
-
-        $(this).bind('click', function () {
-
-            var parent = $(this).find('input').attr('data-parent');
-
-            if($(this).find('input').is(':checked')){
-
-                $('#' + parent).attr('disabled', true);
-
-            } else {
-
-                $('#' + parent).removeAttr('disabled');
-
-            }
-
-        });
-    });
-
-});
+    return true;
+}

@@ -47,6 +47,14 @@
          */
         $('ul.tabs li').click(function(){
 
+            if($(this).hasClass('active')) return;
+
+            if($('ul.tabs li.active').hasClass('changes')){
+
+                if(!confirm('Changes on this tab will not be saved.')) return;
+
+            }
+
             $('ul.tabs li').removeClass('active');
 
             $(this).addClass('active');
@@ -68,6 +76,18 @@
                 $('ul.tabs').remove();
 
             }
+
+            $('div.tab-panel :input').bind('change', function(){
+
+                var panel = $(this).parentsUntil('.tab-panel');
+
+                var panel_index = $('.tabs-content').find(':visible').index();
+
+                $($('ul.tabs li')[panel_index]).addClass('changes');
+
+                $(this).addClass('changes');
+
+            });
 
         } );
 

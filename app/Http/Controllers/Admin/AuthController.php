@@ -50,7 +50,7 @@ class AuthController extends Base
      */
     public function postLogin(Request $request)
     {
-        workflow('admin_login')->handle($request->all());
+        workflow('admin_login')->handle($request);
 
         return redirect()->intended('/admin/login');
     }

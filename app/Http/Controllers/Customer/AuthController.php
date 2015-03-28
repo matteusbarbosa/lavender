@@ -74,9 +74,9 @@ class AuthController extends Frontend
 	 */
 	public function postRegister(Request $request)
 	{
-        workflow('new_customer')->handle($request->all());
+        workflow('customer_register')->handle($request);
 
-        return redirect('/customer/login');
+        return redirect('/customer/register');
 	}
 
     /**
@@ -87,7 +87,7 @@ class AuthController extends Frontend
      */
     public function postLogin(Request $request)
     {
-        workflow('existing_customer')->handle($request->all());
+        workflow('customer_login')->handle($request);
 
         return redirect('/customer/login');
     }

@@ -140,7 +140,6 @@ return [
 		 */
         'Lavender\Providers\AuthServiceProvider',
 		'Lavender\Providers\EntityServiceProvider',
-		'Lavender\Providers\UrlServiceProvider',
         'Lavender\Providers\ViewServiceProvider',
         'Lavender\Providers\WorkflowServiceProvider',
 
@@ -153,6 +152,13 @@ return [
 		'App\Providers\MenuServiceProvider',
         'App\Providers\MessageServiceProvider',
         'App\Providers\RouteServiceProvider',
+        'App\Providers\UrlServiceProvider',
+
+        /*
+         * Package Service Providers
+         */
+//        'Lavender\Providers\ShippingServiceProvider',
+
     ],
 
 	/*

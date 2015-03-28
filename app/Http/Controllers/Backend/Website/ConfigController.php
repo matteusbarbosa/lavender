@@ -35,7 +35,7 @@ class ConfigController extends Backend
      */
     public function postIndex(Request $request)
     {
-        workflow('config_general')->handle($request->all());
+        workflow('config_general')->handle($request);
 
         return redirect()->back();
     }
@@ -49,7 +49,7 @@ class ConfigController extends Backend
      */
     public function postAccount(Request $request)
     {
-        workflow('config_account')->handle($request->all());
+        workflow('config_account')->handle($request);
 
         return redirect()->back();
     }

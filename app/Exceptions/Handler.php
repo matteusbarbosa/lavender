@@ -61,7 +61,7 @@ class Handler extends ExceptionHandler {
 		{
 			return response()->view(
 				'errors.'.$e->getStatusCode(),
-				['message' => $e->getMessage()],
+				['message' => $e->getMessage(), 'trace' => $e->getTraceAsString(), 'debug' => config('app.debug')],
 				$e->getStatusCode()
 			);
 		}

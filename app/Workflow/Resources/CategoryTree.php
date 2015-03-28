@@ -1,21 +1,28 @@
 <?php
 namespace App\Workflow\Resources;
 
+use App\Store;
 use Illuminate\Contracts\Support\Arrayable;
 
 class CategoryTree implements Arrayable
 {
+    protected $store;
+
+    public function __construct(Store $store)
+    {
+        $this->store = $store;
+    }
 
     public function toArray()
     {
-        $root = app('store')->root_category;
+        $root = $this->store->getRootCategory();
 
         return $this->values($root);
     }
 
     public function toChildren()
     {
-        $root = app('store')->root_category;
+        $root = $this->store->getRootCategory();
 
         return $this->children($root);
     }

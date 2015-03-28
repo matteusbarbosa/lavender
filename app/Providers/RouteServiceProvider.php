@@ -29,10 +29,17 @@ class RouteServiceProvider extends ServiceProvider {
 
 	}
 
+    /**
+     * @param Router $router
+     * @param UrlGenerator $url
+     */
+    public function before(Router $router, UrlGenerator $url)
+    {
+        //
+    }
+
 	/**
 	 * Define the routes for the application.
-	 *
-	 * todo move to specific service
 	 *
 	 * @param  \Illuminate\Routing\Router  $router
 	 *

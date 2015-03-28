@@ -6,13 +6,10 @@ use App\Http\Controller\Backend;
 class SalesController extends Backend
 {
 
-    public function __construct()
-    {
-        $this->loadLayout();
-    }
-
 	public function getIndex()
 	{
+        $this->loadLayout();
+
         return view('backend.sales');
 	}
 

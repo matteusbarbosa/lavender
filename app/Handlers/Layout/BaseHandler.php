@@ -1,6 +1,8 @@
 <?php
 namespace App\Handlers\Layout;
 
+use Symfony\Component\HttpKernel\Exception\HttpException;
+
 class BaseHandler
 {
     /**
@@ -10,14 +12,22 @@ class BaseHandler
      */
     public function handle($event)
     {
-        $this->baseLayouts();
-    }
-
-    protected function baseLayouts()
-    {
-        view()->composer('page.section.head', function($view){
+        /**
+         * Scripts, styles, meta, and more...
+         */
+        view()->composer('page.partials.head', function($view){
 
             append_section('head.anchor', ['config' => 'store.name']);
+
+            append_section('head.style', ['style' => 'css/base.css']);
+
+            //todo move to checkout controller
+            append_section('head.style', ['style' => 'css/util/checkout.css']);
+            // css utilities - todo merge
+            append_section('head.style', ['style' => 'css/util/messages.css']);
+            append_section('head.style', ['style' => 'css/util/navigation.css']);
+            append_section('head.style', ['style' => 'css/util/print.css']);
+            append_section('head.style', ['style' => 'css/util/table.css']);
 
             append_section('head.style', ['style' => 'css/app.css']);
 
@@ -27,9 +37,12 @@ class BaseHandler
 
         });
 
-        view()->composer('page.section.footer', function($view){
+        /**
+         * Notification messages
+         */
+        view()->composer('layouts.master', function($view){
 
-            append_section('footer.bottom.before', ['layout' => 'page.section.footer.copyright']);
+            append_section('main.before', ['view' => 'layouts.partials.messages']);
 
         });
     }

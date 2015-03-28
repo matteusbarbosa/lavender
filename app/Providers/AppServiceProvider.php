@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['store', 'theme', 'cart'];
+        return ['App\Cart', 'App\Store', 'App\Theme'];
     }
 
 
@@ -37,76 +37,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->bootStore();
-
-        $this->bootTheme();
-    }
-
-
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->registerStore();
-
-        $this->registerTheme();
-
-        $this->registerCart();
-
-        $this->app->booted(function(){
-
-            $this->registerBladeExtensions();
-
-        });
-    }
-
-    private function registerCart()
-    {
-        $this->app->singleton('cart', function($app){
-
-            return new Cart();
-        });
-    }
-
-    private function registerStore()
-    {
-        $this->app->singleton('store', function ($app){
-
-            $store = null;//entity('store');
-
-            return new Store($store);
-        });
-    }
-
-    private function registerTheme()
-    {
-        $this->app->singleton('theme', function ($app){
-
-            $theme = entity('theme');
-
-            return new Theme($theme);
-        });
-    }
-
-    public function bootStore()
-    {
         try{
+            $this->bootStore($this->app['App\Store']);
 
-            if($this->app->store->bootStore()){
-                // merge store config into global config
-                foreach($this->app->store->config->all() as $item){
-
-                    $this->app['config']->set('store.' . $item->key, $item->value);
-
-                }
-            } else {
-
-                throw new \Exception("Default store was not found.");
-
-            }
+            $this->bootTheme($this->app['App\Theme'], $this->app['App\Store']);
 
         } catch(QueryException $e){
 
@@ -119,35 +53,34 @@ class AppServiceProvider extends ServiceProvider
         }
     }
 
+
     /**
-     * Match user session to initialize $theme
+     * Register the service provider.
      *
-     * @throws HttpException
+     * @return void
      */
-    private function bootTheme()
+    public function register()
     {
-        try{
+        $this->app->singleton('App\Cart');
 
-            if($this->app->theme->bootTheme($this->app->store)){
+        $this->app->singleton('App\Store');
 
-                // Add file paths for current theme.
-                $this->registerViewPaths();
+        $this->app->singleton('App\Theme');
 
-            } else {
+        $this->app->booted(function(){
 
-                throw new \Exception("Theme not set for current store.");
+            $this->registerBladeExtensions();
 
-            }
+        });
+    }
 
-        } catch(QueryException $e){
+    public function bootStore(Store $store)
+    {
+        // Add database config for current store.
+        if($store->bootStore()) $this->registerStoreConfig($store);
 
-            // missing core tables
-            if(!\App::runningInConsole()) throw new HttpException(500, "Lavender not installed.");
-        } catch(\Exception $e){
-
-            // something went wrong
-            if(!\App::runningInConsole()) throw new HttpException(500, $e->getTraceAsString());
-        }
+        // Default store was not found.
+        else throw new \Exception("Default store was not found.");
     }
 
 
@@ -156,7 +89,37 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    private function registerViewPaths()
+    private function registerStoreConfig(Store $store)
+    {
+        // merge store config into global config
+        foreach($store->getConfig() as $item){
+
+            $this->app['config']->set('store.' . $item->key, $item->value);
+
+        }
+    }
+
+    /**
+     * Match user session to initialize $theme
+     *
+     * @throws HttpException
+     */
+    private function bootTheme(Theme $theme, Store $store)
+    {
+        // Add file paths for current theme.
+        if($theme->bootTheme($store)) $this->registerViewPaths($theme);
+
+        // Theme not set for current store.
+        else throw new \Exception("Theme not set for current store.");
+    }
+
+
+    /**
+     * Update the view paths.
+     *
+     * @return void
+     */
+    private function registerViewPaths(Theme $theme)
     {
         // get current view paths
         $paths = $this->app->config['view.paths'];
@@ -173,7 +136,7 @@ class AppServiceProvider extends ServiceProvider
 //        }
 
         // create new paths based on current theme
-        foreach($this->app->theme->fallbacks as $fallback){
+        foreach($theme->fallbacks as $fallback){
 
             foreach($paths as $path){
 
@@ -222,14 +185,6 @@ class AppServiceProvider extends ServiceProvider
             return preg_replace(
                 $compiler->createMatcher('paginate'),
                 '$1<?php echo paginate$2; ?>',
-                $html
-            );
-        });
-
-        Blade::extend(function($html, $compiler){
-            return preg_replace(
-                $compiler->createMatcher('printArray'),
-                '$1<?php printArray$2; ?>',
                 $html
             );
         });

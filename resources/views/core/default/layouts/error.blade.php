@@ -10,16 +10,17 @@
 			color: #B0BEC5;
 			font-weight: 100;
 		}
+        main {
+            width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
 
 		.container {
-			margin: 0 auto;
-			text-align: center;
-			vertical-align: middle;
 		}
 
 		.content {
 			text-align: center;
-			display: inline-block;
 		}
 
 		.title {
@@ -30,6 +31,19 @@
 		.description {
 			font-size: 24px;
 		}
+        .trace {
+            text-align: left;
+            overflow: scroll;
+            height: 300px;
+        }
+        code {
+            font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+            padding: 2px 4px;
+            font-size: 90%;
+            color: #c7254e;
+            background-color: #f9f2f4;
+            border-radius: 4px;
+        }
 	</style>
 </head>
 <body class="error-page">

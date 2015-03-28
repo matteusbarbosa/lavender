@@ -5,5 +5,5 @@
 @stop
 
 @section('head')
-    @include('page.section.head')
+    @include('page.partials.head')
 @stop

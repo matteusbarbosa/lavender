@@ -6,12 +6,6 @@ use Illuminate\Http\Request;
 
 class CategoryController extends BackendEntity
 {
-
-    public function __construct()
-    {
-        $this->loadLayout();
-    }
-
 	public function getEdit($id)
     {
         if($model = $this->validateEntity('category', $id)){
@@ -26,6 +20,8 @@ class CategoryController extends BackendEntity
                 //
 
             }
+
+            $this->loadLayout();
 
             return view('backend.tabs')
                 ->with('title', $model->getEntityName())
@@ -59,6 +55,8 @@ class CategoryController extends BackendEntity
                 "<select><option>Action</option></select>"
             );
 
+            $this->loadLayout();
+
             return view('backend.grid')
                 ->with('title',    'category')
                 ->with('edit_url', 'backend/category/edit')
@@ -82,7 +80,7 @@ class CategoryController extends BackendEntity
 
             $new = !$model->exists;
 
-            workflow('edit_category', ['entity' => $model])->handle($request->all());
+            workflow('edit_category', ['entity' => $model])->handle($request);
 
             if($new && $model->exists) return redirect()->to('backend/category/edit/'.$model->id);
 

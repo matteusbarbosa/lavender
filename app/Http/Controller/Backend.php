@@ -6,11 +6,19 @@ use App\Support\Facades\Message;
 
 abstract class Backend extends Base
 {
+    protected $layout_loaded = false;
+
     protected function loadLayout()
     {
-        event(new LoadBackend($this));
+        if(!$this->layout_loaded){
 
-        parent::loadLayout();
+            event(new LoadBackend($this));
+
+            parent::loadLayout();
+
+            $this->layout_loaded = true;
+
+        }
     }
 
     public function missingMethod($parameters = [])
