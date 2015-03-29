@@ -8,6 +8,6 @@
 
     <h4>Your Payment Information:</h4>
 
-    @workflow('cart_payment')
+    @workflow('payment_method')
 
 @stop

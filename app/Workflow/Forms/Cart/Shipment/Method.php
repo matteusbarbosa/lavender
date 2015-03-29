@@ -1,9 +1,9 @@
 <?php
-namespace App\Workflow\Forms\Cart;
+namespace App\Workflow\Forms\Cart\Shipment;
 
 use Lavender\Support\Workflow;
 
-class Shipment extends Workflow
+class Method extends Workflow
 {
     public function __construct($params)
     {

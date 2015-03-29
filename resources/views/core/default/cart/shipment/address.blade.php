@@ -8,6 +8,6 @@
 
     <h4>Your Shipping Information:</h4>
 
-    @workflow('cart_shipment_address')
+    @workflow('shipment_address')
 
 @stop

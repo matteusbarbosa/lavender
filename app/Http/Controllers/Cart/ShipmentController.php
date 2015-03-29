@@ -50,7 +50,7 @@ class ShipmentController extends Frontend
 
         }
 
-        return view('cart.shipment');
+        return view('cart.shipment.method');
     }
 
     public function getAddress($number, Cart $cart)
@@ -67,7 +67,7 @@ class ShipmentController extends Frontend
 
     public function postShipment($number, Request $request)
     {
-        if(!workflow('cart_shipment')->handle($request)){
+        if(!workflow('shipment_method')->handle($request)){
 
             return redirect('cart/shipment/'.$number);
 
@@ -78,7 +78,7 @@ class ShipmentController extends Frontend
 
     public function postAddress($number, Request $request)
     {
-        if(!workflow('cart_shipment_address')->handle($request)){
+        if(!workflow('shipment_address')->handle($request)){
 
             return redirect('cart/shipment/'.$number.'/address');
 
