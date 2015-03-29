@@ -34,7 +34,7 @@ Come chat with us in [#lavender on freenode](http://webchat.freenode.net/?channe
 
 ### Contributing
 
-Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) are much appreciated!
+Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) (on the master branch) are much appreciated!
 
 This repository provides the consumer application which contains the [controllers](https://github.com/lavender/lavender/tree/master/app/Http/Controllers), [models](https://github.com/lavender/lavender/tree/master/app/Database), and [views](https://github.com/lavender/lavender/tree/master/resources/views/core/default) (and config, locale, etc) that makes Lavender an ecommerce platform. 
 
