@@ -28,9 +28,6 @@ class CartHandler
         $this->request = $request;
     }
 
-    /**
-     * @param $data
-     */
     public function add_cart_item()
     {
         $this->dispatchFrom(
@@ -42,9 +39,6 @@ class CartHandler
         Message::addSuccess("Product was added to your cart.");
     }
 
-    /**
-     * @param $data
-     */
     public function update_cart_item()
     {
         $this->dispatchFrom(
@@ -56,9 +50,6 @@ class CartHandler
         Message::addSuccess("Your cart has been updated.");
     }
 
-    /**
-     * @param $data
-     */
     public function shipment_address()
     {
         $this->dispatchFrom(
@@ -69,10 +60,7 @@ class CartHandler
         );
     }
 
-    /**
-     * @param $data
-     */
-    public function shipment()
+    public function shipment_method()
     {
         $this->dispatchFrom(
             'App\Commands\Cart\Shipment',
@@ -82,10 +70,7 @@ class CartHandler
         );
     }
 
-    /**
-     * @param $data
-     */
-    public function payment()
+    public function payment_method()
     {
         $this->dispatchFrom(
             'App\Commands\Cart\Payment',
@@ -136,12 +121,12 @@ class CartHandler
             'App\Handlers\Forms\CartHandler@shipment_address'
         );
         $events->listen(
-            'App\Workflow\Forms\Cart\Shipment',
-            'App\Handlers\Forms\CartHandler@shipment'
+            'App\Workflow\Forms\Cart\Shipment\Method',
+            'App\Handlers\Forms\CartHandler@shipment_method'
         );
         $events->listen(
-            'App\Workflow\Forms\Cart\Payment',
-            'App\Handlers\Forms\CartHandler@payment'
+            'App\Workflow\Forms\Cart\Payment\Method',
+            'App\Handlers\Forms\CartHandler@payment_method'
         );
         $events->listen(
             'App\Workflow\Forms\Cart\Review',
