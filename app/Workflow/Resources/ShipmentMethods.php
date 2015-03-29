@@ -3,7 +3,6 @@ namespace App\Workflow\Resources;
 
 use App\Cart;
 use App\Events\Cart\Shipment\CollectMethods;
-use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Support\Arrayable;
 use Lavender\Contracts\Entity;
 
@@ -11,13 +10,9 @@ class ShipmentMethods implements Arrayable
 {
     protected $cart;
 
-    protected $events;
-
-    public function __construct(Cart $cart, Dispatcher $events)
+    public function __construct(Cart $cart)
     {
         $this->cart = $cart;
-
-        $this->events = $events;
     }
 
     public function getShipments()
@@ -27,7 +22,7 @@ class ShipmentMethods implements Arrayable
 
     public function getMethods(Entity $address)
     {
-        return $this->events->fire(new CollectMethods($address));
+        return event(new CollectMethods($address));
     }
 
     public function toArray()
