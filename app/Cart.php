@@ -23,6 +23,13 @@ class Cart extends SharedEntity
         return entity('cart')->find($this->id);
     }
 
+    public function update(array $params)
+    {
+        $cart = $this->getCart();
+
+        return $cart->update($params);
+    }
+
     public function getItems()
     {
         $cart = $this->getCart();

@@ -26,9 +26,7 @@ class ShipmentController extends Frontend
                 'number' => $number,
             ]);
 
-            $cart_model = $cart->getCart();
-
-            $cart_model->update([
+            $cart->update([
                 'shipments' => [$shipment]
             ]);
 

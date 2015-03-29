@@ -28,9 +28,7 @@ class PaymentController extends Frontend
                 'number' => $number,
             ]);
 
-            $cart_model = $cart->getCart();
-
-            $cart_model->update([
+            $cart->update([
                 'payments' => [$payment]
             ]);
 
@@ -48,13 +46,13 @@ class PaymentController extends Frontend
 
         }
 
-        return view('cart.payment');
+        return view('cart.payment.method');
     }
 
 
     public function postPayment($number, Request $request)
     {
-        if(!workflow('cart_payment')->handle($request)){
+        if(!workflow('payment_method')->handle($request)){
 
             return redirect('cart/payment/'.$number);
 
