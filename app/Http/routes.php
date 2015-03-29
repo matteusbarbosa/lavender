@@ -59,12 +59,18 @@ Route::group([
 Route::group(['namespace'=> 'Cart'], function(){
 
     /**
-     * Checkout review and submit
+     * Checkout review and submit. Cart must be:
+     *  - Not empty
+     *  - Ready to ship
+     *  - Paid in full
      */
-    Route::group(['prefix' => 'checkout'], function(){
+    Route::group([
+        'prefix' => 'checkout',
+        'middleware' => ['cart','checkout']
+    ], function(){
 
         Route::controllers([
-            '/'         => 'CheckoutController',
+            '/'        => 'CheckoutController',
         ]);
 
     });
@@ -74,15 +80,19 @@ Route::group(['namespace'=> 'Cart'], function(){
      */
     Route::group(['prefix' => 'cart'], function(){
 
-        Route::get('payment/{number}', 'PaymentController@getPayment');
-        Route::post('payment/{number}', 'PaymentController@postPayment');
+        // handle payments
+        Route::get('payment/{number}',              'PaymentController@getPayment');
+        Route::post('payment/{number}',             'PaymentController@postPayment');
 
-        Route::get('shipment/{number}', 'ShipmentController@getShipment');
-        Route::post('shipment/{number}', 'ShipmentController@postShipment');
+        // handle shipments
+        Route::get('shipment/{number}',             'ShipmentController@getShipment');
+        Route::post('shipment/{number}',            'ShipmentController@postShipment');
 
-        Route::get('shipment/{number}/address', 'ShipmentController@getAddress');
-        Route::post('shipment/{number}/address', 'ShipmentController@postAddress');
+        // capture shipment address
+        Route::get('shipment/{number}/address',     'ShipmentController@getAddress');
+        Route::post('shipment/{number}/address',    'ShipmentController@postAddress');
 
+        // various cart routes
         Route::controllers([
     		'success'   => 'SuccessController',
     		'payment'   => 'PaymentController',
@@ -94,28 +104,6 @@ Route::group(['namespace'=> 'Cart'], function(){
     });
 
 });
-
-
-/**
- * Checkout routes
- *  - namespace App\Http\Controllers\Checkout
- *  - Checkout workflow
- */
-//Route::group([
-//    'namespace'     => 'Checkout',
-//    'prefix'        => 'checkout',
-//    'middleware'    => 'cart',
-//], function(){
-//
-//	Route::controllers([
-//		'success'   => 'SuccessController',
-//		'review'    => 'ReviewController',
-//		'payment'   => 'PaymentController',
-//		'shipping'  => 'ShippingController',
-//		'/'         => 'IndexController',
-//	]);
-//
-//});
 
 
 /**
