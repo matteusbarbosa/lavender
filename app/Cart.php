@@ -143,8 +143,13 @@ class Cart extends SharedEntity
         // check if session has a cart id
         if($cart_id = $this->getCartSession()){
 
-            // if a session id is found, verify that it belongs to a cart
-            return entity('cart')->where(['id' => $cart_id, 'status' => 'open'])->first();
+            // if a cart id is found in session:
+            //  - verify that it belongs to a cart
+            //  - verify that it is still open
+            return entity('cart')->where([
+                'id' => $cart_id,
+                'status' => 'open'
+            ])->first();
 
         }
 
@@ -160,7 +165,6 @@ class Cart extends SharedEntity
         $cart->save();
 
         return $cart;
-
     }
 
 
