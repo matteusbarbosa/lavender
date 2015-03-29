@@ -24,6 +24,12 @@ return [
     'cart' => [
         'class' => 'App\Database\Cart',
         'scope' => Scope::STORE,
+        'attributes' => [
+            'status' => [
+                'label' => 'Status',
+                'default' => 'open',
+            ],
+        ],
         'relationships' => [
             'customer' => [
                 'entity' => 'customer',
@@ -72,11 +78,15 @@ return [
     'cart_shipment' => [
         'class' => 'App\Database\Cart\Shipment',
         'attributes' => [
-            'type' => [
-                'label' => 'Type'
+            'method' => [
+                'label' => 'Method'
             ],
-            'amount' => [
-                'label' => 'Amount',
+            'number' => [
+                'label' => 'Shipment Number',
+                'type' => Attribute::INTEGER,
+            ],
+            'total' => [
+                'label' => 'Total',
                 'type' => Attribute::DECIMAL,
             ],
         ],
@@ -99,11 +109,15 @@ return [
     'cart_payment' => [
         'class' => 'App\Database\Cart\Payment',
         'attributes' => [
-            'type' => [
-                'label' => 'Type'
+            'method' => [
+                'label' => 'Method'
             ],
-            'amount' => [
-                'label' => 'Amount',
+            'number' => [
+                'label' => 'Payment Number',
+                'type' => Attribute::INTEGER,
+            ],
+            'total' => [
+                'label' => 'Total',
                 'type' => Attribute::DECIMAL,
             ],
         ],

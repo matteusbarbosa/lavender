@@ -45,9 +45,9 @@ class Kernel extends HttpKernel {
 		'checkout'          => 'App\Http\Middleware\Cart\ReadyToCheckout',
 
         // cart middleware for checkout
-        'cart_shipment'     => 'App\Http\Middleware\Cart\HasShipment',
-        'cart_payment'      => 'App\Http\Middleware\Cart\HasPayment',
-        'cart_conversion'   => 'App\Http\Middleware\Cart\CheckoutSuccess',
+        'cart_shipment'     => 'App\Http\Middleware\Cart\ReadyToShip',
+        'cart_payment'      => 'App\Http\Middleware\Cart\PaidInFull',
+        'cart_success'      => 'App\Http\Middleware\Cart\CheckoutSuccess',
 	];
 
 }

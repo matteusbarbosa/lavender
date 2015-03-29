@@ -1,11 +1,11 @@
 @extends('layouts.default')
 
 @section('head.title')
-    Shopping Cart
+    Success
 @stop
 
 @section('main')
 
-    <h3>Thank you for your purchase!</h3>
+    <h4>Thank you for your order!</h4>
 
 @stop

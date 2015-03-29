@@ -1,12 +1,17 @@
 <?php
 namespace App\Http\Middleware\Cart;
 
+use App\Cart;
 use Closure;
-use Illuminate\Support\Facades\Session;
 
 class CheckoutSuccess
 {
+    protected $cart;
 
+    public function __construct(Cart $cart)
+    {
+        $this->cart = $cart;
+    }
 
     /**
      * Handle an incoming request.
@@ -17,7 +22,7 @@ class CheckoutSuccess
      */
     public function handle($request, Closure $next)
     {
-        if(!Session::get('order', false)){
+        if(!$this->cart->checkoutSuccess()){
 
             if ($request->ajax()){
 

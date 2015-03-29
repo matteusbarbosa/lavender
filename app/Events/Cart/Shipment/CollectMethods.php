@@ -1,10 +1,10 @@
 <?php
-namespace App\Events\Cart\Shipping;
+namespace App\Events\Cart\Shipment;
 
 use App\Events\Event;
 use Lavender\Contracts\Entity;
 
-class CaptureRates extends Event
+class CollectMethods extends Event
 {
     public $address;
 

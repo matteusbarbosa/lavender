@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Cart;
 
 use App\Cart;
 use App\Http\Controller\Frontend;
+use Illuminate\Http\Request;
 
 class CheckoutController extends Frontend
 {
@@ -18,14 +19,20 @@ class CheckoutController extends Frontend
         $this->middleware('checkout');
 	}
 
-	public function getIndex(Cart $cart)
+	public function getIndex()
 	{
-        append_section(
-            'cart.items',
-            view('cart.partials.items')->withItems($cart->getItems())
-        );
-
-		return view('cart.page')->withTotals(['Total' => $cart->getTotal()]);
+        return view('cart.review');
 	}
 
+
+    public function postIndex(Request $request)
+    {
+        if(!workflow('cart_review')->handle($request)){
+
+            return redirect('checkout');
+
+        }
+
+        return redirect('cart/success');
+    }
 }

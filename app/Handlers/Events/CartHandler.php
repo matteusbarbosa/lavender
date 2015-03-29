@@ -1,9 +1,6 @@
 <?php
 namespace App\Handlers\Events;
 
-
-use App\Cart;
-use App\Support\Facades\Message;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Lavender\Contracts\Entity;
 use Lavender\Contracts\Workflow;
@@ -96,6 +93,18 @@ class CartHandler
         }
     }
 
+    public function shipment_methods()
+    {
+        //todo use store config for default shipping methods
+        return ['code' => 'free', 'title' => 'Free Shipping', 'price' => '0.00'];
+    }
+
+    public function payment_methods()
+    {
+        //todo use store config for default payment methods
+        return ['code' => 'pickup', 'title' => 'In Store Pickup'];
+    }
+
     /**
      * Register the listeners for the subscriber.
      *
@@ -111,6 +120,14 @@ class CartHandler
         $events->listen(
             'auth.login',
             'App\Handlers\Events\CartHandler@customer_login'
+        );
+        $events->listen(
+            'App\Events\Cart\Shipment\CollectMethods',
+            'App\Handlers\Events\CartHandler@shipment_methods'
+        );
+        $events->listen(
+            'App\Events\Cart\Payment\CollectMethods',
+            'App\Handlers\Events\CartHandler@payment_methods'
         );
     }
 

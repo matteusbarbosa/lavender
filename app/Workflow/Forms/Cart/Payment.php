@@ -3,14 +3,14 @@ namespace App\Workflow\Forms\Cart;
 
 use Lavender\Support\Workflow;
 
-class Shipment extends Workflow
+class Payment extends Workflow
 {
     public function __construct($params)
     {
-        $this->addField('shipment_method', [
-            'label'    => 'Select a shipping option:',
+        $this->addField('payment_method', [
+            'label'    => 'Select a payment option:',
             'type'     => 'radiolist',
-            'resource' => 'shipment_methods',
+            'resource' => 'payment_methods',
         ]);
 
         $this->addField('submit', [

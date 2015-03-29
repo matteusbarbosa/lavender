@@ -2,12 +2,12 @@
 namespace App\Workflow\Resources;
 
 use App\Cart;
-use App\Events\Cart\Shipment\CollectMethods;
+use App\Events\Cart\Payment\CollectMethods;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Contracts\Support\Arrayable;
 use Lavender\Contracts\Entity;
 
-class ShipmentMethods implements Arrayable
+class PaymentMethods implements Arrayable
 {
     protected $cart;
 
@@ -20,26 +20,26 @@ class ShipmentMethods implements Arrayable
         $this->events = $events;
     }
 
-    public function getShipments()
+    public function getPayments()
     {
-        return $this->cart->getShipments();
+        return $this->cart->getPayments();
     }
 
-    public function getMethods(Entity $address)
+    public function getMethods(Entity $payment)
     {
-        return $this->events->fire(new CollectMethods($address));
+        return $this->events->fire(new CollectMethods($payment));
     }
 
     public function toArray()
     {
         $results = [];
 
-        foreach($this->getShipments() as $shipment){
+        foreach($this->getPayments() as $payment){
 
-            foreach($this->getMethods($shipment->address) as $rate){
+            foreach($this->getMethods($payment) as $rate){
 
                 $results[] = [
-                    'label'   => $rate['title'] . ' - ' . price($rate['price']),
+                    'label'   => $rate['title'],
                     'name'    => 'method',
                     'value'   => $rate['code'],
                 ];

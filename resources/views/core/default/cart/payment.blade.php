@@ -6,8 +6,8 @@
 
 @section('content')
 
-    <h4>Your Shipping Information:</h4>
+    <h4>Your Payment Information:</h4>
 
-    @workflow('cart_shipment')
+    @workflow('cart_payment')
 
 @stop

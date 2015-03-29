@@ -4,7 +4,7 @@ namespace App\Http\Middleware\Cart;
 use App\Cart;
 use App\Support\Facades\Message;
 
-class HasPayment
+class ReadyToShip
 {
     protected $cart;
 
@@ -22,9 +22,9 @@ class HasPayment
      */
     public function handle($request, \Closure $next)
     {
-        if(!$this->cart->hasPayment()){
+        if(!$this->cart->readyToShip()){
 
-            Message::setWarning('Payment is required.');
+            Message::addWarning('Shipment is required.');
 
             return redirect()->guest('cart');
 

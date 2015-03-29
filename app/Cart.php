@@ -37,11 +37,25 @@ class Cart extends SharedEntity
         return $cart->shipments;
     }
 
+    public function getShipment($number)
+    {
+        $cart = $this->getCart();
+
+        return $cart->shipments()->where('number', '=', $number)->first();
+    }
+
     public function getPayments()
     {
         $cart = $this->getCart();
 
         return $cart->payments;
+    }
+
+    public function getPayment($number)
+    {
+        $cart = $this->getCart();
+
+        return $cart->payments()->where('number', '=', $number)->first();
     }
 
     public function unsetCart()
@@ -62,23 +76,30 @@ class Cart extends SharedEntity
 
 
 
-    public function hasShipmentAddress()
-    {
-        return true;
-    }
-
-
-
     public function readyToShip()
     {
-        return false;
+        // todo check all shipments
+        $shipment = $this->getShipment(1);
+
+        return $shipment && $shipment->address && $shipment->method;
     }
 
 
 
     public function paidInFull()
     {
-        return false;
+        // todo check all payments
+        $payment = $this->getPayment(1);
+
+        return $payment && $payment->total == $this->getTotal();
+    }
+
+
+
+    public function checkoutSuccess()
+    {
+        // todo find a better way
+        return \Session::get('cart.success');
     }
 
 
@@ -113,7 +134,7 @@ class Cart extends SharedEntity
 
         }
 
-        return price($total);
+        return $total;
     }
 
 
@@ -123,7 +144,7 @@ class Cart extends SharedEntity
         if($cart_id = $this->getCartSession()){
 
             // if a session id is found, verify that it belongs to a cart
-            return entity('cart')->find($cart_id);
+            return entity('cart')->where(['id' => $cart_id, 'status' => 'open'])->first();
 
         }
 

@@ -74,8 +74,18 @@ Route::group(['namespace'=> 'Cart'], function(){
      */
     Route::group(['prefix' => 'cart'], function(){
 
+        Route::get('payment/{number}', 'PaymentController@getPayment');
+        Route::post('payment/{number}', 'PaymentController@postPayment');
+
+        Route::get('shipment/{number}', 'ShipmentController@getShipment');
+        Route::post('shipment/{number}', 'ShipmentController@postShipment');
+
+        Route::get('shipment/{number}/address', 'ShipmentController@getAddress');
+        Route::post('shipment/{number}/address', 'ShipmentController@postAddress');
+
         Route::controllers([
-    //		'payment'   => 'PaymentController',
+    		'success'   => 'SuccessController',
+    		'payment'   => 'PaymentController',
             'shipment'  => 'ShipmentController',
             'item'      => 'ItemController',
             '/'         => 'CartController',

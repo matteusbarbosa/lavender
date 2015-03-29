@@ -6,8 +6,8 @@
 
 @section('content')
 
-    <h4>Your Shipping Information:</h4>
+    <h4>Review your order:</h4>
 
-    @workflow('cart_shipment')
+    @workflow('cart_review')
 
 @stop

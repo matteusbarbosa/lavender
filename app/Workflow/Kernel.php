@@ -44,6 +44,7 @@ class Kernel extends WorkflowKernel
         'category_tree'     => 'App\Workflow\Resources\CategoryTree',
         'category_children' => 'App\Workflow\Resources\CategoryTree@toChildren',
         'shipment_methods'  => 'App\Workflow\Resources\ShipmentMethods',
+        'payment_methods'   => 'App\Workflow\Resources\PaymentMethods',
 
     ];
 

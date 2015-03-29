@@ -21,4 +21,9 @@ class Cart extends Entity
 
         return false;
     }
+
+    public function scopeOpen($query)
+    {
+        return $query->where('status', '=', 'open');
+    }
 }

@@ -10,4 +10,6 @@ class Payment extends Entity
 
     protected $table = 'cart_payment';
 
+    public $timestamps = false;
+
 }

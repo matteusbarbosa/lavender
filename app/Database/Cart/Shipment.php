@@ -10,4 +10,5 @@ class Shipment extends Entity
 
     protected $table = 'cart_shipment';
 
+    public $timestamps = false;
 }

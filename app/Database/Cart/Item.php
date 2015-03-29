@@ -10,6 +10,8 @@ class Item extends Entity
 
     protected $table = 'cart_item';
 
+    public $timestamps = false;
+
     protected $_price;
 
 
