@@ -12,7 +12,7 @@ class CategoryController extends BackendEntity
 
             $tabs[] = [
                 'label' => "General",
-                'content' => workflow('edit_category', ['entity' => $model]),
+                'content' => form('edit_category', ['entity' => $model]),
             ];
 
             if($model->exists){
@@ -80,7 +80,7 @@ class CategoryController extends BackendEntity
 
             $new = !$model->exists;
 
-            workflow('edit_category', ['entity' => $model])->handle($request);
+            form('edit_category', ['entity' => $model])->handle($request);
 
             if($new && $model->exists) return redirect()->to('backend/category/edit/'.$model->id);
 

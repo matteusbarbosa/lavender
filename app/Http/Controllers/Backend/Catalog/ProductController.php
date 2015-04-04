@@ -15,14 +15,14 @@ class ProductController extends BackendEntity
 
             $tabs[] = [
                 'label' => "General",
-                'content' => workflow('edit_product', ['entity' => $model])
+                'content' => form('edit_product', ['entity' => $model])
             ];
 
             if($model->exists){
 
                 $tabs[] = [
                     'label'   => "Categories",
-                    'content' => workflow('edit_product_categories', ['entity' => $model])
+                    'content' => form('edit_product_categories', ['entity' => $model])
                 ];
 
             }
@@ -84,7 +84,7 @@ class ProductController extends BackendEntity
 
             $new = !$model->exists;
 
-            workflow('edit_product', ['entity' => $model])->handle($request);
+            form('edit_product', ['entity' => $model])->handle($request);
 
             if($new && $model->exists) return redirect()->to('backend/product/edit/'.$model->id);
 
@@ -104,7 +104,7 @@ class ProductController extends BackendEntity
     {
         if($model = $this->validateEntity('product', $id)){
 
-            workflow('edit_product_categories', ['entity' => $model])->handle($request);
+            form('edit_product_categories', ['entity' => $model])->handle($request);
 
         }
 

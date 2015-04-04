@@ -67,7 +67,7 @@ class ShipmentController extends Frontend
 
     public function postShipment($number, Request $request)
     {
-        if(!workflow('shipment_method')->handle($request)){
+        if(!form('shipment_method')->handle($request)){
 
             return redirect('cart/shipment/'.$number);
 
@@ -78,7 +78,7 @@ class ShipmentController extends Frontend
 
     public function postAddress($number, Request $request)
     {
-        if(!workflow('shipment_address')->handle($request)){
+        if(!form('shipment_address')->handle($request)){
 
             return redirect('cart/shipment/'.$number.'/address');
 

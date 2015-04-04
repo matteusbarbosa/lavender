@@ -175,8 +175,8 @@ class AppServiceProvider extends ServiceProvider
 
         Blade::extend(function($html, $compiler){
             return preg_replace(
-                $compiler->createMatcher('workflow'),
-                '$1<?php echo Workflow::make$2; ?>',
+                $compiler->createMatcher('form'),
+                '$1<?php echo Form::make$2; ?>',
                 $html
             );
         });

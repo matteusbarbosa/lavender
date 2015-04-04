@@ -26,8 +26,8 @@ class Authenticate {
 
         // Bind the Backend Kernel to our request
         app()->singleton(
-            'Lavender\Contracts\Workflow\Kernel',
-            'App\Workflow\BackendKernel'
+            'Lavender\Contracts\Form\Kernel',
+            'App\Form\BackendKernel'
         );
 
 		return $next($request);

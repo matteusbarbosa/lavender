@@ -8,6 +8,6 @@ Reset Password
 
     <h2>New customer</h2>
 
-    @workflow('customer_register')
+    @form('customer_register')
 
 @stop

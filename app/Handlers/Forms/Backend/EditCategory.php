@@ -3,7 +3,7 @@ namespace App\Handlers\Forms\Backend;
 
 use App\Support\Facades\Message;
 use App\Support\FormHandler;
-use Lavender\Contracts\Workflow;
+use Lavender\Contracts\Form;
 
 class EditCategory extends FormHandler
 {
@@ -11,7 +11,7 @@ class EditCategory extends FormHandler
     /**
      * @param $data
      */
-    public function handle_category(Workflow $data)
+    public function handle_category(Form $data)
     {
         $request = $this->request;
 

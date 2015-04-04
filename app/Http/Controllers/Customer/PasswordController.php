@@ -21,13 +21,12 @@ class PasswordController extends Frontend
 
 	use ResetsPasswords;
 
-	/**
-	 * Create a new password controller instance.
-	 *
-	 * @param  \Illuminate\Contracts\Auth\Guard  $auth
-	 * @param  \Illuminate\Contracts\Auth\PasswordBroker  $passwords
-	 * @return void
-	 */
+    /**
+     * Create a new password controller instance.
+     *
+     * @param  \Illuminate\Contracts\Auth\PasswordBroker $passwords
+     * @internal param \Illuminate\Contracts\Auth\Guard $auth
+     */
 	public function __construct(PasswordBroker $passwords)
 	{
 		$this->auth = Auth::customer();

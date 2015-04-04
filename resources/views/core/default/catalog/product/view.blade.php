@@ -10,6 +10,6 @@ Product View
 
     @include('catalog.product.price', ['product' => $product])
 
-    @workflow('cart_item_add', ['product' => $product])
+    @form('cart_item_add', ['product' => $product])
 
 @stop

@@ -8,6 +8,6 @@
 
     <h4>Review your order:</h4>
 
-    @workflow('cart_review')
+    @form('cart_review')
 
 @stop

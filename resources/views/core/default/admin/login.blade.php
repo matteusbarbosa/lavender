@@ -24,7 +24,7 @@ Backend Login
 
     @yield('backend.login.before')
 
-    @workflow('admin_login')
+    @form('admin_login')
 
     @yield('backend.login.after')
 

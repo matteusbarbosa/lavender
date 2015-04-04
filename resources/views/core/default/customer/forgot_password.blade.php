@@ -8,6 +8,6 @@ Forgot Password
 
     <h2>Forgot your password?</h2>
 
-    @workflow('customer_forgot_password')
+    @form('customer_forgot_password')
 
 @stop

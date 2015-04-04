@@ -28,7 +28,7 @@
 
             <div class="four columns right">
 
-                @workflow('cart_item_update', ['item' => $item])
+                @form('cart_item_update', ['item' => $item])
 
             </div>
 

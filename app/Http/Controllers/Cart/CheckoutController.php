@@ -22,7 +22,7 @@ class CheckoutController extends Frontend
 
     public function postIndex(Request $request, Cart $cart)
     {
-        if(!workflow('cart_review')->handle($request)){
+        if(!form('cart_review')->handle($request)){
 
             return redirect('checkout');
 

@@ -9,14 +9,14 @@ class ItemController extends Frontend
 
     public function postAdd(Request $request)
     {
-        workflow('cart_item_add')->handle($request);
+        form('cart_item_add')->handle($request);
 
         return redirect('cart');
     }
 
     public function postUpdate(Request $request)
     {
-        workflow('cart_item_update')->handle($request);
+        form('cart_item_update')->handle($request);
 
         return redirect('cart');
     }

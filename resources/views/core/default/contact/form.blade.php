@@ -12,6 +12,6 @@
 
     <p>Have a question? Send us some information, we can help.</p>
 
-    @workflow('contact')
+    @form('contact')
 
 @stop

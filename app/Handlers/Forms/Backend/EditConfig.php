@@ -3,7 +3,7 @@ namespace App\Handlers\Forms\Backend;
 
 use App\Support\Facades\Message;
 use App\Support\FormHandler;
-use Lavender\Contracts\Workflow;
+use Lavender\Contracts\Form;
 
 class EditConfig extends FormHandler
 {
@@ -11,7 +11,7 @@ class EditConfig extends FormHandler
     /**
      * @param $data
      */
-    public function handle_general(Workflow $data)
+    public function handle_general(Form $data)
     {
         $this->updateConfig($data->getFields());
 
@@ -21,7 +21,7 @@ class EditConfig extends FormHandler
     /**
      * @param $data
      */
-    public function handle_account(Workflow $data)
+    public function handle_account(Form $data)
     {
         $this->updateConfig($data->getFields());
 

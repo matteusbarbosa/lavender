@@ -6,6 +6,11 @@ use Lavender\Support\SharedEntity;
 class Theme extends SharedEntity
 {
 
+    public function getTheme()
+    {
+        return entity('theme')->find($this->id);
+    }
+
 
     public function bootTheme($store)
     {

@@ -38,7 +38,7 @@ Lavender is in active development and [pull requests](https://github.com/lavende
 
 This repository provides the consumer application which contains the [controllers](https://github.com/lavender/lavender/tree/master/app/Http/Controllers), [models](https://github.com/lavender/lavender/tree/master/app/Database), and [views](https://github.com/lavender/lavender/tree/master/resources/views/core/default) (and config, locale, etc) that makes Lavender an ecommerce platform. 
 
-The [lavender/framework](https://github.com/lavender/framework) repository contains framework enhancements for Laravel 5, including [multiple authentication](https://github.com/lavender/framework/tree/master/src/Auth), a powerful [Entity class](https://github.com/lavender/framework/tree/master/src/Database), layout injection, and easily extensible [multi-state forms](https://github.com/lavender/framework/tree/master/src/Workflow).  
+The [lavender/framework](https://github.com/lavender/framework) repository contains framework enhancements for Laravel 5, including [multiple authentication](https://github.com/lavender/framework/tree/master/src/Auth), a powerful [Entity class](https://github.com/lavender/framework/tree/master/src/Database), layout injection, and easily extensible [forms](https://github.com/lavender/lavender/tree/master/app/Form).  
 
 
 ## Installation Instructions

@@ -8,6 +8,6 @@
 
     <h4>Your Shipping Information:</h4>
 
-    @workflow('shipment_method')
+    @form('shipment_method')
 
 @stop

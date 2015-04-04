@@ -4,11 +4,11 @@ namespace App\Handlers\Forms\Admin;
 use App\Support\Facades\Message;
 use App\Support\FormHandler;
 use Illuminate\Support\Facades\Auth;
-use Lavender\Contracts\Workflow;
+use Lavender\Contracts\Form;
 
 class AuthHandler extends FormHandler
 {
-    public function login(Workflow $workflow)
+    public function login(Form $form)
     {
         $request = $this->request->all();
 
@@ -30,7 +30,7 @@ class AuthHandler extends FormHandler
         }
     }
 
-    public function reset_password(Workflow $workflow)
+    public function reset_password(Form $form)
     {
         $request = $this->request->all();
 
@@ -43,7 +43,7 @@ class AuthHandler extends FormHandler
 
     }
 
-    public function forgot_password(Workflow $workflow)
+    public function forgot_password(Form $form)
     {
         $request = $this->request->all();
 
@@ -69,19 +69,9 @@ class AuthHandler extends FormHandler
     public function subscribe($events)
     {
         $events->listen(
-            'App\Workflow\Forms\Admin\Login',
+            'App\Form\Admin\Login',
             'App\Handlers\Forms\Admin\AuthHandler@login'
         );
-
-//        $events->listen(
-//            'App\Workflows\Customer\ForgotPassword',
-//            'App\Workflow\Handlers\Customer\AuthHandler@forgot_password'
-//        );
-//
-//        $events->listen(
-//            'App\Workflows\Customer\ResetPassword',
-//            'App\Workflow\Handlers\Customer\AuthHandler@reset_password'
-//        );
     }
 
 }

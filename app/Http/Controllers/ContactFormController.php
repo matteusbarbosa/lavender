@@ -20,7 +20,7 @@ class ContactFormController extends Frontend
 
     public function post(Request $request)
     {
-        workflow('contact')->handle($request);
+        form('contact')->handle($request);
 
         return redirect('contact');
     }

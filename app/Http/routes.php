@@ -34,7 +34,7 @@ Route::get(
 /**
  * Customer routes
  *  - namespace App\Http\Controllers\Customer
- *  - Various dashboards and workflow(s)
+ *  - Various dashboards and form(s)
  *  - middleware handled by controllers
  */
 Route::group([
@@ -54,7 +54,7 @@ Route::group([
 /**
  * Shopping cart routes
  *  - namespace App\Http\Controllers\Cart
- *  - Cart page and cart item workflow(s)
+ *  - Cart page and cart item form(s)
  */
 Route::group(['namespace'=> 'Cart'], function(){
 

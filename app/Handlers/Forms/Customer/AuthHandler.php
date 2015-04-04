@@ -5,7 +5,7 @@ use App\Support\Facades\Message;
 use App\Support\FormHandler;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Lavender\Contracts\Workflow;
+use Lavender\Contracts\Form;
 
 class AuthHandler extends FormHandler
 {
@@ -123,25 +123,25 @@ class AuthHandler extends FormHandler
     public function subscribe($events)
     {
         $events->listen(
-            'App\Workflow\Forms\Customer\Register',
+            'App\Form\Customer\Register',
             'App\Handlers\Forms\Customer\AuthHandler@register',
             10
         );
 
         $events->listen(
-            'App\Workflow\Forms\Customer\Login',
+            'App\Form\Customer\Login',
             'App\Handlers\Forms\Customer\AuthHandler@login',
             10
         );
 
         $events->listen(
-            'App\Workflow\Forms\Customer\ForgotPassword',
+            'App\Form\Customer\ForgotPassword',
             'App\Handlers\Forms\Customer\AuthHandler@forgot_password',
             10
         );
 
         $events->listen(
-            'App\Workflow\Forms\Customer\ResetPassword',
+            'App\Form\Customer\ResetPassword',
             'App\Handlers\Forms\Customer\AuthHandler@reset_password',
             10
         );

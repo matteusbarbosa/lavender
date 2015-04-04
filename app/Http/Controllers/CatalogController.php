@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controller\Frontend;
-use Lavender\Support\Facades\Workflow;
+use Lavender\Support\Facades\Form;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class CatalogController extends Frontend

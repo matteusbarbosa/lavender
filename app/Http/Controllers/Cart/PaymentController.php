@@ -52,7 +52,7 @@ class PaymentController extends Frontend
 
     public function postPayment($number, Request $request)
     {
-        if(!workflow('payment_method')->handle($request)){
+        if(!form('payment_method')->handle($request)){
 
             return redirect('cart/payment/'.$number);
 

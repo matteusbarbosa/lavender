@@ -3,7 +3,6 @@ namespace App\Handlers\Events;
 
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Lavender\Contracts\Entity;
-use Lavender\Contracts\Workflow;
 
 class CartHandler
 {

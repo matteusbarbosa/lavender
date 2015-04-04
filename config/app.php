@@ -141,7 +141,7 @@ return [
         'Lavender\Providers\AuthServiceProvider',
 		'Lavender\Providers\EntityServiceProvider',
         'Lavender\Providers\ViewServiceProvider',
-        'Lavender\Providers\WorkflowServiceProvider',
+        'Lavender\Providers\FormServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -208,9 +208,9 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
 
 		// Application Facades
-		'Message'      => 'App\Support\Facades\Message',
-		'Menu'         => 'App\Support\Facades\Menu',
-		'Workflow'     => 'Lavender\Support\Facades\Workflow',
+		'Message'   => 'App\Support\Facades\Message',
+		'Menu'      => 'App\Support\Facades\Menu',
+		'Form'      => 'Lavender\Support\Facades\Form',
 
 	],
 

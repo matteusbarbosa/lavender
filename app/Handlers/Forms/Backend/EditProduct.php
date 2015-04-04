@@ -3,7 +3,7 @@ namespace App\Handlers\Forms\Backend;
 
 use App\Support\Facades\Message;
 use App\Support\FormHandler;
-use Lavender\Contracts\Workflow;
+use Lavender\Contracts\Form;
 
 class EditProduct extends FormHandler
 {
@@ -11,7 +11,7 @@ class EditProduct extends FormHandler
     /**
      * @param $data
      */
-    public function handle_product(Workflow $data)
+    public function handle_product(Form $data)
     {
         $request = $this->request->all();
 
@@ -33,7 +33,7 @@ class EditProduct extends FormHandler
     /**
      * @param $data
      */
-    public function handle_categories(Workflow $data)
+    public function handle_categories(Form $data)
     {
         $request = $this->request->all();
 

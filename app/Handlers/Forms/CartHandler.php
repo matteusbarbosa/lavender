@@ -7,7 +7,7 @@ use App\Support\FormHandler;
 use Illuminate\Foundation\Bus\DispatchesCommands;
 use Illuminate\Http\Request;
 use Lavender\Contracts\Entity;
-use Lavender\Contracts\Workflow;
+use Lavender\Contracts\Form;
 
 class CartHandler
 {
@@ -62,8 +62,11 @@ class CartHandler
 
     public function shipment_method()
     {
+        var_dump("TODO set current form request");
+        dd($this->request->all());
+
         $this->dispatchFrom(
-            'App\Commands\Cart\Shipment',
+            'App\Commands\Cart\ShipmentMethod',
             $this->request,
             // todo set correct shipment
             ['shipment' => $this->cart->getShipment(1)]
@@ -73,7 +76,7 @@ class CartHandler
     public function payment_method()
     {
         $this->dispatchFrom(
-            'App\Commands\Cart\Payment',
+            'App\Commands\Cart\PaymentMethod',
             $this->request,
             // todo set correct payment
             [
@@ -109,27 +112,27 @@ class CartHandler
     public function subscribe($events)
     {
         $events->listen(
-            'App\Workflow\Forms\Cart\ItemAdd',
+            'App\Form\Cart\ItemAdd',
             'App\Handlers\Forms\CartHandler@add_cart_item'
         );
         $events->listen(
-            'App\Workflow\Forms\Cart\ItemUpdate',
+            'App\Form\Cart\ItemUpdate',
             'App\Handlers\Forms\CartHandler@update_cart_item'
         );
         $events->listen(
-            'App\Workflow\Forms\Cart\Shipment\Address',
+            'App\Form\Cart\Shipment\Address',
             'App\Handlers\Forms\CartHandler@shipment_address'
         );
         $events->listen(
-            'App\Workflow\Forms\Cart\Shipment\Method',
+            'App\Form\Cart\Shipment\Method',
             'App\Handlers\Forms\CartHandler@shipment_method'
         );
         $events->listen(
-            'App\Workflow\Forms\Cart\Payment\Method',
+            'App\Form\Cart\Payment\Method',
             'App\Handlers\Forms\CartHandler@payment_method'
         );
         $events->listen(
-            'App\Workflow\Forms\Cart\Review',
+            'App\Form\Cart\Review',
             'App\Handlers\Forms\CartHandler@place_order'
         );
     }

@@ -13,5 +13,5 @@ Register or Login
 @section('right')
     <h5>Registered Customers</h5>
     <p>If you have an account with us, please log in.</p>
-    @workflow('customer_login')
+    @form('customer_login')
 @stop

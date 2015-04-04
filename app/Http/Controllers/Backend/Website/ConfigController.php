@@ -13,12 +13,12 @@ class ConfigController extends Backend
 
         $tabs[] = [
             'label' => 'General',
-            'content' => workflow('config_general')
+            'content' => form('config_general')
         ];
 
         $tabs[] = [
             'label' => 'Account',
-            'content' => workflow('config_account')
+            'content' => form('config_account')
         ];
 
         return view('backend.tabs')
@@ -35,7 +35,7 @@ class ConfigController extends Backend
      */
     public function postIndex(Request $request)
     {
-        workflow('config_general')->handle($request);
+        form('config_general')->handle($request);
 
         return redirect()->back();
     }
@@ -49,7 +49,7 @@ class ConfigController extends Backend
      */
     public function postAccount(Request $request)
     {
-        workflow('config_account')->handle($request);
+        form('config_account')->handle($request);
 
         return redirect()->back();
     }
