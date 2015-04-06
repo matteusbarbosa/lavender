@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controller\Base;
+use Lavender\Http\FormRequest;
 
 class AuthController extends Base
 {
@@ -45,10 +45,10 @@ class AuthController extends Base
     /**
      * Handle a login request to the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  FormRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function postLogin(Request $request)
+    public function postLogin(FormRequest $request)
     {
         form('admin_login')->handle($request);
 

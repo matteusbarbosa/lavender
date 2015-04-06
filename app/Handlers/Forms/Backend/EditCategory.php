@@ -2,20 +2,19 @@
 namespace App\Handlers\Forms\Backend;
 
 use App\Support\Facades\Message;
-use App\Support\FormHandler;
 use Lavender\Contracts\Form;
 
-class EditCategory extends FormHandler
+class EditCategory
 {
 
     /**
-     * @param $data
+     * @param Form $form
      */
-    public function handle_category(Form $data)
+    public function handle_category(Form $form)
     {
-        $request = $this->request;
+        $request = $form->request->all();
 
-        $category = $data->category;
+        $category = $form->category;
 
         $new = !$category->exists;
 

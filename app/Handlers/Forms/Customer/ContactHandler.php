@@ -3,14 +3,14 @@ namespace App\Handlers\Forms\Customer;
 
 
 use App\Support\Facades\Message;
-use App\Support\FormHandler;
 use Illuminate\Support\Facades\Mail;
+use Lavender\Contracts\Form;
 
-class ContactHandler extends FormHandler
+class ContactHandler
 {
-    public function handle()
+    public function handle(Form $form)
     {
-        $request = $this->request->all();
+        $request = $form->request->all();
 
         Mail::queue(
             'emails.contact',
@@ -35,7 +35,7 @@ class ContactHandler extends FormHandler
     {
         $events->listen(
             'App\Form\Customer\Contact',
-            'App\Handlers\Forms\ContactFormHandler@handle'
+            'App\Handlers\Forms\Customer\ContactHandler@handle'
         );
     }
 

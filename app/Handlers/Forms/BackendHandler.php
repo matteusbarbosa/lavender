@@ -1,9 +1,7 @@
 <?php
 namespace App\Handlers\Forms;
 
-use App\Support\FormHandler;
-
-class BackendHandler extends FormHandler
+class BackendHandler
 {
     /**
      * Register the listeners for the subscriber.

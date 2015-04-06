@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Cart;
 
 use App\Cart;
 use App\Http\Controller\Frontend;
-use Illuminate\Http\Request;
+use Lavender\Http\FormRequest;
 
 class PaymentController extends Frontend
 {
@@ -50,7 +50,7 @@ class PaymentController extends Frontend
     }
 
 
-    public function postPayment($number, Request $request)
+    public function postPayment($number, FormRequest $request)
     {
         if(!form('payment_method')->handle($request)){
 

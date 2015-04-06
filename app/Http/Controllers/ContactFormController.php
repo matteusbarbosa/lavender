@@ -2,8 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controller\Frontend;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
+use Lavender\Http\FormRequest;
 
 class ContactFormController extends Frontend
 {
@@ -18,11 +17,11 @@ class ContactFormController extends Frontend
 		return view('contact.form');
 	}
 
-    public function post(Request $request)
+    public function post(FormRequest $request)
     {
         form('contact')->handle($request);
 
-        return redirect('contact');
+        return redirect()->back();
     }
 
 

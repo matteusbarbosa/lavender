@@ -142,6 +142,7 @@ return [
 		'Lavender\Providers\EntityServiceProvider',
         'Lavender\Providers\ViewServiceProvider',
         'Lavender\Providers\FormServiceProvider',
+        'Lavender\Providers\FormRequestServiceProvider',
 
 		/*
 		 * Application Service Providers...

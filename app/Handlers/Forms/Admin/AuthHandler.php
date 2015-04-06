@@ -2,15 +2,14 @@
 namespace App\Handlers\Forms\Admin;
 
 use App\Support\Facades\Message;
-use App\Support\FormHandler;
 use Illuminate\Support\Facades\Auth;
 use Lavender\Contracts\Form;
 
-class AuthHandler extends FormHandler
+class AuthHandler
 {
     public function login(Form $form)
     {
-        $request = $this->request->all();
+        $request = $form->request->all();
 
         if(!Auth::admin()->logAttempt($request, $mustBeConfirmed = false)){
 
@@ -32,7 +31,7 @@ class AuthHandler extends FormHandler
 
     public function reset_password(Form $form)
     {
-        $request = $this->request->all();
+        $request = $form->request->all();
 
         if(!Auth::customer()->resetPassword($request)){
 
@@ -45,7 +44,7 @@ class AuthHandler extends FormHandler
 
     public function forgot_password(Form $form)
     {
-        $request = $this->request->all();
+        $request = $form->request->all();
 
         if(!Auth::customer()->forgotPassword($request['email'])){
 

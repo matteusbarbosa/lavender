@@ -2,17 +2,15 @@
 namespace App\Http\Controllers\Customer;
 
 use App\Http\Controller\Frontend;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Lavender\Http\FormRequest;
 
 class AuthController extends Frontend
 {
 
-	/**
-	 * Create a new authentication controller instance.
-	 *
-	 * @return void
-	 */
+    /**
+     * Create a new authentication controller instance.
+     */
 	public function __construct()
 	{
         $this->auth = Auth::customer();
@@ -70,9 +68,10 @@ class AuthController extends Frontend
 	/**
 	 * Show the application registration form.
 	 *
+     * @param FormRequest $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function postRegister(Request $request)
+	public function postRegister(FormRequest $request)
 	{
         form('customer_register')->handle($request);
 
@@ -82,10 +81,10 @@ class AuthController extends Frontend
     /**
      * Handle a login request to the application.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param FormRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function postLogin(Request $request)
+    public function postLogin(FormRequest $request)
     {
         form('customer_login')->handle($request);
 

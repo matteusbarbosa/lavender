@@ -2,20 +2,19 @@
 namespace App\Handlers\Forms\Backend;
 
 use App\Support\Facades\Message;
-use App\Support\FormHandler;
 use Lavender\Contracts\Form;
 
-class EditProduct extends FormHandler
+class EditProduct
 {
 
     /**
      * @param $data
      */
-    public function handle_product(Form $data)
+    public function handle_product(Form $form)
     {
-        $request = $this->request->all();
+        $request = $form->request->all();
 
-        $product = $data->product;
+        $product = $form->product;
 
         $new = !$product->exists;
 
@@ -33,11 +32,11 @@ class EditProduct extends FormHandler
     /**
      * @param $data
      */
-    public function handle_categories(Form $data)
+    public function handle_categories(Form $form)
     {
-        $request = $this->request->all();
+        $request = $form->request->all();
 
-        $product = $data->product;
+        $product = $form->product;
 
         //todo fix detach / update (doesn't work sequentially without cloning entity)
         $cloned = clone $product;

@@ -10,6 +10,7 @@ class Method extends Form
         $this->addField('method', [
             'label'    => 'Select a payment option:',
             'type'     => 'radiolist',
+            'validate' => ['required'],
             'resource' => 'payment_methods',
         ]);
 

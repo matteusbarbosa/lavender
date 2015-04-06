@@ -9,6 +9,7 @@ class Review extends Form
     {
         $this->addField('submit', [
             'type' => 'button',
+            'validate' => ['required'],
             'value' => 'Place Order',
             'options' => ['type' => 'submit']
         ]);

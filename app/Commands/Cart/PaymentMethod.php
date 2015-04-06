@@ -25,10 +25,14 @@ class PaymentMethod extends Command implements SelfHandling
      */
     public function handle()
     {
-        $this->payment->update([
-            'method' => $this->method,
-            'total' => $this->amount,
-        ]);
+        if($this->payment && $this->payment->id){
+
+            $this->payment->update([
+                'method' => $this->method,
+                'total'  => $this->amount,
+            ]);
+
+        }
     }
 
 }

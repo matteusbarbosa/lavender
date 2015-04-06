@@ -2,8 +2,8 @@
 namespace App\Http\Controllers\Backend\Catalog;
 
 use App\Http\Controller\BackendEntity;
-use Illuminate\Http\Request;
 use Lavender\Contracts\Entity;
+use Lavender\Http\FormRequest;
 
 class ProductController extends BackendEntity
 {
@@ -78,7 +78,7 @@ class ProductController extends BackendEntity
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postEdit(Request $request, $id)
+    public function postEdit(FormRequest $request, $id)
     {
         if($model = $this->validateEntity('product', $id)){
 
@@ -100,7 +100,7 @@ class ProductController extends BackendEntity
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postCategories(Request $request, $id)
+    public function postCategories(FormRequest $request, $id)
     {
         if($model = $this->validateEntity('product', $id)){
 

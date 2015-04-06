@@ -2,19 +2,18 @@
 namespace App\Handlers\Forms\Customer;
 
 use App\Support\Facades\Message;
-use App\Support\FormHandler;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Lavender\Contracts\Form;
 
-class AuthHandler extends FormHandler
+class AuthHandler
 {
 
-    public function login()
+    public function login(Form $form)
     {
         $auth = Auth::customer();
 
-        $request = $this->request->all();
+        $request = $form->request->all();
 
         if(!$auth->logAttempt($request, config('store.signup_confirm'))){
 
@@ -37,11 +36,11 @@ class AuthHandler extends FormHandler
 
     }
 
-    public function register()
+    public function register(Form $form)
     {
         $auth = Auth::customer();
 
-        $request = $this->request->all();
+        $request = $form->request->all();
 
         if(!$auth->findByEmail($request['email'])){
 
@@ -81,11 +80,11 @@ class AuthHandler extends FormHandler
         }
     }
 
-    public function reset_password()
+    public function reset_password(Form $form)
     {
         $auth = Auth::customer();
 
-        $request = $this->request->all();
+        $request = $form->request->all();
 
         if($auth->resetPassword($request)){
 
@@ -97,11 +96,11 @@ class AuthHandler extends FormHandler
         }
     }
 
-    public function forgot_password()
+    public function forgot_password(Form $form)
     {
         $auth = Auth::customer();
 
-        $request = $this->request->all();
+        $request = $form->request->all();
 
         if($auth->forgotPassword($request['email'])){
 

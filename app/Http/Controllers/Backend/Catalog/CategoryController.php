@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Backend\Catalog;
 
 use App\Http\Controller\BackendEntity;
-use Illuminate\Http\Request;
+use Lavender\Http\FormRequest;
 
 class CategoryController extends BackendEntity
 {
@@ -74,7 +74,7 @@ class CategoryController extends BackendEntity
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function postEdit(Request $request, $id)
+    public function postEdit(FormRequest $request, $id)
     {
         if($model = $this->validateEntity('category', $id)){
 

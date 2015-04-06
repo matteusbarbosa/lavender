@@ -10,6 +10,7 @@ class Method extends Form
         $this->addField('method', [
             'label'    => 'Select a shipping option:',
             'type'     => 'radiolist',
+            'validate' => ['required'],
             'resource' => 'shipment_methods',
         ]);
 

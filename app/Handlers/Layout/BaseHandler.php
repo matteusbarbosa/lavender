@@ -1,7 +1,6 @@
 <?php
 namespace App\Handlers\Layout;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class BaseHandler
 {
@@ -23,7 +22,8 @@ class BaseHandler
 
             //todo move to checkout controller
             append_section('head.style', ['style' => 'css/util/checkout.css']);
-            // css utilities - todo merge
+
+            // css utilities - todo merge?
             append_section('head.style', ['style' => 'css/util/messages.css']);
             append_section('head.style', ['style' => 'css/util/navigation.css']);
             append_section('head.style', ['style' => 'css/util/print.css']);

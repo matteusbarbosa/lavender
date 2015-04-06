@@ -49,7 +49,7 @@ class FrontendHandler
         $bottom_links = menu('footer.links');
 
         $bottom_links->add('contact', [
-            'href' => url('contact'),
+            'href' => url(config('url.contact')),
             'text' => 'Contact us',
         ]);
 

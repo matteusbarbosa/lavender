@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Cart;
 
 use App\Cart;
 use App\Http\Controller\Frontend;
-use Illuminate\Http\Request;
+use Lavender\Http\FormRequest;
 
 class ShipmentController extends Frontend
 {
@@ -65,7 +65,7 @@ class ShipmentController extends Frontend
         return view('cart.shipment.address');
     }
 
-    public function postShipment($number, Request $request)
+    public function postShipment($number, FormRequest $request)
     {
         if(!form('shipment_method')->handle($request)){
 
@@ -76,7 +76,7 @@ class ShipmentController extends Frontend
         return redirect('checkout');
     }
 
-    public function postAddress($number, Request $request)
+    public function postAddress($number, FormRequest $request)
     {
         if(!form('shipment_address')->handle($request)){
 

@@ -25,6 +25,7 @@ class Authenticate {
 		}
 
         // Bind the Backend Kernel to our request
+        // todo find a better place to register our backend form kernel
         app()->singleton(
             'Lavender\Contracts\Form\Kernel',
             'App\Form\BackendKernel'

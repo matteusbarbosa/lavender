@@ -2,7 +2,7 @@
 namespace App\Http\Controllers\Backend\Website;
 
 use App\Http\Controller\Backend;
-use Illuminate\Http\Request;
+use Lavender\Http\FormRequest;
 
 class ConfigController extends Backend
 {
@@ -30,10 +30,10 @@ class ConfigController extends Backend
     /**
      * Update general config
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  FormRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function postIndex(Request $request)
+    public function postIndex(FormRequest $request)
     {
         form('config_general')->handle($request);
 
@@ -44,10 +44,10 @@ class ConfigController extends Backend
     /**
      * Update account config
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  FormRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function postAccount(Request $request)
+    public function postAccount(FormRequest $request)
     {
         form('config_account')->handle($request);
 

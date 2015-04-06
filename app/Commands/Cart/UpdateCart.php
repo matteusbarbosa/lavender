@@ -9,7 +9,6 @@ use Illuminate\Contracts\Bus\SelfHandling;
 class UpdateCart extends Command implements SelfHandling
 {
 
-    protected $request;
     protected $cart_id;
 
     /**

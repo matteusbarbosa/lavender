@@ -2,19 +2,19 @@
 namespace App\Http\Controllers\Cart;
 
 use App\Http\Controller\Frontend;
-use Illuminate\Http\Request;
+use Lavender\Http\FormRequest;
 
 class ItemController extends Frontend
 {
 
-    public function postAdd(Request $request)
+    public function postAdd(FormRequest $request)
     {
         form('cart_item_add')->handle($request);
 
         return redirect('cart');
     }
 
-    public function postUpdate(Request $request)
+    public function postUpdate(FormRequest $request)
     {
         form('cart_item_update')->handle($request);
 

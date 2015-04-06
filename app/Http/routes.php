@@ -11,9 +11,9 @@ Route::get('/', 'HomeController@index');
 /**
  * Contact form
  */
-Route::post('contact', 'ContactFormController@post');
+Route::post(config('url.contact'), 'ContactFormController@post');
 
-Route::get('contact', 'ContactFormController@get');
+Route::get(config('url.contact'), 'ContactFormController@get');
 
 
 /**

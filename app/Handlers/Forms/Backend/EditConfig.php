@@ -2,28 +2,27 @@
 namespace App\Handlers\Forms\Backend;
 
 use App\Support\Facades\Message;
-use App\Support\FormHandler;
 use Lavender\Contracts\Form;
 
-class EditConfig extends FormHandler
+class EditConfig
 {
 
     /**
-     * @param $data
+     * @param Form $form
      */
-    public function handle_general(Form $data)
+    public function handle_general(Form $form)
     {
-        $this->updateConfig($data->getFields());
+        $this->updateConfig($form->getFields());
 
         Message::addSuccess('Config updated successfully!');
     }
 
     /**
-     * @param $data
+     * @param Form $form
      */
-    public function handle_account(Form $data)
+    public function handle_account(Form $form)
     {
-        $this->updateConfig($data->getFields());
+        $this->updateConfig($form->getFields());
 
         Message::addSuccess('Config updated successfully!');
     }

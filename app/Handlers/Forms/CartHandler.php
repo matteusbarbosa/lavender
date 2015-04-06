@@ -3,9 +3,7 @@ namespace App\Handlers\Forms;
 
 use App\Cart;
 use App\Support\Facades\Message;
-use App\Support\FormHandler;
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Illuminate\Http\Request;
 use Lavender\Contracts\Entity;
 use Lavender\Contracts\Form;
 
@@ -19,65 +17,59 @@ class CartHandler
      * Create a new command instance.
      *
      * @param Cart $cart
-     * @param Request $request
      */
-    public function __construct(Cart $cart, Request $request)
+    public function __construct(Cart $cart)
     {
         $this->cart = $cart;
-
-        $this->request = $request;
     }
 
-    public function add_cart_item()
+    public function add_cart_item(Form $form)
     {
         $this->dispatchFrom(
             'App\Commands\Cart\AddToCart',
-            $this->request,
+            $form->request,
             ['cart_id' => $this->cart->id]
         );
 
         Message::addSuccess("Product was added to your cart.");
     }
 
-    public function update_cart_item()
+    public function update_cart_item(Form $form)
     {
         $this->dispatchFrom(
             'App\Commands\Cart\UpdateCart',
-            $this->request,
+            $form->request,
             ['cart_id' => $this->cart->id]
         );
 
         Message::addSuccess("Your cart has been updated.");
     }
 
-    public function shipment_address()
+    public function shipment_address(Form $form)
     {
         $this->dispatchFrom(
             'App\Commands\Cart\ShipmentAddress',
-            $this->request,
+            $form->request,
             // todo set correct shipment
             ['shipment' => $this->cart->getShipment(1)]
         );
     }
 
-    public function shipment_method()
+    public function shipment_method(Form $form)
     {
-        var_dump("TODO set current form request");
-        dd($this->request->all());
-
         $this->dispatchFrom(
             'App\Commands\Cart\ShipmentMethod',
-            $this->request,
+            $form->request,
             // todo set correct shipment
             ['shipment' => $this->cart->getShipment(1)]
         );
     }
 
-    public function payment_method()
+    public function payment_method(Form $form)
     {
         $this->dispatchFrom(
             'App\Commands\Cart\PaymentMethod',
-            $this->request,
+            $form->request,
             // todo set correct payment
             [
                 'payment' => $this->cart->getPayment(1),
@@ -86,9 +78,6 @@ class CartHandler
         );
     }
 
-    /**
-     * @param $data
-     */
     public function place_order()
     {
         // todo collect payments

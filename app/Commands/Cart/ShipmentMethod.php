@@ -23,9 +23,13 @@ class ShipmentMethod extends Command implements SelfHandling
      */
     public function handle()
     {
-        $this->shipment->update([
-            'method' => $this->method
-        ]);
+        if($this->shipment && $this->shipment->id){
+
+            $this->shipment->update([
+                'method' => $this->method
+            ]);
+
+        }
     }
 
 }

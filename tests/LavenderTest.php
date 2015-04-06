@@ -64,26 +64,32 @@ class LavenderTest extends TestCase
         }
 	}
 
-    public function testWorkflowDefinitions()
+    /**
+     * Forms must never accept empty request
+     */
+    public function testUnhandledForms()
     {
-        // set session store for request
-        Request::setSession($this->app['session.store']);
+        foreach($this->FormKernel->all() as $id => $class){
 
-        // load the applications kernel
-        $kernel = app('Lavender\Contracts\Workflow\Kernel');
+            $form = form($id)->resolve();
 
-        foreach($kernel->getForms() as $form => $class){
-
-            $workflow = workflow($form)->resolve();
-
-            // workflow must always resolve correctly
-            $this->assertInstanceOf($class, $workflow);
+            // form must always resolve correctly
+            $this->assertInstanceOf($class, $form);
 
             // create empty request
-            $request = Request::create('/', 'POST', array_fill_keys(array_keys($workflow->fields), ''));
+            $request = Request::create('/', 'POST', []);
+
+            // create a form request
+            $form_request = app('Lavender\Http\FormRequest');
+
+            // set the current request
+            $form_request->setRequest($request);
+
+            // handle the form request
+            $result = form($id)->handle($form_request);
 
             // empty request must always fail
-            $this->assertEquals(false, workflow($form)->handle($request));
+            $this->assertEquals(false, $result, "Unhandled form \"$id\"");
 
         }
     }

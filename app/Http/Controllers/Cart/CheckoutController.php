@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Cart;
 use App\Cart;
 use App\Http\Controller\Frontend;
 use Illuminate\Http\Request;
+use Lavender\Http\FormRequest;
 use Lavender\Support\Facades\Message;
 
 class CheckoutController extends Frontend
@@ -20,7 +21,7 @@ class CheckoutController extends Frontend
 	}
 
 
-    public function postIndex(Request $request, Cart $cart)
+    public function postIndex(FormRequest $request, Cart $cart)
     {
         if(!form('cart_review')->handle($request)){
 
