@@ -5,7 +5,7 @@
 [![Total Downloads](https://poser.pugx.org/lavender-commerce/lavender/downloads.svg)](https://packagist.org/packages/lavender-commerce/lavender) 
 [![License](https://poser.pugx.org/lavender-commerce/lavender/license.svg)](https://packagist.org/packages/lavender-commerce/lavender)
 
-Lavender is an Open Source E-Commerce Framework built on top of [Laravel 5](laravel.com/docs/5.0).
+Lavender is an Open Source E-Commerce Framework built on top of [Laravel 5](http://laravel.com/docs/5.0).
 
 > **Note:** Lavender is in active development and NOT ready for production.
 
