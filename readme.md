@@ -9,41 +9,8 @@ Lavender is an Open Source E-Commerce Framework built on top of [Laravel 5](http
 
 > **Note:** Lavender is in active development and NOT ready for production.
 
-### License
 
-Lavender is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
-
-
-### Roadmap
-Each major version (N.x.x) of the project is charted below. Once the goals have been completed for each major version we will move to the next major version. As we progress, big updates (breaking changes) are released in minor versions (x.N.x) and smaller updates (new features) are released in micro versions (x.x.N). The application (this repo) is built in minor versions, so a re-install is required between minor versions.
-
-Version / Stage                        |                            | Goals     
- :-----------------------------------: | :------------------------- | :------------------------------------------------------
- `0.x.x - Development`                 | Current                    | Create standard ecommerce entities and routes, as well as backend forms and grids. Create tests. Demonstrate use of stores and themes.
- `1.x.x - Developer Beta`              | Coming Q2 2015             | Feature development, ui improvements, [documentation](https://github.com/lavender/lavender/wiki).
- `2.x.x - Preview`                     | Coming Q4 2015             | Improve extensibility, performance/security audits.
- `3.x.x - Public Release`              | Coming Q2 2016             | Provide documentation for end users, create a marketing site to promote adoption.
-
-What does production-ready Lavender look like? A feature-light but highly extensible ecommerce platform with elegant code structures and detailed documentation.
-
-
-### Support
-
-Come chat with us in [#lavender on freenode](http://webchat.freenode.net/?channels=#lavender), or [submit an new issue.](https://github.com/lavender/lavender/issues/new)
-
-
-### Contributing
-
-Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) (on the master branch) are much appreciated!
-
-This repository provides the consumer application which contains the [controllers](https://github.com/lavender/lavender/tree/master/app/Http/Controllers), [models](https://github.com/lavender/lavender/tree/master/app/Database), and [views](https://github.com/lavender/lavender/tree/master/resources/views/core/default) (and config, locale, etc) that makes Lavender an ecommerce platform. 
-
-The [lavender/framework](https://github.com/lavender/framework) repository contains framework enhancements for Laravel 5, including [multiple authentication](https://github.com/lavender/framework/tree/master/src/Auth), a powerful [Entity class](https://github.com/lavender/framework/tree/master/src/Database), layout injection, and easily extensible [forms](https://github.com/lavender/lavender/tree/master/app/Form).  
-
-
-## Installation Instructions
- 
-### Step 1: Install Lavender with Composer.
+### Step 1: Install Lavender with [Composer](https://getcomposer.org/download/).
 
 > Avoid installing lavender in your web server's public directory. Instead create a symlink on lavender/public as your public root. 
 
@@ -93,4 +60,36 @@ Emails not working? Try modifying your email config:
     config/mail.php
 
 Something else? Follow the install instructions carefully or [submit an new issue!](https://github.com/lavender/lavender/issues/new)
+
+### Support
+
+Come chat with us in [#lavender on freenode](http://webchat.freenode.net/?channels=#lavender), or [submit an new issue.](https://github.com/lavender/lavender/issues/new)
+
+
+### License
+
+Lavender is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+
+
+### Roadmap
+Each major version (N.x.x) of the project is charted below. Once the goals have been completed for each major version we will move to the next major version. As we progress, big updates (breaking changes) are released in minor versions (x.N.x) and smaller updates (new features) are released in micro versions (x.x.N). The application (this repo) is built in minor versions, so a re-install is required between minor versions.
+
+Version / Stage                        |                            | Goals     
+ :-----------------------------------: | :------------------------- | :------------------------------------------------------
+ `0.x.x - Development`                 | Current                    | Create standard ecommerce entities and routes, as well as backend forms and grids. Create tests. Demonstrate use of stores and themes.
+ `1.x.x - Developer Beta`              | Coming Q2 2015             | Feature development, ui improvements, [documentation](https://github.com/lavender/lavender/wiki).
+ `2.x.x - Preview`                     | Coming Q4 2015             | Improve extensibility, performance/security audits.
+ `3.x.x - Public Release`              | Coming Q2 2016             | Provide documentation for end users, create a marketing site to promote adoption.
+
+What does production-ready Lavender look like? A feature-light but highly extensible ecommerce platform with elegant code structures and detailed documentation.
+
+
+
+### Contributing
+
+Lavender is in active development and [pull requests](https://github.com/lavender/lavender/pulls) (on the master branch) are much appreciated!
+
+This repository provides the consumer application which contains the [controllers](https://github.com/lavender/lavender/tree/master/app/Http/Controllers), [models](https://github.com/lavender/lavender/tree/master/app/Database), and [views](https://github.com/lavender/lavender/tree/master/resources/views/core/default) (and config, locale, etc) that makes Lavender an ecommerce platform. 
+
+The [lavender/framework](https://github.com/lavender/framework) repository contains framework enhancements for Laravel 5, including [multiple authentication](https://github.com/lavender/framework/tree/master/src/Auth), a powerful [Entity class](https://github.com/lavender/framework/tree/master/src/Database), layout injection, and easily extensible [forms](https://github.com/lavender/lavender/tree/master/app/Form).  
 
