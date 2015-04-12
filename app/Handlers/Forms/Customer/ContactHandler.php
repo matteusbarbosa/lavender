@@ -20,7 +20,8 @@ class ContactHandler
                     ->to(config('mail.from.address'), config('mail.from.name'))
                     ->from($request['email'])
                     ->subject(trans('contactform.email.subject'));
-            });
+            }
+        );
 
         Message::addSuccess(trans('contactform.success.message'));
     }
