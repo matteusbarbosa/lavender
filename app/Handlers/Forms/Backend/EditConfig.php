@@ -12,7 +12,7 @@ class EditConfig
      */
     public function handle_general(Form $form)
     {
-        $this->updateConfig($form->getFields());
+        $this->updateConfig($form->getFields(), $form->request);
 
         Message::addSuccess('Config updated successfully!');
     }
@@ -22,7 +22,7 @@ class EditConfig
      */
     public function handle_account(Form $form)
     {
-        $this->updateConfig($form->getFields());
+        $this->updateConfig($form->getFields(), $form->request);
 
         Message::addSuccess('Config updated successfully!');
     }
@@ -34,23 +34,23 @@ class EditConfig
      *
      * @param $fields array of fields required to be in the request
      */
-    protected function updateConfig($fields)
+    protected function updateConfig($fields, $request)
     {
         foreach($fields as $field){
 
             $config = $this->getConfig($field);
 
-            if(isset($this->request[$field])){
+            if(isset($request[$field])){
 
                 if($config->exists){
 
                     // update config if exists
-                    $config->value = $this->request[$field];
+                    $config->value = $request[$field];
 
                 } else{
 
                     // otherwise add new entry
-                    $config->fill(['key' => $field, 'value' => $this->request[$field]]);
+                    $config->fill(['key' => $field, 'value' => $request[$field]]);
 
                 }
 
