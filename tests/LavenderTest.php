@@ -69,7 +69,10 @@ class LavenderTest extends TestCase
      */
     public function testUnhandledForms()
     {
-        foreach($this->FormKernel->all() as $id => $class){
+        // get form kernel
+        $forms = app('Lavender\Contracts\Form\Kernel');
+
+        foreach($forms->all() as $id => $class){
 
             $form = form($id)->resolve();
 

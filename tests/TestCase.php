@@ -2,10 +2,6 @@
 
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
-    /**
-     * @var Lavender\Contracts\Form\Kernel
-     */
-    protected $FormKernel;
 
 	/**
 	 * Creates the application.
@@ -22,9 +18,6 @@ class TestCase extends Illuminate\Foundation\Testing\TestCase
 
         // set session storage
         Request::setSession($app['session.store']);
-
-        // set form kernel
-        $this->FormKernel = $app->make('Lavender\Contracts\Form\Kernel');
 
 		return $app;
 	}
