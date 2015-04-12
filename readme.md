@@ -53,7 +53,7 @@ That's it!
 
 Permission denied on lavender/storage directory?
 
-    chmod -R 775 lavender/storage
+    chmod -R 775 storage
 
 Login not working? Try modifying your sessions config:
 
