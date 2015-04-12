@@ -29,7 +29,8 @@ class PasswordController extends Frontend
      */
 	public function __construct(PasswordBroker $passwords)
 	{
-		$this->auth = Auth::customer();
+		$this->auth = app('auth')->customer();
+
 		$this->passwords = $passwords;
 
 		$this->middleware('guest');

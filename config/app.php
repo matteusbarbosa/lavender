@@ -129,7 +129,6 @@ return [
 		'Illuminate\Pipeline\PipelineServiceProvider',
 		'Illuminate\Queue\QueueServiceProvider',
 		'Illuminate\Redis\RedisServiceProvider',
-		'Illuminate\Auth\Passwords\PasswordResetServiceProvider',
 		'Illuminate\Session\SessionServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
@@ -139,6 +138,7 @@ return [
 		 * Lavender Framework Service Providers...
 		 */
         'Lavender\Providers\AuthServiceProvider',
+        'Lavender\Providers\PasswordResetServiceProvider',
 		'Lavender\Providers\EntityServiceProvider',
         'Lavender\Providers\ViewServiceProvider',
         'Lavender\Providers\FormServiceProvider',
