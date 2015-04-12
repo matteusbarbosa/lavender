@@ -5,6 +5,9 @@
 
     RewriteEngine On
 
+    # Base Rewrite Path...
+    RewriteBase /
+
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
