@@ -51,6 +51,10 @@ That's it!
 
 ### Troubleshooting
 
+Permission denied on lavender/storage directory?
+
+    chmod -R 775 lavender/storage
+
 Login not working? Try modifying your sessions config:
 
     config/session.php
