@@ -12,6 +12,11 @@ class BackendHandler
     public function subscribe($events)
     {
         $events->listen(
+            'App\Form\Backend\Entity\Store',
+            'App\Handlers\Forms\Backend\EditStore@handle_store',
+            10
+        );
+        $events->listen(
             'App\Form\Backend\Entity\Product',
             'App\Handlers\Forms\Backend\EditProduct@handle_product',
             10
