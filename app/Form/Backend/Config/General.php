@@ -16,6 +16,12 @@ class General extends Form
             'value' => config('store.name'),
             'use_default' => true,
         ]);
+        $this->addField('url', [
+            'label' => 'Store Url',
+            'type' => 'text',
+            'value' => config('store.url'),
+            'use_default' => true,
+        ]);
         $this->addField('logo', [
             'label' => 'Store Logo',
             'type' => 'text',

@@ -54,9 +54,11 @@ return [
 
         10 => 'App\Handlers\Rules\EnvMatch',
 
-        20 => 'App\Handlers\Rules\DomainMatch',
+        20 => 'App\Handlers\Rules\CookieMatch',
 
-        30 => 'App\Handlers\Rules\SubdomainMatch',
+        30 => 'App\Handlers\Rules\DomainMatch',
+
+        40 => 'App\Handlers\Rules\SubdomainMatch',
 
     ],
 ];

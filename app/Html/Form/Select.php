@@ -6,11 +6,11 @@ use Lavender\Contracts\Entity as EntityContract;
 
 class Select
 {
-    public function dropdown($selected, $options, $resource)
+    public function dropdown($selected, $attributes, $resource)
     {
         $options = $this->buildOptions($selected, $resource);
 
-        return '<select'.attr($options).'>'.implode(PHP_EOL, $options).'</select>';
+        return '<select'.attr($attributes).'>'.implode(PHP_EOL, $options).'</select>';
     }
 
     protected function buildOptions($selected, $resource)

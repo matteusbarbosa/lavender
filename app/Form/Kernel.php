@@ -41,6 +41,8 @@ class Kernel extends FormKernel
     protected $resources = [
 
         'yesno'             => 'App\Resources\YesNo',
+        'themes'            => 'App\Resources\Themes',
+        'root_categories'            => 'App\Resources\RootCategories',
         'category_tree'     => 'App\Resources\CategoryTree',
         'category_children' => 'App\Resources\CategoryTree@toChildren',
         'shipment_methods'  => 'App\Resources\ShipmentMethods',

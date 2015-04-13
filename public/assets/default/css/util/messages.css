@@ -20,19 +20,19 @@ ul.message-group.error{
 }
 
 ul.message-group.success{
-    background: #aeffaa;
+    background: #BEDFBC;
     border-color: #3D9970;
     color: #3D9970;
 }
 
 ul.message-group.warning{
-    background: #ffd597;
+    background: #F9D39B;
     border-color: orangered;
     color: orangered;
 }
 
 ul.message-group.notice{
-    background: #d9c1ff;
+    background: #D8C4F9;
     border-color: purple;
     color: purple;
 }

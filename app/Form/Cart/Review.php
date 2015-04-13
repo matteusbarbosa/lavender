@@ -7,9 +7,14 @@ class Review extends Form
 {
     public function __construct($params)
     {
+        $this->addField('terms', [
+            'label' => 'I agree to the terms.',
+            'type' => 'checkbox',
+            'validate' => ['required'],
+            'options' => ['checked' => true],
+        ]);
         $this->addField('submit', [
             'type' => 'button',
-            'validate' => ['required'],
             'value' => 'Place Order',
             'options' => ['type' => 'submit']
         ]);

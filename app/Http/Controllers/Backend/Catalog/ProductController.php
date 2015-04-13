@@ -97,7 +97,7 @@ class ProductController extends BackendEntity
     /**
      * Update product categories
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  FormRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function postCategories(FormRequest $request, $id)

@@ -4,33 +4,24 @@ namespace App\Handlers\Forms\Backend;
 use App\Support\Facades\Message;
 use Lavender\Contracts\Form;
 
-class EditProduct
+class EditProduct extends EditEntity
 {
 
     /**
-     * @param $data
+     * @param Form $form
      */
     public function handle_product(Form $form)
     {
-        $request = $form->request->all();
-
-        $product = $form->product;
-
-        $new = !$product->exists;
-
-        $product->fill($request);
-
-        $product->save();
+        $entity = $this->handle_entity($form, 'product');
 
         Message::addSuccess(sprintf(
-            "Product \"%s\" was %s.",
-            $product->name,
-            $new ? 'created' : 'updated'
+            "Product \"%s\" was saved successfully.",
+            $entity->id
         ));
     }
 
     /**
-     * @param $data
+     * @param Form $form
      */
     public function handle_categories(Form $form)
     {

@@ -336,7 +336,6 @@ return [
 
     'theme' => [
         'class' =>  'App\Database\Theme',
-        'scope' => Scope::STORE,
         'attributes' => [
             'code' => [
                 'label' => 'Code',

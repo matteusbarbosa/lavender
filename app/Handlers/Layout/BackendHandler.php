@@ -101,6 +101,26 @@ class BackendHandler
         ]);
     }
 
+    protected function store_selector()
+    {
+        $backend_stores = menu('header.stores');
+
+        $current = app('App\Store');
+
+        $stores = entity('store')->all();
+
+        foreach($stores as $store){
+
+            if($store->id == $current->id) continue;
+
+            $backend_stores->add('switch-'.$store->id, [
+                'href' => url('backend/store/switch/'.$store->id),
+                'text' => 'Switch to store '.$store->id,
+            ]);
+
+        }
+    }
+
     protected function header()
     {
         $backend_links = menu('header.links');
@@ -109,37 +129,42 @@ class BackendHandler
             'href' => url('/'),
             'text' => 'Go to frontend',
         ]);
+
+        $this->store_selector();
     }
 
     protected function layouts()
     {
-        view()->composer('page.partials.head', function($view){
+        // Add stylesheets
+        compose_section(
+            'page.partials.head',
+            'head.style',
+            ['style' => 'css/util/tabs.css'],
+            ['style' => 'css/util/code.css'],
+            ['style' => 'css/jquery.dataTables.min.css']
+        );
 
-            append_section('head.style', ['style' => 'css/util/tabs.css']);
+        // Add scripts
+        compose_section(
+            'page.partials.head',
+            'head.script',
+            ['script' => 'js/jquery-2.1.3.min.js'],
+            ['script' => 'js/jquery.dataTables.min.js']
+        );
 
-            append_section('head.style', ['style' => 'css/util/code.css']);
-
-            append_section('head.style', ['style' => 'css/jquery.dataTables.min.css']);
-
-            append_section('head.script', ['script' => 'js/jquery-2.1.3.min.js']);
-
-            append_section('head.script', ['script' => 'js/jquery.dataTables.min.js']);
-
-        });
-
+        // Set logo URL
         view()->composer('page.partials.header.logo', function($view){
 
             $view->with('url', url('backend'));
 
         });
 
-        view()->composer('page.partials.header', function($view){
-
-            append_section('header.top.links', ['menu' => 'backend.links']);
-
-            append_section('header.top.navigation', ['menu' => 'backend.navigation']);
-
-        });
+        // Add store selector
+        compose_section(
+            'page.partials.header',
+            'header.links.after',
+            ['menu' => 'header.stores']
+        );
     }
 
 }
