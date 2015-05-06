@@ -10,6 +10,7 @@ class Review extends Form
         $this->addField('terms', [
             'label' => 'I agree to the terms.',
             'type' => 'checkbox',
+            'value' => 1,
             'validate' => ['required'],
             'options' => ['checked' => true],
         ]);
