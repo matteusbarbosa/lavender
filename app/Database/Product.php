@@ -14,7 +14,7 @@ class Product extends Entity
 
     public function getUrl()
     {
-        return \URL::to(\Config::get('store.product_url') . '/' . $this->url);
+        return url(config('store.product_url') . '/' . $this->url);
     }
 
 }

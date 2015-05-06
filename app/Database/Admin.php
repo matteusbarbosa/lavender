@@ -12,6 +12,7 @@ class Admin extends Account
 
     public $confirmed = true;
 
+    // todo apply these validate rules from config (check artisan make:admin)
     public $rules = [
         'create' => [
             'username' => 'required|min:4',
