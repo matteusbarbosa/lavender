@@ -76,17 +76,14 @@ Lavender is open-sourced software licensed under the [MIT license](http://openso
 
 
 ### Roadmap
-Each major version (N.x.x) of the project is charted below. Once the goals have been completed for each major version we will move to the next major version. As we progress, big updates (breaking changes) are released in minor versions (x.N.x) and smaller updates (new features) are released in micro versions (x.x.N). The application (this repo) is built in minor versions, so a re-install is required between minor versions.
 
-Version / Stage                        |                            | Goals     
+Version                                |                            | Goals     
  :-----------------------------------: | :------------------------- | :------------------------------------------------------
- `0.x.x - Development`                 | Current                    | Create standard ecommerce entities and routes, as well as backend forms and grids. Create tests. Demonstrate use of stores and themes.
- `1.x.x - Developer Beta`              | Coming Q2 2015             | Feature development, ui improvements, [documentation](https://github.com/lavender/lavender/wiki).
+ `1.x.x - Developer Beta`              | Current                    | Feature development, ui improvements, [documentation](https://github.com/lavender/lavender/wiki).
  `2.x.x - Preview`                     | Coming Q4 2015             | Improve extensibility, performance/security audits.
  `3.x.x - Public Release`              | Coming Q2 2016             | Provide documentation for end users, create a marketing site to promote adoption.
 
 What does production-ready Lavender look like? A feature-light but highly extensible ecommerce platform with elegant code structures and detailed documentation.
-
 
 
 ### Contributing
