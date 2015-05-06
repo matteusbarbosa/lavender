@@ -11,7 +11,7 @@ class CookieMatch
     {
         $cookie = Cookie::get('store');
 
-        if($store_id = Crypt::decrypt($cookie)){
+        if($cookie && $store_id = Crypt::decrypt($cookie)){
 
             return $store->find($store_id);
 
