@@ -93,3 +93,4 @@
 127.0.0.1 - - [28/Jun/2015:16:14:55 -0300] "GET /assets/default/js/app.js HTTP/1.1" 200 146 "http://local.lavender.com/" "Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0"
 127.0.0.1 - - [28/Jun/2015:16:14:55 -0300] "GET /assets/default/images/logo.svg HTTP/1.1" 200 5746 "http://local.lavender.com/" "Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0"
 127.0.0.1 - - [28/Jun/2015:16:14:59 -0300] "GET / HTTP/1.1" 200 3883 "http://local.lavender.com/" "Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0"
+127.0.0.1 - - [28/Jun/2015:16:33:41 -0300] "GET / HTTP/1.1" 500 22413 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101 Firefox/38.0"
