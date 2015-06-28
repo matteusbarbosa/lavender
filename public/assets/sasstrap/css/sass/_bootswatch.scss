@@ -1,0 +1,159 @@
+// Cerulean 3.3.5
+// Bootswatch
+// -----------------------------------------------------
+
+//Fix (from https://github.com/matthieua/sass-css3-mixins/blob/master/css3-mixins.scss)
+@mixin css3-prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+   -khtml-#{$property}: #{$value};
+     -moz-#{$property}: #{$value}; 
+      -ms-#{$property}: #{$value};
+       -o-#{$property}: #{$value};
+          #{$property}: #{$value};
+}
+
+//Fix (from https://github.com/matthieua/sass-css3-mixins/blob/master/css3-mixins.scss)
+@mixin box-shadow($x: 2px, $y: 2px, $blur: 5px, $color: rgba(0,0,0,.4), $inset: "") {
+  @if ($inset != "") {
+    @include css3-prefix('box-shadow', $inset $x $y $blur $color);
+  } @else {
+    @include css3-prefix('box-shadow', $x $y $blur $color);
+  }
+}
+ 
+//Fix (from https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/mixins/_gradients.scss)
+@mixin gradient-vertical-three-colors($start-color: #00b3ee, $mid-color: #7a43b6, $color-stop: 50%, $end-color: #c3325f) {
+  background-image: -webkit-linear-gradient($start-color, $mid-color $color-stop, $end-color);
+  background-image: -o-linear-gradient($start-color, $mid-color $color-stop, $end-color);
+  background-image: linear-gradient($start-color, $mid-color $color-stop, $end-color);
+  background-repeat: no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{ie-hex-str($start-color)}', endColorstr='#{ie-hex-str($end-color)}', GradientType=0); // IE9 and down, gets no color-stop at all for proper fallback
+}
+ 
+@mixin btn-shadow($color){
+  @include gradient-vertical-three-colors(lighten($color, 8%), $color, 60%, darken($color, 4%));
+  filter: none;
+  border-bottom: 1px solid darken($color, 10%);
+}
+ 
+// Navbar =====================================================================
+
+.navbar {
+  @include btn-shadow($navbar-default-bg);
+  filter: none;
+  @include box-shadow(0 1px 10px rgba(0, 0, 0, 0.1));
+
+  &-default {
+
+    .badge {
+      background-color: #fff;
+      color: $navbar-default-bg;
+    }
+  }
+
+  &-inverse {
+    @include gradient-vertical-three-colors(lighten($navbar-inverse-bg, 8%), lighten($navbar-inverse-bg, 4%), 60%, darken($navbar-inverse-bg, 2%));
+    filter: none;
+    border-bottom: 1px solid darken($navbar-inverse-bg, 10%);
+
+    .badge {
+      background-color: #fff;
+      color: $navbar-inverse-bg;
+    }
+  }
+
+  .navbar-nav > li > a,
+  &-brand {
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (max-width: $grid-float-breakpoint-max) {
+
+  .navbar {
+
+    .dropdown-header {
+      color: #fff;
+    }
+
+    .dropdown-menu {
+      a {
+        color: #fff;
+      }
+    }
+  }
+}
+
+// Buttons ====================================================================
+
+.btn {
+
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+
+  .caret {
+    border-top-color: #fff;
+  }
+}
+
+.btn-default {
+  
+  @include btn-shadow($btn-default-bg);
+
+  &:hover {
+    color: $btn-default-color;
+  }
+
+  .caret {
+    border-top-color: $text-color;
+  }
+}
+
+.btn-default {
+  @include btn-shadow($btn-default-bg);
+}
+
+.btn-primary {
+  @include btn-shadow($btn-primary-bg);
+}
+
+.btn-success {
+  @include btn-shadow($btn-success-bg);
+}
+
+.btn-info {
+  @include btn-shadow($btn-info-bg);
+}
+
+.btn-warning {
+  @include btn-shadow($btn-warning-bg);
+}
+
+.btn-danger {
+  @include btn-shadow($btn-danger-bg);
+}
+
+// Typography =================================================================
+
+// Tables =====================================================================
+
+// Forms ======================================================================
+
+// Navs =======================================================================
+
+// Indicators =================================================================
+
+// Progress bars ==============================================================
+
+// Containers =================================================================
+
+.panel-primary,
+.panel-success,
+.panel-warning,
+.panel-danger,
+.panel-info {
+
+  .panel-heading,
+  .panel-title {
+    color: #fff;
+  }
+}

@@ -1,0 +1,30 @@
+/*
+Generic desktop sizes
+*/
+
+@media (min-width: 1024px) {
+
+    header .top,
+    header .bottom,
+    footer .top,
+    footer .bottom {
+        margin: 10px 0;
+    }
+
+    header{
+        .top{
+            .logo{
+                img{
+                    height: 55px;
+                    float: left;
+                }
+            }
+        }
+    }
+
+
+    .links {
+        ul{list-style: none;}  
+    }
+
+}
