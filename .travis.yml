@@ -1,0 +1,25 @@
+language: php
+
+php:
+  - 5.4
+  - 5.5
+  - 5.6
+
+branches:
+  only:
+    - master
+
+install:
+  - composer install
+  - mysql -e 'create database testing;'
+  - php -r "copy('.env.example', '.env');"
+  - php artisan key:generate
+  - sed -i s/DB_DATABASE=null/DB_DATABASE=testing/ .env
+  - sed -i s/DB_USERNAME=null/DB_USERNAME=root/ .env
+
+script:
+  - php artisan migrate:entity
+  - php artisan migrate
+  - php artisan db:seed --class=InstallLavender
+  - php artisan make:admin --email=foo@bar.com --password=testing
+  - phpunit
