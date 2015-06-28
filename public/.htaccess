@@ -8,9 +8,12 @@
     # Base Rewrite Path...
     RewriteBase /
 
+<<<<<<< HEAD
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]
 
+=======
+>>>>>>> 58e3cc5e69603879dbadf48599490f1c65cb33a7
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
