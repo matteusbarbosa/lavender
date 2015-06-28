@@ -2,29 +2,10 @@
 Generic desktop sizes
 */
 
-@media (min-width: 1024px) {
+input[type="text"],input[type="email"],input[type="number"],input[type="search"],select,textarea{
+    @extend .form-control;
+}
 
-    header .top,
-    header .bottom,
-    footer .top,
-    footer .bottom {
-        margin: 10px 0;
-    }
-
-    header{
-        .top{
-            .logo{
-                img{
-                    height: 55px;
-                    float: left;
-                }
-            }
-        }
-    }
-
-
-    .links {
-        ul{list-style: none;}  
-    }
-
+button,input[type="submit"]{
+    @extend .btn-default;
 }

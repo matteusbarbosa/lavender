@@ -1,0 +1,20 @@
+
+li.tab-title.changes:after{
+    content:"(changed)"; /*todo save icon*/
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+li.tab-title{
+    position:relative;
+    list-style: none;
+}
+
+li.tab-title label{
+    cursor:pointer;
+}
+
+li.tab-title label:hover{
+    text-decoration:underline;
+}
