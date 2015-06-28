@@ -28,11 +28,8 @@ return [
 	|
 	*/
 
-<<<<<<< HEAD
 	'host' => 'smtp.gmail.com',
-=======
-	'host' => 'smtp.mailgun.org',
->>>>>>> 58e3cc5e69603879dbadf48599490f1c65cb33a7
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -58,11 +55,7 @@ return [
 	|
 	*/
 
-<<<<<<< HEAD
 	'from' => ['address' => 'matteusbarbosa2@gmail.com', 'name' => 'Administrador da Loja'],
-=======
-	'from' => ['address' => null, 'name' => null],
->>>>>>> 58e3cc5e69603879dbadf48599490f1c65cb33a7
 
 	/*
 	|--------------------------------------------------------------------------

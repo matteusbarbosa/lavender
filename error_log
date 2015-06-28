@@ -1,0 +1,11 @@
+[Sun Jun 28 16:11:18.246078 2015] [core:alert] [pid 4582] [client 127.0.0.1:38577] /home/matteus/projects/lavender/public/.htaccess: Expected </<<<<<<> but saw </IfModule>, referer: http://local.lavender.com/backend
+[Sun Jun 28 16:11:21.204477 2015] [core:alert] [pid 3939] [client 127.0.0.1:38578] /home/matteus/projects/lavender/public/.htaccess: Expected </<<<<<<> but saw </IfModule>, referer: http://local.lavender.com/backend
+[Sun Jun 28 16:11:38.009679 2015] [core:alert] [pid 4577] [client 127.0.0.1:38791] /home/matteus/projects/lavender/public/.htaccess: Expected </<<<<<<> but saw </IfModule>, referer: http://local.lavender.com/backend
+[Sun Jun 28 16:11:38.763021 2015] [core:alert] [pid 3936] [client 127.0.0.1:38796] /home/matteus/projects/lavender/public/.htaccess: Expected </<<<<<<> but saw </IfModule>, referer: http://local.lavender.com/backend
+[Sun Jun 28 16:12:15.492631 2015] [core:alert] [pid 6167] [client 127.0.0.1:39018] /home/matteus/projects/lavender/public/.htaccess: Expected </<<<<<<> but saw </IfModule>, referer: http://local.lavender.com/backend
+[Sun Jun 28 16:12:16.078569 2015] [core:alert] [pid 6171] [client 127.0.0.1:39025] /home/matteus/projects/lavender/public/.htaccess: Expected </<<<<<<> but saw </IfModule>, referer: http://local.lavender.com/backend
+[Sun Jun 28 16:12:16.510618 2015] [core:alert] [pid 6165] [client 127.0.0.1:39027] /home/matteus/projects/lavender/public/.htaccess: Expected </<<<<<<> but saw </IfModule>, referer: http://local.lavender.com/backend
+[Sun Jun 28 16:12:16.732927 2015] [core:alert] [pid 6172] [client 127.0.0.1:39034] /home/matteus/projects/lavender/public/.htaccess: Expected </<<<<<<> but saw </IfModule>, referer: http://local.lavender.com/backend
+[Sun Jun 28 16:12:20.385020 2015] [core:alert] [pid 6169] [client 127.0.0.1:39055] /home/matteus/projects/lavender/public/.htaccess: Expected </<<<<<<> but saw </IfModule>
+[Sun Jun 28 16:13:25.536196 2015] [core:alert] [pid 6167] [client 127.0.0.1:39519] /home/matteus/projects/lavender/public/.htaccess: Expected </<<<<<<> but saw </IfModule>
+[Sun Jun 28 16:14:04.632100 2015] [php5:error] [pid 6171] [client 127.0.0.1:39664] PHP Parse error:  syntax error, unexpected '<<' (T_SL), expecting ']' in /home/matteus/projects/lavender/config/mail.php on line 31
